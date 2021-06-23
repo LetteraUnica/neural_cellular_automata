@@ -68,9 +68,9 @@ class CAModel(nn.Module):
         return x * life_mask.float()
     
     
-    def makeVideo(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10):
+    def make_video(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10):
         if init_state is None:
-            init_state = MakeSeed(1, self.n_channels, video_size)
+            init_state = make_seed(1, self.n_channels, video_size)
 
         init_state = init_state.to(self.device)
         
@@ -96,6 +96,7 @@ class CAModel(nn.Module):
 
     def load(self, fname):
         self.load_state_dict(torch.load(fname))
+        print("Successfully loaded model!")
         
         
     def save(self, fname, overwrite=False):
