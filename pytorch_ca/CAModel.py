@@ -5,6 +5,7 @@ from torchvision.io import read_image, ImageReadMode, write_video
 import torchvision.transforms as T
 import os.path
 from importlib import reload
+from random import randint
 
 from scripts import *
 
@@ -20,10 +21,12 @@ class CAModel(nn.Module):
             self.device = device
         self.n_channels = n_channels
         self.fire_rate = fire_rate
-        
-        self.layers = nn.Sequential(nn.Conv2d(n_channels*3, 128, 1),
-                                    nn.ReLU(),
-                                    nn.Conv2d(128, n_channels, 1))
+        self.losses = []
+
+        self.layers = nn.Sequential(
+            nn.Conv2d(n_channels*3, 128, 1),
+            nn.ReLU(),
+            nn.Conv2d(128, n_channels, 1))
         
     
     def wrap_edges(self, x):
@@ -94,6 +97,24 @@ class CAModel(nn.Module):
         return x
     
 
+    def train(self, optimizer, criterion, scheduler, pool, batch_size, n_epochs, n_iters, kind="growing"):
+        self.train()
+
+        for i in range(n_epochs):
+            inputs, indexes = pool.sample(batch_size)
+            inputs = inputs.to(self.device)
+            optimizer.zero_grad()
+        
+            for j in range(n_iters+randint(-10, 10)):
+                inputs = self.forward(inputs)
+            
+            loss = criterion(inputs)
+            loss.backward()
+            optimizer.step()
+            scheduler.step()
+            self.losses.append(loss.item())
+
+
     def load(self, fname):
         self.load_state_dict(torch.load(fname))
         print("Successfully loaded model!")
@@ -105,3 +126,4 @@ class CAModel(nn.Module):
             message += "overwrite argument to True to confirm the overwrite"
             raise Exception(message)
         torch.save(self.state_dict(), fname)
+        print("Successfully saved model!")

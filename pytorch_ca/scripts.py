@@ -42,8 +42,8 @@ def center_crop(images, size):
     """Center crops an image"""
     return T.CenterCrop(size)(images)
 
-def pad(images, padding):
-    return T.Pad(padding//2)(images)
+def pad(images, padding, fill=0.):
+    return T.Pad(padding//2, fill=fill)(images)
 
 def imshow(image, apply_center_crop=False):
     """Prints an image"""
@@ -86,5 +86,7 @@ class SamplePool(Dataset):
         return self.images[idx], idx
     
 
-    def update(self, new_images, idx):
+    def update(self, new_images, idx, idx_max_loss=None):
         self.images[idx] = new_images
+        if idx_max_loss is not None:
+            self.images[idx[idx_max_loss]] = make_seed(1, self.n_channels, self.image_size)[0]
