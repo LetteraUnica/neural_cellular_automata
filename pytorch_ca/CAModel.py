@@ -6,6 +6,7 @@ import torchvision.transforms as T
 import os.path
 from importlib import reload
 from random import randint
+from IPython.display import clear_output
 
 from scripts import *
 
@@ -97,7 +98,7 @@ class CAModel(nn.Module):
         return x
     
 
-    def train(self, optimizer, criterion, scheduler, pool, batch_size, n_epochs, n_iters, kind="growing"):
+    def train(self, optimizer, criterion, scheduler, pool, n_epochs, batch_size=4, n_iters=45, kind="growing"):
         self.train()
 
         for i in range(n_epochs):
@@ -105,14 +106,17 @@ class CAModel(nn.Module):
             inputs = inputs.to(self.device)
             optimizer.zero_grad()
         
-            for j in range(n_iters+randint(-10, 10)):
+            for j in range(n_iters+randint(-5, 5)):
                 inputs = self.forward(inputs)
             
             loss = criterion(inputs)
             loss.backward()
             optimizer.step()
             scheduler.step()
+            pool.update()
             self.losses.append(loss.item())
+        print(loss)
+        clear_output(wait=True)
 
 
     def load(self, fname):
