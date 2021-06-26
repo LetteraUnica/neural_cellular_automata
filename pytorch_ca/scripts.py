@@ -9,7 +9,6 @@ from random import randint
 
 
 # Utility functions
-
 def RGBAtoFloat(images):
     """Converts images in 0-1 range"""
     return torch.clip(images.float() / 255, 0., 1.)

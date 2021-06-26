@@ -98,7 +98,8 @@ class CAModel(nn.Module):
         return x
     
 
-    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None, batch_size=4, evolution_iters=45, kind="growing"):
+    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None,
+                batch_size=4, evolution_iters=55, kind="growing", square_side=20):
         self.train()
 
         for i in range(n_epochs):
@@ -113,13 +114,13 @@ class CAModel(nn.Module):
                 
                 loss, idx_max_loss = criterion(inputs)
                 epoch_losses.append(loss.item())
-                # if j%2 != 0:
-                #     idx_max_loss = None
+                if j%2 != 0:
+                    idx_max_loss = None
                 loss.backward()
                 optimizer.step()
                 if kind == "regenerating":
                     inputs = inputs.detach()
-                    inputs = make_squares(inputs)
+                    inputs = make_squares(inputs, side=square_side)
                 if kind != "growing":
                     pool.update(inputs, indexes, idx_max_loss)
 
@@ -141,9 +142,10 @@ class CAModel(nn.Module):
                 for j in range(evolution_iters):
                     inputs = self.forward(inputs)
                     loss, _ = criterion(inputs)
-                    self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss) / (n+batch_size)
+                    self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss.cpu()) / (n+batch_size)
                 n += batch_size
 
+        pl.loglog(self.evolution_losses)
         return self.evolution_losses
 
 
