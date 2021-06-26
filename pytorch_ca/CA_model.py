@@ -98,25 +98,62 @@ class CAModel(nn.Module):
         return x
     
 
-    def train(self, optimizer, criterion, scheduler, pool, n_epochs, batch_size=4, n_iters=45, kind="growing"):
+    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None, batch_size=4, evolution_iters=45, kind="growing"):
         self.train()
 
         for i in range(n_epochs):
-            inputs, indexes = pool.sample(batch_size)
-            inputs = inputs.to(self.device)
-            optimizer.zero_grad()
-        
-            for j in range(n_iters+randint(-5, 5)):
-                inputs = self.forward(inputs)
+            epoch_losses = []
+            for j in range(pool.size // batch_size):
+                inputs, indexes = pool.sample(batch_size)
+                inputs = inputs.to(self.device)
+                optimizer.zero_grad()
             
-            loss = criterion(inputs)
-            loss.backward()
-            optimizer.step()
-            scheduler.step()
-            pool.update()
-            self.losses.append(loss.item())
-        print(loss)
-        clear_output(wait=True)
+                for k in range(evolution_iters + randint(-5, 5)):
+                    inputs = self.forward(inputs)
+                
+                loss, idx_max_loss = criterion(inputs)
+                epoch_losses.append(loss.item())
+                # if j%2 != 0:
+                #     idx_max_loss = None
+                loss.backward()
+                optimizer.step()
+                if kind == "regenerating":
+                    inputs = inputs.detach()
+                    inputs = make_squares(inputs)
+                if kind != "growing":
+                    pool.update(inputs, indexes, idx_max_loss)
+
+            if scheduler is not None:
+                scheduler.step()
+
+            self.losses.append(np.mean(epoch_losses))
+            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
+            clear_output(wait=True)
+
+
+    def eval_CA(self, criterion, image_size, eval_samples=128, evolution_iters=1000, batch_size=32):
+        self.eval()
+        self.evolution_losses = torch.zeros((evolution_iters), device="cpu")
+        n = 0
+        with torch.no_grad():
+            for i in range(eval_samples // batch_size):
+                inputs = make_seed(batch_size, self.n_channels, image_size, device=self.device)
+                for j in range(evolution_iters):
+                    inputs = self.forward(inputs)
+                    loss, _ = criterion(inputs)
+                    self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss) / (n+batch_size)
+                n += batch_size
+
+        return self.evolution_losses
+
+
+# with torch.no_grad():
+#     if inputs.shape[0] > 1:
+#         where_max_loss = torch.argmax(batch_losses)
+#         pool.update(MakeSeed(1, kwargs['n_channels'], kwargs['image_size']), indexes[where_max_loss])
+#         pool.update(inputs[np.where(indexes!=indexes[where_max_loss])], np.where(indexes!=indexes[where_max_loss]))
+#     else:
+#         pool.update(inputs, indexes)
 
 
     def load(self, fname):
@@ -131,3 +168,7 @@ class CAModel(nn.Module):
             raise Exception(message)
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
+
+
+
+
