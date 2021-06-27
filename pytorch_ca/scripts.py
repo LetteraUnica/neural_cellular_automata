@@ -62,12 +62,16 @@ def make_seed(n_images, n_channels, image_size, device="cpu"):
 def moving_average(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
 
-def make_squares(images, side=20):
-    image_size = images.size()[-1]
+def side(size):
+    return randint(size//3, size//2)
+
+def make_squares(images, target_size=None, side=side):
+    if target_size is None:
+        target_size = images.size()[-1]
     for i in range(images.size()[0]):
-        x = randint(0, image_size-side)
-        y = randint(0, image_size-side)
-        images[i, :, x:x+side, y:y+side] = 0.
+        x = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        images[i, :, x-side(target_size)//2:x+side(target_size)//2, y-side(target_size)//2:y+side(target_size)//2] = 0.
 
     return images
 
