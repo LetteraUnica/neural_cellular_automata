@@ -87,17 +87,10 @@ class VirusCA2:
         self.new_CA = regenerating_CA
         self.mask_CA = mask_CA
         self.losses = []
-    
-    def update_cell_masks(self, x, mutation_mask=None):
-        if mutation_mask is None:
-            mutation_mask = torch.rand(x[:,:1,:,:].size(), device=self.device) < self.new_prob
-
-        self.new_cells = mutation_mask.to(self.device).float()
-        self.old_cells = 1. - self.new_cells
 
     def forward(self, x):
         x_old = self.old_CA(x)
-        x_new = self.new_CA(x)
+        x_new = torch.tanh(self.new_CA(x))
         self.new_cells = torch.sigmoid(self.mask_CA(x)[:, -1:, :, :])
 
         return x_old * (1. - self.new_cells) + x_new * self.new_cells

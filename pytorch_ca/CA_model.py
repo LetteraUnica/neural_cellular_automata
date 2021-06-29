@@ -13,21 +13,28 @@ from scripts import *
 
 class CAModel(nn.Module):
     """Neural cellular automata model"""
-    def __init__(self, n_channels=16, device=None, fire_rate=0.5):
+    def __init__(self, n_channels=16, device=None, fire_rate=0.5, out_channels=None):
         super().__init__()
         
         if device is None:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         else:
             self.device = device
+        
         self.n_channels = n_channels
+
+        if out_channels is None:
+            out_channels = n_channels
+        self.out_channels = out_channels
+        
         self.fire_rate = fire_rate
+        
         self.losses = []
 
         self.layers = nn.Sequential(
             nn.Conv2d(n_channels*3, 128, 1),
             nn.ReLU(),
-            nn.Conv2d(128, n_channels, 1))
+            nn.Conv2d(128, out_channels, 1))
         
     
     def wrap_edges(self, x):
