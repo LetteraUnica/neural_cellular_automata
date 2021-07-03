@@ -66,12 +66,18 @@ class CAModel(nn.Module):
         return F.conv2d(self.wrap_edges(x), all_filters_batch, groups=self.n_channels)
     
 
-    def forward(self, x, angle=0., step_size=1.):
-        pre_life_mask = self.get_living_mask(x)
-        
+    def compute_dx(self, x, angle=0., step_size=1.):
         dx = self.layers(self.perceive(x, angle)) * step_size
         update_mask = torch.rand(x[:,:1,:,:].size(), device=self.device) < self.fire_rate
-        x += dx*update_mask.float()
+
+        return dx*update_mask.float()
+
+
+    def forward(self, x, angle=0., step_size=1.):
+        x = x[:, :self.n_channels,:,:]
+        pre_life_mask = self.get_living_mask(x)
+        
+        x += self.compute_dx(x, angle, step_size)
         
         post_life_mask = self.get_living_mask(x)
         life_mask = pre_life_mask & post_life_mask
@@ -152,17 +158,7 @@ class CAModel(nn.Module):
                     self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss.cpu()) / (n+batch_size)
                 n += batch_size
 
-        pl.loglog(self.evolution_losses)
         return self.evolution_losses
-
-
-# with torch.no_grad():
-#     if inputs.shape[0] > 1:
-#         where_max_loss = torch.argmax(batch_losses)
-#         pool.update(MakeSeed(1, kwargs['n_channels'], kwargs['image_size']), indexes[where_max_loss])
-#         pool.update(inputs[np.where(indexes!=indexes[where_max_loss])], np.where(indexes!=indexes[where_max_loss]))
-#     else:
-#         pool.update(inputs, indexes)
 
 
     def load(self, fname):
@@ -177,7 +173,3 @@ class CAModel(nn.Module):
             raise Exception(message)
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
-
-
-
-
