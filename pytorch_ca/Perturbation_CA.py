@@ -52,7 +52,8 @@ class PerturbationCA:
         return x
 
 
-    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None, batch_size=4, evolution_iters=55):
+    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None,
+                 batch_size=4, evolution_iters=55, kind="persistent", square_side=20):
         self.old_CA.train()
         self.new_CA.train()
 
@@ -73,7 +74,11 @@ class PerturbationCA:
                     idx_max_loss = None
                 loss.backward()
                 optimizer.step()
-                pool.update(inputs, indexes, idx_max_loss)
+                if kind == "regenerating":
+                    inputs = inputs.detach()
+                    inputs = make_squares(inputs, side=square_side)
+                if kind != "growing":
+                    pool.update(inputs, indexes, idx_max_loss)
             
             if scheduler is not None:
                 scheduler.step()
