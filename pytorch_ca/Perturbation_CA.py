@@ -21,14 +21,9 @@ class PerturbationCA:
         self.old_CA = decaying_CA
         self.new_CA = regenerating_CA
         self.mask_CA = mask_CA
+        self.new_cells = None
         self.losses = []
 
-    # def forward(self, x):
-    #     x_old = self.old_CA(x)
-    #     x_new = self.new_CA(x)
-    #     self.new_cells = torch.sigmoid(x_new[:, -1:, :, :])
-
-    #     return x_old * (1. - self.new_cells) + torch.tanh(x_new) * self.new_cells
 
     def forward(self, x):
         pre_life_mask = self.new_CA.get_living_mask(x)
@@ -103,7 +98,7 @@ class PerturbationCA:
         return self.evolution_losses
 
 
-    def make_video(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10):
+    def make_video(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10, make_square=False):
         if init_state is None:
             init_state = make_seed(1, self.new_CA.n_channels, video_size)
 
@@ -111,13 +106,26 @@ class PerturbationCA:
         
         video_size *= rescaling
         video = torch.empty((n_iters, video_size, video_size, 3), device="cpu")
+        video_mask = torch.empty((n_iters, video_size, video_size, 3), device="cpu")
         rescaler = T.Resize((video_size, video_size), interpolation=T.InterpolationMode.NEAREST)
         with torch.no_grad():
             for i in range(n_iters):
+                if make_square and i == n_iters//2:
+                    init_state = make_squares(init_state, side=15)
+
                 video[i] = FloattoRGB(rescaler(init_state))[0].permute(1,2,0).cpu()
+
+                if self.new_cells is None:
+                    self.new_cells = torch.zeros((1, self.new_CA.n_channels, video_size, video_size), device=self.device)
+
+                frame = torch.mean(rescaler(self.new_cells**2), dim=[0,1]).cpu()
+                video_mask[i] = FloattoRGB(FloattoGrayscale(frame))[0].permute(1,2,0)
+                # video_mask[i] = frame
+
                 init_state = self.forward(init_state)
         
         write_video(fname, video, fps=fps)
+        write_video(fname.split(".")[0]+"_mask.mkv", video_mask, fps=fps)
 
 
 
