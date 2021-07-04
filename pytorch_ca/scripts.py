@@ -9,6 +9,7 @@ from random import randint
 
 
 # Utility functions
+
 def RGBAtoFloat(images):
     """Converts images in 0-1 range"""
     return torch.clip(images.float() / 255, 0., 1.)
@@ -62,17 +63,31 @@ def make_seed(n_images, n_channels, image_size, device="cpu"):
 def moving_average(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
 
-def side(size):
-    return randint(size//3, size//2)
+def side(size, constant_side=False):
+    if constant_side:
+        return size//2
+    return randint(size//6, size//2)
 
-def make_squares(images, target_size=None, side=side):
+def make_squares(images, target_size=None, side=side, constant_side=False):
     if target_size is None:
         target_size = images.size()[-1]
     for i in range(images.size()[0]):
         x = randint(target_size//2-target_size//4, target_size//2+target_size//4)
         y = randint(target_size//2-target_size//4, target_size//2+target_size//4)
-        images[i, :, x-side(target_size)//2:x+side(target_size)//2, y-side(target_size)//2:y+side(target_size)//2] = 0.
+        images[i, :, x-side(target_size, constant_side)//2:x+side(target_size, constant_side)//2, y-side(target_size, constant_side)//2:y+side(target_size, constant_side)//2] = 0.
 
+    return images
+    
+def make_poligon(images, target_size=None, side=side):
+    if target_size is None:
+        target_size = images.size()[-1]
+    for i in range(images.size()[0]):
+        x1 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        x2 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y1 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y2 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        images[i, :, x1-side(target_size)//2:x2+side(target_size)//2, y1-side(target_size)//2:y2+side(target_size)//2] = 0.
+    
     return images
 
 # Custom loss function
@@ -124,3 +139,9 @@ class SamplePool(Dataset):
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
             self.images[idx[idx_max_loss]] = make_seed(1, self.n_channels, self.image_size)[0]
+            
+            
+            
+            
+            
+        

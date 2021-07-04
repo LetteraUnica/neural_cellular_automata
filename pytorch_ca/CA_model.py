@@ -72,7 +72,7 @@ class CAModel(nn.Module):
         return x * life_mask.float()
     
     
-    def make_video(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10):
+    def make_video(self, n_iters, video_size, regenerating = False, fname="video.mkv", rescaling=8, init_state=None, fps=10, **kwargs):
         if init_state is None:
             init_state = make_seed(1, self.n_channels, video_size)
 
@@ -85,6 +85,18 @@ class CAModel(nn.Module):
             for i in range(n_iters):
                 video[i] = FloattoRGB(rescaler(init_state))[0].permute(1,2,0).cpu()
                 init_state = self.forward(init_state)
+                
+                if regenerating:
+                    if i == n_iters//3:
+                        try: 
+                            target_size = kwargs['target_size']
+                        except KeyError:
+                            target_size = None
+                        try: 
+                            constant_side = kwargs['constant_side']
+                        except KeyError:
+                            constant_side = None
+                        init_state = make_squares(init_state, target_size=target_size, constant_side=constant_side)
         
         write_video(fname, video, fps=fps)
         
@@ -98,8 +110,7 @@ class CAModel(nn.Module):
         return x
     
 
-    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None,
-                batch_size=4, evolution_iters=55, kind="growing", square_side=20):
+    def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None, batch_size=4, evolution_iters=55, kind="growing", **kwargs):
         self.train()
 
         for i in range(n_epochs):
@@ -120,7 +131,15 @@ class CAModel(nn.Module):
                 optimizer.step()
                 if kind == "regenerating":
                     inputs = inputs.detach()
-                    inputs = make_squares(inputs, side=square_side)
+                    try: 
+                        target_size = kwargs['target_size']
+                    except KeyError:
+                        target_size = None
+                    try: 
+                        constant_side = kwargs['constant_side']
+                    except KeyError:
+                        constant_side = None
+                    inputs = make_squares(inputs, target_size=target_size, constant_side=constant_side)
                 if kind != "growing":
                     pool.update(inputs, indexes, idx_max_loss)
 
@@ -144,7 +163,6 @@ class CAModel(nn.Module):
                     loss, _ = criterion(inputs)
                     self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss.cpu()) / (n+batch_size)
                 n += batch_size
-
         pl.loglog(self.evolution_losses)
         return self.evolution_losses
 
