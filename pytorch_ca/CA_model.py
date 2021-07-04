@@ -28,8 +28,11 @@ class CAModel(nn.Module):
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         else:
             self.device = device
+        
         self.n_channels = n_channels
+        
         self.fire_rate = fire_rate
+        
         self.losses = []
 
 	# network layers needed for the update rule
@@ -71,6 +74,13 @@ class CAModel(nn.Module):
         # output depthwise convolutions over inputs x
         return F.conv2d(self.wrap_edges(x), all_filters_batch, groups=self.n_channels)
     
+
+    def compute_dx(self, x, angle=0., step_size=1.):
+        dx = self.layers(self.perceive(x, angle)) * step_size
+        update_mask = torch.rand(x[:,:1,:,:].size(), device=self.device) < self.fire_rate
+
+        return dx*update_mask.float()
+
 
     def forward(self, x, angle=0., step_size=1.):
     	"""Forward pass of the training procedure"""
@@ -203,15 +213,6 @@ class CAModel(nn.Module):
         return self.evolution_losses
 
 
-# with torch.no_grad():
-#     if inputs.shape[0] > 1:
-#         where_max_loss = torch.argmax(batch_losses)
-#         pool.update(MakeSeed(1, kwargs['n_channels'], kwargs['image_size']), indexes[where_max_loss])
-#         pool.update(inputs[np.where(indexes!=indexes[where_max_loss])], np.where(indexes!=indexes[where_max_loss]))
-#     else:
-#         pool.update(inputs, indexes)
-
-
     def load(self, fname):
     	"""Loads (pre-trained) model"""
         self.load_state_dict(torch.load(fname))
@@ -226,7 +227,3 @@ class CAModel(nn.Module):
             raise Exception(message)
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
-
-
-
-

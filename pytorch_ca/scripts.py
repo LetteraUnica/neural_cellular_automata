@@ -7,6 +7,9 @@ import numpy as np
 import pylab as pl
 from random import randint
 
+from matplotlib import cm
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+
 
 # Utility functions
 
@@ -40,6 +43,19 @@ def TraintoFloat(images, inverse_tanh=False):
     return images * 0.5 + 0.5
 
 
+def FloattoGrayscale(image, cmap="viridis"):
+    if len(image.size()) > 2:
+        Exception(f"images must be a 1d or 2d tensor, got {image.shape} instead")
+        return
+    with torch.no_grad():
+        scale = torch.max(image) - torch.min(image)
+        if scale < 1e-6:
+            image = torch.zeros_like(image)
+        else: 
+            image = (image - torch.min(image)) / scale
+    viridis = cm.get_cmap(cmap)
+    return torch.tensor(viridis(image)).permute(2,0,1)
+    
 def center_crop(images, size):
     """Center crops an image"""
     return T.CenterCrop(size)(images)
