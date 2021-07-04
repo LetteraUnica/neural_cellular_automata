@@ -43,18 +43,18 @@ class CAModel(nn.Module):
         
     
     def wrap_edges(self, x):
-    	"""Sets boundary conditions to simulate a torus"""
+        """Sets boundary conditions to simulate a torus"""
         return F.pad(x, (1,1,1,1), 'circular', 0)
 
     
     def get_living_mask(self, x):
-    	"""Gets portion of living cells in the image"""
+        """Gets portion of living cells in the image"""
         alpha = x[:, 3:4, :, :]
         return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
 
 
     def perceive(self, x, angle=0.):
-    	"""Perception function, returnin the depthwise 2D convolution on the 16-channels images"""
+        """Perception function, returnin the depthwise 2D convolution on the 16-channels images"""
         identity = torch.tensor([[0.,0.,0.],
                                  [0.,1.,0.],
                                  [0.,0.,0.]])
@@ -83,7 +83,7 @@ class CAModel(nn.Module):
 
 
     def forward(self, x, angle=0., step_size=1.):
-    	"""Forward pass of the training procedure"""
+        """Forward pass of the training procedure"""
         pre_life_mask = self.get_living_mask(x)
         
         # compute update increment
@@ -103,7 +103,7 @@ class CAModel(nn.Module):
     
     
     def make_video(self, n_iters, video_size, regenerating = False, fname="video.mkv", rescaling=8, init_state=None, fps=10, **kwargs):
-    	"""Outputs the video of the evolution of the Cellular Automaton"""
+        """Outputs the video of the evolution of the Cellular Automaton"""
         if init_state is None:
             init_state = make_seed(1, self.n_channels, video_size)
 
@@ -136,7 +136,7 @@ class CAModel(nn.Module):
         
     
     def evolve(self, x, iters, angle=0., step_size=1.):
-    	"""Performs the evolution of input images x towards the target pattern"""
+        """Performs the evolution of input images x towards the target pattern"""
         self.eval()
         with torch.no_grad():
             for i in range(iters):
@@ -146,7 +146,7 @@ class CAModel(nn.Module):
     
 
     def train_CA(self, optimizer, criterion, pool, n_epochs, scheduler=None, batch_size=4, evolution_iters=55, kind="growing", **kwargs):
-    	"""Training routine for the Cellular Automaton"""
+        """Training routine for the Cellular Automaton"""
         self.train()
 
         for i in range(n_epochs):
@@ -197,7 +197,7 @@ class CAModel(nn.Module):
 
 
     def eval_CA(self, criterion, image_size, eval_samples=128, evolution_iters=1000, batch_size=32):
-    	"""Performs evaluation of the model over sample seed states""" 
+        """Performs evaluation of the model over sample seed states""" 
         self.eval()
         self.evolution_losses = torch.zeros((evolution_iters), device="cpu")
         n = 0
@@ -214,7 +214,7 @@ class CAModel(nn.Module):
 
 
     def load(self, fname):
-    	"""Loads (pre-trained) model"""
+        """Loads (pre-trained) model"""
         self.load_state_dict(torch.load(fname))
         print("Successfully loaded model!")
         

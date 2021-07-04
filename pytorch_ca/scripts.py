@@ -42,7 +42,6 @@ def TraintoFloat(images, inverse_tanh=False):
         images = torch.atanh(images * np.tanh(2)) / 2
     return images * 0.5 + 0.5
 
-
 def FloattoGrayscale(image, cmap="viridis"):
     if len(image.size()) > 2:
         Exception(f"images must be a 1d or 2d tensor, got {image.shape} instead")
@@ -160,19 +159,14 @@ class SamplePool(Dataset):
 
     
     def sample(self, batch_size):
-    	"""Extracts random batch of size batch_size frome the pool"""
+        """Extracts random batch of size batch_size frome the pool"""
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
     
 
     def update(self, new_images, idx, idx_max_loss=None):
-    	"""Raplaces images at indeces idx of the pool with new_images"""
+        """Raplaces images at indeces idx of the pool with new_images"""
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
             self.images[idx[idx_max_loss]] = make_seed(1, self.n_channels, self.image_size)[0]
             
-            
-            
-            
-            
-        
