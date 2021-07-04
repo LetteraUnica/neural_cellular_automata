@@ -12,6 +12,7 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 
 # Utility functions
+
 def RGBAtoFloat(images):
     """Converts images in 0-1 range"""
     return torch.clip(images.float() / 255, 0., 1.)
@@ -60,6 +61,7 @@ def center_crop(images, size):
     return T.CenterCrop(size)(images)
 
 def pad(images, padding, fill=0.):
+    "Pads the tensor images"
     return T.Pad(padding//2, fill=fill)(images)
 
 def imshow(image, apply_center_crop=False):
@@ -76,15 +78,37 @@ def make_seed(n_images, n_channels, image_size, device="cpu"):
     return start_point
 
 def moving_average(x, w):
+    """Computes moving average of x""" 
     return np.convolve(x, np.ones(w), 'valid') / w
 
-def make_squares(images, side=20):
-    image_size = images.size()[-1]
-    for i in range(images.size()[0]):
-        x = randint(0, image_size-side)
-        y = randint(0, image_size-side)
-        images[i, :, x:x+side, y:y+side] = 0.
+def side(size, constant_side=False):
+    """Return size of the side to be used to erase square portion of the images"""
+    if constant_side:
+        return size//2
+    return randint(size//6, size//2)
 
+def make_squares(images, target_size=None, side=side, constant_side=False):
+    """Sets square portion of input images to zero"""
+    if target_size is None:
+        target_size = images.size()[-1]
+    for i in range(images.size()[0]):
+        x = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        images[i, :, x-side(target_size, constant_side)//2:x+side(target_size, constant_side)//2, y-side(target_size, constant_side)//2:y+side(target_size, constant_side)//2] = 0.
+
+    return images
+    
+def make_poligon(images, target_size=None, side=side):
+    """Sets random poligonal portion of input images to zero"""
+    if target_size is None:
+        target_size = images.size()[-1]
+    for i in range(images.size()[0]):
+        x1 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        x2 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y1 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        y2 = randint(target_size//2-target_size//4, target_size//2+target_size//4)
+        images[i, :, x1-side(target_size)//2:x2+side(target_size)//2, y1-side(target_size)//2:y2+side(target_size)//2] = 0.
+    
     return images
 
 # Custom loss function
@@ -102,7 +126,15 @@ class loss_fn:
 
 # Sample pool dataset
 class SamplePool(Dataset):
-    """Samples the training images"""
+    """Samples the training images
+    
+    Parameters
+    ----------
+    images	tensor of samples to be trained 
+    size	size of the pool
+    n_channels	number of image channels
+    image_size	size of the input image  
+    """
     def __init__(self, pool_size, n_channels, image_size, transform = None, device="cpu"):
         self.images = make_seed(pool_size, n_channels, image_size, device)
         self.size = pool_size
@@ -128,11 +160,19 @@ class SamplePool(Dataset):
 
     
     def sample(self, batch_size):
+    	"""Extracts random batch of size batch_size frome the pool"""
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
     
 
     def update(self, new_images, idx, idx_max_loss=None):
+    	"""Raplaces images at indeces idx of the pool with new_images"""
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
             self.images[idx[idx_max_loss]] = make_seed(1, self.n_channels, self.image_size)[0]
+            
+            
+            
+            
+            
+        
