@@ -45,6 +45,7 @@ def center_crop(images, size):
     return T.CenterCrop(size)(images)
 
 def pad(images, padding, fill=0.):
+    "Pads the tensor images"
     return T.Pad(padding//2, fill=fill)(images)
 
 def imshow(image, apply_center_crop=False):
@@ -61,14 +62,17 @@ def make_seed(n_images, n_channels, image_size, device="cpu"):
     return start_point
 
 def moving_average(x, w):
+    """Computes moving average of x""" 
     return np.convolve(x, np.ones(w), 'valid') / w
 
 def side(size, constant_side=False):
+    """Return size of the side to be used to erase square portion of the images"""
     if constant_side:
         return size//2
     return randint(size//6, size//2)
 
 def make_squares(images, target_size=None, side=side, constant_side=False):
+    """Sets square portion of input images to zero"""
     if target_size is None:
         target_size = images.size()[-1]
     for i in range(images.size()[0]):
@@ -79,6 +83,7 @@ def make_squares(images, target_size=None, side=side, constant_side=False):
     return images
     
 def make_poligon(images, target_size=None, side=side):
+    """Sets random poligonal portion of input images to zero"""
     if target_size is None:
         target_size = images.size()[-1]
     for i in range(images.size()[0]):
@@ -105,7 +110,15 @@ class loss_fn:
 
 # Sample pool dataset
 class SamplePool(Dataset):
-    """Samples the training images"""
+    """Samples the training images
+    
+    Parameters
+    ----------
+    images	tensor of samples to be trained 
+    size	size of the pool
+    n_channels	number of image channels
+    image_size	size of the input image  
+    """
     def __init__(self, pool_size, n_channels, image_size, transform = None, device="cpu"):
         self.images = make_seed(pool_size, n_channels, image_size, device)
         self.size = pool_size
@@ -131,11 +144,13 @@ class SamplePool(Dataset):
 
     
     def sample(self, batch_size):
+    	"""Extracts random batch of size batch_size frome the pool"""
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
     
 
     def update(self, new_images, idx, idx_max_loss=None):
+    	"""Raplaces images at indeces idx of the pool with new_images"""
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
             self.images[idx[idx_max_loss]] = make_seed(1, self.n_channels, self.image_size)[0]
