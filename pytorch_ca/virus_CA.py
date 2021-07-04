@@ -73,6 +73,22 @@ class VirusCA:
             clear_output(wait=True)
 
 
+    def eval_CA(self, criterion, image_size, eval_samples=128, evolution_iters=1000, batch_size=32):
+        self.evolution_losses = torch.zeros((evolution_iters), device="cpu")
+        n = 0
+        with torch.no_grad():
+            for i in range(eval_samples // batch_size):
+                inputs = make_seed(batch_size, self.new_CA.n_channels, image_size, device=self.device)
+                self.update_cell_masks(inputs)
+                for j in range(evolution_iters):
+                    inputs = self.forward(inputs)
+                    loss, _ = criterion(inputs)
+                    self.evolution_losses[j] = (n*self.evolution_losses[j] + batch_size*loss.cpu()) / (n+batch_size)
+                n += batch_size
+
+        return self.evolution_losses
+
+
     def make_video(self, n_iters, video_size, fname="video.mkv", rescaling=8, init_state=None, fps=10):
         if init_state is None:
             init_state = make_seed(1, self.new_CA.n_channels, video_size)

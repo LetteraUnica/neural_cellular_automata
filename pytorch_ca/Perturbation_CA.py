@@ -88,7 +88,7 @@ class PerturbationCA:
         n = 0
         with torch.no_grad():
             for i in range(eval_samples // batch_size):
-                inputs = make_seed(batch_size, self.n_channels, image_size, device=self.device)
+                inputs = make_seed(batch_size, self.new_CA.n_channels, image_size, device=self.device)
                 for j in range(evolution_iters):
                     inputs = self.forward(inputs)
                     loss, _ = criterion(inputs)
@@ -110,8 +110,8 @@ class PerturbationCA:
         rescaler = T.Resize((video_size, video_size), interpolation=T.InterpolationMode.NEAREST)
         with torch.no_grad():
             for i in range(n_iters):
-                if make_square and i == n_iters//2:
-                    init_state = make_squares(init_state, side=15)
+                if make_square and i == 60:
+                    init_state = make_squares(init_state, side=20)
 
                 video[i] = FloattoRGB(rescaler(init_state))[0].permute(1,2,0).cpu()
 
