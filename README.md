@@ -3,8 +3,9 @@
 ## Lorenzo Cavuoti, Marco Sicklinger
 
 
-
 Study and implementation of a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
+
+The presentation of the project can be found [here](https://docs.google.com/presentation/d/1c2JkIgbuHCxGZLgb3y7ITkac3qg1O5qFywbTcJILwYc/edit?usp=sharing)
 
 This work was inspired and/or helped by the following works:
 
