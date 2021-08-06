@@ -1,12 +1,20 @@
 # Neural Cellular Automaton
 
-## Lorenzo Cavuoti, Marco Sicklinger
+###### Deep Learning exam 2020-2021
 
+###### Group members: *Cavuoti Lorenzo*, *Sicklinger Marco*
 
-Study and implementation of a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
+## Introduction
+We studied and implemented a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
-The presentation of the project can be found [here](https://docs.google.com/presentation/d/1c2JkIgbuHCxGZLgb3y7ITkac3qg1O5qFywbTcJILwYc/edit?usp=sharing)
+The presentation of the project can be found [Here](https://docs.google.com/presentation/d/1c2JkIgbuHCxGZLgb3y7ITkac3qg1O5qFywbTcJILwYc/edit?usp=sharing)
 
+## Folder structure
+- `Papers`: Contains the papers used for the project
+- `pytorch_ca`: Contains the implementation of the neural cellular automata in Pytorch
+- `Introduction.pdf`: Is the abstract of the project
+
+## References
 This work was inspired and/or helped by the following works:
 
 1. Alexander Mordvintsev et al. “Growing Neural Cellular Automata”. In: Distill (2020). https://distill.pub/2020/growing-ca.doi: 10.23915/distill.000232. 
