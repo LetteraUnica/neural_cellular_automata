@@ -35,7 +35,7 @@ class CAModel(nn.Module):
         
         self.losses = []
 
-	# network layers needed for the update rule
+	    # network layers needed for the update rule
         self.layers = nn.Sequential(
             nn.Conv2d(n_channels*3, 128, 1),
             nn.ReLU(),
