@@ -225,7 +225,7 @@ class loss_fn:
         self.order = order
         self.target = target.detach().clone()
 
-    def __call__(self, x:torch.Tensor)-> Tuple(torch.Tensor, torch.Tensor):
+    def __call__(self, x:torch.Tensor)-> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
         
         Args:
