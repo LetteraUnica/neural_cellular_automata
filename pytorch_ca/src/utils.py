@@ -214,7 +214,7 @@ class loss_fn:
         l1 or l2 norm of the target image vs the predicted image
     """
 
-    def __init__(self, target: torch.Tensor, loss=torch.nn.MSELoss()):
+    def __init__(self, target: torch.Tensor, loss=torch.nn.MSELoss):
         """Initializes the loss function by storing the target image
 
         Args:
@@ -224,7 +224,7 @@ class loss_fn:
         """
         self.order = order
         self.target = target.detach().clone()
-        self.loss_func=loss
+        self.loss_func=loss()
 
     def __call__(self, x:torch.Tensor)-> Tuple[torch.Tensor, torch.Tensor]:        
         """Returns the loss and the index of the image with maximum loss
