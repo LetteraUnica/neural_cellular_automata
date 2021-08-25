@@ -113,6 +113,7 @@ def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
     """
 
     pl.imshow(np.asarray(image.cpu().permute(1, 2, 0)[:, :, :4]))
+    pl.show()
 
     if fname is not None:
         pl.savefig(fname=fname)
@@ -214,19 +215,19 @@ class loss_fn:
         l1 or l2 norm of the target image vs the predicted image
     """
 
-    def __init__(self, target: torch.Tensor, loss=torch.nn.MSELoss):
+    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss):
         """Initializes the loss function by storing the target image
 
         Args:
             target (torch.Tensor): Target image
-            order (int, optional): Order of the norm used to compute the
-                distance between target and predicted image. Defaults to 2.
+            criterion (Loss function, optional): 
+                Loss criteria, used to compute the distance between two images.
+                Defaults to torch.nn.MSELoss.
         """
-        self.order = order
         self.target = target.detach().clone()
-        self.loss_func=loss()
+        self.criterion = criterion(reduction="none")
 
-    def __call__(self, x:torch.Tensor)-> Tuple[torch.Tensor, torch.Tensor]:        
+    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
@@ -238,16 +239,7 @@ class loss_fn:
                 index of the image with maximum loss
         """
 
-        losses = torch.Tensor([self.loss_func(i,self.target) for i in x])
+        losses = self.criterion(x[:, :4], self.target).mean(dim=[1,2,3])
         idx_max_loss = torch.argmax(losses)
-        return torch.mean(losses),idx_max_loss
 
-
-        """
-        OLD CODE
-        losses = image_distance(x, self.target, self.order)
-
-        idx_max_loss = torch.argmax(losses)
-        loss = torch.mean(losses)
-        return loss, idx_max_loss
-        """
+        return torch.mean(losses), idx_max_loss
