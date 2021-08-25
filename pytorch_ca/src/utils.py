@@ -236,8 +236,22 @@ class loss_fn:
                 Average loss of all images in the batch, 
                 index of the image with maximum loss
         """
+
+        if self.order==2:
+            loss_func=torch.nn.MSELoss()
+            return loss_func(x,self.target)
+       
+        #In the case the order of the loss function in not 2
+        losses = image_distance(x, self.target, self.order)
+        loss = torch.mean(losses)
+        return loss
+
+
+        """
+        OLD CODE
         losses = image_distance(x, self.target, self.order)
 
         idx_max_loss = torch.argmax(losses)
         loss = torch.mean(losses)
         return loss, idx_max_loss
+        """
