@@ -225,9 +225,9 @@ class loss_fn:
         self.order = order
         self.target = target.detach().clone()
 
-    def __call__(self, x:torch.Tensor)-> torch.Tensor:
+    def __call__(self, x:torch.Tensor)-> Tuple[torch.Tensor, torch.Tensor]:        
         """Returns the loss and the index of the image with maximum loss
-        
+
         Args:
             x (torch.Tensor): Images to compute the loss
 
@@ -238,13 +238,16 @@ class loss_fn:
         """
 
         if self.order==2:
-            loss_func=torch.nn.MSELoss()
-            return loss_func(x,self.target)
+            loss_func = torch.nn.MSELoss()
+            losses = torch.Tensor([loss_func(i,self.target) for i in x])
+            idx_max_loss = torch.argmax(losses)
+            return torch.mean(losses),idx_max_loss
        
         #In the case the order of the loss function in not 2
         losses = image_distance(x, self.target, self.order)
+        idx_max_loss = torch.argmax(losses)
         loss = torch.mean(losses)
-        return loss
+        return loss,idx_max_loss
 
 
         """
