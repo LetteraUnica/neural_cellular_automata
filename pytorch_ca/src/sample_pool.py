@@ -3,7 +3,7 @@ from torch.utils.data import Dataset
 
 import numpy as np
 
-from utils import *
+from .utils import *
 
 from typing import Tuple, Callable
 """
@@ -80,7 +80,7 @@ class SamplePool(Dataset):
         """
         self.images = transform(self.images)
 
-    def sample(self, batch_size: int) -> Tuple(torch.Tensor, torch.Tensor):
+    def sample(self, batch_size: int) -> Tuple[torch.Tensor, torch.Tensor]:
         """Samples from the pool batch_size images and returns them,
         along with the corresponding indexes
 
@@ -88,7 +88,7 @@ class SamplePool(Dataset):
             batch_size (int): Number of images to extract
 
         Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
+            Tuple[torch.Tensor, torch.Tensor]: 
                 The extraxted images,
                 the corresponding indexes in the sample pool
         """
