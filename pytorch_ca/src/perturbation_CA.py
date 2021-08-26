@@ -119,7 +119,7 @@ class PerturbationCA:
 
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
-                    criterion.add_mask(self.new_cells)
+                    criterion.add_perturbation(self.new_cells)
 
                 loss, idx_max_loss = criterion(inputs)
                 epoch_losses.append(loss.item())
@@ -140,8 +140,14 @@ class PerturbationCA:
                         constant_side = kwargs['constant_side']
                     except KeyError:
                         constant_side = None
-                    inputs = make_squares(
-                        inputs, target_size=target_size, constant_side=constant_side)
+                    try:
+                        skip_damage = kwargs["skip_damage"]
+                    except KeyError:
+                        skip_damage = 1
+
+                    if j % skip_damage == 0:
+                        inputs = make_squares(inputs, target_size=target_size,
+                                              constant_side=constant_side)
 
                 if kind != "growing":
                     pool.update(inputs, indexes, idx_max_loss)

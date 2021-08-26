@@ -32,9 +32,10 @@ class CAModel(nn.Module):
         """
 
         super().__init__()
-        
+
         if device is None:
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            device = torch.device(
+                "cuda" if torch.cuda.is_available() else "cpu")
         self.device = device
 
         self.n_channels = n_channels

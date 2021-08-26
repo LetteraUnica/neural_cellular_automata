@@ -161,6 +161,7 @@ def side(size, constant_side=False):
 
 def make_squares(images, target_size=None, side=side, constant_side=False):
     """Sets square portion of input images to zero"""
+    images = images.clone()
     if target_size is None:
         target_size = images.size()[-1]
     for i in range(images.size()[0]):
@@ -171,7 +172,7 @@ def make_squares(images, target_size=None, side=side, constant_side=False):
         images[i, :, x-side(target_size, constant_side)//2:x+side(target_size, constant_side) //
                2, y-side(target_size, constant_side)//2:y+side(target_size, constant_side)//2] = 0.
 
-    return images
+    return images.clone()
 
 
 def make_poligon(images, target_size=None, side=side):
@@ -266,7 +267,11 @@ class PerturbationLoss:
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
         self.l = l
-        self.mask = 0.
+
+        self._reset_perturbation()
+
+    def _reset_perturbation(self):
+        self.perturbation = 0.
         self.N = 0
 
     def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
@@ -282,14 +287,13 @@ class PerturbationLoss:
         """
         losses = self.criterion(x[:, :4], self.target).mean(dim=[1, 2, 3])
         idx_max_loss = torch.argmax(losses)
-        loss = torch.mean(losses) + self.l*self.mask/self.N
+        loss = torch.mean(losses) + self.l*self.perturbation/self.N
 
-        self.mask *= 0.
-        self.N = 0
-        
+        self._reset_perturbation()
+
         return loss, idx_max_loss
 
-    def add_perturbation(self, perturbation:torch.Tensor):
+    def add_perturbation(self, perturbation: torch.Tensor):
         """Adds the perturbation to the loss, in order to penalize it,
             The perturbation can be the output of the neural CA
 
@@ -297,5 +301,5 @@ class PerturbationLoss:
             perturbation (torch.Tensor): Perturbation to add to the loss.
         """
 
-        self.mask += torch.mean(perturbation**2)
+        self.perturbation += torch.mean(perturbation**2)
         self.N += 1
