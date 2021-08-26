@@ -32,8 +32,9 @@ class CAModel(nn.Module):
         """
 
         super().__init__()
-
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        
+        if device is None:
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.device = device
 
         self.n_channels = n_channels
@@ -135,8 +136,8 @@ class CAModel(nn.Module):
 
         Args:
             x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
 
         Returns:
             torch.Tensor: Next CA state
