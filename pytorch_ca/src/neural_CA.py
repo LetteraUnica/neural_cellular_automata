@@ -18,7 +18,7 @@ class CAModel(nn.Module):
     """
 
     def __init__(self, n_channels: int = 16,
-                 device: torch.device = None,
+                 device: torch.device = None, #ma non è inutile questo argomento?
                  fire_rate: float = 0.5):
         """Initializes the network.
 
@@ -155,7 +155,7 @@ class CAModel(nn.Module):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
@@ -169,7 +169,7 @@ class CAModel(nn.Module):
         Args:
             optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
 
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function to use
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
 
             pool (SamplePool): Sample pool from which to extract the images
 
@@ -227,7 +227,7 @@ class CAModel(nn.Module):
                 # if regenerating, then damage inputs
                 if kind == "regenerating":
                     inputs = inputs.detach()
-                    try:
+                    try:                                     #guarda a che serve try
                         target_size = kwargs['target_size']
                     except KeyError:
                         target_size = None
@@ -250,7 +250,7 @@ class CAModel(nn.Module):
             clear_output(wait=True)
 
     def test_CA(self,
-                criterion: Callable[[torch.Tensor], torch.Tensor],
+                criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
                 images: torch.Tensor,
                 evolution_iters: int = 1000,
                 batch_size: int = 32) -> torch.Tensor:
@@ -259,7 +259,7 @@ class CAModel(nn.Module):
             Returns the mean loss at each iteration
 
         Args:
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function
             images (torch.Tensor): Images to evolve
             evolution_iters (int, optional): Evolution steps. Defaults to 1000.
             batch_size (int, optional): Batch size. Defaults to 32.
