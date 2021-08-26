@@ -135,8 +135,8 @@ class CAModel(nn.Module):
 
         Args:
             x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
 
         Returns:
             torch.Tensor: Next CA state
