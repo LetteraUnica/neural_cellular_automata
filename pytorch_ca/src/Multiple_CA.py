@@ -7,7 +7,7 @@ from .utils import *
 from .neural_CA import *
 
 
-class Multiple_CA:
+class Multiple_CA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
     def __init__(self, CAs:List[CAModel]):
@@ -18,15 +18,6 @@ class Multiple_CA:
         """
         self.CAs = CAs
         self.losses = []
-
-    def update_cell_mask(self, mutation_mask: torch.Tensor):
-        """Updates the cell mask
-
-        Args:
-            mutation_mask (torch.Tensor): New mask
-        """
-        self.new_cells = mutation_mask.to(self.device).float()
-        self.old_cells = 1. - self.new_cells
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -41,11 +32,10 @@ class Multiple_CA:
         Returns:
             torch.Tensor: Next CA state
         """
-        for CA in self.CAs:
-            
-        x_old = self.old_CA(x, angle, step_size)
-        x_new = self.new_CA(x, angle, step_size)
-        return x_old * self.old_cells + x_new * self.new_cells
+
+        B, C, H, W = x.size()
+        masks = torch.empty((B, B, H, W), device = self.device)
+        updates = torch.empty((B, C, H, W), device = self.device)
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -110,121 +100,3 @@ class Multiple_CA:
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
             clear_output(wait=True)
-
-    def test_CA(self,
-                criterion: Callable[[torch.Tensor], torch.Tensor],
-                images: torch.Tensor,
-                evolution_iters: int = 1000,
-                batch_size: int = 32) -> torch.Tensor:
-        """Evaluates the model over the given images by evolving them
-            and computing the loss against the target at each iteration.
-            Returns the mean loss at each iteration
-
-        Args:
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
-            images (torch.Tensor): Images to evolve
-            evolution_iters (int, optional): Evolution steps. Defaults to 1000.
-            batch_size (int, optional): Batch size. Defaults to 32.
-
-        Returns:
-            torch.Tensor: tensor of size (evolution_iters) 
-        """
-        
-        self.new_CA.eval()
-        self.old_CA.eval()
-        evolution_losses = torch.zeros((evolution_iters), device="cpu")
-        eval_samples = images.size()[0]
-
-        n = 0
-        with torch.no_grad():
-            for i in range(eval_samples // batch_size):
-                for j in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    loss, _ = criterion(inputs)
-
-                    # Updates the average error
-                    evolution_losses[j] = (n*evolution_losses[j] +
-                        batch_size*loss.cpu()) / (n+batch_size)
-
-                n += batch_size
-
-        return evolution_losses
-
-    def evolve(self, x: torch.Tensor, iters: int, angle: float = 0.,
-               step_size: float = 1.) -> torch.Tensor:
-        """Evolves the input images "x" for "iters" steps
-
-        Args:
-            x (torch.Tensor): Previous CA state
-            iters (int): Number of steps to perform
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
-
-        Returns:
-            torch.Tensor: dx
-        """
-        self.eval()
-        with torch.no_grad():
-            for i in range(iters):
-                x = self.forward(x, angle=angle, step_size=step_size)
-
-        return x
-
-    def make_video(self,
-                   init_state: torch.Tensor,
-                   n_iters: int,
-                   regenerating: bool = False,
-                   fname: str = None,
-                   rescaling: int = 8,
-                   fps: int = 10,
-                   **kwargs) -> torch.Tensor:
-        """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
-            of the evolution of the CA starting from a given initial state
-
-        Args:
-            init_state (torch.Tensor, optional): Initial state to evolve.
-                Defaults to None, which means a seed state.
-            n_iters (int): Number of iterations to evolve the CA
-            regenerating (bool, optional): Whether to erase a square portion
-                of the image during the video, useful if you want to show
-                the regenerating capabilities of the CA. Defaults to False.
-            fname (str, optional): File where to save the video.
-                Defaults to None.
-            rescaling (int, optional): Rescaling factor,
-                since the CA is a small image we need to rescale it
-                otherwise it will be blurry. Defaults to 8.
-            fps (int, optional): Fps of the video. Defaults to 10.
-        """
-
-        init_state = init_state.to(self.device)
-
-        # set video visualization features
-        video_size = init_state.size()[-1] * rescaling
-        video = torch.empty((n_iters, 3, video_size, video_size), device="cpu")
-        rescaler = T.Resize((video_size, video_size),
-                            interpolation=T.InterpolationMode.NEAREST)
-
-        # evolution
-        with torch.no_grad():
-            for i in range(n_iters):
-                video[i] = RGBAtoRGB(rescaler(init_state))[0].cpu()
-                init_state = self.forward(init_state)
-
-                if regenerating:
-                    if i == n_iters//3:
-                        try:
-                            target_size = kwargs['target_size']
-                        except KeyError:
-                            target_size = None
-                        try:
-                            constant_side = kwargs['constant_side']
-                        except KeyError:
-                            constant_side = None
-
-                        init_state = make_squares(
-                            init_state, target_size=target_size, constant_side=constant_side)
-
-        if fname is not None:
-            write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
-
-        return video
