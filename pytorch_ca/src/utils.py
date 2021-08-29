@@ -127,6 +127,7 @@ def make_video(CA: "CAModel",
                fname: str = None,
                rescaling: int = 8,
                fps: int = 10,
+               initial_video: torch.Tensor = None,
                **kwargs) -> torch.Tensor:
     """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
         of the evolution of the CA starting from a given initial state
@@ -145,6 +146,8 @@ def make_video(CA: "CAModel",
             since the CA is a small image we need to rescale it
             otherwise it will be blurry. Defaults to 8.
         fps (int, optional): Fps of the video. Defaults to 10.
+        initial_video (torch.Tensor, optional): Video that gets played before
+        the new one
     """
 
     if init_state is None:
@@ -178,6 +181,9 @@ def make_video(CA: "CAModel",
                     init_state = make_squares(init_state,
                                               target_size=target_size,
                                               constant_side=constant_side)
+    #this concatenates the new video with the old one
+    if initial_video is not None: 
+        torch.cat((initial_video,video))        
 
     if fname is not None:
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
