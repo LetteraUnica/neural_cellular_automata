@@ -6,7 +6,7 @@ from .utils import *
 from .neural_CA import *
 
 
-class PerturbationCA:
+class PerturbationCA(CAModel):
     """Given two CA rules evolves the image pixels using the formula:
     x_t+1 = base_CA(x_t) + new_CA(x_t). To avoid that new_CA overwrites the
     base_CA a L2 loss on the update of new_CA should be used.
@@ -19,6 +19,8 @@ class PerturbationCA:
             old_CA (CAModel): base_CA model
             new_CA (CAModel): new_CA model, implements the perturbation
         """
+        super().__init__()
+
         if base_CA.device != new_CA.device:
             Exception(f"The two CAs are on different devices: " +
                       f"decaying_CA.device: {base_CA.device} and " +
@@ -119,7 +121,7 @@ class PerturbationCA:
 
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
-                    criterion.add_mask(self.new_cells)
+                    criterion.add_perturbation(self.new_cells)
 
                 loss, idx_max_loss = criterion(inputs)
                 epoch_losses.append(loss.item())
@@ -140,8 +142,14 @@ class PerturbationCA:
                         constant_side = kwargs['constant_side']
                     except KeyError:
                         constant_side = None
-                    inputs = make_squares(
-                        inputs, target_size=target_size, constant_side=constant_side)
+                    try:
+                        skip_damage = kwargs["skip_damage"]
+                    except KeyError:
+                        skip_damage = 1
+
+                    if j % skip_damage == 0:
+                        inputs = make_squares(inputs, target_size=target_size,
+                                              constant_side=constant_side)
 
                 if kind != "growing":
                     pool.update(inputs, indexes, idx_max_loss)
@@ -152,150 +160,3 @@ class PerturbationCA:
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
             clear_output(wait=True)
-
-    def test_CA(self,
-                criterion: Callable[[torch.Tensor], torch.Tensor],
-                images: torch.Tensor,
-                evolution_iters: int = 1000,
-                batch_size: int = 32) -> torch.Tensor:
-        """Evaluates the model over the given images by evolving them
-            and computing the loss against the target at each iteration.
-            Returns the mean loss at each iteration
-
-        Args:
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
-            images (torch.Tensor): Images to evolve
-            evolution_iters (int, optional): Evolution steps. Defaults to 1000.
-            batch_size (int, optional): Batch size. Defaults to 32.
-
-        Returns:
-            torch.Tensor: tensor of size (evolution_iters) 
-                which contains the mean loss at each iteration
-        """
-
-        self.eval()
-        evolution_losses = torch.zeros((evolution_iters), device="cpu")
-        eval_samples = images.size()[0]
-
-        n = 0
-        with torch.no_grad():
-            for i in range(eval_samples // batch_size):
-                for j in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    loss, _ = criterion(inputs)
-
-                    # Updates the average error
-                    evolution_losses[j] = (n*evolution_losses[j] +
-                                           batch_size*loss.cpu()) / (n+batch_size)
-
-                n += batch_size
-
-        return evolution_losses
-
-    def evolve(self, x: torch.Tensor, iters: int, angle: float = 0.,
-               step_size: float = 1.) -> torch.Tensor:
-        """Evolves the input images "x" for "iters" steps
-
-        Args:
-            x (torch.Tensor): Previous CA state
-            iters (int): Number of steps to perform
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
-
-        Returns:
-            torch.Tensor: dx
-        """
-        self.eval()
-        with torch.no_grad():
-            for i in range(iters):
-                x = self.forward(x, angle=angle, step_size=step_size)
-
-        return x
-
-    def make_video(self,
-                   init_state: torch.Tensor,
-                   n_iters: int,
-                   regenerating: bool = False,
-                   fname: str = None,
-                   rescaling: int = 8,
-                   fps: int = 10,
-                   **kwargs) -> torch.Tensor:
-        """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
-            of the evolution of the CA starting from a given initial state
-
-        Args:
-            init_state (torch.Tensor, optional): Initial state to evolve.
-                Defaults to None, which means a seed state.
-            n_iters (int): Number of iterations to evolve the CA
-            regenerating (bool, optional): Whether to erase a square portion
-                of the image during the video, useful if you want to show
-                the regenerating capabilities of the CA. Defaults to False.
-            fname (str, optional): File where to save the video.
-                Defaults to None.
-            rescaling (int, optional): Rescaling factor,
-                since the CA is a small image we need to rescale it
-                otherwise it will be blurry. Defaults to 8.
-            fps (int, optional): Fps of the video. Defaults to 10.
-        """
-
-        init_state = init_state.to(self.device)
-
-        # set video visualization features
-        video_size = init_state.size()[-1] * rescaling
-        video = torch.empty((n_iters, 3, video_size, video_size), device="cpu")
-        rescaler = T.Resize((video_size, video_size),
-                            interpolation=T.InterpolationMode.NEAREST)
-
-        # evolution
-        with torch.no_grad():
-            for i in range(n_iters):
-                video[i] = RGBAtoRGB(rescaler(init_state))[0].cpu()
-                init_state = self.forward(init_state)
-
-                if regenerating:
-                    if i == n_iters//3:
-                        try:
-                            target_size = kwargs['target_size']
-                        except KeyError:
-                            target_size = None
-                        try:
-                            constant_side = kwargs['constant_side']
-                        except KeyError:
-                            constant_side = None
-
-                        init_state = make_squares(
-                            init_state, target_size=target_size, constant_side=constant_side)
-
-        if fname is not None:
-            write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
-
-        return video
-
-    def load(self, fname: str):
-        """Loads a (pre-trained) model
-
-        Args:
-            fname (str): Path of the model to load
-        """
-
-        self.load_state_dict(torch.load(fname))
-        print("Successfully loaded model!")
-
-    def save(self, fname: str, overwrite: bool = False):
-        """Saves a (trained) model
-
-        Args:
-            fname (str): Path where to save the model.
-            overwrite (bool, optional): Whether to overwrite the existing file.
-                Defaults to False.
-
-        Raises:
-            Exception: If the file already exists and
-                the overwrite argument is set to False
-        """
-        if os.path.exists(fname) and not overwrite:
-            message = "The file name already exists, to overwrite it set the "
-            message += "overwrite argument to True to confirm the overwrite"
-            raise Exception(message)
-        torch.save(self.state_dict(), fname)
-        print("Successfully saved model!")

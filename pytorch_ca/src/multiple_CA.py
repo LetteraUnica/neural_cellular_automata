@@ -1,51 +1,23 @@
 import torch
 from torchvision.io import write_video
 import torchvision.transforms as T
-
+from typing import List
 
 from .utils import *
 from .neural_CA import *
 
 
-def compute_random_mask(size: torch.Size, device: torch.device, probability: float = 0.6):
-    return torch.rand(size, device=device) < probability
-
-
-class VirusCA(CAModel):
-    """Given two CA rules and a mask, evolves the image pixels using the old_CA
-    rule if the mask is == 0 or using the new_CA rule if the mask is == 1.
+class Multiple_CA(CAModel):
+    """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
-
-    def __init__(self, old_CA: CAModel, new_CA: CAModel, mask: torch.Tensor):
+    def __init__(self, CAs:List[CAModel]):
         """Initializes the model
 
         Args:
-            old_CA (CAModel): old_CA model
-            new_CA (CAModel): new_CA model
-            mask (torch.Tensor): Mask, a tensor with 0's and 1's
+            CAs (List[CAModel]): List of CAs to use in the evolution
         """
-        super().__init__()
-
-        if old_CA.device != new_CA.device:
-            Exception(f"The two CAs are on different devices: " +
-                      f"decaying_CA.device: {old_CA.device} and " +
-                      f"regenerating_CA.device: {new_CA.device}")
-
-        self.device = old_CA.device
-
-        self.old_CA = old_CA
-        self.new_CA = new_CA
-        self.new_cells = mask
+        self.CAs = CAs
         self.losses = []
-
-    def update_cell_masks(self, mutation_mask: torch.Tensor):
-        """Updates the cell mask
-
-        Args:
-            mutation_mask (torch.Tensor): New mask
-        """
-        self.new_cells = mutation_mask.to(self.device).float()
-        self.old_cells = 1. - self.new_cells
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -60,9 +32,10 @@ class VirusCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
-        x_old = self.old_CA(x, angle, step_size)
-        x_new = self.new_CA(x, angle, step_size)
-        return x_old * self.old_cells + x_new * self.new_cells
+
+        B, C, H, W = x.size()
+        masks = torch.empty((B, B, H, W), device = self.device)
+        updates = torch.empty((B, C, H, W), device = self.device)
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
