@@ -181,14 +181,15 @@ def make_video(CA: "CAModel",
                     init_state = make_squares(init_state,
                                               target_size=target_size,
                                               constant_side=constant_side)
+    
     #this concatenates the new video with the old one
     if initial_video is not None: 
-        torch.cat((initial_video,video))        
+        video=torch.cat((initial_video,video))        
 
     if fname is not None:
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
 
-    return video
+    return video, init_state
 
 
 def make_seed(n_images: int, n_channels: int, image_size: int,
