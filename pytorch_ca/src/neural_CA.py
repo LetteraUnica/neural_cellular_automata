@@ -368,14 +368,14 @@ class CAModel(nn.Module):
 
         return video
 
-    def load(self, fname: str):
+    def load(self, fname: str): #si potrebbe evitare di averlo dentro la classe se si usasse pickle, e sarebbe anche più flessibile_
         """Loads a (pre-trained) model
 
         Args:
             fname (str): Path of the model to load
         """
 
-        self.load_state_dict(torch.load(fname))
+        self.load_state_dict(torch.load(fname),map_location=torch.device(self.device))
         print("Successfully loaded model!")
 
     def save(self, fname: str, overwrite: bool = False):
@@ -384,7 +384,7 @@ class CAModel(nn.Module):
         Args:
             fname (str): Path where to save the model.
             overwrite (bool, optional): Whether to overwrite the existing file.
-                Defaults to False.
+                Defaults to False..
 
         Raises:
             Exception: If the file already exists and
