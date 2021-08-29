@@ -1,7 +1,6 @@
 import torch
 import torchvision.transforms as T
 from torchvision.io import write_video
-from .neural_CA import CAModel
 
 import numpy as np
 import pylab as pl
@@ -121,9 +120,9 @@ def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
         pl.savefig(fname=fname)
 
 
-def make_video(CA: CAModel,
-               init_state: torch.Tensor,
+def make_video(CA: "CAModel",
                n_iters: int,
+               init_state: torch.Tensor = None,
                regenerating: bool = False,
                fname: str = None,
                rescaling: int = 8,
@@ -134,9 +133,9 @@ def make_video(CA: CAModel,
 
     Args:
         CA (CAModel): Cellular automata to evolve and make the video
+        n_iters (int): Number of iterations to evolve the CA
         init_state (torch.Tensor, optional): Initial state to evolve.
             Defaults to None, which means a seed state.
-        n_iters (int): Number of iterations to evolve the CA
         regenerating (bool, optional): Whether to erase a square portion
             of the image during the video, useful if you want to show
             the regenerating capabilities of the CA. Defaults to False.
@@ -147,6 +146,9 @@ def make_video(CA: CAModel,
             otherwise it will be blurry. Defaults to 8.
         fps (int, optional): Fps of the video. Defaults to 10.
     """
+
+    if init_state is None:
+        init_state = make_seed(1, 16, 40)
 
     init_state = init_state.to(CA.device)
 
@@ -173,8 +175,9 @@ def make_video(CA: CAModel,
                     except KeyError:
                         constant_side = None
 
-                    init_state = make_squares(
-                        init_state, target_size=target_size, constant_side=constant_side)
+                    init_state = make_squares(init_state,
+                                              target_size=target_size,
+                                              constant_side=constant_side)
 
     if fname is not None:
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)

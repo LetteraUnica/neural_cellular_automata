@@ -19,6 +19,8 @@ class PerturbationCA(CAModel):
             old_CA (CAModel): base_CA model
             new_CA (CAModel): new_CA model, implements the perturbation
         """
+        super().__init__()
+
         if base_CA.device != new_CA.device:
             Exception(f"The two CAs are on different devices: " +
                       f"decaying_CA.device: {base_CA.device} and " +

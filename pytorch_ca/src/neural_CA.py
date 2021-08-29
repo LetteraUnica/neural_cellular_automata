@@ -7,6 +7,7 @@ from random import randint
 from IPython.display import clear_output
 from typing import Callable, Tuple
 from abc import abstractmethod
+import numpy as np
 
 from .utils import *
 from .sample_pool import *
@@ -121,6 +122,8 @@ class NeuralCA(CAModel):
             nn.Conv2d(n_channels*3, 128, 1),
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
+
+        self.to(self.device)
 
     @staticmethod
     def wrap_edges(images: torch.Tensor) -> torch.Tensor:

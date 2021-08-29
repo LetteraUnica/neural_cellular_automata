@@ -6,8 +6,10 @@ import numpy as np
 from .utils import *
 
 from typing import Tuple, Callable
-"""
-Samples the training images
+
+
+class SamplePool(Dataset):
+    """Samples the training images
 
     Parameters
     ----------
@@ -15,12 +17,7 @@ Samples the training images
     size	size of the pool
     n_channels	number of image channels
     image_size	size of the input image
-
-"""
-
-
-class SamplePool(Dataset):
-    """Samples the training images"""
+    """
 
     def __init__(self,
                  pool_size: int,
@@ -38,7 +35,8 @@ class SamplePool(Dataset):
                 Transform to apply before returning the images, i.e. 
                 center cropping, dithering, and so on.
                 Defaults to None i.e. no transform is applied.
-            device (torch.device, optional): Device where to store the images. Defaults to "cpu".
+            device (torch.device, optional): Device where to store the images.
+                Defaults to "cpu".
         """
         self.images = make_seed(pool_size, n_channels, image_size, device)
         self.size = pool_size

@@ -24,6 +24,7 @@ class VirusCA(CAModel):
             new_CA (CAModel): new_CA model
             mask (torch.Tensor): Mask, a tensor with 0's and 1's
         """
+        super().__init__()
 
         if old_CA.device != new_CA.device:
             Exception(f"The two CAs are on different devices: " +
