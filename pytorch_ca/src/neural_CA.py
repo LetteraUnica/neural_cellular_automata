@@ -90,7 +90,7 @@ class NeuralCA(CAModel):
     """
 
     def __init__(self, n_channels: int = 16,
-                 device: torch.device = None,
+                 device: torch.device = None, #ma non è inutile questo argomento?
                  fire_rate: float = 0.5):
         """Initializes the network.
 
@@ -231,7 +231,7 @@ class NeuralCA(CAModel):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
@@ -245,7 +245,7 @@ class NeuralCA(CAModel):
         Args:
             optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
 
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function to use
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
 
             pool (SamplePool): Sample pool from which to extract the images
 
@@ -303,7 +303,7 @@ class NeuralCA(CAModel):
                 # if regenerating, then damage inputs
                 if kind == "regenerating":
                     inputs = inputs.detach()
-                    try:
+                    try:                                     #guarda a che serve try
                         target_size = kwargs['target_size']
                     except KeyError:
                         target_size = None
@@ -332,7 +332,7 @@ class NeuralCA(CAModel):
             fname (str): Path of the model to load
         """
 
-        self.load_state_dict(torch.load(fname))
+        self.load_state_dict(torch.load(fname),map_location=torch.device(self.device))
         print("Successfully loaded model!")
 
     def save(self, fname: str, overwrite: bool = False):
@@ -341,7 +341,7 @@ class NeuralCA(CAModel):
         Args:
             fname (str): Path where to save the model.
             overwrite (bool, optional): Whether to overwrite the existing file.
-                Defaults to False.
+                Defaults to False..
 
         Raises:
             Exception: If the file already exists and
