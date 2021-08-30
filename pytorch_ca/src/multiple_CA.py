@@ -7,10 +7,131 @@ from .utils import *
 from .neural_CA import *
 
 
-class Multiple_CA(CAModel):
+class CustomCA(NeuralCA):
+    def __init__(self, mask_channel: int = 16,
+                 n_channels: int = 16,
+                 device: torch.device = None,
+                 fire_rate: float = 0.5):
+        """Initializes the network.
+
+        Args:
+            mask_channel (int, optional): Channel to use as a mask.
+                Defaults to 16.
+            n_channels (int, optional): Number of input channels.
+                Defaults to 16.
+            device (torch.device, optional): Device where to store the net.
+                Defaults to None.
+            fire_rate (float, optional): Probability to reject an update.
+                Defaults to 0.5.
+        """
+        if mask_channel < n_channels-1:
+            Exception("Mask channel must be greater or equal to n_channels-1")
+
+        super().__init__(n_channels, device, fire_rate)
+
+        self.mask_channel = mask_channel-1
+
+    def compute_dx(self, x: torch.Tensor, angle: float = 0.,
+                   step_size: float = 1.) -> torch.Tensor:
+        """Computes a single update dx
+
+        Args:
+            x (torch.Tensor): Previous CA state
+            angle (float, optional): Angle of the update. Defaults to 0..
+            step_size (float, optional): Step size of the update. Defaults to 1..
+
+        Returns:
+            torch.Tensor: dx
+        """
+
+        x_new = torch.cat((x[:, :3],
+                           x[:, self.mask_channel:self.mask_channel+1],
+                           x[:, 3:self.n_channels-1]), dim=1)
+
+        # compute update increment
+        dx = self.layers(self.perceive(x_new, angle)) * step_size
+
+        # get random-per-cell mask for stochastic update
+        update_mask = torch.rand(x[:, :1, :, :].size(),
+                                 device=self.device) < self.fire_rate
+
+        dx_new = torch.zeros_like(x)
+        dx_new[:, :self.n_channels-1] = dx[:, :self.n_channels-1]
+        dx_new[:, self.mask_channel] = dx[:, -1]
+
+        return dx_new*update_mask.float()
+
+    def forward(self, x: torch.Tensor,
+                angle: float = 0.,
+                step_size: float = 1.) -> torch.Tensor:
+        """Single update step of the CA
+
+        Args:
+            x (torch.Tensor): Previous CA state
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
+
+        Returns:
+            torch.Tensor: Next CA state
+        """
+        pre_life_mask = self.get_living_mask(x)
+
+        x = x + self.compute_dx(x, angle, step_size)
+
+        post_life_mask = self.get_living_mask(x)
+
+        # get alive mask
+        life_mask = pre_life_mask & post_life_mask
+
+        # return updated states with alive masking
+        return x * life_mask.float()
+
+
+class CustomLoss:
+    """Custom loss function for the neural CA, simply computes the
+        distance of the target image vs the predicted image
+    """
+
+    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
+                 alpha_channel=16):
+        """Initializes the loss function by storing the target image
+
+        Args:
+            target (torch.Tensor): Target image
+            criterion (Loss function, optional): 
+                Loss criteria, used to compute the distance between two images.
+                Defaults to torch.nn.MSELoss.
+        """
+        self.target = target.detach().clone()
+        self.criterion = criterion(reduction="none")
+        self.alpha_channel = alpha_channel - 1
+
+    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Returns the loss and the index of the image with maximum loss
+
+        Args:
+            x (torch.Tensor): Images to compute the loss
+
+        Returns:
+            Tuple(torch.Tensor, torch.Tensor): 
+                Average loss of all images in the batch, 
+                index of the image with maximum loss
+        """
+
+        predicted = torch.cat((x[:, :3],
+                              x[:, self.alpha_channel:self.alpha_channel+1]),
+                              dim=1)
+        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
+        idx_max_loss = torch.argmax(losses)
+
+        return torch.mean(losses), idx_max_loss
+
+
+class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
-    def __init__(self, CAs:List[CAModel]):
+
+    def __init__(self, CAs: List[CAModel]):
         """Initializes the model
 
         Args:
@@ -26,16 +147,16 @@ class Multiple_CA(CAModel):
 
         Args:
             x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
 
         Returns:
             torch.Tensor: Next CA state
         """
 
         B, C, H, W = x.size()
-        masks = torch.empty((B, B, H, W), device = self.device)
-        updates = torch.empty((B, C, H, W), device = self.device)
+        masks = torch.empty((B, B, H, W), device=self.device)
+        updates = torch.empty((B, C, H, W), device=self.device)
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
