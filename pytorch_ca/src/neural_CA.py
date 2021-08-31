@@ -279,18 +279,23 @@ class NeuralCA(CAModel):
         self.train()
 
         for i in range(n_epochs):
-            epoch_losses = []
+            epoch_losses = [] #array that stores the loss history
+
+            # take the data
             for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size)
-                inputs = inputs.to(self.device)
-                optimizer.zero_grad()
+                inputs, indexes = pool.sample(batch_size) #sample the inputs
+                inputs = inputs.to(self.device) #put them in the current device
+                optimizer.zero_grad() #reinitialize the gradient to zero
 
                 # recursive forward-pass
-                for k in range(randint(*evolution_iters)):
+                for k in range(randint(*evolution_iters)): 
                     inputs = self.forward(inputs)
 
-                loss, idx_max_loss = criterion(inputs)
-                epoch_losses.append(loss.item())
+                # calculate the loss of the inputs and return the one with the biggest loss
+                loss, idx_max_loss = criterion(inputs) 
+                epoch_losses.append(loss.item()) #add current loss to the loss history
+
+                #look a definition of skip_update
                 if j % skip_update != 0:
                     idx_max_loss = None
 
@@ -303,21 +308,24 @@ class NeuralCA(CAModel):
                 # if regenerating, then damage inputs
                 if kind == "regenerating":
                     inputs = inputs.detach()
-                    try:                                     #guarda a che serve try
+                    try:                                     
                         target_size = kwargs['target_size']
                     except KeyError:
                         target_size = None
+                        print('missing argument "target_size" in the kwargs')                        
                     try:
                         constant_side = kwargs['constant_side']
                     except KeyError:
                         constant_side = None
-                    inputs = make_squares(
-                        inputs, target_size=target_size, constant_side=constant_side)
+                        print('missing argument "constant_side" in the kwargs')
+                    #damages the inputs by removing square portions    
+                    inputs = make_squares(inputs, target_size=target_size, constant_side=constant_side)
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
                     pool.update(inputs, indexes, idx_max_loss)
 
+            #update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
 
