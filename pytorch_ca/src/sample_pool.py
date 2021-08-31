@@ -21,11 +21,9 @@ class SamplePool(Dataset):
 
     def __init__(self,
                  pool_size: int,
+                 generator: Callable[[int],torch.Tensor],
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
-                 device: torch.device = "cpu",
-                 generator: Callable[[int],torch.Tensor]=make_seed,
-                 *args,
-                 **qwargs) -> None:
+                 device: torch.device = "cpu") -> None:
         """Initializes the sample pool with pool_size seed images
 
         Args:
@@ -36,33 +34,23 @@ class SamplePool(Dataset):
                 Defaults to None i.e. no transform is applied.
             device (torch.device, optional): Device where to store the images.
                 Defaults to "cpu".
-            generator (Callable[[int,*args,**qwargs],torch.Tensor]=make_seed):
+            generator (Callable[[int,*args,**kwargs],torch.Tensor]=make_seed):
                 generates the new images
         """
-        self.generator=generator
-        self.images = generator(pool_size,*args,**qwargs)
+
+        self.generator = generator
+        self.images = generator(pool_size)
         self.size = pool_size
         self.n_channels = self.images.shape[1]
         self.image_size = self.images.shape[2]
         self.args=args
-        self.qwargs=qwargs
+        self.kwargs=kwargs
 
         if transform is None:
             def transform(x): return x
         self.transform = transform
 
         self.device = torch.device(device)
-
-    def generate(self,n_images):
-        """Returns a number "n_images" of images with from the generating function
-            
-        Args:
-            n_images: number of images generated    
-
-        Returns:
-            torch.Tensor: tensor of the images
-        """
-        return self.generator(n_images,*self.args,**self.qwargs)
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
@@ -123,5 +111,32 @@ class SamplePool(Dataset):
 
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
-            seed = self.generate(1)[0]
+            seed = self.generator(1)[0]
             self.images[idx[idx_max_loss]] = seed
+
+
+
+class MakeGenerator():
+
+    def __init__(self,generator,*args,**kwargs):
+        """Takes a image generator with the first argument that is the number
+        of images and all the other arguments. Saves the arguments
+        and from now on you just have to use 
+
+        Args:
+            generator (Callable[[int, *args, **kwargs], torch.Tensor]):
+                Generating function of the images
+            args,kwargs: the arguments of the generator excempt the n_images
+            generated
+        """
+        self.generator=generator
+        self.args=args
+        self.kwargs=kwargs
+
+    def __call__(self,n_images):
+        """Generating functions
+        Args:
+            n_images (int): number of images to be generated
+
+        """
+        return self.generator(n_images,*self.args,**self.kwargs)

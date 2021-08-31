@@ -249,7 +249,7 @@ class NeuralCA(CAModel):
 
             pool (SamplePool): Sample pool from which to extract the images
 
-            n_epochs (int): Number of epochs to perform, 
+            n_epochs (int): Number of epochs to perform, _
                 this depends on the size of the sample pool
 
             scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
@@ -307,19 +307,9 @@ class NeuralCA(CAModel):
 
                 # if regenerating, then damage inputs
                 if kind == "regenerating":
-                    inputs = inputs.detach()
-                    try:                                     
-                        target_size = kwargs['target_size']
-                    except KeyError:
-                        target_size = None
-                        print('missing argument "target_size" in the kwargs')                        
-                    try:
-                        constant_side = kwargs['constant_side']
-                    except KeyError:
-                        constant_side = None
-                        print('missing argument "constant_side" in the kwargs')
+                    inputs = inputs.detach()                    
                     #damages the inputs by removing square portions    
-                    inputs = make_squares(inputs, target_size=target_size, constant_side=constant_side)
+                    inputs = make_squares(inputs, **kwargs)
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
