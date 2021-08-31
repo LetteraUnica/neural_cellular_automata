@@ -23,7 +23,7 @@ class SamplePool(Dataset):
                  pool_size: int,
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
                  device: torch.device = "cpu",
-                 generator: Callable[[int,*args],torch.Tensor]=make_seed,
+                 generator: Callable[[int],torch.Tensor]=make_seed,
                  *args,
                  **qwargs) -> None:
         """Initializes the sample pool with pool_size seed images
@@ -53,7 +53,7 @@ class SamplePool(Dataset):
 
         self.device = torch.device(device)
 
-    def generate(n_images):
+    def generate(self,n_images):
         """Returns a number "n_images" of images with from the generating function
             
         Args:
@@ -62,7 +62,7 @@ class SamplePool(Dataset):
         Returns:
             torch.Tensor: tensor of the images
         """
-        return generator(n_images,*self.args,**self.qwargs)
+        return self.generator(n_images,*self.args,**self.qwargs)
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
