@@ -24,7 +24,8 @@ class SamplePool(Dataset):
                  n_channels: int,
                  image_size: int,
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
-                 device: torch.device = "cpu") -> None:
+                 device: torch.device = "cpu",
+                 seed: Callable[[int,int,int,torch.device],torch.Tensor]=make_seed) -> None:
         """Initializes the sample pool with pool_size seed images
 
         Args:
@@ -38,7 +39,8 @@ class SamplePool(Dataset):
             device (torch.device, optional): Device where to store the images.
                 Defaults to "cpu".
         """
-        self.images = make_seed(pool_size, n_channels, image_size, device)
+        self.seed=seed
+        self.images = seed(pool_size, n_channels, image_size, device)
         self.size = pool_size
         self.n_channels = n_channels
         self.image_size = image_size
@@ -108,5 +110,5 @@ class SamplePool(Dataset):
 
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
-            seed = make_seed(1, self.n_channels, self.image_size)[0]
+            seed = self.seed(1, self.n_channels, self.image_size)[0]
             self.images[idx[idx_max_loss]] = seed
