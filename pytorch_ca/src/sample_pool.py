@@ -21,35 +21,48 @@ class SamplePool(Dataset):
 
     def __init__(self,
                  pool_size: int,
-                 n_channels: int,
-                 image_size: int,
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
                  device: torch.device = "cpu",
-                 seed: Callable[[int,int,int,torch.device],torch.Tensor]=make_seed) -> None:
+                 generator: Callable[[int,*args],torch.Tensor]=make_seed,
+                 *args,
+                 **qwargs) -> None:
         """Initializes the sample pool with pool_size seed images
 
         Args:
             pool_size (int): Number of images in the pool
-            n_channels (int): Number of channels of the images
-            image_size (int): Size of the square images
             transform (Callable[[torch.Tensor], torch.Tensor], optional):
                 Transform to apply before returning the images, i.e. 
                 center cropping, dithering, and so on.
                 Defaults to None i.e. no transform is applied.
             device (torch.device, optional): Device where to store the images.
                 Defaults to "cpu".
+            generator (Callable[[int,*args,**qwargs],torch.Tensor]=make_seed):
+                generates the new images
         """
-        self.seed=seed
-        self.images = seed(pool_size, n_channels, image_size, device)
+        self.generator=generator
+        self.images = generator(pool_size,*args,**qwargs)
         self.size = pool_size
-        self.n_channels = n_channels
-        self.image_size = image_size
+        self.n_channels = self.images.shape[1]
+        self.image_size = self.images.shape[2]
+        self.args=args
+        self.qwargs=qwargs
 
         if transform is None:
             def transform(x): return x
         self.transform = transform
 
         self.device = torch.device(device)
+
+    def generate(n_images):
+        """Returns a number "n_images" of images with from the generating function
+            
+        Args:
+            n_images: number of images generated    
+
+        Returns:
+            torch.Tensor: tensor of the images
+        """
+        return generator(n_images,*self.args,**self.qwargs)
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
@@ -110,5 +123,5 @@ class SamplePool(Dataset):
 
         self.images[idx] = new_images.detach().to(self.device)
         if idx_max_loss is not None:
-            seed = self.seed(1, self.n_channels, self.image_size)[0]
+            seed = self.generate(1)[0]
             self.images[idx[idx_max_loss]] = seed

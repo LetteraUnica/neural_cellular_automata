@@ -1,6 +1,7 @@
 ## Caso in cui la perturbazione è globale    
 • [ ] Aumentare il parametro $\lambda$ di regolarizzazione  
-• [ ] Applicare la pertubazione in una botta dopo un certo numero di steps  
+• [x] Applicare la pertubazione in una botta dopo un certo numero di steps  
+• [ ] Allenare la pertubazione 
 
 ## Virus (perturbazione locale)  
 Nel caso in cui si fa con un virus bisogna vedere come cambiare la maschera in un modo che sia realistico  
