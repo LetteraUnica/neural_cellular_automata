@@ -2,6 +2,7 @@ import torch
 from torchvision.io import write_video
 import torchvision.transforms as T
 from typing import List
+import warnings
 
 from .utils import *
 from .neural_CA import *
@@ -61,6 +62,18 @@ class CustomCA(NeuralCA):
 
         return dx_new*update_mask.float()
 
+    def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:
+        """Returns the a mask of the living cells in the image
+
+        Args:
+            images (torch.Tensor): images to get the living mask
+
+        Returns:
+            torch.Tensor: Living mask
+        """
+        alpha = images[:, self.mask_channel:self.mask_channel+1, :, :]
+        return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
+
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
                 step_size: float = 1.) -> torch.Tensor:
@@ -87,58 +100,39 @@ class CustomCA(NeuralCA):
         return x * life_mask.float()
 
 
-class CustomLoss:
-    """Custom loss function for the neural CA, simply computes the
-        distance of the target image vs the predicted image
-    """
-
-    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 alpha_channel=16):
-        """Initializes the loss function by storing the target image
-
-        Args:
-            target (torch.Tensor): Target image
-            criterion (Loss function, optional): 
-                Loss criteria, used to compute the distance between two images.
-                Defaults to torch.nn.MSELoss.
-        """
-        self.target = target.detach().clone()
-        self.criterion = criterion(reduction="none")
-        self.alpha_channel = alpha_channel - 1
-
-    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Returns the loss and the index of the image with maximum loss
-
-        Args:
-            x (torch.Tensor): Images to compute the loss
-
-        Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
-                Average loss of all images in the batch, 
-                index of the image with maximum loss
-        """
-
-        predicted = torch.cat((x[:, :3],
-                              x[:, self.alpha_channel:self.alpha_channel+1]),
-                              dim=1)
-        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = torch.argmax(losses)
-
-        return torch.mean(losses), idx_max_loss
-
-
 class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
-    def __init__(self, CAs: List[CAModel]):
+    def __init__(self, CAs: List[CustomCA]):
         """Initializes the model
 
         Args:
             CAs (List[CAModel]): List of CAs to use in the evolution
         """
+
+        masks = set()
+        for CA in CAs:
+            if CA.mask_channel in masks:
+                warnings.warn(f"The channel {CA.mask_channel+1} \
+                                is already used by another CA")
+            masks.add(CA.mask_channel)
+
+        self.mask_channels = list(masks)
+
         self.CAs = CAs
         self.losses = []
+
+    def evolve_masks(self, x):
+        z = x[:, self.mask_channels]
+        B, C, H, W = z.size()
+        # Creates a mask of the maximum value over all the channels of
+        # all the images in the batch
+        mask = torch.max(z, dim=1)[0].view(B, 1, H, W) == z
+
+        x[:, self.mask_channels] = z
+
+        return x
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -154,9 +148,33 @@ class MultipleCA(CAModel):
             torch.Tensor: Next CA state
         """
 
+        N = len(self.CAs)
         B, C, H, W = x.size()
-        masks = torch.empty((B, B, H, W), device=self.device)
-        updates = torch.empty((B, C, H, W), device=self.device)
+        updates = torch.empty((N, B, C, H, W))
+
+        global_pre_life_mask = self.get_life_mask(x)
+
+        # Ideas: Remove local life masks and only keep a global one?
+        # Apply updates all at once or one at a time randomly or sequentially?  
+        for i, CA in enumerate(self.CAs):
+            pre_life_mask = self.get_living_mask(x)
+
+            updates[i] = CA.compute_dx(x, angle, step_size)
+
+            post_life_mask = self.get_living_mask(x+updates[i])
+            life_mask = pre_life_mask & post_life_mask
+
+            updates[i] *= life_mask
+        
+        x += updates.sum(dim=0)
+
+        x = self.evolve_masks(x)
+
+        global_post_life_mask = self.get_life_mask(x)
+
+        global_life_mask = global_pre_life_mask & global_post_life_mask
+
+        return x * global_life_mask.float()
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -221,3 +239,43 @@ class MultipleCA(CAModel):
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
             clear_output(wait=True)
+
+
+class CustomLoss:
+    """Custom loss function for the neural CA, simply computes the
+        distance of the target image vs the predicted image
+    """
+
+    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
+                 alpha_channel=16):
+        """Initializes the loss function by storing the target image
+
+        Args:
+            target (torch.Tensor): Target image
+            criterion (Loss function, optional): 
+                Loss criteria, used to compute the distance between two images.
+                Defaults to torch.nn.MSELoss.
+        """
+        self.target = target.detach().clone()
+        self.criterion = criterion(reduction="none")
+        self.alpha_channel = alpha_channel - 1
+
+    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Returns the loss and the index of the image with maximum loss
+
+        Args:
+            x (torch.Tensor): Images to compute the loss
+
+        Returns:
+            Tuple(torch.Tensor, torch.Tensor): 
+                Average loss of all images in the batch, 
+                index of the image with maximum loss
+        """
+
+        predicted = torch.cat((x[:, :3],
+                              x[:, self.alpha_channel:self.alpha_channel+1]),
+                              dim=1)
+        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
+        idx_max_loss = torch.argmax(losses)
+
+        return torch.mean(losses), idx_max_loss
