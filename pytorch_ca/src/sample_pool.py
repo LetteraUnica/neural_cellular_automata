@@ -43,8 +43,6 @@ class SamplePool(Dataset):
         self.size = pool_size
         self.n_channels = self.images.shape[1]
         self.image_size = self.images.shape[2]
-        self.args=args
-        self.kwargs=kwargs
 
         if transform is None:
             def transform(x): return x
@@ -96,23 +94,16 @@ class SamplePool(Dataset):
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
 
-    def update(self, new_images: torch.Tensor, idx: torch.Tensor,
-               idx_max_loss: torch.Tensor = None):
-        """Replaces images at indexes "idx" of the pool with "new_images".
-        if idx_max_loss is not None then the image at idx[idx_max_loss]
-        is replaced with a new seed
+    def update(self, indexes:list) -> None:
+        """Replaces images at indexes "indexes" of the pool with new_images
 
         Args:
-            new_images (torch.Tensor): New images to replace the old ones
-            idx (torch.Tensor): Indexes of the images to replace
-            idx_max_loss (torch.Tensor, optional): 
-                Index of the image with maximum loss. Defaults to None.
+            indexes (list): Indexes of the images to replace
         """
-
-        self.images[idx] = new_images.detach().to(self.device)
-        if idx_max_loss is not None:
-            seed = self.generator(1)[0]
-            self.images[idx[idx_max_loss]] = seed
+        if type(indexes)==int:
+            self.images[indexes] = self.generator(1)[0]
+            return
+        [self.images[i] = self.generator(1)[0] for i in indexes]
 
 
 
@@ -133,10 +124,10 @@ class MakeGenerator():
         self.args=args
         self.kwargs=kwargs
 
-    def __call__(self,n_images):
+    def __call__(self,n_images:int=1):
         """Generating functions
         Args:
             n_images (int): number of images to be generated
 
         """
-        return self.generator(n_images,*self.args,**self.kwargs)
+        return self.generator(n_images,*self.args,**self.kwargs).detach()

@@ -116,6 +116,7 @@ class NeuralCA(CAModel):
 
         # Stores losses during training
         self.losses = []
+        self.n_max_losses=1
 
         # Network layers needed for the update rule
         self.layers = nn.Sequential(
@@ -292,7 +293,7 @@ class NeuralCA(CAModel):
                     inputs = self.forward(inputs)
 
                 # calculate the loss of the inputs and return the one with the biggest loss
-                loss, idx_max_loss = criterion(inputs) 
+                loss, idx_max_loss = criterion(inputs,self.n_max_losses) 
                 epoch_losses.append(loss.item()) #add current loss to the loss history
 
                 #look a definition of skip_update
@@ -313,7 +314,8 @@ class NeuralCA(CAModel):
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    pool.update(inputs, indexes, idx_max_loss)
+                    idx_max_loss=[indexes[i] for i in idx_max_loss]
+                    pool.update(idx_max_loss)
 
             #update the scheduler if there is one at all
             if scheduler is not None:

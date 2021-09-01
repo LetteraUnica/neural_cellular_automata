@@ -82,11 +82,12 @@ class PerturbationLoss:
         self.perturbation = 0.
         self.N = 0
 
-    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor,n:int=1) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
             x (torch.Tensor): Images to compute the loss
+            n (int): The number of indexes with the max loss to return
 
         Returns:
             Tuple(torch.Tensor, torch.Tensor): 
@@ -94,7 +95,7 @@ class PerturbationLoss:
                 index of the image with maximum loss
         """
         losses = self.criterion(x[:, :4], self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = torch.argmax(losses)
+        idx_max_loss = n_largest_indexes(losses,n)
         loss = torch.mean(losses) + self.l*self.perturbation/self.N
 
         self._reset_perturbation()

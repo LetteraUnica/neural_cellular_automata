@@ -265,3 +265,11 @@ def make_poligon(images, target_size=None, side=side):
                2, y1-side(target_size)//2:y2+side(target_size)//2] = 0.
 
     return images
+
+
+def n_largest_indexes(array:list,n:int=1) -> list:
+    """returns the indexes of the n largest elements of the array
+    
+    url:https://stackoverflow.com/questions/16878715/how-to-find-the-index-of-n-largest-elements-in-a-list-or-np-array-python
+    """
+    return sorted(range(len(array)), key=lambda x: array[x])[-n:]
