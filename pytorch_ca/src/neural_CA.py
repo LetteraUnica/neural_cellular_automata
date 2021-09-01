@@ -116,7 +116,6 @@ class NeuralCA(CAModel):
 
         # Stores losses during training
         self.losses = []
-        self.n_max_losses=1
 
         # Network layers needed for the update rule
         self.layers = nn.Sequential(
@@ -240,6 +239,7 @@ class NeuralCA(CAModel):
                  skip_update: int = 2,
                  evolution_iters: Tuple[int, int] = (50, 60),
                  kind: str = "growing",
+                 n_max_losses:int=1,
                  **kwargs):
         """Trains the CA model
 
@@ -275,6 +275,8 @@ class NeuralCA(CAModel):
                     regenerating: Trains a CA that grows into the target image
                                   and regenerates any damage that it receives
                 Defaults to "growing".
+            n_max_losses(int):
+                number of datapoints with the biggest losses to replace
         """
 
         self.train()
@@ -293,7 +295,7 @@ class NeuralCA(CAModel):
                     inputs = self.forward(inputs)
 
                 # calculate the loss of the inputs and return the one with the biggest loss
-                loss, idx_max_loss = criterion(inputs,self.n_max_losses) 
+                loss, idx_max_loss = criterion(inputs,n_max_losses) 
                 epoch_losses.append(loss.item()) #add current loss to the loss history
 
                 #look a definition of skip_update

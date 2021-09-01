@@ -102,32 +102,5 @@ class SamplePool(Dataset):
         """
         if type(indexes)==int:
             self.images[indexes] = self.generator(1)[0]
-            return
-        [self.images[i] = self.generator(1)[0] for i in indexes]
-
-
-
-class MakeGenerator():
-
-    def __init__(self,generator,*args,**kwargs):
-        """Takes a image generator with the first argument that is the number
-        of images and all the other arguments. Saves the arguments
-        and from now on you just have to use 
-
-        Args:
-            generator (Callable[[int, *args, **kwargs], torch.Tensor]):
-                Generating function of the images
-            args,kwargs: the arguments of the generator excempt the n_images
-            generated
-        """
-        self.generator=generator
-        self.args=args
-        self.kwargs=kwargs
-
-    def __call__(self,n_images:int=1):
-        """Generating functions
-        Args:
-            n_images (int): number of images to be generated
-
-        """
-        return self.generator(n_images,*self.args,**self.kwargs).detach()
+            return    
+        for i in indexes: self.images[i] = self.generator(1)[0]
