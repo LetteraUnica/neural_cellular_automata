@@ -1,5 +1,6 @@
 import torch
 import torchvision.transforms as T
+import torch.nn.functional as F
 from torchvision.io import write_video
 
 import numpy as np
@@ -181,10 +182,10 @@ def make_video(CA: "CAModel",
                     init_state = make_squares(init_state,
                                               target_size=target_size,
                                               constant_side=constant_side)
-    
-    #this concatenates the new video with the old one
-    if initial_video is not None: 
-        video=torch.cat((initial_video,video))        
+
+    # this concatenates the new video with the old one
+    if initial_video is not None:
+        video = torch.cat((initial_video, video))
 
     if fname is not None:
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
@@ -193,7 +194,8 @@ def make_video(CA: "CAModel",
 
 
 def make_seed(n_images: int, n_channels: int, image_size: int,
-              device: torch.device = "cpu") -> torch.Tensor:
+              device: torch.device = "cpu",
+              alpha_channel: int = 3) -> torch.Tensor:
     """Makes n_images seeds to start the CA, the seed is a black dot
 
     Args:
@@ -202,13 +204,16 @@ def make_seed(n_images: int, n_channels: int, image_size: int,
         image_size (int): Side of the square image
         device (torch.device, optional): Device where to save the images.
             Defaults to "cpu".
+        alpha_channel (int, optional): Channel where to put the starting cell.
+            Defaults to 3.
+        
 
     Returns:
         torch.Tensor: Seed images
     """
     start_point = torch.zeros(
         (n_images, n_channels, image_size, image_size), device=device)
-    start_point[:, 3, image_size//2, image_size//2] = 1.
+    start_point[:, alpha_channel, image_size//2, image_size//2] = 1.
     return start_point
 
 
@@ -265,3 +270,29 @@ def make_poligon(images, target_size=None, side=side):
                2, y1-side(target_size)//2:y2+side(target_size)//2] = 0.
 
     return images
+
+
+def wrap_edges(images: torch.Tensor) -> torch.Tensor:
+    """Pads the boundary of all images to simulate a torus
+
+    Args:
+        images (torch.Tensor): Images to pad
+
+    Returns:
+        torch.Tensor: Padded images
+    """
+    return F.pad(images, pad=(1, 1, 1, 1), mode='circular', value=0)
+
+
+def get_living_mask(images: torch.Tensor, channel: int) -> torch.Tensor:
+    """Returns the a mask of the living cells in the image
+
+    Args:
+        images (torch.Tensor): images to get the living mask
+        channel (int): channel where to compute the living mask
+
+    Returns:
+        torch.Tensor: Living mask
+    """
+    alpha = images[:, channel:channel+1, :, :]
+    return F.max_pool2d(wrap_edges(alpha), 3, stride=1) > 0.1
