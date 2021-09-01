@@ -276,7 +276,8 @@ class NeuralCA(CAModel):
                                   and regenerates any damage that it receives
                 Defaults to "growing".
             n_max_losses(int):
-                number of datapoints with the biggest losses to replace
+                number of datapoints with the biggest losses to replace.
+                Defaults to 1
         """
 
         self.train()
@@ -294,7 +295,7 @@ class NeuralCA(CAModel):
                 for k in range(randint(*evolution_iters)): 
                     inputs = self.forward(inputs)
 
-                # calculate the loss of the inputs and return the one with the biggest loss
+                # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs,n_max_losses) 
                 epoch_losses.append(loss.item()) #add current loss to the loss history
 
