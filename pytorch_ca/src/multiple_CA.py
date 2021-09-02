@@ -143,10 +143,14 @@ class MultipleCA(CAModel):
         z = x[:, mask_channels]
         B, C, H, W = z.size()
 
-        # Creates a mask of the maximum value over all the channels of
-        # all the images in the batch
-        mask = torch.max(z, dim=1)[0].view(B, 1, H, W) == z
+        # Mask of the maximum value over all the channels
+        max_mask = torch.max(z, dim=1)[0].unsqueeze(1) == z
 
+        # Mask of the pixels whose all channels are less than 0.1
+        threshold_mask = ((z < 0.1).sum(dim=1) == C).unsqueeze(1)
+
+        mask = threshold_mask | max_mask
+        
         x[:, mask_channels] = z*mask
 
         return x
@@ -191,14 +195,14 @@ class MultipleCA(CAModel):
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
         for i, CA in enumerate(self.CAs):
-            # pre_life_mask = self.get_living_mask(x)
+            pre_life_mask = CA.get_living_mask(x)
 
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-            # post_life_mask = self.get_living_mask(x+updates[i])
-            # life_mask = pre_life_mask & post_life_mask
+            post_life_mask = CA.get_living_mask(x+updates[i])
+            life_mask = pre_life_mask & post_life_mask
 
-            # updates[i] *= life_mask
+            updates[i] *= life_mask
 
         x += updates.sum(dim=0)
 
