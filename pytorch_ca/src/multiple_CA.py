@@ -26,7 +26,7 @@ class CustomCA(NeuralCA):
                 Defaults to 0.5.
         """
         if mask_channel < n_channels-1:
-            Exception("Mask channel must be greater or equal to n_channels-1")
+            Exception("mask_channel must be greater or equal to n_channels")
 
         super().__init__(n_channels, device, fire_rate)
 
@@ -104,35 +104,72 @@ class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
-    def __init__(self, CAs: List[CustomCA]):
+    def __init__(self, n_channels=16, n_CAs=2, device=None, fire_rate=0.5):
         """Initializes the model
 
         Args:
             CAs (List[CAModel]): List of CAs to use in the evolution
         """
+        super().__init__()
 
-        masks = set()
-        for CA in CAs:
-            if CA.mask_channel in masks:
-                warnings.warn(f"The channel {CA.mask_channel+1} \
-                                is already used by another CA")
-            masks.add(CA.mask_channel)
+        if device is None:
+            device = torch.device(
+                "cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device
 
-        self.mask_channels = list(masks)
+        self.n_channels = n_channels
 
-        self.CAs = CAs
+        self.fire_rate = fire_rate
+
+        # Stores losses during training
         self.losses = []
 
-    def evolve_masks(self, x):
-        z = x[:, self.mask_channels]
-        B, C, H, W = z.size()
-        # Creates a mask of the maximum value over all the channels of
-        # all the images in the batch
-        mask = torch.max(z, dim=1)[0].view(B, 1, H, W) == z
+        self.CAs = [CustomCA(n_channels+i, n_channels, device, fire_rate)
+                    for i in range(n_CAs)]
 
-        x[:, self.mask_channels] = z
+    # def _init_list(self, CAs: List[CustomCA]):
+    #     masks = set()
+    #     for CA in CAs:
+    #         if CA.mask_channel in masks:
+    #             warnings.warn(f"The channel {CA.mask_channel+1} \
+    #                             is already used by another CA")
+    #         masks.add(CA.mask_channel)
+
+    #     self.mask_channels = list(masks)
+
+    def evolve_masks(self, x):
+        n = len(self.CAs)
+        mask_channels = range(self.n_channels-1, self.n_channels-1 + n)
+        z = x[:, mask_channels]
+        B, C, H, W = z.size()
+
+        # Mask of the maximum value over all the channels
+        max_mask = torch.max(z, dim=1)[0].unsqueeze(1) == z
+
+        # Mask of the pixels whose all channels are less than 0.1
+        threshold_mask = ((z < 0.1).sum(dim=1) == C).unsqueeze(1)
+
+        mask = threshold_mask | max_mask
+        
+        x[:, mask_channels] = z*mask
 
         return x
+
+    def get_living_mask(self, x: torch.Tensor) -> torch.Tensor:
+        """Computes the living mask over all the alpha channels
+
+        Args:
+            x (torch.Tensor): images
+
+        Returns:
+            torch.Tensor: global living mask
+        """
+        mask = self.CAs[0].get_living_mask(x)
+
+        for i in range(1, len(self.CAs)):
+            mask = mask | self.CAs[i].get_living_mask(x)
+
+        return mask
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -150,27 +187,28 @@ class MultipleCA(CAModel):
 
         N = len(self.CAs)
         B, C, H, W = x.size()
-        updates = torch.empty((N, B, C, H, W))
+        updates = torch.empty((N, B, C, H, W), device=self.device)
 
-        global_pre_life_mask = self.get_life_mask(x)
+        global_pre_life_mask = self.get_living_mask(x)
 
         # Ideas: Remove local life masks and only keep a global one?
-        # Apply updates all at once or one at a time randomly or sequentially?  
+        # Apply updates all at once or one at a time randomly/sequentially?
+        # Currently applies only a global mask and all updates at once
         for i, CA in enumerate(self.CAs):
-            pre_life_mask = self.get_living_mask(x)
+            pre_life_mask = CA.get_living_mask(x)
 
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-            post_life_mask = self.get_living_mask(x+updates[i])
+            post_life_mask = CA.get_living_mask(x+updates[i])
             life_mask = pre_life_mask & post_life_mask
 
             updates[i] *= life_mask
-        
+
         x += updates.sum(dim=0)
 
         x = self.evolve_masks(x)
 
-        global_post_life_mask = self.get_life_mask(x)
+        global_post_life_mask = self.get_living_mask(x)
 
         global_life_mask = global_pre_life_mask & global_post_life_mask
 
@@ -184,7 +222,9 @@ class MultipleCA(CAModel):
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
                  batch_size: int = 4,
                  skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (50, 60)):
+                 evolution_iters: Tuple[int, int] = (50, 60),
+                 kind: str = "growing",
+                 **kwargs):
         """Trains the CA model
 
         Args:
@@ -210,10 +250,16 @@ class MultipleCA(CAModel):
             evolution_iters (Tuple[int, int], optional):
                 Minimum and maximum number of evolution iterations to perform.
                 Defaults to (50, 60).
-        """
 
-        self.old_CA.train()
-        self.new_CA.train()
+            kind (str, optional): 
+                Kind of CA to train, can be either one of:
+                    growing: Trains a CA that grows into the target image
+                    persistent: Trains a CA that grows into the target image
+                        and persists
+                    regenerating: Trains a CA that grows into the target image
+                                  and regenerates any damage that it receives
+                Defaults to "growing".
+        """
 
         for i in range(n_epochs):
             epoch_losses = []
@@ -231,7 +277,28 @@ class MultipleCA(CAModel):
                     idx_max_loss = None
                 loss.backward()
                 optimizer.step()
-                pool.update(inputs, indexes, idx_max_loss)
+                # if regenerating, then damage inputs
+                if kind == "regenerating":
+                    inputs = inputs.detach()
+                    try:
+                        target_size = kwargs['target_size']
+                    except KeyError:
+                        target_size = None
+                    try:
+                        constant_side = kwargs['constant_side']
+                    except KeyError:
+                        constant_side = None
+                    try:
+                        skip_damage = kwargs["skip_damage"]
+                    except KeyError:
+                        skip_damage = 1
+
+                    if j % skip_damage == 0:
+                        inputs = make_squares(inputs, target_size=target_size,
+                                              constant_side=constant_side)
+
+                if kind != "growing":
+                    pool.update(inputs, indexes, idx_max_loss)
 
             if scheduler is not None:
                 scheduler.step()
@@ -246,19 +313,20 @@ class CustomLoss:
         distance of the target image vs the predicted image
     """
 
-    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 alpha_channel=16):
+    def __init__(self, target: torch.Tensor, alpha_channels: List[int],
+                 criterion=torch.nn.MSELoss):
         """Initializes the loss function by storing the target image
 
         Args:
             target (torch.Tensor): Target image
+            alpha_channels (List[int]): Alpha channels of the images
             criterion (Loss function, optional): 
                 Loss criteria, used to compute the distance between two images.
                 Defaults to torch.nn.MSELoss.
         """
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
-        self.alpha_channel = alpha_channel - 1
+        self.alpha_channels = [i-1 for i in alpha_channels]
 
     def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
@@ -272,8 +340,9 @@ class CustomLoss:
                 index of the image with maximum loss
         """
 
+        alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
         predicted = torch.cat((x[:, :3],
-                              x[:, self.alpha_channel:self.alpha_channel+1]),
+                              alpha),
                               dim=1)
         losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
         idx_max_loss = torch.argmax(losses)
