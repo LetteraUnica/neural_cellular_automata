@@ -3,6 +3,8 @@ from torchvision.io import write_video
 import torchvision.transforms as T
 from typing import List
 import warnings
+from einops.layers.torch import Reduce
+
 
 from .utils import *
 from .neural_CA import *
@@ -128,7 +130,7 @@ class MultipleCA(CAModel):
                     for i in range(n_CAs)]
 
 
-    def CA_mask(self,tensor:torch.Tensor) -> torch.Tensor (bool):
+    def CA_mask(self,tensor:torch.Tensor) -> torch.Tensor:
         """It gives the mask where the CA rules apply in the case where multiple alphas
         are included in the CA
 
@@ -136,10 +138,10 @@ class MultipleCA(CAModel):
             tensor (torch.Tensor):
                 The first index refers to the batch, the second to the alphas,
                 the third and the fourth to the pixels in the image
+
         Returns:
             a tensor with bool elements with the same shape on the input tensor
             that represents where each CA rule apply
-
         """
 
         #gives the biggest alpha per pixel
