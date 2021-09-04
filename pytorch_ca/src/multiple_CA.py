@@ -11,28 +11,29 @@ from .neural_CA import *
 
 
 class CustomCA(NeuralCA):
-    def __init__(self, mask_channel: int = 16,
-                 n_channels: int = 16,
+    def __init__(self, n_channels: int = 15,
+                 alpha_channel: int = 15,
                  device: torch.device = None,
                  fire_rate: float = 0.5):
         """Initializes the network.
 
         Args:
-            mask_channel (int, optional): Channel to use as a mask.
-                Defaults to 16.
             n_channels (int, optional): Number of input channels.
+                Defaults to 16.
+            alpha_channel (int, optional): Channel to use as alpha.
                 Defaults to 16.
             device (torch.device, optional): Device where to store the net.
                 Defaults to None.
             fire_rate (float, optional): Probability to reject an update.
                 Defaults to 0.5.
         """
-        if mask_channel < n_channels-1:
-            raise Exception("mask_channel must be greater or equal to n_channels")
+        if alpha_channel < n_channels-1:
+            raise Exception(
+                "alpha_channel must be greater or equal to n_channels")
 
         super().__init__(n_channels, device, fire_rate)
 
-        self.mask_channel = mask_channel-1
+        self.alpha_channel = alpha_channel
 
     def compute_dx(self, x: torch.Tensor, angle: float = 0.,
                    step_size: float = 1.) -> torch.Tensor:
@@ -46,23 +47,17 @@ class CustomCA(NeuralCA):
         Returns:
             torch.Tensor: dx
         """
-
-        x_new = torch.cat((x[:, :3],
-                           x[:, self.mask_channel:self.mask_channel+1],
-                           x[:, 3:self.n_channels-1]), dim=1)
+        x_new = torch.cat((x[:, :self.n_channels]),
+                          x[:, self.alpha_channel:self.alpha_channel+1], dim=1)
 
         # compute update increment
         dx = self.layers(self.perceive(x_new, angle)) * step_size
 
-        # get random-per-cell mask for stochastic update
-        update_mask = torch.rand(x[:, :1, :, :].size(),
-                                 device=self.device) < self.fire_rate
-
         dx_new = torch.zeros_like(x)
-        dx_new[:, :self.n_channels-1] = dx[:, :self.n_channels-1]
-        dx_new[:, self.mask_channel] = dx[:, -1]
+        dx_new[:, :self.n_channels] = dx[:, :self.n_channels]
+        dx_new[:, self.alpha_channel] = dx[:, -1]
 
-        return dx_new*update_mask.float()
+        return dx_new
 
     def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:
         """Returns the a mask of the living cells in the image
@@ -73,7 +68,7 @@ class CustomCA(NeuralCA):
         Returns:
             torch.Tensor: Living mask
         """
-        alpha = images[:, self.mask_channel:self.mask_channel+1, :, :]
+        alpha = images[:, self.alpha_channel:self.alpha_channel+1, :, :]
         return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
 
     def forward(self, x: torch.Tensor,
@@ -106,11 +101,11 @@ class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
-    def __init__(self, n_channels=16, n_CAs=2, device=None, fire_rate=0.5):
+    def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5):
         """Initializes the model
 
         Args:
-            CAs (List[CAModel]): List of CAs to use in the evolution
+
         """
         super().__init__()
 
@@ -127,12 +122,11 @@ class MultipleCA(CAModel):
         self.losses = []
 
         # cellular automatae rules
-        self.n_CAs=n_CAs
-        self.CAs = [CustomCA(n_channels+i, n_channels, device, fire_rate)
+        self.n_CAs = n_CAs
+        self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-
-    def CA_mask(self,tensor:torch.Tensor) -> torch.Tensor:
+    def CA_mask(self, tensor: torch.Tensor) -> torch.Tensor:
         """It gives the mask where the CA rules apply in the case where multiple alphas
         are included in the CA
 
@@ -146,23 +140,23 @@ class MultipleCA(CAModel):
             that represents where each CA rule applies
         """
 
-        #gives the biggest alpha per pixel
-        biggest=Reduce('b c h w -> b 1 h w',reduction='max')(tensor) 
-        #the free cells are the ones who have all of the alphas lower than 0.1
-        free = biggest<0.1 
+        # gives the biggest alpha per pixel
+        biggest = Reduce('b c h w -> b 1 h w', reduction='max')(tensor)
+        # the free cells are the ones who have all of the alphas lower than 0.1
+        free = biggest < 0.1
 
-        #this is the mask where already one of the alpha is bigger than 0.1, if more than one
-        #alpha is bigger than 0.1, than the biggest one wins
+        # this is the mask where already one of the alpha is bigger than 0.1, if more than one
+        # alpha is bigger than 0.1, than the biggest one wins
         old = (tensor[:] == biggest) * (tensor >= 0.1)
-        #delete the smallest alphas if the biggest alpha is bigger than 0.1
+        # delete the smallest alphas if the biggest alpha is bigger than 0.1
         tensor = tensor * old
         # this is the mask of the cells neighboring each alpha
         neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
         # the cells where the CA can expand are the one who are free and neighboring
         expanding = free & neighbor
-        #the CA evolves int the cells where it can expand and the ones where is already present
+        # the CA evolves int the cells where it can expand and the ones where is already present
         evolution = expanding + old
-        
+
         return evolution, tensor
 
     def forward(self, x: torch.Tensor,
@@ -181,15 +175,15 @@ class MultipleCA(CAModel):
         # Ideas: Remove local life masks and only keep a global one?
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
+        
+        B, C, H, W = x.size()
+        updates = torch.empty(self.n_CAs, B, C, H, W)
+    
+        mask, x[:, self.n_channels:] = self.CA_mask(x[:, self.n_channels:])
         for i, CA in enumerate(self.CAs):
-            pre_life_mask = CA.get_living_mask(x)
-
-            updates[i] = CA.compute_dx(x, angle, step_size)
-
-            post_life_mask = CA.get_living_mask(x+updates[i])
-            life_mask = pre_life_mask & post_life_mask
-
-            updates[i] *= life_mask
+            updates[i] = CA.compute_dx(x, angle, step_size)*mask[:, i]
+        
+        [CA.compute_dx(x, angle, step_size) for CA in self.CAs]
 
         x += updates.sum(dim=0)
 
