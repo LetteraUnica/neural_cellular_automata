@@ -126,7 +126,7 @@ class MultipleCA(CAModel):
         self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-    def CA_mask(self, tensor: torch.Tensor) -> torch.Tensor:
+    def CA_mask(self, tensor: torch.Tensor,fire_rate=self.fire_rate) -> torch.Tensor:
         """It gives the mask where the CA rules apply in the case where multiple alphas
         are included in the CA
 
@@ -156,6 +156,10 @@ class MultipleCA(CAModel):
         expanding = free & neighbor
         # the CA evolves int the cells where it can expand and the ones where is already present
         evolution = expanding + old
+        #stocastic filter
+        stocastic=torch.rand_like(evolution, device=self.device) < fire_rate
+
+        evolution=evolution*stocastic
 
         return evolution, tensor
 
@@ -177,23 +181,19 @@ class MultipleCA(CAModel):
         # Currently applies only a global mask and all updates at once
         
         B, C, H, W = x.size()
-        updates = torch.empty(self.n_CAs, B, C, H, W)
+        updates = torch.empty(self.n_CAs, B, C, H, W, device = self.device)
     
         mask, x[:, self.n_channels:] = self.CA_mask(x[:, self.n_channels:])
         for i, CA in enumerate(self.CAs):
-            updates[i] = CA.compute_dx(x, angle, step_size)*mask[:, i]
-        
-        [CA.compute_dx(x, angle, step_size) for CA in self.CAs]
+            updates[i] = CA.compute_dx(x, angle, step_size)
+
+        updates=rearrange(updates,'CA B C W H -> C B CA W H')
+        updates[:]=updates[:]*mask
+        updates=rearrange(updates,'C B CA W H -> CA B C W H')
 
         x += updates.sum(dim=0)
 
-        x = self.evolve_masks(x)
-
-        global_post_life_mask = self.get_living_mask(x)
-
-        global_life_mask = global_pre_life_mask & global_post_life_mask
-
-        return x * global_life_mask.float()
+        return x 
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
