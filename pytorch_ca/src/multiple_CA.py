@@ -3,7 +3,8 @@ from torchvision.io import write_video
 import torchvision.transforms as T
 from typing import List
 import warnings
-from einops.layers.torch import Reduce, Rearrange
+from einops.layers.torch import Reduce
+from einops import rearrange
 
 
 from .utils import *
@@ -31,7 +32,7 @@ class CustomCA(NeuralCA):
             raise Exception(
                 "alpha_channel must be greater or equal to n_channels")
 
-        super().__init__(n_channels, device, fire_rate)
+        super().__init__(n_channels+1, device, fire_rate)
 
         self.alpha_channel = alpha_channel
 
@@ -47,16 +48,14 @@ class CustomCA(NeuralCA):
         Returns:
             torch.Tensor: dx
         """
-        x_new = torch.cat((x[:, :self.n_channels],
+        x_new = torch.cat((x[:, :self.n_channels-1],
                           x[:, self.alpha_channel:self.alpha_channel+1]), dim=1)
-
-        print(x_new.shape, x[:, :self.n_channels].shape, x[:, self.alpha_channel:self.alpha_channel+1].shape)
 
         # compute update increment
         dx = self.layers(self.perceive(x_new, angle)) * step_size
 
         dx_new = torch.zeros_like(x)
-        dx_new[:, :self.n_channels] = dx[:, :self.n_channels]
+        dx_new[:, :self.n_channels-1] = dx[:, :self.n_channels-1]
         dx_new[:, self.alpha_channel] = dx[:, -1]
 
         return dx_new
@@ -190,9 +189,9 @@ class MultipleCA(CAModel, TrainCA):
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-        updates = Rearrange(updates, 'CA B C W H -> C B CA W H')
+        updates = rearrange(updates, 'CA B C W H -> C B CA W H')
         updates[:] = updates[:]*mask
-        updates = Rearrange(updates, 'C B CA W H -> CA B C W H')
+        updates = rearrange(updates, 'C B CA W H -> CA B C W H')
 
         x += updates.sum(dim=0)
 
