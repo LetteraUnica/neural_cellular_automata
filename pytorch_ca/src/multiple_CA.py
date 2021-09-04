@@ -28,7 +28,7 @@ class CustomCA(NeuralCA):
                 Defaults to 0.5.
         """
         if mask_channel < n_channels-1:
-            Exception("mask_channel must be greater or equal to n_channels")
+            raise Exception("mask_channel must be greater or equal to n_channels")
 
         super().__init__(n_channels, device, fire_rate)
 
@@ -126,6 +126,8 @@ class MultipleCA(CAModel):
         # Stores losses during training
         self.losses = []
 
+        # cellular automatae rules
+        self.n_CAs=n_CAs
         self.CAs = [CustomCA(n_channels+i, n_channels, device, fire_rate)
                     for i in range(n_CAs)]
 
@@ -141,7 +143,7 @@ class MultipleCA(CAModel):
 
         Returns:
             a tensor with bool elements with the same shape on the input tensor
-            that represents where each CA rule apply
+            that represents where each CA rule applies
         """
 
         #gives the biggest alpha per pixel
@@ -149,19 +151,19 @@ class MultipleCA(CAModel):
         #the free cells are the ones who have all of the alphas lower than 0.1
         free = biggest<0.1 
 
-        #this is the maks where altready one of the alpha is bigger than 0.1, if more than one
-        #alpha is bigger than one, than the biggest one wins
-        old = (tensor[:]==biggest) * (tensor >=0.1)
+        #this is the mask where already one of the alpha is bigger than 0.1, if more than one
+        #alpha is bigger than 0.1, than the biggest one wins
+        old = (tensor[:] == biggest) * (tensor >= 0.1)
         #delete the smallest alphas if the biggest alpha is bigger than 0.1
-        tensor=tensor*old
+        tensor = tensor * old
         # this is the mask of the cells neighboring each alpha
-        neighbor = F.max_pool2d(wrap_edges(tensor) ,3, stride=1)>=0.1
+        neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
         # the cells where the CA can expand are the one who are free and neighboring
-        expanding= free& neighbor
+        expanding = free & neighbor
         #the CA evolves int the cells where it can expand and the ones where is already present
-        evolution=expanding+old
-
-        return evolution
+        evolution = expanding + old
+        
+        return evolution, tensor
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -176,13 +178,6 @@ class MultipleCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
-
-        N = len(self.CAs)
-        B, C, H, W = x.size()
-        updates = torch.empty((N, B, C, H, W), device=self.device)
-
-        global_pre_life_mask = self.get_living_mask(x)
-
         # Ideas: Remove local life masks and only keep a global one?
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
