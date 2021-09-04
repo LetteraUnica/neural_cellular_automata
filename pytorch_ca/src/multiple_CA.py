@@ -3,6 +3,8 @@ from torchvision.io import write_video
 import torchvision.transforms as T
 from typing import List
 import warnings
+from einops.layers.torch import Reduce
+
 
 from .utils import *
 from .neural_CA import *
@@ -26,7 +28,7 @@ class CustomCA(NeuralCA):
                 Defaults to 0.5.
         """
         if mask_channel < n_channels-1:
-            Exception("mask_channel must be greater or equal to n_channels")
+            raise Exception("mask_channel must be greater or equal to n_channels")
 
         super().__init__(n_channels, device, fire_rate)
 
@@ -124,52 +126,44 @@ class MultipleCA(CAModel):
         # Stores losses during training
         self.losses = []
 
+        # cellular automatae rules
+        self.n_CAs=n_CAs
         self.CAs = [CustomCA(n_channels+i, n_channels, device, fire_rate)
                     for i in range(n_CAs)]
 
-    # def _init_list(self, CAs: List[CustomCA]):
-    #     masks = set()
-    #     for CA in CAs:
-    #         if CA.mask_channel in masks:
-    #             warnings.warn(f"The channel {CA.mask_channel+1} \
-    #                             is already used by another CA")
-    #         masks.add(CA.mask_channel)
 
-    #     self.mask_channels = list(masks)
-
-    def evolve_masks(self, x):
-        n = len(self.CAs)
-        mask_channels = range(self.n_channels-1, self.n_channels-1 + n)
-        z = x[:, mask_channels]
-        B, C, H, W = z.size()
-
-        # Mask of the maximum value over all the channels
-        max_mask = torch.max(z, dim=1)[0].unsqueeze(1) == z
-
-        # Mask of the pixels whose all channels are less than 0.1
-        threshold_mask = ((z < 0.1).sum(dim=1) == C).unsqueeze(1)
-
-        mask = threshold_mask | max_mask
-        
-        x[:, mask_channels] = z*mask
-
-        return x
-
-    def get_living_mask(self, x: torch.Tensor) -> torch.Tensor:
-        """Computes the living mask over all the alpha channels
+    def CA_mask(self,tensor:torch.Tensor) -> torch.Tensor:
+        """It gives the mask where the CA rules apply in the case where multiple alphas
+        are included in the CA
 
         Args:
-            x (torch.Tensor): images
+            tensor (torch.Tensor):
+                The first index refers to the batch, the second to the alphas,
+                the third and the fourth to the pixels in the image
 
         Returns:
-            torch.Tensor: global living mask
+            a tensor with bool elements with the same shape on the input tensor
+            that represents where each CA rule applies
         """
-        mask = self.CAs[0].get_living_mask(x)
 
-        for i in range(1, len(self.CAs)):
-            mask = mask | self.CAs[i].get_living_mask(x)
+        #gives the biggest alpha per pixel
+        biggest=Reduce('b c h w -> b 1 h w',reduction='max')(tensor) 
+        #the free cells are the ones who have all of the alphas lower than 0.1
+        free = biggest<0.1 
 
-        return mask
+        #this is the mask where already one of the alpha is bigger than 0.1, if more than one
+        #alpha is bigger than 0.1, than the biggest one wins
+        old = (tensor[:] == biggest) * (tensor >= 0.1)
+        #delete the smallest alphas if the biggest alpha is bigger than 0.1
+        tensor = tensor * old
+        # this is the mask of the cells neighboring each alpha
+        neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
+        # the cells where the CA can expand are the one who are free and neighboring
+        expanding = free & neighbor
+        #the CA evolves int the cells where it can expand and the ones where is already present
+        evolution = expanding + old
+        
+        return evolution, tensor
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -184,13 +178,6 @@ class MultipleCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
-
-        N = len(self.CAs)
-        B, C, H, W = x.size()
-        updates = torch.empty((N, B, C, H, W), device=self.device)
-
-        global_pre_life_mask = self.get_living_mask(x)
-
         # Ideas: Remove local life masks and only keep a global one?
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
