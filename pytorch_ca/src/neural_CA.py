@@ -84,7 +84,7 @@ class CAModel(nn.Module):
         return evolution_losses
 
 
-class NeuralCA(CAModel):
+class NeuralCA(CAModel,TrainCA):
     """Implements a neural cellular automata model like described here
     https://distill.pub/2020/growing-ca/
     """
@@ -125,29 +125,7 @@ class NeuralCA(CAModel):
 
         self.to(self.device)
 
-    @staticmethod
-    def wrap_edges(images: torch.Tensor) -> torch.Tensor:
-        """Pads the boundary of all images to simulate a torus
 
-        Args:
-            images (torch.Tensor): Images to pad
-
-        Returns:
-            torch.Tensor: Padded images
-        """
-        return F.pad(images, pad=(1, 1, 1, 1), mode='circular', value=0)
-
-    def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:
-        """Returns the a mask of the living cells in the image
-
-        Args:
-            images (torch.Tensor): images to get the living mask
-
-        Returns:
-            torch.Tensor: Living mask
-        """
-        alpha = images[:, 3:4, :, :]
-        return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
 
     def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
         """Returns the perception vector of each cell in an image, or perception matrix
@@ -181,7 +159,7 @@ class NeuralCA(CAModel):
         all_filters_batch = all_filters_batch.to(self.device)
 
         # Depthwise convolution over input images
-        return F.conv2d(self.wrap_edges(images), all_filters_batch, groups=self.n_channels)
+        return F.conv2d(wrap_edges(images), all_filters_batch, groups=self.n_channels)
 
     def compute_dx(self, x: torch.Tensor, angle: float = 0.,
                    step_size: float = 1.) -> torch.Tensor:
@@ -217,11 +195,11 @@ class NeuralCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
-        pre_life_mask = self.get_living_mask(x)
+        pre_life_mask = get_living_mask(x)
 
         x += self.compute_dx(x, angle, step_size)
 
-        post_life_mask = self.get_living_mask(x)
+        post_life_mask = get_living_mask(x)
 
         # get alive mask
         life_mask = pre_life_mask & post_life_mask
@@ -229,6 +207,37 @@ class NeuralCA(CAModel):
         # return updated states with alive masking
         return x * life_mask.float()
 
+    def load(self, fname: str):
+        """Loads a (pre-trained) model
+
+        Args:
+            fname (str): Path of the model to load
+        """
+
+        self.load_state_dict(torch.load(fname),map_location=torch.device(self.device))
+        print("Successfully loaded model!")
+
+    def save(self, fname: str, overwrite: bool = False):
+        """Saves a (trained) model
+
+        Args:
+            fname (str): Path where to save the model.
+            overwrite (bool, optional): Whether to overwrite the existing file.
+                Defaults to False..
+
+        Raises:
+            Exception: If the file already exists and
+                the overwrite argument is set to False
+        """
+        if os.path.exists(fname) and not overwrite:
+            message = "The file name already exists, to overwrite it set the "
+            message += "overwrite argument to True to confirm the overwrite"
+            raise Exception(message)
+        torch.save(self.state_dict(), fname)
+        print("Successfully saved model!")
+
+
+class trainCA():
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
                  criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
@@ -327,32 +336,3 @@ class NeuralCA(CAModel):
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
             clear_output(wait=True)
-
-    def load(self, fname: str):
-        """Loads a (pre-trained) model
-
-        Args:
-            fname (str): Path of the model to load
-        """
-
-        self.load_state_dict(torch.load(fname),map_location=torch.device(self.device))
-        print("Successfully loaded model!")
-
-    def save(self, fname: str, overwrite: bool = False):
-        """Saves a (trained) model
-
-        Args:
-            fname (str): Path where to save the model.
-            overwrite (bool, optional): Whether to overwrite the existing file.
-                Defaults to False..
-
-        Raises:
-            Exception: If the file already exists and
-                the overwrite argument is set to False
-        """
-        if os.path.exists(fname) and not overwrite:
-            message = "The file name already exists, to overwrite it set the "
-            message += "overwrite argument to True to confirm the overwrite"
-            raise Exception(message)
-        torch.save(self.state_dict(), fname)
-        print("Successfully saved model!")

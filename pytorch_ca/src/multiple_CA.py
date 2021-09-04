@@ -195,9 +195,9 @@ class MultipleCA(CAModel):
 
         return x 
 
-    def train_CA(self,
+def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
@@ -205,17 +205,18 @@ class MultipleCA(CAModel):
                  skip_update: int = 2,
                  evolution_iters: Tuple[int, int] = (50, 60),
                  kind: str = "growing",
+                 n_max_losses:int=1,
                  **kwargs):
         """Trains the CA model
 
         Args:
             optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
 
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function to use
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
 
             pool (SamplePool): Sample pool from which to extract the images
 
-            n_epochs (int): Number of epochs to perform, 
+            n_epochs (int): Number of epochs to perform, _
                 this depends on the size of the sample pool
 
             scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
@@ -240,47 +241,52 @@ class MultipleCA(CAModel):
                     regenerating: Trains a CA that grows into the target image
                                   and regenerates any damage that it receives
                 Defaults to "growing".
+            n_max_losses(int):
+                number of datapoints with the biggest losses to replace.
+                Defaults to 1
         """
 
-        for i in range(n_epochs):
-            epoch_losses = []
-            for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size)
-                inputs = inputs.to(self.device)
-                optimizer.zero_grad()
+        self.train()
 
-                for k in range(randint(*evolution_iters)):
+        for i in range(n_epochs):
+            epoch_losses = [] #array that stores the loss history
+
+            # take the data
+            for j in range(pool.size // batch_size):
+                inputs, indexes = pool.sample(batch_size) #sample the inputs
+                inputs = inputs.to(self.device) #put them in the current device
+                optimizer.zero_grad() #reinitialize the gradient to zero
+
+                # recursive forward-pass
+                for k in range(randint(*evolution_iters)): 
                     inputs = self.forward(inputs)
 
-                loss, idx_max_loss = criterion(inputs)
-                epoch_losses.append(loss.item())
+                # calculate the loss of the inputs and return the ones with the biggest loss
+                loss, idx_max_loss = criterion(inputs,n_max_losses) 
+                epoch_losses.append(loss.item()) #add current loss to the loss history
+
+                #look a definition of skip_update
                 if j % skip_update != 0:
                     idx_max_loss = None
+
+                # backward-pass
                 loss.backward()
                 optimizer.step()
+
+                # customization of training for the three processes of growing. persisting and regenerating
+
                 # if regenerating, then damage inputs
                 if kind == "regenerating":
-                    inputs = inputs.detach()
-                    try:
-                        target_size = kwargs['target_size']
-                    except KeyError:
-                        target_size = None
-                    try:
-                        constant_side = kwargs['constant_side']
-                    except KeyError:
-                        constant_side = None
-                    try:
-                        skip_damage = kwargs["skip_damage"]
-                    except KeyError:
-                        skip_damage = 1
+                    inputs = inputs.detach()                    
+                    #damages the inputs by removing square portions    
+                    inputs = make_squares(inputs, **kwargs)
 
-                    if j % skip_damage == 0:
-                        inputs = make_squares(inputs, target_size=target_size,
-                                              constant_side=constant_side)
-
+                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    pool.update(inputs, indexes, idx_max_loss)
+                    idx_max_loss=[indexes[i] for i in idx_max_loss]
+                    pool.update(idx_max_loss)
 
+            #update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
 

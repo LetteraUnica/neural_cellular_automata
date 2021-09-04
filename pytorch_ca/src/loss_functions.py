@@ -19,50 +19,16 @@ def image_distance(x: torch.Tensor, y: torch.Tensor, order=2) -> torch.Tensor:
     return torch.mean(torch.abs(x - y)**order, dim=[1, 2, 3])
 
 
+
+
 class NCALoss:
-    """Custom loss function for the neural CA, simply computes the
-        distance of the target image vs the predicted image
-    """
-
-    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss):
-        """Initializes the loss function by storing the target image
-
-        Args:
-            target (torch.Tensor): Target image
-            criterion (Loss function, optional): 
-                Loss criteria, used to compute the distance between two images.
-                Defaults to torch.nn.MSELoss.
-        """
-        self.target = target.detach().clone()
-        self.criterion = criterion(reduction="none")
-
-    def __call__(self, x: torch.Tensor,n_max_losses:int=1) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Returns the loss and the index of the image with maximum loss
-
-        Args:
-            x (torch.Tensor): Images to compute the loss
-            n (int): The number of indexes with the max loss to return
-
-        Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
-                Average loss of all images in the batch, 
-                index of the image with maximum loss
-        """
-
-        losses = self.criterion(x[:, :4], self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = n_largest_indexes(losses,n_max_losses)
-
-        return torch.mean(losses), idx_max_loss
-
-
-class PerturbationLoss:
     """Custom loss function for the neural CA, computes the
         distance of the target image vs the predicted image and adds a
         penalization term
     """
 
     def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 l: float = 0.):
+                 l: float = 0., alpha_channels:list =[4]):
         """Initializes the loss function by storing the target image and setting
             the criterion
 
@@ -97,7 +63,8 @@ class PerturbationLoss:
         """
         losses = self.criterion(x[:, :4], self.target).mean(dim=[1, 2, 3])
         idx_max_loss = n_largest_indexes(losses,n_max_losses)
-        loss = torch.mean(losses) + self.l*self.perturbation/self.N
+        loss = torch.mean(losses)
+        if self.N!=0: loss+= self.l*self.perturbation/self.N 
 
         self._reset_perturbation()
 
