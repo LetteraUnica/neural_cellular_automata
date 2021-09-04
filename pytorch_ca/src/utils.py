@@ -193,7 +193,10 @@ def make_video(CA: "CAModel",
     return video, init_state
 
 
-def make_seed(n_images: int, n_channels: int, image_size: int,
+def make_seed(n_images: int,
+              n_channels: int,
+              image_size: int,
+              n_CAs:int=1,
               device: torch.device = "cpu",
               alpha_channel: int = 3) -> torch.Tensor:
     """Makes n_images seeds to start the CA, the seed is a black dot
@@ -212,8 +215,8 @@ def make_seed(n_images: int, n_channels: int, image_size: int,
         torch.Tensor: Seed images
     """
     start_point = torch.zeros(
-        (n_images, n_channels, image_size, image_size), device=device)
-    start_point[:, alpha_channel, image_size//2, image_size//2] = 1.
+        (n_images, n_channels+n_CAs, image_size, image_size), device=device)
+    start_point[:, -1, image_size//2, image_size//2] = 1.
     return start_point
 
 
