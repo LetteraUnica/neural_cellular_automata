@@ -126,42 +126,36 @@ class MultipleCA(CAModel):
         self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-    def CA_mask(self, tensor: torch.Tensor,fire_rate=self.fire_rate) -> torch.Tensor:
-        """It gives the mask where the CA rules apply in the case where multiple alphas
-        are included in the CA
+   def CA_mask(tensor):
+    """It gives the mask where the CA rules apply in the case where multiple alphas
+    are included in the CA
 
-        Args:
-            tensor (torch.Tensor):
-                The first index refers to the batch, the second to the alphas,
-                the third and the fourth to the pixels in the image
+    Args:
+        tensor (torch.Tensor):
+            The first index refers to the batch, the second to the alphas,
+            the third and the fourth to the pixels in the image
 
-        Returns:
-            a tensor with bool elements with the same shape on the input tensor
-            that represents where each CA rule applies
-        """
+    Returns:
+        a tensor with bool elements with the same shape on the input tensor
+        that represents where each CA rule applies
+    """
 
-        # gives the biggest alpha per pixel
-        biggest = Reduce('b c h w -> b 1 h w', reduction='max')(tensor)
-        # the free cells are the ones who have all of the alphas lower than 0.1
-        free = biggest < 0.1
+    # gives the biggest alpha per pixel
+    biggest = Reduce('b c w h-> b 1 w h', reduction='max')(tensor)
+    # the free cells are the ones who have all of the alphas lower than 0.1
+    free = biggest < 0.1
 
-        # this is the mask where already one of the alpha is bigger than 0.1, if more than one
-        # alpha is bigger than 0.1, than the biggest one wins
-        old = (tensor[:] == biggest) * (tensor >= 0.1)
-        # delete the smallest alphas if the biggest alpha is bigger than 0.1
-        tensor = tensor * old
-        # this is the mask of the cells neighboring each alpha
-        neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
-        # the cells where the CA can expand are the one who are free and neighboring
-        expanding = free & neighbor
-        # the CA evolves int the cells where it can expand and the ones where is already present
-        evolution = expanding + old
-        #stocastic filter
-        stocastic=torch.rand_like(evolution, device=self.device) < fire_rate
-
-        evolution=evolution*stocastic
-
-        return evolution, tensor
+    # this is the mask where already one of the alpha is bigger than 0.1, if more than one
+    # alpha is bigger than 0.1, than the biggest one wins
+    old = (tensor[:] == biggest) * (tensor >= 0.1)
+    # this is the mask of the cells neighboring each alpha
+    neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
+    # the cells where the CA can expand are the one who are free and neighboring
+    expanding = free & neighbor
+    # the CA evolves int the cells where it can expand and the ones where is already present
+    evolution = expanding + old
+    
+    return evolution
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
