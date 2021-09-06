@@ -4,6 +4,7 @@ import torchvision.transforms as T
 from typing import List
 import warnings
 from einops.layers.torch import Reduce
+from einops import rearrange
 
 
 from .utils import *
@@ -27,11 +28,11 @@ class CustomCA(NeuralCA):
             fire_rate (float, optional): Probability to reject an update.
                 Defaults to 0.5.
         """
-        if alpha_channel < n_channels-1:
+        if alpha_channel < n_channels:
             raise Exception(
                 "alpha_channel must be greater or equal to n_channels")
 
-        super().__init__(n_channels, device, fire_rate)
+        super().__init__(n_channels+1, device, fire_rate)
 
         self.alpha_channel = alpha_channel
 
@@ -47,14 +48,14 @@ class CustomCA(NeuralCA):
         Returns:
             torch.Tensor: dx
         """
-        x_new = torch.cat((x[:, :self.n_channels]),
-                          x[:, self.alpha_channel:self.alpha_channel+1], dim=1)
+        x_new = torch.cat((x[:, :self.n_channels-1],
+                          x[:, self.alpha_channel:self.alpha_channel+1]), dim=1)
 
         # compute update increment
         dx = self.layers(self.perceive(x_new, angle)) * step_size
 
         dx_new = torch.zeros_like(x)
-        dx_new[:, :self.n_channels] = dx[:, :self.n_channels]
+        dx_new[:, :self.n_channels-1] = dx[:, :self.n_channels-1]
         dx_new[:, self.alpha_channel] = dx[:, -1]
 
         return dx_new
@@ -97,7 +98,7 @@ class CustomCA(NeuralCA):
         return x * life_mask.float()
 
 
-class MultipleCA(CAModel):
+class MultipleCA(CAModel, TrainCA):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
@@ -126,36 +127,7 @@ class MultipleCA(CAModel):
         self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-   def CA_mask(tensor):
-    """It gives the mask where the CA rules apply in the case where multiple alphas
-    are included in the CA
 
-    Args:
-        tensor (torch.Tensor):
-            The first index refers to the batch, the second to the alphas,
-            the third and the fourth to the pixels in the image
-
-    Returns:
-        a tensor with bool elements with the same shape on the input tensor
-        that represents where each CA rule applies
-    """
-
-    # gives the biggest alpha per pixel
-    biggest = Reduce('b c w h-> b 1 w h', reduction='max')(tensor)
-    # the free cells are the ones who have all of the alphas lower than 0.1
-    free = biggest < 0.1
-
-    # this is the mask where already one of the alpha is bigger than 0.1, if more than one
-    # alpha is bigger than 0.1, than the biggest one wins
-    old = (tensor[:] == biggest) * (tensor >= 0.1)
-    # this is the mask of the cells neighboring each alpha
-    neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
-    # the cells where the CA can expand are the one who are free and neighboring
-    expanding = free & neighbor
-    # the CA evolves int the cells where it can expand and the ones where is already present
-    evolution = expanding + old
-    
-    return evolution
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -173,159 +145,18 @@ class MultipleCA(CAModel):
         # Ideas: Remove local life masks and only keep a global one?
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
-        
+
         B, C, H, W = x.size()
-        updates = torch.empty(self.n_CAs, B, C, H, W, device = self.device)
-    
+        updates = torch.empty(self.n_CAs, B, C, H, W, device=self.device)
+
         mask, x[:, self.n_channels:] = self.CA_mask(x[:, self.n_channels:])
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-        updates=rearrange(updates,'CA B C W H -> C B CA W H')
-        updates[:]=updates[:]*mask
-        updates=rearrange(updates,'C B CA W H -> CA B C W H')
+        updates = rearrange(updates, 'CA B C W H -> C B CA W H')
+        updates[:] = updates[:]*mask
+        updates = rearrange(updates, 'C B CA W H -> CA B C W H')
 
         x += updates.sum(dim=0)
 
-        return x 
-
-def train_CA(self,
-                 optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
-                 pool: SamplePool,
-                 n_epochs: int,
-                 scheduler: torch.optim.lr_scheduler._LRScheduler = None,
-                 batch_size: int = 4,
-                 skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (50, 60),
-                 kind: str = "growing",
-                 n_max_losses:int=1,
-                 **kwargs):
-        """Trains the CA model
-
-        Args:
-            optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
-
-            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
-
-            pool (SamplePool): Sample pool from which to extract the images
-
-            n_epochs (int): Number of epochs to perform, _
-                this depends on the size of the sample pool
-
-            scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
-                 Learning rate scheduler. Defaults to None.
-
-            batch_size (int, optional): Batch size. Defaults to 4.
-
-            skip_update (int, optional): How many batches to process before
-                the image with maximum loss is replaced with a new seed.
-                Defaults to 2, i.e. substitute the image with maximum loss
-                every 2 iterations.
-
-            evolution_iters (Tuple[int, int], optional):
-                Minimum and maximum number of evolution iterations to perform.
-                Defaults to (50, 60).
-
-            kind (str, optional): 
-                Kind of CA to train, can be either one of:
-                    growing: Trains a CA that grows into the target image
-                    persistent: Trains a CA that grows into the target image
-                        and persists
-                    regenerating: Trains a CA that grows into the target image
-                                  and regenerates any damage that it receives
-                Defaults to "growing".
-            n_max_losses(int):
-                number of datapoints with the biggest losses to replace.
-                Defaults to 1
-        """
-
-        self.train()
-
-        for i in range(n_epochs):
-            epoch_losses = [] #array that stores the loss history
-
-            # take the data
-            for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size) #sample the inputs
-                inputs = inputs.to(self.device) #put them in the current device
-                optimizer.zero_grad() #reinitialize the gradient to zero
-
-                # recursive forward-pass
-                for k in range(randint(*evolution_iters)): 
-                    inputs = self.forward(inputs)
-
-                # calculate the loss of the inputs and return the ones with the biggest loss
-                loss, idx_max_loss = criterion(inputs,n_max_losses) 
-                epoch_losses.append(loss.item()) #add current loss to the loss history
-
-                #look a definition of skip_update
-                if j % skip_update != 0:
-                    idx_max_loss = None
-
-                # backward-pass
-                loss.backward()
-                optimizer.step()
-
-                # customization of training for the three processes of growing. persisting and regenerating
-
-                # if regenerating, then damage inputs
-                if kind == "regenerating":
-                    inputs = inputs.detach()                    
-                    #damages the inputs by removing square portions    
-                    inputs = make_squares(inputs, **kwargs)
-
-                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
-                if kind != "growing":
-                    idx_max_loss=[indexes[i] for i in idx_max_loss]
-                    pool.update(idx_max_loss)
-
-            #update the scheduler if there is one at all
-            if scheduler is not None:
-                scheduler.step()
-
-            self.losses.append(np.mean(epoch_losses))
-            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
-            clear_output(wait=True)
-
-
-class CustomLoss:
-    """Custom loss function for the neural CA, simply computes the
-        distance of the target image vs the predicted image
-    """
-
-    def __init__(self, target: torch.Tensor, alpha_channels: List[int],
-                 criterion=torch.nn.MSELoss):
-        """Initializes the loss function by storing the target image
-
-        Args:
-            target (torch.Tensor): Target image
-            alpha_channels (List[int]): Alpha channels of the images
-            criterion (Loss function, optional): 
-                Loss criteria, used to compute the distance between two images.
-                Defaults to torch.nn.MSELoss.
-        """
-        self.target = target.detach().clone()
-        self.criterion = criterion(reduction="none")
-        self.alpha_channels = [i-1 for i in alpha_channels]
-
-    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Returns the loss and the index of the image with maximum loss
-
-        Args:
-            x (torch.Tensor): Images to compute the loss
-
-        Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
-                Average loss of all images in the batch, 
-                index of the image with maximum loss
-        """
-
-        alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
-        predicted = torch.cat((x[:, :3],
-                              alpha),
-                              dim=1)
-        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = torch.argmax(losses)
-
-        return torch.mean(losses), idx_max_loss
+        return x

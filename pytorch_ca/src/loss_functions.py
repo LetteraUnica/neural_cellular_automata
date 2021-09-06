@@ -1,5 +1,5 @@
 import torch
-from typing import Tuple
+from typing import Tuple, List
 
 from .utils import *
 
@@ -19,8 +19,6 @@ def image_distance(x: torch.Tensor, y: torch.Tensor, order=2) -> torch.Tensor:
     return torch.mean(torch.abs(x - y)**order, dim=[1, 2, 3])
 
 
-
-
 class NCALoss:
     """Custom loss function for the neural CA, computes the
         distance of the target image vs the predicted image and adds a
@@ -28,7 +26,7 @@ class NCALoss:
     """
 
     def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 l: float = 0., alpha_channels:list =[4]):
+                 l: float = 0., alpha_channels: Tuple[int] = [3]):
         """Initializes the loss function by storing the target image and setting
             the criterion
 
@@ -42,6 +40,7 @@ class NCALoss:
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
         self.l = l
+        self.alpha_channels = alpha_channels
 
         self._reset_perturbation()
 
@@ -49,7 +48,7 @@ class NCALoss:
         self.perturbation = 0.
         self.N = 0
 
-    def __call__(self, x: torch.Tensor,n_max_losses:int=1) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, n_max_losses: int = 1) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
@@ -61,10 +60,15 @@ class NCALoss:
                 Average loss of all images in the batch, 
                 index of the image with maximum loss
         """
-        losses = self.criterion(x[:, :4], self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = n_largest_indexes(losses,n_max_losses)
+        
+        alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
+        predicted = torch.cat((x[:, :3], alpha), dim=1)
+
+        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
+        idx_max_loss = n_largest_indexes(losses, n_max_losses)
         loss = torch.mean(losses)
-        if self.N!=0: loss+= self.l*self.perturbation/self.N 
+        if self.N != 0:
+            loss += self.l*self.perturbation/self.N
 
         self._reset_perturbation()
 

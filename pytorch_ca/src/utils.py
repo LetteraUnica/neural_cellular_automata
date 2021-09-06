@@ -197,8 +197,7 @@ def make_seed(n_images: int,
               n_channels: int,
               image_size: int,
               n_CAs:int=1,
-              device: torch.device = "cpu",
-              alpha_channel: int = 3) -> torch.Tensor:
+              device: torch.device = "cpu") -> torch.Tensor:
     """Makes n_images seeds to start the CA, the seed is a black dot
 
     Args:
@@ -207,8 +206,6 @@ def make_seed(n_images: int,
         image_size (int): Side of the square image
         device (torch.device, optional): Device where to save the images.
             Defaults to "cpu".
-        alpha_channel (int, optional): Channel where to put the starting cell.
-            Defaults to 3.
         
 
     Returns:

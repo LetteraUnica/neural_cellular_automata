@@ -84,13 +84,116 @@ class CAModel(nn.Module):
         return evolution_losses
 
 
-class NeuralCA(CAModel,TrainCA):
+class TrainCA():
+    def train_CA(self,
+                 optimizer: torch.optim.Optimizer,
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor, torch.Tensor]],
+                 pool: SamplePool,
+                 n_epochs: int,
+                 scheduler: torch.optim.lr_scheduler._LRScheduler = None,
+                 batch_size: int = 4,
+                 skip_update: int = 2,
+                 evolution_iters: Tuple[int, int] = (50, 60),
+                 kind: str = "growing",
+                 n_max_losses: int = 1,
+                 **kwargs):
+        """Trains the CA model
+
+        Args:
+            optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
+
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
+
+            pool (SamplePool): Sample pool from which to extract the images
+
+            n_epochs (int): Number of epochs to perform, _
+                this depends on the size of the sample pool
+
+            scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
+                 Learning rate scheduler. Defaults to None.
+
+            batch_size (int, optional): Batch size. Defaults to 4.
+
+            skip_update (int, optional): How many batches to process before
+                the image with maximum loss is replaced with a new seed.
+                Defaults to 2, i.e. substitute the image with maximum loss
+                every 2 iterations.
+
+            evolution_iters (Tuple[int, int], optional):
+                Minimum and maximum number of evolution iterations to perform.
+                Defaults to (50, 60).
+
+            kind (str, optional): 
+                Kind of CA to train, can be either one of:
+                    growing: Trains a CA that grows into the target image
+                    persistent: Trains a CA that grows into the target image
+                        and persists
+                    regenerating: Trains a CA that grows into the target image
+                                  and regenerates any damage that it receives
+                Defaults to "growing".
+            n_max_losses(int):
+                number of datapoints with the biggest losses to replace.
+                Defaults to 1
+        """
+
+        self.train()
+
+        for i in range(n_epochs):
+            epoch_losses = []  # array that stores the loss history
+
+            # take the data
+            for j in range(pool.size // batch_size):
+                inputs, indexes = pool.sample(batch_size)  # sample the inputs
+                # put them in the current device
+                inputs = inputs.to(self.device)
+                optimizer.zero_grad()  # reinitialize the gradient to zero
+
+                # recursive forward-pass
+                for k in range(randint(*evolution_iters)):
+                    inputs = self.forward(inputs)
+
+                # calculate the loss of the inputs and return the ones with the biggest loss
+                loss, idx_max_loss = criterion(inputs, n_max_losses)
+                # add current loss to the loss history
+                epoch_losses.append(loss.item())
+
+                # look a definition of skip_update
+                if j % skip_update != 0:
+                    idx_max_loss = None
+
+                # backward-pass
+                loss.backward()
+                optimizer.step()
+
+                # customization of training for the three processes of growing. persisting and regenerating
+
+                # if regenerating, then damage inputs
+                if kind == "regenerating":
+                    inputs = inputs.detach()
+                    # damages the inputs by removing square portions
+                    inputs = make_squares(inputs, **kwargs)
+
+                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
+                if kind != "growing":
+                    idx_max_loss = [indexes[i] for i in idx_max_loss]
+                    pool.update(idx_max_loss)
+
+            # update the scheduler if there is one at all
+            if scheduler is not None:
+                scheduler.step()
+
+            self.losses.append(np.mean(epoch_losses))
+            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
+            clear_output(wait=True)
+
+
+class NeuralCA(CAModel, TrainCA):
     """Implements a neural cellular automata model like described here
     https://distill.pub/2020/growing-ca/
     """
 
     def __init__(self, n_channels: int = 16,
-                 device: torch.device = None, #ma non è inutile questo argomento?
+                 device: torch.device = None,  # ma non è inutile questo argomento?
                  fire_rate: float = 0.5):
         """Initializes the network.
 
@@ -124,8 +227,6 @@ class NeuralCA(CAModel,TrainCA):
             nn.Conv2d(128, n_channels, 1))
 
         self.to(self.device)
-
-
 
     def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
         """Returns the perception vector of each cell in an image, or perception matrix
@@ -214,7 +315,8 @@ class NeuralCA(CAModel,TrainCA):
             fname (str): Path of the model to load
         """
 
-        self.load_state_dict(torch.load(fname),map_location=torch.device(self.device))
+        self.load_state_dict(torch.load(
+            fname), map_location=torch.device(self.device))
         print("Successfully loaded model!")
 
     def save(self, fname: str, overwrite: bool = False):
@@ -235,104 +337,3 @@ class NeuralCA(CAModel,TrainCA):
             raise Exception(message)
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
-
-
-class trainCA():
-    def train_CA(self,
-                 optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]],
-                 pool: SamplePool,
-                 n_epochs: int,
-                 scheduler: torch.optim.lr_scheduler._LRScheduler = None,
-                 batch_size: int = 4,
-                 skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (50, 60),
-                 kind: str = "growing",
-                 n_max_losses:int=1,
-                 **kwargs):
-        """Trains the CA model
-
-        Args:
-            optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
-
-            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
-
-            pool (SamplePool): Sample pool from which to extract the images
-
-            n_epochs (int): Number of epochs to perform, _
-                this depends on the size of the sample pool
-
-            scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
-                 Learning rate scheduler. Defaults to None.
-
-            batch_size (int, optional): Batch size. Defaults to 4.
-
-            skip_update (int, optional): How many batches to process before
-                the image with maximum loss is replaced with a new seed.
-                Defaults to 2, i.e. substitute the image with maximum loss
-                every 2 iterations.
-
-            evolution_iters (Tuple[int, int], optional):
-                Minimum and maximum number of evolution iterations to perform.
-                Defaults to (50, 60).
-
-            kind (str, optional): 
-                Kind of CA to train, can be either one of:
-                    growing: Trains a CA that grows into the target image
-                    persistent: Trains a CA that grows into the target image
-                        and persists
-                    regenerating: Trains a CA that grows into the target image
-                                  and regenerates any damage that it receives
-                Defaults to "growing".
-            n_max_losses(int):
-                number of datapoints with the biggest losses to replace.
-                Defaults to 1
-        """
-
-        self.train()
-
-        for i in range(n_epochs):
-            epoch_losses = [] #array that stores the loss history
-
-            # take the data
-            for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size) #sample the inputs
-                inputs = inputs.to(self.device) #put them in the current device
-                optimizer.zero_grad() #reinitialize the gradient to zero
-
-                # recursive forward-pass
-                for k in range(randint(*evolution_iters)): 
-                    inputs = self.forward(inputs)
-
-                # calculate the loss of the inputs and return the ones with the biggest loss
-                loss, idx_max_loss = criterion(inputs,n_max_losses) 
-                epoch_losses.append(loss.item()) #add current loss to the loss history
-
-                #look a definition of skip_update
-                if j % skip_update != 0:
-                    idx_max_loss = None
-
-                # backward-pass
-                loss.backward()
-                optimizer.step()
-
-                # customization of training for the three processes of growing. persisting and regenerating
-
-                # if regenerating, then damage inputs
-                if kind == "regenerating":
-                    inputs = inputs.detach()                    
-                    #damages the inputs by removing square portions    
-                    inputs = make_squares(inputs, **kwargs)
-
-                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
-                if kind != "growing":
-                    idx_max_loss=[indexes[i] for i in idx_max_loss]
-                    pool.update(idx_max_loss)
-
-            #update the scheduler if there is one at all
-            if scheduler is not None:
-                scheduler.step()
-
-            self.losses.append(np.mean(epoch_losses))
-            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
-            clear_output(wait=True)
