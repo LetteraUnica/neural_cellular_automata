@@ -142,7 +142,6 @@ class MultipleCA(CAModel, TrainCA):
         Returns:
             torch.Tensor: Next CA state
         """
-        # Ideas: Remove local life masks and only keep a global one?
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
 
@@ -151,18 +150,17 @@ class MultipleCA(CAModel, TrainCA):
 
         tensor = x[:, self.n_channels:]
         biggest = tensor.max(dim=1)[0].unsqueeze(1)
-        old = (tensor == biggest) | ((tensor >= 0.1).sum(dim=1) == 0).unsqueeze(1)
+        old = (tensor == biggest) | (
+            (tensor >= 0.1).sum(dim=1) == 0).unsqueeze(1)
         x[:, self.n_channels:] = x[:, self.n_channels:] * old.float()
 
-        B, C, H, W = x.size()
-        updates = torch.empty(self.n_CAs, B, C, H, W, device=self.device)
+        updates = torch.empty(self.n_CAs, *x.size(), device=self.device)
         for i, CA in enumerate(self.CAs):
-            updates[i] = CA.compute_dx(
-                x, angle, step_size) * update_mask[:, i].float().unsqueeze(1)
+            updates[i] = CA.compute_dx(x, angle, step_size)
 
-        # updates = rearrange(updates, 'CA B C W H -> C B CA W H')
-        # updates[:] = updates[:]*mask
-        # updates = rearrange(updates, 'C B CA W H -> CA B C W H')
+        random_mask = torch.rand_like(updates) < self.fire_rate
+        updates = torch.einsum("Abchw, Abchw, bAhw -> bchw",
+                               updates, random_mask, update_mask)
 
         x += updates.sum(dim=0)
 
