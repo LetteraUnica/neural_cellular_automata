@@ -2,6 +2,7 @@ import torch
 import torchvision.transforms as T
 import torch.nn.functional as F
 from torchvision.io import write_video
+from einops.layers.torch import Reduce
 
 import numpy as np
 import pylab as pl
@@ -9,7 +10,7 @@ from random import randint
 
 from matplotlib import cm
 
-from typing import Tuple
+from typing import Tuple, List
 
 
 def RGBAtoFloat(images: torch.Tensor) -> torch.Tensor:
@@ -196,7 +197,7 @@ def make_video(CA: "CAModel",
 def make_seed(n_images: int,
               n_channels: int,
               image_size: int,
-              n_CAs:int=1,
+              n_CAs: int = 1,
               device: torch.device = "cpu") -> torch.Tensor:
     """Makes n_images seeds to start the CA, the seed is a black dot
 
@@ -206,7 +207,7 @@ def make_seed(n_images: int,
         image_size (int): Side of the square image
         device (torch.device, optional): Device where to save the images.
             Defaults to "cpu".
-        
+
 
     Returns:
         torch.Tensor: Seed images
@@ -284,54 +285,59 @@ def wrap_edges(images: torch.Tensor) -> torch.Tensor:
     return F.pad(images, pad=(1, 1, 1, 1), mode='circular', value=0)
 
 
-def get_living_mask(images: torch.Tensor, channel: int) -> torch.Tensor:
+def get_living_mask(images: torch.Tensor, channels: List[int]) -> torch.Tensor:
     """Returns the a mask of the living cells in the image
 
     Args:
         images (torch.Tensor): images to get the living mask
-        channel (int): channel where to compute the living mask
+        channels (List[int]): channels where to compute the living mask
 
     Returns:
         torch.Tensor: Living mask
     """
-    alpha = images[:, channel:channel+1, :, :]
-    return F.max_pool2d(wrap_edges(alpha), 3, stride=1) > 0.1
+    if isinstance(channels, int):
+        channels = [channels]
+    alpha = images[:, channels, :, :]
 
-def multiple_living_mask(tensor):
+    neighbors = F.max_pool2d(wrap_edges(alpha), 3, stride=1) > 0.1
+    return torch.max(neighbors, dim=1)[0].unsqueeze(1)
+
+
+def multiple_living_mask(images: torch.Tensor):
         """It gives the mask where the CA rules apply in the case where multiple alphas
         are included in the CA
 
         Args:
-            tensor (torch.Tensor):
+            images (torch.Tensor):
                 The first index refers to the batch, the second to the alphas,
                 the third and the fourth to the pixels in the image
 
         Returns:
-            a tensor with bool elements with the same shape on the input tensor
+            (torch.Tensor) A tensor with bool elements with the same shape on the input tensor
             that represents where each CA rule applies
         """
 
         # gives the biggest alpha per pixel
-        biggest = Reduce('b c w h-> b 1 w h', reduction='max')(tensor)
+        biggest = Reduce('b c w h-> b 1 w h', reduction='max')(images)
         # the free cells are the ones who have all of the alphas lower than 0.1
         free = biggest < 0.1
 
         # this is the mask where already one of the alpha is bigger than 0.1, if more than one
         # alpha is bigger than 0.1, than the biggest one wins
-        old = (tensor[:] == biggest) * (tensor >= 0.1)
+        old = (images == biggest) & (images >= 0.1)
         # this is the mask of the cells neighboring each alpha
-        neighbor = F.max_pool2d(wrap_edges(tensor), 3, stride=1) >= 0.1
+        neighbor = F.max_pool2d(wrap_edges(images), 3, stride=1) >= 0.1
         # the cells where the CA can expand are the one who are free and neighboring
         expanding = free & neighbor
         # the CA evolves int the cells where it can expand and the ones where is already present
-        evolution = expanding + old
+        evolution = expanding | old
         
         return evolution
 
-  
-def n_largest_indexes(array:list,n:int=1) -> list:
+
+def n_largest_indexes(array: list, n: int = 1) -> list:
     """returns the indexes of the n largest elements of the array
-    
+
     url:https://stackoverflow.com/questions/16878715/how-to-find-the-index-of-n-largest-elements-in-a-list-or-np-array-python
     """
     return sorted(range(len(array)), key=lambda x: array[x])[-n:]

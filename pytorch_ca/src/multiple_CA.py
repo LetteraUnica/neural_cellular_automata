@@ -127,7 +127,7 @@ class MultipleCA(CAModel, TrainCA):
         self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-
+        self.mask_channels = list(range(n_channels, n_channels+n_CAs))
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -146,17 +146,30 @@ class MultipleCA(CAModel, TrainCA):
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
 
+        update_mask = multiple_living_mask(x[:, self.n_channels:])
+        pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
+
+        tensor = x[:, self.n_channels:]
+        biggest = tensor.max(dim=1)[0].unsqueeze(1)
+        old = (tensor == biggest) | ((tensor >= 0.1).sum(dim=1) == 0).unsqueeze(1)
+        x[:, self.n_channels:] = x[:, self.n_channels:] * old.float()
+
         B, C, H, W = x.size()
         updates = torch.empty(self.n_CAs, B, C, H, W, device=self.device)
-
-        mask, x[:, self.n_channels:] = self.CA_mask(x[:, self.n_channels:])
         for i, CA in enumerate(self.CAs):
-            updates[i] = CA.compute_dx(x, angle, step_size)
+            updates[i] = CA.compute_dx(
+                x, angle, step_size) * update_mask[:, i].float().unsqueeze(1)
 
-        updates = rearrange(updates, 'CA B C W H -> C B CA W H')
-        updates[:] = updates[:]*mask
-        updates = rearrange(updates, 'C B CA W H -> CA B C W H')
+        # updates = rearrange(updates, 'CA B C W H -> C B CA W H')
+        # updates[:] = updates[:]*mask
+        # updates = rearrange(updates, 'C B CA W H -> CA B C W H')
 
         x += updates.sum(dim=0)
+
+        post_life_mask = get_living_mask(x, self.mask_channels)
+
+        life_mask = pre_life_mask & post_life_mask
+
+        x = x * life_mask.float()
 
         return x

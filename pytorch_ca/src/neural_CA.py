@@ -315,8 +315,7 @@ class NeuralCA(CAModel, TrainCA):
             fname (str): Path of the model to load
         """
 
-        self.load_state_dict(torch.load(
-            fname), map_location=torch.device(self.device))
+        self.load_state_dict(torch.load(fname))
         print("Successfully loaded model!")
 
     def save(self, fname: str, overwrite: bool = False):
