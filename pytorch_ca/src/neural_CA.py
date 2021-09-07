@@ -151,7 +151,7 @@ class TrainCA():
                 # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
-
+                    
                 # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs, n_max_losses)
                 # add current loss to the loss history

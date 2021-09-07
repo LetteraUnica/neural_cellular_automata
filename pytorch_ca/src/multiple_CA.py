@@ -72,31 +72,6 @@ class CustomCA(NeuralCA):
         alpha = images[:, self.alpha_channel:self.alpha_channel+1, :, :]
         return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
 
-    def forward(self, x: torch.Tensor,
-                angle: float = 0.,
-                step_size: float = 1.) -> torch.Tensor:
-        """Single update step of the CA
-
-        Args:
-            x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0.
-            step_size (float, optional): Step size of the update. Defaults to 1.
-
-        Returns:
-            torch.Tensor: Next CA state
-        """
-        pre_life_mask = self.get_living_mask(x)
-
-        x = x + self.compute_dx(x, angle, step_size)
-
-        post_life_mask = self.get_living_mask(x)
-
-        # get alive mask
-        life_mask = pre_life_mask & post_life_mask
-
-        # return updated states with alive masking
-        return x * life_mask.float()
-
 
 class MultipleCA(CAModel, TrainCA):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
@@ -148,21 +123,17 @@ class MultipleCA(CAModel, TrainCA):
         update_mask = multiple_living_mask(x[:, self.n_channels:])
         pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
 
-        tensor = x[:, self.n_channels:]
-        biggest = tensor.max(dim=1)[0].unsqueeze(1)
-        old = (tensor == biggest) | (
-            (tensor >= 0.1).sum(dim=1) == 0).unsqueeze(1)
-        x[:, self.n_channels:] = x[:, self.n_channels:] * old.float()
+        x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
-        updates = torch.empty(self.n_CAs, *x.size(), device=self.device)
+        updates = torch.empty([self.n_CAs, *x.size()], device=self.device)
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
         random_mask = torch.rand_like(updates) < self.fire_rate
         updates = torch.einsum("Abchw, Abchw, bAhw -> bchw",
-                               updates, random_mask, update_mask)
+                               updates, random_mask.float(), update_mask.float())
 
-        x += updates.sum(dim=0)
+        x += updates
 
         post_life_mask = get_living_mask(x, self.mask_channels)
 
