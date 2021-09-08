@@ -125,7 +125,7 @@ class MultipleCA(CAModel, TrainCA):
 
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
-        x *= pre_life_mask.float()
+        x = x * pre_life_mask.float()
         
         updates = torch.empty([self.n_CAs, *x.size()], device=self.device)
         for i, CA in enumerate(self.CAs):
@@ -135,7 +135,7 @@ class MultipleCA(CAModel, TrainCA):
         updates = torch.einsum("Abchw, Abchw, bAhw -> bchw",
                                updates, random_mask.float(), update_mask.float())
 
-        x += updates
+        x = x + updates
 
         # post_life_mask = get_living_mask(x, self.mask_channels)
 

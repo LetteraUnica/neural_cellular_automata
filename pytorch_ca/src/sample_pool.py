@@ -94,13 +94,13 @@ class SamplePool(Dataset):
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
 
-    def update(self, indexes:list) -> None:
+    def update(self, indexes: List[int]) -> None:
         """Replaces images at indexes "indexes" of the pool with new_images
 
         Args:
-            indexes (list): Indexes of the images to replace
+            indexes (List[int]): Indexes of the images to replace
         """
-        if type(indexes)==int:
+        if isinstance(indexes, int):
             self.images[indexes] = self.generator(1)[0]
             return    
-        for i in indexes: self.images[i] = self.generator(1)[0]
+        self.images[indexes] = self.generator(len(indexes))
