@@ -176,7 +176,7 @@ class TrainCA():
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
                     idx_max_loss = [indexes[i] for i in idx_max_loss]
-                    pool.update(idx_max_loss)
+                    pool.update(indexes, inputs, idx_max_loss)
 
             # update the scheduler if there is one at all
             if scheduler is not None:

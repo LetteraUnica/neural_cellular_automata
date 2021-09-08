@@ -13,7 +13,7 @@ class SamplePool(Dataset):
 
     Parameters
     ----------
-    images	tensor of samples to be trained 
+    images	tensor of samples to be trained
     size	size of the pool
     n_channels	number of image channels
     image_size	size of the input image
@@ -21,7 +21,7 @@ class SamplePool(Dataset):
 
     def __init__(self,
                  pool_size: int,
-                 generator: Callable[[int],torch.Tensor],
+                 generator: Callable[[int], torch.Tensor],
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
                  device: torch.device = "cpu") -> None:
         """Initializes the sample pool with pool_size seed images
@@ -29,7 +29,7 @@ class SamplePool(Dataset):
         Args:
             pool_size (int): Number of images in the pool
             transform (Callable[[torch.Tensor], torch.Tensor], optional):
-                Transform to apply before returning the images, i.e. 
+                Transform to apply before returning the images, i.e.
                 center cropping, dithering, and so on.
                 Defaults to None i.e. no transform is applied.
             device (torch.device, optional): Device where to store the images.
@@ -39,16 +39,15 @@ class SamplePool(Dataset):
         """
 
         self.generator = generator
-        self.images = generator(pool_size)
         self.size = pool_size
+        self.device = torch.device(device)
+        self.images = generator(pool_size, self.device)
         self.n_channels = self.images.shape[1]
         self.image_size = self.images.shape[2]
 
         if transform is None:
             def transform(x): return x
         self.transform = transform
-
-        self.device = torch.device(device)
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
@@ -87,20 +86,38 @@ class SamplePool(Dataset):
             batch_size (int): Number of images to extract
 
         Returns:
-            Tuple[torch.Tensor, torch.Tensor]: 
+            Tuple[torch.Tensor, torch.Tensor]:
                 The extraxted images,
                 the corresponding indexes in the sample pool
         """
         idx = np.random.choice(self.size, batch_size, False)
         return self.transform(self.images[idx]), idx
 
-    def update(self, indexes: List[int]) -> None:
+    def replace(self, indexes: List[int]) -> None:
         """Replaces images at indexes "indexes" of the pool with new_images
 
         Args:
-            indexes (List[int]): Indexes of the images to replace
+            indexes (List[int]): Indexes of the images to replace with seed states
         """
         if isinstance(indexes, int):
-            self.images[indexes] = self.generator(1)[0]
-            return    
-        self.images[indexes] = self.generator(len(indexes))
+            self.images[indexes] = self.generator(1, self.device)[0]
+            return
+        self.images[indexes] = self.generator(len(indexes), self.device)
+
+    def update(self, indexes: List[int],
+               images: torch.Tensor,
+               indexes_max_loss: List[int] = None) -> None:
+        """Updates the images in the pool with new images at the given indexes.
+
+        Args:
+            indexes (List[int]): Indexes of the images to update
+            images (torch.Tensor): New images to insert at the given indexes
+            indexes_max_loss (List[int], optional): Indexes of the images with
+                maximum loss, these images will be replaced with seed states.
+                Default None, no image will be replaced by seed states
+        """
+
+        self.images[indexes] = images.detach().to(self.device)
+
+        if indexes_max_loss is not None:
+            self.replace(indexes_max_loss)

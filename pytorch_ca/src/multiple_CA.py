@@ -126,7 +126,7 @@ class MultipleCA(CAModel, TrainCA):
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
         x = x * pre_life_mask.float()
-        
+
         updates = torch.empty([self.n_CAs, *x.size()], device=self.device)
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
