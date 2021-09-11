@@ -45,7 +45,7 @@ def RGBAtoRGB(images: torch.Tensor) -> torch.Tensor:
         images (torch.Tensor): RGBA images in 0-1 range
 
     Returns:
-        torch.Tensor: RGB images in 0-1 range
+        torch.Tensor: RGB images in 0-255 range
     """
 
     if len(images.size()) < 4:
