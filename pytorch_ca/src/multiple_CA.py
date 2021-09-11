@@ -49,13 +49,13 @@ class CustomCA(NeuralCA):
             torch.Tensor: dx
         """
 
-        x_new = multiple_to_single(x,self.n_channels,self.n_CAs,self.alpha_channel)                 
+        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
 
         # compute update increment
         dx = self.layers(self.perceive(x_new, angle)) * step_size
 
-        dx_new = single_to_multiple(dx, x.shape, self.n_channels, self.alpha_channel)
-
+        dx_new = single_to_multiple(dx, x.shape, self.n_channels-1, self.alpha_channel)
+        
         return dx_new
 
     def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:

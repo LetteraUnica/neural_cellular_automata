@@ -296,11 +296,11 @@ class NeuralCA(CAModel, TrainCA):
         Returns:
             torch.Tensor: Next CA state
         """
-        pre_life_mask = get_living_mask(x)
+        pre_life_mask = get_living_mask(x,4)
 
         x += self.compute_dx(x, angle, step_size)
 
-        post_life_mask = get_living_mask(x)
+        post_life_mask = get_living_mask(x,4)
 
         # get alive mask
         life_mask = pre_life_mask & post_life_mask
