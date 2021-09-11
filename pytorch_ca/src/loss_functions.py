@@ -64,7 +64,11 @@ class NCALoss:
         alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
         predicted = torch.cat((x[:, :3], alpha), dim=1)
 
-        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
+        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1,2])
+        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1,2])
+        original_cell_ratio = original_cells / (original_cells+virus_cells)
+
+        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3]) + original_cell_ratio
         idx_max_loss = n_largest_indexes(losses, n_max_losses)
         loss = torch.mean(losses)
         if self.N != 0:
