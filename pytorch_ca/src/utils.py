@@ -421,3 +421,16 @@ class VirusGenerator:
 
         start_point = add_virus(start_point, -2, -1, self.virus_rate)
         return start_point.to(device)
+
+
+def multiple_to_single(x,n_channels,alpha_channel):
+    return torch.cat((x[:,:3],
+                           x[:,alpha_channel:alpha_channel+1],
+                           x[:,3:n_channels]), dim=1)
+
+def single_to_multiple(dx,shape,n_channels,alpha_channel):
+    dx_new = torch.zeros(shape)
+    dx_new[:,:3]=dx[:,:3]
+    dx_new[:, 3:n_channels] = dx[:, 4:]
+    dx_new[:, alpha_channel] = dx[:, 3]
+    return dx_new
