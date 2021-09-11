@@ -51,14 +51,14 @@ class CustomCA(NeuralCA):
 
         x_new = torch.cat((x[:,:3],
                            x[:,self.alpha_channel:self.alpha_channel+1],
-                           x[:,3:self.n_channels-1]), dim=1)                  
+                           x[:,3:self.n_channels]), dim=1)                  
 
         # compute update increment
         dx = self.layers(self.perceive(x_new, angle)) * step_size
 
         dx_new = torch.zeros_like(x)
         dx_new[:,:3]=dx[:,:3]
-        dx_new[:, 3:self.n_channels-1] = dx[:, 4:]
+        dx_new[:, 3:self.n_channels] = dx[:, 4:]
         dx_new[:, self.alpha_channel] = dx[:, 3]
 
         return dx_new
