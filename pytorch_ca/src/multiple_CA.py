@@ -36,26 +36,39 @@ class CustomCA(NeuralCA):
 
         self.alpha_channel = alpha_channel
 
-    def forward(self, x: torch.Tensor,
-                angle: float = 0.,
-                step_size: float = 1.) -> torch.Tensor:
-        """Single update step of the CA
+    def compute_dx(self, x: torch.Tensor, angle: float = 0.,
+                   step_size: float = 1.) -> torch.Tensor:
+        """Computes a single update dx
 
         Args:
             x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0.
-            step_size (float, optional): Step size of the update. Defaults to 1.
+            angle (float, optional): Angle of the update. Defaults to 0..
+            step_size (float, optional): Step size of the update. Defaults to 1..
 
         Returns:
-            torch.Tensor: Next CA state
+            torch.Tensor: dx
         """
-        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)
 
-        dx=super().forward(x,angle,step_size)
+        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
+
+        # compute update increment
+        dx = self.layers(self.perceive(x_new, angle)) * step_size
 
         dx_new = single_to_multiple(dx, x.shape, self.n_channels-1, self.alpha_channel)
+        
+        return dx_new
 
+    def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:
+        """Returns the a mask of the living cells in the image
 
+        Args:
+            images (torch.Tensor): images to get the living mask
+
+        Returns:
+            torch.Tensor: Living mask
+        """
+        alpha = images[:, self.alpha_channel:self.alpha_channel+1, :, :]
+        return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
 
 
 class MultipleCA(CAModel):
