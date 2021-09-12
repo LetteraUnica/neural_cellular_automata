@@ -129,8 +129,11 @@ class MultipleCA(CAModel):
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-        random_mask = torch.rand_like(updates) < self.fire_rate
-        updates = torch.einsum("Abchw, Abchw, bAhw -> bchw",
+
+
+        A,b,c,h,w=updates.shape()
+        random_mask = torch.rand([A,b,h,w]) < self.fire_rate 
+        updates = torch.einsum("Abchw, Abhw, bAhw -> bchw",
                                updates, random_mask.float(), update_mask.float())
 
         x = x + updates
