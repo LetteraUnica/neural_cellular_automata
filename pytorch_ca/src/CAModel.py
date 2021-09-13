@@ -37,8 +37,6 @@ class CAModel(nn.Module):
         self.to(self.device)
 
 
-
-
     @abstractmethod
     def forward():
         pass
