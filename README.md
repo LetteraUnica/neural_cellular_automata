@@ -1,17 +1,16 @@
-# Neural Cellular Automaton
+# Expanding lifespan of Cellular Automatae
 
-###### Deep Learning exam 2020-2021
-
-###### Group members: *Cavuoti Lorenzo*, *Sicklinger Marco*
+###### Group members: *Cavuoti Lorenzo*, *Sacco Francesco*, *Sicklinger Marco*
 
 ## Introduction
 We studied and implemented a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
-The presentation of the project can be found [Here](https://docs.google.com/presentation/d/1c2JkIgbuHCxGZLgb3y7ITkac3qg1O5qFywbTcJILwYc/edit?usp=sharing)
+The paper can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata)
 
 ## Folder structure
 - `Papers`: Contains the papers used for the project
 - `pytorch_ca`: Contains the implementation of the neural cellular automata in Pytorch
+- `website`: Contains the stuff useful for the website of the paper
 - `Introduction.pdf`: Is the abstract of the project
 
 ## References

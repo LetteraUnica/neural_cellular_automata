@@ -42,6 +42,7 @@ class NeuralCA(CAModel):
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
 
+        self.to(device)
 
     def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
         """Returns the perception vector of each cell in an image, or perception matrix
