@@ -34,6 +34,9 @@ class CAModel(nn.Module):
 
         self.fire_rate = fire_rate
 
+        self.to(self.device)
+
+
 
 
     @abstractmethod

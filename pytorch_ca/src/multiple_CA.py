@@ -50,10 +50,10 @@ class CustomCA(NeuralCA):
         """
 
         # reshape x in such a way that is good for the NeuralCA class
-        x = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
+        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
 
         # compute update increment
-        dx = super().compute_dx(x,angle,step_size)
+        dx = super().compute_dx(x_new,angle,step_size)
 
         # reshape dx in shuch a wat that is good for the MultipleCA class
         dx = single_to_multiple(dx, x.shape, self.n_channels-1, self.alpha_channel)
