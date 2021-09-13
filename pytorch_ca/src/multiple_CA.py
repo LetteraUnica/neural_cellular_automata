@@ -9,7 +9,7 @@ from einops import rearrange
 
 from .utils import *
 from .neural_CA import *
-
+from .CAModel import *
 
 class CustomCA(NeuralCA):
     def __init__(self, n_channels: int = 15,
@@ -48,32 +48,20 @@ class CustomCA(NeuralCA):
         Returns:
             torch.Tensor: dx
         """
-        x_new = torch.cat((x[:, :self.n_channels-1],
-                          x[:, self.alpha_channel:self.alpha_channel+1]), dim=1)
+
+        # reshape x in such a way that is good for the NeuralCA class
+        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
 
         # compute update increment
-        dx = self.layers(self.perceive(x_new, angle)) * step_size
+        dx = super().compute_dx(x_new,angle,step_size)
 
-        dx_new = torch.zeros_like(x)
-        dx_new[:, :self.n_channels-1] = dx[:, :self.n_channels-1]
-        dx_new[:, self.alpha_channel] = dx[:, -1]
-
-        return dx_new
-
-    def get_living_mask(self, images: torch.Tensor) -> torch.Tensor:
-        """Returns the a mask of the living cells in the image
-
-        Args:
-            images (torch.Tensor): images to get the living mask
-
-        Returns:
-            torch.Tensor: Living mask
-        """
-        alpha = images[:, self.alpha_channel:self.alpha_channel+1, :, :]
-        return F.max_pool2d(self.wrap_edges(alpha), 3, stride=1) > 0.1
+        # reshape dx in shuch a wat that is good for the MultipleCA class
+        dx = single_to_multiple(dx, x.shape, self.n_channels-1, self.alpha_channel)
+        
+        return dx
 
 
-class MultipleCA(CAModel, TrainCA):
+class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
@@ -83,19 +71,7 @@ class MultipleCA(CAModel, TrainCA):
         Args:
 
         """
-        super().__init__()
-
-        if device is None:
-            device = torch.device(
-                "cuda" if torch.cuda.is_available() else "cpu")
-        self.device = device
-
-        self.n_channels = n_channels
-
-        self.fire_rate = fire_rate
-
-        # Stores losses during training
-        self.losses = []
+        super().__init__(n_channels,device,fire_rate)
 
         # cellular automatae rules
         self.n_CAs = n_CAs
@@ -120,27 +96,25 @@ class MultipleCA(CAModel, TrainCA):
         # Apply updates all at once or one at a time randomly/sequentially?
         # Currently applies only a global mask and all updates at once
 
+        #calculate the mask of each channel
         update_mask = multiple_living_mask(x[:, self.n_channels:])
+        #calculate the global mask
         pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
 
+        #apply the mask to the imput tensor
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
+        #set to zero every cell that is dead
         x = x * pre_life_mask.float()
 
-        updates = torch.empty([self.n_CAs, *x.size()], device=self.device)
+        #create the updates tensor, 
+        updates = torch.empty([self.n_CAs, *x.shape], device=self.device)
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-        random_mask = torch.rand_like(updates) < self.fire_rate
-        updates = torch.einsum("Abchw, Abchw, bAhw -> bchw",
-                               updates, random_mask.float(), update_mask.float())
+        #The sum of all updates is the total update
+        updates = torch.einsum("Abchw, bAhw -> bchw", updates, update_mask.float())
 
         x = x + updates
-
-        # post_life_mask = get_living_mask(x, self.mask_channels)
-
-        # life_mask = pre_life_mask & post_life_mask
-
-        # x = x * life_mask.float()
 
         return x

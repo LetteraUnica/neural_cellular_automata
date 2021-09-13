@@ -3,7 +3,7 @@ from torchvision.io import write_video
 import torchvision.transforms as T
 
 from .utils import *
-from .neural_CA import *
+from .CAModel import *
 
 
 class PerturbationCA(CAModel):

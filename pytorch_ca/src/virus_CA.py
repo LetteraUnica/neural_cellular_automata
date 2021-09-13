@@ -4,7 +4,7 @@ import torchvision.transforms as T
 
 
 from .utils import *
-from .neural_CA import *
+from .CAModel import *
 
 
 def compute_random_mask(size: torch.Size, device: torch.device, probability: float = 0.6):
