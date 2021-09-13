@@ -131,8 +131,8 @@ class MultipleCA(CAModel):
 
 
 
-        A,b,c,h,w=updates.shape()
-        random_mask = torch.rand([A,b,h,w]) < self.fire_rate 
+        A,b,c,h,w=updates.shape
+        random_mask = torch.rand([A,b,h,w],device=self.device) < self.fire_rate 
         updates = torch.einsum("Abchw, Abhw, bAhw -> bchw",
                                updates, random_mask.float(), update_mask.float())
 

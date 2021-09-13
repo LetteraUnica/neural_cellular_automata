@@ -423,12 +423,18 @@ class VirusGenerator:
         return start_point.to(device)
 
 
-def multiple_to_single(x,n_channels,alpha_channel):
-    return torch.cat((x[:,:3],
-                           x[:,alpha_channel:alpha_channel+1],
-                           x[:,3:n_channels]), dim=1)
+def multiple_to_single(images:torch.Tensor,n_channels:int,alpha_channel:int) -> torch.Tensor:
+    """
+    maronn maronn
+    """
+    return torch.cat((images[:,:3],
+                           images[:,alpha_channel:alpha_channel+1],
+                           images[:,3:n_channels]), dim=1)
 
-def single_to_multiple(dx,shape,n_channels,alpha_channel):
+def single_to_multiple(dx:torch.Tensor,shape,n_channels:int,alpha_channel:int):
+    """
+    è un miracolo!
+    """
     dx_new = torch.zeros(shape)
     dx_new[:,:3]=dx[:,:3]
     dx_new[:, 3:n_channels] = dx[:, 4:]
