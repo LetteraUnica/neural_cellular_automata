@@ -34,19 +34,7 @@ class NeuralCA(CAModel):
                 Defaults to 0.5.
         """
 
-        super().__init__()
-
-        if device is None:
-            device = torch.device(
-                "cuda" if torch.cuda.is_available() else "cpu")
-        self.device = device
-
-        self.n_channels = n_channels
-
-        self.fire_rate = fire_rate
-
-        # Stores losses during training
-        self.losses = []
+        super().__init__(n_channels,device,fire_rate)
 
         # Network layers needed for the update rule
         self.layers = nn.Sequential(

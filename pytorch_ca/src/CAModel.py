@@ -17,8 +17,24 @@ class CAModel(nn.Module):
     """Base CA class, each CA class inherits from this class
     """
 
-    def __init__(self):
+    def __init__(self,n_channels=16,device=None,fire_rate=0.5):
         super(CAModel, self).__init__()
+
+        #useless comment
+        self.n_channels=n_channels
+
+        #defines the device
+        if device is None:
+            device = torch.device(
+                "cuda" if torch.cuda.is_available() else "cpu")
+        self.device = device
+
+        # Stores losses during training
+        self.losses = []
+
+        self.fire_rate = fire_rate
+
+
 
     @abstractmethod
     def forward():
