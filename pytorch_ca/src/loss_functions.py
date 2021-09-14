@@ -64,13 +64,10 @@ class NCALoss:
         alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
         predicted = torch.cat((x[:, :3], alpha), dim=1)
 
-        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1,2])
-        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1,2])
-        original_cell_ratio = original_cells / (original_cells+virus_cells)
-
-        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3]) + original_cell_ratio
+        losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
         idx_max_loss = n_largest_indexes(losses, n_max_losses)
         loss = torch.mean(losses)
+
         if self.N != 0:
             loss += self.l*self.perturbation/self.N
 
@@ -88,3 +85,20 @@ class NCALoss:
 
         self.perturbation += torch.mean(perturbation**2)
         self.N += 1
+
+
+class MultipleCALoss(NCALoss):
+    """Custom loss function for the multiple CA, computes the
+        distance of the target image vs the predicted image, adds a
+        penalization term and penalizes the number of original cells
+    """
+    def __call__(self, x, n_max_losses=1):
+        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1,2])
+        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1,2])
+        original_cell_ratio = original_cells / (original_cells+virus_cells)
+
+        loss, idx_max_loss = super().__call__(x, n_max_losses)
+
+        loss = loss + original_cell_ratio.sum()
+
+        return loss, idx_max_loss
