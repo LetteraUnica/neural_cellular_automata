@@ -7,6 +7,21 @@ We studied and implemented a **Neural Cellular Automaton** aiming at the simulat
 
 The paper can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata)
 
+## Installation and Usage
+To use this package you just have to clone the repository: 
+
+```
+git clone https://github.com/LetteraUnica/neural_cellular_automata
+```
+
+After cloning, execute 
+
+```
+python3 -m pip install -r requirements.txt
+```
+
+which will install all the required packages to run the code. 
+
 ## Folder structure
 - `Papers`: Contains the papers used for the project
 - `pytorch_ca`: Contains the implementation of the neural cellular automata in Pytorch
