@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+av
+einops
+torch
+torchvision
+torchaudio
