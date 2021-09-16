@@ -106,7 +106,7 @@ class SamplePool(Dataset):
 
     def update(self, indexes: List[int],
                images: torch.Tensor,
-               indexes_max_loss: List[int] = None) -> None:
+               idx_max_loss: List[int] = None) -> None:
         """Updates the images in the pool with new images at the given indexes.
 
         Args:
@@ -119,5 +119,6 @@ class SamplePool(Dataset):
 
         self.images[indexes] = images.detach().to(self.device)
 
-        if indexes_max_loss is not None:
-            self.replace(indexes_max_loss)
+        if idx_max_loss is not None:
+            idx_max_loss = [indexes[i] for i in idx_max_loss]
+            self.replace(idx_max_loss)
