@@ -87,7 +87,8 @@ class CAModel(nn.Module):
 
         n = 0
         with torch.no_grad():
-            for i in range(eval_samples // batch_size):
+            for i in range(0, eval_samples, batch_size):
+                inputs = images[i:i+batch_size].to(self.device)
                 for j in range(evolution_iters):
                     inputs = self.forward(inputs)
                     loss, _ = criterion(inputs)
@@ -184,14 +185,13 @@ class CAModel(nn.Module):
                 # customization of training for the three processes of growing. persisting and regenerating
 
                 # if regenerating, then damage inputs
-                if kind == "regenerating":
+                if kind == "regenerating" and j % kwargs["skip_damage"] == 0:
                     inputs = inputs.detach()
                     # damages the inputs by removing square portions
-                    inputs = make_squares(inputs, **kwargs)
+                    inputs = make_squares(inputs)
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    idx_max_loss = [indexes[i] for i in idx_max_loss]
                     pool.update(indexes, inputs, idx_max_loss)
 
             # update the scheduler if there is one at all

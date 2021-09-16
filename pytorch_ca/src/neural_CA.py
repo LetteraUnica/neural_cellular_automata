@@ -114,7 +114,7 @@ class NeuralCA(CAModel):
         """
         pre_life_mask = get_living_mask(x,3)
 
-        x += self.compute_dx(x, angle, step_size)
+        x = x + self.compute_dx(x, angle, step_size)
 
         post_life_mask = get_living_mask(x,3)
 
