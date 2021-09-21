@@ -87,7 +87,7 @@
 
       </p>
       <p>
-        In this paper we are going to discuss the condition necessary to make mortal a neural cellular automata immortal
+        In this paper we are going to discuss the condition necessary to make a mortal neural cellular automata, immortal
       </p>
         <h2 id="perturbation">Adding a perturbation</h2>
         <p>
@@ -114,17 +114,17 @@
           </d-math>
           <p>
             To prevent that the perturbation will overwrite the growing part we added an additional term in
-            the loss, this term penalizes the $\mathbf L_2$ norm of the perturbation, this term keeps the perturbation as
-            low as possible and avoids that the perturbation will overwrite the growing part of the rule
+            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation, the goal is to keep the perturbation as
+            low as possible and prevent that the perturbation will overwrite the growing part of the rule
           </p>
           <p>
-            It turns out that with a very little perturbation (about 20% w.r.t. the total norm)
-            we can make the growing CA a persistent or even a regenerating one
+            It turns out that a very little perturbation (about 20% w.r.t. the total norm)
+            can make the growing CA a persistent or even a regenerating one
           </p>
 
         <h3 id="conc1">Conclusion</h3>
           The rule that the growing learned is very close to a persistent/regenerating one,
-          could this mean that we need a very little change to make a real organism immortal?
+          could this mean that we need a very little change in the DNA to make a real organism immortal?
 
         <h2 id="switch">Switching the rule</h2>
           <p>
@@ -161,14 +161,14 @@
           
           <p>
             In order to achieve this we took a growing CA and evolved it for a number of steps between 0 and
-            60, than we took the final state and passed it to a new cellular automata that we are going to call
+            60, then we took the final state and passed it to a new cellular automata that we are going to call
             “Switch”.
           </p>
           <p>
             So we trained Switch to be able to become a Regenerating cellular automata
             starting from an input Growing
             <d-footnote>
-              The training seemed to be highly dependent from the starting parameters, in particular if we started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times it didn’t want to converge
+              The training seemed to be highly dependent from the starting parameters, in particular if we started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times it wasn't able to converge
             </d-footnote>
           </p>
           <p>
