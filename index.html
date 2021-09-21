@@ -17,7 +17,7 @@
 
   <d-front-matter>
     <script type="text/json">{
-      "title": "Understanding RL Vision",
+      "title": "A study of lifespan from a Cellular Automata viewpoint",
       "description": "With diverse environments, we can analyze, diagnose and edit deep reinforcement learning models using attribution.",
       "authors": [
         {
@@ -51,14 +51,9 @@
   </d-front-matter>
 
   <d-title>
-    <p>A man in Soviet Russia saves up enough money to buy a car. He goes to the dealership, pays the money and signs the contract. The clerk tells him
-    <p>"Okay sir, Your car will be ready for you in ten years"</p>
-    <p>The man replies</p>
-    <p>"Morning or evening?"</p>
-    <p>The clerk confused, asks him</p>
-    <p>"Ten years from now what difference will it make?"</p>
-    <p>The man tells him</p>
-    <p>"Well, the plumber is coming in the morning"</p>
+    <p>
+      A study of immortality from a neural cellular automata point of view
+    </p>
     
   </d-title>
 
@@ -82,19 +77,139 @@
     </d-contents>
 
     <div>
+      <p>
+        Most living organisms age and eventually die because of it, but a few don’t, and some of them are
+        incredibly hard to kill, even if you cut their head off, it just regrows.
+        Neural Cellular Automata are very good representation of living organisms and scientists
+        have been able to recreate cellural automata that are able to represent any image, some of them are mortal,
+        some of them are immortal, and some of them are able to regenerate incredibly effectively
+        <d-cite key="randazzo2021adversarial"></d-cite>
+
+      </p>
+      <p>
+        In this paper we are going to discuss the condition necessary to make mortal a neural cellular automata immortal
+      </p>
         <h2 id="perturbation">Adding a perturbation</h2>
         <p>
-        maronn <d-cite key="randazzo2021adversarial"></d-cite>
-        <d-math block>
-            V_{max}=\bigg(\frac \alpha{s_u}\bigg)^3
-        </d-math>
+          We wanted to know if we can add a small perturbation to the output of a growing cellular automata
+          in order to make it a persistent one, this is very interesting from a biological perspective because
+          we can answer the question: 
+        </p>
+
+        <blockquote>
+          How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
+        </blockquote>
+        
+        <p>
         
         </p>
         <h3 id="model1">Model</h3>
+          <p>
+            We model the perturbation as a function of the cell state, note that the perturbation
+            can be any function of the cell state, however we chose to use another CA to model it.
+            Finally we compute the next cell state as a sum of both the growing and the perturbation,
+          </p>
+          <d-math block>
+            x_{new} = f(x_{old}) + \Delta f(x_{old}).
+          </d-math>
+          <p>
+            To prevent that the perturbation will overwrite the growing part we added an additional term in
+            the loss, this term penalizes the $\mathbf L_2$ norm of the perturbation, this term keeps the perturbation as
+            low as possible and avoids that the perturbation will overwrite the growing part of the rule
+          </p>
+          <p>
+            It turns out that with a very little perturbation (about 20% w.r.t. the total norm)
+            we can make the growing CA a persistent or even a regenerating one
+          </p>
+
         <h3 id="conc1">Conclusion</h3>
+          The rule that the growing learned is very close to a persistent/regenerating one,
+          could this mean that we need a very little change to make a real organism immortal?
+
         <h2 id="switch">Switching the rule</h2>
-        <h2 id="virus">Applying the Virus</h2>
+          <p>
+            In this part of the paper we wanted to know if it is possible to take a cellular automata
+            in the growing mode and after a arbitrary number $n$ of steps
+            <d-footnote>By arbitrary we mean any number $n$ of steps before the cellular automata decays</d-footnote>
+            we switch the update rule with the aim of becoming regenerating.
+            We can write it mathematically like this
+          </p>
+          <d-math block>
+            \begin{cases}
+            x_{new}=f_1(x_{old})\quad \textrm{ if }\quad n_{iter} \le n\\
+            x_{new}=f_2(x_{old})\quad \textrm{ if }\quad n_{iter} > n
+            \end{cases}
+          </d-math>
+          <p>
+            Where $f_1$ is a growing rule, and $f_2$ is the rule that we trained to make the organism regenerating
+            <d-footnote>If we change $n$ we don't need to change $f_2$</d-footnote>
+          </p>
+          <p>
+            If we want to make a parallel with a biological system this is equivalent to asking : Is it
+            possible to make an organism immortal if we have the ability to change its DNA in every single
+            cell at once?
+          </p>
+          <p>
+            The answer is yes. Here is a video that shows what happens
+            <d-figure id="switch" class="video-d-figure">
+              <video style="width: 100%;" loop="" controls="" muted="">
+                <source src="pytorch_ca/switch_visuals/switch25.mp4" type="video/mp4">
+              </video>
+            </d-figure>
+          </p>
+
+          
+          <p>
+            In order to achieve this we took a growing CA and evolved it for a number of steps between 0 and
+            60, than we took the final state and passed it to a new cellular automata that we are going to call
+            “Switch”.
+          </p>
+          <p>
+            So we trained Switch to be able to become a Regenerating cellular automata
+            starting from an input Growing
+            <d-footnote>
+              The training seemed to be highly dependent from the starting parameters, in particular if we started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times it didn’t want to converge
+            </d-footnote>
+          </p>
+          <p>
+            Here are some things you cannot do with our procedure:
+            <ul>
+              <li>You cannot just swap the Growing rule with another Regenerating rule</li>
+              <li>You cannot use a Switch CA for a Growing one which has not been trained for</li>
+              <li>You cannot salvage a Growing rule that has decayed</li>
+            </ul>
+          </p>
+            
+        <h2 id="virus">
+          Applying the Virus
+          <d-footnote>The training for this part is still in progress</d-footnote>
+        </h2>
+        <p>
+          Realistically speaking if we want to make a grown organism immortal we aren’t going to have the precision necessary
+          to be able to modify every single cell of the organism without missing even one
+        </p>
+        <p>
+          To be able to answer this we first have to ask ourselves how do we model a Cellular
+          Automata that is able to represent an organism that has cells with a different DNA?
+        </p>
         <h3 id="model2">Model</h3>
+        <p>
+          For simplicity we are going to restrict ourself in the case where we are going to
+          have 2 rules ($r_1$ and $r_2$).
+        </p>
+        <p>
+          Before a cell state was represented by a state vector having the first 4 components representing the
+          RGBA of the pixel and the remaining were hidden channels that helped the CA have more information.
+          The $\alpha$ channel (transparency) if it is >0.1 it means that the cell is alive, otherwise it’s dead
+        </p>
+        <p>
+          If we are going to have two different types of cells we are going to need two alpha channels.
+          Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is >0.1,
+          then $\alpha_2$ must be 0, and it updates following $r_1$.
+        </p>
+        <p>
+          when both alphas are below 0.1, than the cell evolves with the sum of both updates
+        </p>
         <h3 id="conc2">Conclusion</h3>
     </div>
     
