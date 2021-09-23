@@ -62,16 +62,16 @@
     <d-contents>
       <nav class="l-text figcaption">
         <h3>Contents</h3>
-        <div><a href="#perturbation">Adding a perturbation</a></div>
-        <ul>
-          <li><a href="#model1">Model</a></li>
-          <li><a href="#conc1">Conclusion</a></li>
-        </ul>
         <div><a href="#switch">Switching the rule</a></div>
         <div><a href="#virus">Applying the Virus</a></div>
         <ul>
             <li><a href="#model2">Model</a></li>
             <li><a href="#conc2">Conclusion</a></li>
+        </ul>
+        <div><a href="#perturbation">Adding a perturbation</a></div>
+        <ul>
+          <li><a href="#model1">Model</a></li>
+          <li><a href="#conc1">Conclusion</a></li>
         </ul>
       </nav>
     </d-contents>
@@ -89,42 +89,6 @@
       <p>
         In this paper we are going to discuss the condition necessary to make a mortal neural cellular automata, immortal
       </p>
-        <h2 id="perturbation">Adding a perturbation</h2>
-        <p>
-          We wanted to know if we can add a small perturbation to the output of a growing cellular automata
-          in order to make it a persistent one, this is very interesting from a biological perspective because
-          we can answer the question: 
-        </p>
-
-        <blockquote>
-          How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
-        </blockquote>
-        
-        <p>
-        
-        </p>
-        <h3 id="model1">Model</h3>
-          <p>
-            We model the perturbation as a function of the cell state, note that the perturbation
-            can be any function of the cell state, however we chose to use another CA to model it.
-            Finally we compute the next cell state as a sum of both the growing and the perturbation,
-          </p>
-          <d-math block>
-            x_{new} = f(x_{old}) + \Delta f(x_{old}).
-          </d-math>
-          <p>
-            To prevent that the perturbation will overwrite the growing part we added an additional term in
-            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation, the goal is to keep the perturbation as
-            low as possible and prevent that the perturbation will overwrite the growing part of the rule
-          </p>
-          <p>
-            It turns out that a very little perturbation (about 20% w.r.t. the total norm)
-            can make the growing CA a persistent or even a regenerating one
-          </p>
-
-        <h3 id="conc1">Conclusion</h3>
-          The rule that the growing learned is very close to a persistent/regenerating one,
-          could this mean that we need a very little change in the DNA to make a real organism immortal?
 
         <h2 id="switch">Switching the rule</h2>
           <p>
@@ -211,6 +175,44 @@
           when both alphas are below 0.1, than the cell evolves with the sum of both updates
         </p>
         <h3 id="conc2">Conclusion</h3>
+
+
+        <h2 id="perturbation">Adding a perturbation</h2>
+        <p>
+          We wanted to know if we can add a small perturbation to the output of a growing cellular automata
+          in order to make it a persistent one, this is very interesting from a biological perspective because
+          we can answer the question: 
+        </p>
+
+        <blockquote>
+          How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
+        </blockquote>
+        
+        <p>
+        
+        </p>
+        <h3 id="model1">Model</h3>
+          <p>
+            We model the perturbation as a function of the cell state, note that the perturbation
+            can be any function of the cell state, however we chose to use another CA to model it.
+            Finally we compute the next cell state as a sum of both the growing and the perturbation,
+          </p>
+          <d-math block>
+            x_{new} = f(x_{old}) + \Delta f(x_{old}).
+          </d-math>
+          <p>
+            To prevent that the perturbation will overwrite the growing part we added an additional term in
+            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation's weights, the goal is to keep the perturbation as
+            low as possible and prevent the overwrite the growing part of the rule
+          </p>
+          <p>
+            It turns out that a very little perturbation (about 20% w.r.t. the total norm)
+            can make the growing CA a persistent or even a regenerating one
+          </p>
+
+        <h3 id="conc1">Conclusion</h3>
+          The rule that the growing learned is very close to a persistent/regenerating one,
+          could this mean that we need a very little change in the DNA to make a real organism immortal?
     </div>
     
 
