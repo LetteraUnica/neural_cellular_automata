@@ -80,8 +80,8 @@
       <p>
         Most living organisms age and eventually die because of it, but a few don’t, and some of them are
         incredibly hard to kill, even if you cut their head off, it just regrows.
-        Neural Cellular Automata are very good representation of living organisms and scientists
-        have been able to recreate cellural automata that are able to represent any image, some of them are mortal,
+        Neural Cellular Automata are very good representation of living organisms, scientists
+        managed to create cellural automatas that are able to represent any image, some of them are mortal,
         some of them are immortal, and some of them are able to regenerate incredibly effectively
         <d-cite key="randazzo2021adversarial"></d-cite>
 
@@ -95,7 +95,7 @@
             In this part of the paper we wanted to know if it is possible to take a cellular automata
             in the growing mode and after a arbitrary number $n$ of steps
             <d-footnote>By arbitrary we mean any number $n$ of steps before the cellular automata decays</d-footnote>
-            we switch the update rule with the aim of becoming regenerating.
+            we switch the update rule in order to make it regenerating.
             We can write it mathematically like this
           </p>
           <d-math block>
@@ -139,7 +139,7 @@
             Here are some things you cannot do with our procedure:
             <ul>
               <li>You cannot just swap the Growing rule with another Regenerating rule</li>
-              <li>You cannot use a Switch CA for a Growing one which has not been trained for</li>
+              <li>You cannot use a Switch CA for a Growing CA which has not been trained for</li>
               <li>You cannot salvage a Growing rule that has decayed</li>
             </ul>
           </p>
@@ -149,12 +149,14 @@
           <d-footnote>The training for this part is still in progress</d-footnote>
         </h2>
         <p>
-          Realistically speaking if we want to make a grown organism immortal we aren’t going to have the precision necessary
-          to be able to modify every single cell of the organism without missing even one
+          Realistically speaking if we want to make a grown organism immortal we won't have the accuracy necessary
+          to modify every single cell of an organism at once without missing even one.
+          So the next question we asked ourselves was: Is it possible to make
+          an organism immortal without changing all of its cells?
         </p>
         <p>
-          To be able to answer this we first have to ask ourselves how do we model a Cellular
-          Automata that is able to represent an organism that has cells with a different DNA?
+          To be able to answer the question we first have to ask ourselves another question:
+          how do we model a Cellular Automata can represent an organism with cells of different DNA?
         </p>
         <h3 id="model2">Model</h3>
         <p>
@@ -162,19 +164,21 @@
           have 2 rules ($r_1$ and $r_2$).
         </p>
         <p>
-          Before a cell state was represented by a state vector having the first 4 components representing the
-          RGBA of the pixel and the remaining were hidden channels that helped the CA have more information.
-          The $\alpha$ channel (transparency) if it is >0.1 it means that the cell is alive, otherwise it’s dead
+          Before, a cell state was represented by a state vector having the first 4 components representing the
+          RGBA of the pixel and the remaining were hidden channels that helped the CA pass more information
+          between its cells.
+          If the $\alpha$ channel (transparency) is >0.1 it means that the cell is alive, otherwise it’s dead
         </p>
         <p>
           If we are going to have two different types of cells we are going to need two alpha channels.
           Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is >0.1,
-          then $\alpha_2$ must be 0, and it updates following $r_1$.
+          then $\alpha_2$ must be 0, and the cell update follows $r_1$ and vice versa.
         </p>
         <p>
-          when both alphas are below 0.1, than the cell evolves with the sum of both updates
+          When both alphas are below 0.1, then the cell evolves with the sum of both updates
         </p>
         <h3 id="conc2">Conclusion</h3>
+        * Waiting for the training results *
 
 
         <h2 id="perturbation">Adding a perturbation</h2>
@@ -193,21 +197,28 @@
         </p>
         <h3 id="model1">Model</h3>
           <p>
-            We model the perturbation as a function of the cell state, note that the perturbation
+            We model the perturbation as a function of the cell state $x$, note that the perturbation
             can be any function of the cell state, however we chose to use another CA to model it.
-            Finally we compute the next cell state as a sum of both the growing and the perturbation,
+            Finally we compute the next cell state as a sum of both the growing and the perturbation $\Delta f$:
           </p>
           <d-math block>
-            x_{new} = f(x_{old}) + \Delta f(x_{old}).
+            x_{new} = f_{grow}(x_{old}) + \Delta f(x_{old}).
           </d-math>
           <p>
             To prevent that the perturbation will overwrite the growing part we added an additional term in
-            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation's weights, the goal is to keep the perturbation as
-            low as possible and prevent the overwrite the growing part of the rule
+            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation $||\Delta f||_2$, the goal is to keep the perturbation as
+            low as possible and prevent it overwriting the growing part of the rule
           </p>
           <p>
             It turns out that a very little perturbation (about 20% w.r.t. the total norm)
-            can make the growing CA a persistent or even a regenerating one
+            can make the growing CA a persistent or even a regenerating one,
+            with minimal effect on the quality of the image as can be seen on the video below.
+
+            <d-figure id="switch" class="video-d-figure">
+                <video style="width: 100%;" loop="" controls="" muted="">
+                  <source src="pytorch_ca/Presentation_videos/perturbation_l=10.mkv" type="video/mkv">
+                </video>
+            </d-figure>
           </p>
 
         <h3 id="conc1">Conclusion</h3>
