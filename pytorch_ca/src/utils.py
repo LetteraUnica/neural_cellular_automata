@@ -154,7 +154,8 @@ def make_video(CA: "CAModel",
     """
 
     if init_state is None:
-        init_state = make_seed(1, 16, 40)
+        n_channels = CA.n_channels
+        init_state = make_seed(1, n_channels-1, 40, alpha_channel=3)
 
     init_state = init_state.to(CA.device)
 

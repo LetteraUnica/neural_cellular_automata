@@ -18,13 +18,13 @@ class CAModel(nn.Module):
     """Base CA class, each CA class inherits from this class
     """
 
-    def __init__(self,n_channels=16,device=None,fire_rate=0.5):
+    def __init__(self, n_channels=16, device=None, fire_rate=0.5):
         super(CAModel, self).__init__()
 
-        #useless comment
-        self.n_channels=n_channels
+        # useless comment
+        self.n_channels = n_channels
 
-        #defines the device
+        # defines the device
         if device is None:
             device = torch.device(
                 "cuda" if torch.cuda.is_available() else "cpu")
@@ -36,7 +36,6 @@ class CAModel(nn.Module):
         self.fire_rate = fire_rate
 
         self.to(self.device)
-
 
     @abstractmethod
     def forward():
@@ -101,7 +100,6 @@ class CAModel(nn.Module):
                 n += batch_size
 
         return evolution_losses
-
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -169,7 +167,7 @@ class CAModel(nn.Module):
                 # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
-                    
+
                 # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs, n_max_losses)
                 wandb.log({"loss": loss})
@@ -203,3 +201,18 @@ class CAModel(nn.Module):
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
             clear_output(wait=True)
+
+    def plot_losses(self, log_scale=True):
+        """Plots the training losses of the model
+
+        Args:
+            log_scale (bool, optional): Whether to log scale the loss.
+            Defaults to True.
+        """
+        n = list(range(1, len(self.losses) + 1))
+        pl.plot(self.losses)
+        pl.xlabel("Epochs")
+        pl.ylabel("Loss")
+        if log_scale:
+            pl.yscale("log")
+        pl.show()
