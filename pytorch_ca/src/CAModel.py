@@ -8,6 +8,7 @@ from IPython.display import clear_output
 from typing import Callable, Tuple
 from abc import abstractmethod
 import numpy as np
+import wandb
 
 from .utils import *
 from .sample_pool import *
@@ -171,6 +172,7 @@ class CAModel(nn.Module):
                     
                 # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs, n_max_losses)
+                wandb.log({"loss": loss})
                 # add current loss to the loss history
                 epoch_losses.append(loss.item())
 
