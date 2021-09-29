@@ -52,8 +52,15 @@ model.CAs[1].load_state_dict(torch.load('Pretrained_models/switch.pt', map_locat
 model.to(device)
 
 if torch.cuda.device_count() > 1:
-  print("Let's use", torch.cuda.device_count(), "GPUs!")
-  model = torch.nn.DataParallel(model)
+    N = torch.cuda.device_count()
+    torch.distributed.init_process_group(backend='nccl', world_size=N, init_method='...')
+
+    [torch.cuda.set_device(i) for i in range(N)]
+    
+    devices = list(range(N))
+    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=devices, output_device=0)
+
+    print("Let's use", torch.cuda.device_count(), "GPUs!")
 
 wandb.watch(model)
 

@@ -9,7 +9,6 @@ import wandb
 from src import *
 
 
-
 N_CHANNELS = 16        # Number of CA state channels
 TARGET_PADDING = 8    # Number of pixels used to pad the target image border
 TARGET_SIZE = 40       # Size of the target emoji
@@ -76,7 +75,7 @@ print(f"Test w cudnn: {POOL_SIZE/(time()-start)}")
 print("\n")
 
 
-for batch in range(3, 7):
+for batch in range(3, 8):
     start = time()
     model.train_CA(optimizer, criterion, pool, batch_size=2**batch, n_epochs=1, scheduler=scheduler, kind="regenerating", skip_damage=2)
     print(f"Train w cudnn, batch size {2**batch}: {POOL_SIZE/(time()-start)}")
