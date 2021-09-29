@@ -24,7 +24,7 @@ default_config={
     }
 
 #improve this code to have better monitorning
-wandb.init(project='sweep',entity="neural_ca",config=default_config)
+wandb.init(project='sweep', entity="neural_ca", config=default_config)
 config=wandb.config
 print(config)
 
@@ -38,8 +38,6 @@ target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 #imshow(target)
 target = target.to(device)
-
-
 
 
 #import the models
@@ -62,7 +60,7 @@ if torch.cuda.device_count() > 1:
 
     print("Let's use", torch.cuda.device_count(), "GPUs!")
 """
-wandb.watch(model)
+wandb.watch(model, log_freq = 32)
 
 
 #generate the pool
