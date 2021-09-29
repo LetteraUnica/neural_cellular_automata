@@ -19,7 +19,7 @@ CELL_FIRE_RATE = 0.5
 config={
     'percentage':0.97,
     'lr':2e-3,
-    'batch_size': 25,
+    'batch_size': 256,
     'n_epochs':60
     }
 
