@@ -19,7 +19,7 @@ CELL_FIRE_RATE = 0.5
 config={
     'percentage':0.97,
     'lr':2e-2,
-    'batch_size': 256,
+    'batch_size': 128,
     'n_epochs':60
     }
 
@@ -27,8 +27,6 @@ config={
 
 torch.backends.cudnn.benchmark = True # Speeds up things
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-wandb.login() #does the login, i dunno if it is really needed
-
 
 
 # Imports the target emoji
@@ -39,7 +37,7 @@ target = RGBAtoFloat(target)
 target = target.to(device)
 
 #improve this code to have better monitorning
-wandb.init(project='virus',entity="boh",config=config)
+wandb.init(project='virus',entity="lettera",config=config)
 
 
 
