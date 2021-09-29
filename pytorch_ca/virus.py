@@ -16,14 +16,17 @@ IMAGE_SIZE = TARGET_PADDING+TARGET_SIZE
 POOL_SIZE = 512
 CELL_FIRE_RATE = 0.5
 
-config={
+default_config={
     'percentage':0.97,
     'lr':2e-2,
-    'batch_size': 128,
+    'batch_size': 64,
     'n_epochs':60
     }
 
-
+#improve this code to have better monitorning
+wandb.init(project='sweep',entity="lettera",config=default_config)
+config=wandb.config
+print(config)
 
 torch.backends.cudnn.benchmark = True # Speeds up things
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -36,8 +39,6 @@ target = RGBAtoFloat(target)
 #imshow(target)
 target = target.to(device)
 
-#improve this code to have better monitorning
-wandb.init(project='virus',entity="lettera",config=config)
 
 
 
@@ -49,6 +50,7 @@ model.CAs[1].load_state_dict(torch.load('Pretrained_models/switch.pt', map_locat
 
 model.to(device)
 
+"""
 if torch.cuda.device_count() > 1:
     N = torch.cuda.device_count()
     torch.distributed.init_process_group(backend='nccl', world_size=N, init_method='...')
@@ -59,7 +61,7 @@ if torch.cuda.device_count() > 1:
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=devices, output_device=0)
 
     print("Let's use", torch.cuda.device_count(), "GPUs!")
-
+"""
 wandb.watch(model)
 
 
