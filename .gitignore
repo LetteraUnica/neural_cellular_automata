@@ -131,3 +131,12 @@ dmypy.json
 
 #personal tests
 test.ipynb
+
+# Wandb logs
+*.swp
+.python-version
+wandb
+wandb-debug.log
+__pycache__
+.ipynb_checkpoints
+.DS_Store
