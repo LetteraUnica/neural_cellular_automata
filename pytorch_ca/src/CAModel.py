@@ -208,12 +208,12 @@ class CAModel(nn.Module):
             wandb.log({"val_loss": val_loss, "bayes_criteria": bayes_loss})
 
             # Stopping criteria
-            # if np.isnan(epoch_loss) or (bayes_loss > 10 and i > 1):
-            #     break
+            if np.isnan(epoch_loss) or (bayes_loss > 10 and i > 1):
+                break
             if bayes_loss > 0.5 and i == 40:
                 break
 
-            self.losses.append()
+            self.losses.append(epoch_loss)
             print(f"epoch: {i+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
