@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=2,mem=2gb
+#PBS -l nodes=1:ppn=4,mem=4gb
 #PBS -l walltime=1:00:00
 #PBS -N hyperparam_search
 
