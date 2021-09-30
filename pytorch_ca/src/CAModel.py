@@ -210,9 +210,10 @@ class CAModel(nn.Module):
             Defaults to True.
         """
         n = list(range(1, len(self.losses) + 1))
-        pl.plot(self.losses)
+        pl.plot(n, self.losses)
         pl.xlabel("Epochs")
         pl.ylabel("Loss")
         if log_scale:
             pl.yscale("log")
+            
         pl.show()

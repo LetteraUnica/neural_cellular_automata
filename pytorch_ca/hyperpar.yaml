@@ -8,8 +8,8 @@ parameters:
     value: 0.97
   lr:
     distribution: log_uniform
-    min: 0.0001
-    max: 0.01
+    min: -8
+    max: -2
   batch_size: 
     value: 25
   n_epochs: 

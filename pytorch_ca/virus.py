@@ -37,7 +37,7 @@ target = RGBAtoFloat(target)
 target = target.to(device)
 
 #improve this code to have better monitorning
-wandb.init(project='virus',entity="lettera",config=config)
+wandb.init(project='virus',entity="lettera",config=config, mode="disabled")
 
 
 
@@ -51,7 +51,7 @@ model.to(device)
 
 if torch.cuda.device_count() > 1:
     N = torch.cuda.device_count()
-    torch.distributed.init_process_group(backend='nccl', world_size=N, init_method='...')
+    torch.distributed.init_process_group(backend='nccl', world_size=N)
 
     [torch.cuda.set_device(i) for i in range(N)]
     

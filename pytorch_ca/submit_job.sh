@@ -4,6 +4,8 @@
 
 
 cd $PBS_O_WORKDIR
-cd neural_ca/pytorch_ca
+cd neural_cellular_automata/pytorch_ca
+
+conda activate gpu
 
 python3 neural_ca_benchmark.py

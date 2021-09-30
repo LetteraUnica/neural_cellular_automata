@@ -16,13 +16,15 @@ class VirusCA(CAModel):
     rule if the mask is == 0 or using the new_CA rule if the mask is == 1.
     """
 
-    def __init__(self, old_CA: CAModel, new_CA: CAModel, mask: torch.Tensor):
+    def __init__(self, old_CA: CAModel, new_CA: CAModel, mutation_probability:float = 0.5):
         """Initializes the model
 
         Args:
             old_CA (CAModel): old_CA model
             new_CA (CAModel): new_CA model
-            mask (torch.Tensor): Mask, a tensor with 0's and 1's
+            mutation_probability (float, optional): Probability of the cell to
+                become a virus. Defaults to 0.5
+
         """
         super().__init__()
 
@@ -35,11 +37,19 @@ class VirusCA(CAModel):
 
         self.old_CA = old_CA
         self.new_CA = new_CA
-        self.new_cells = mask
-        self.losses = []
+        self.mutation_probability = mutation_probability
 
-    def update_cell_masks(self, mutation_mask: torch.Tensor):
-        """Updates the cell mask
+    def update_cell_mask(self, x: torch.Tensor, mutation_probability: float = 0.9):
+        """Updates the cell masks randomly
+
+        Args:
+            x (torch.Tensor): Input images, only used to take the shape
+        """
+        self.new_cells = (torch.rand_like(x) < mutation_probability).float()
+        self.old_cells = 1. - self.new_cells
+
+    def set_cell_mask(self, mutation_mask: torch.Tensor):
+        """Updates the cell mask to the given mask
 
         Args:
             mutation_mask (torch.Tensor): New mask
@@ -66,23 +76,26 @@ class VirusCA(CAModel):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor, torch.Tensor]],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
                  batch_size: int = 4,
                  skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (50, 60)):
+                 evolution_iters: Tuple[int, int] = (50, 60),
+                 kind: str = "growing",
+                 n_max_losses: int = 1,
+                 **kwargs):
         """Trains the CA model
 
         Args:
             optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
 
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function to use
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
 
             pool (SamplePool): Sample pool from which to extract the images
 
-            n_epochs (int): Number of epochs to perform, 
+            n_epochs (int): Number of epochs to perform, _
                 this depends on the size of the sample pool
 
             scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
@@ -98,29 +111,63 @@ class VirusCA(CAModel):
             evolution_iters (Tuple[int, int], optional):
                 Minimum and maximum number of evolution iterations to perform.
                 Defaults to (50, 60).
-        """
 
-        self.old_CA.train()
+            kind (str, optional): 
+                Kind of CA to train, can be either one of:
+                    growing: Trains a CA that grows into the target image
+                    persistent: Trains a CA that grows into the target image
+                        and persists
+                    regenerating: Trains a CA that grows into the target image
+                                  and regenerates any damage that it receives
+                Defaults to "growing".
+            n_max_losses(int):
+                number of datapoints with the biggest losses to replace.
+                Defaults to 1
+        """
         self.new_CA.train()
 
         for i in range(n_epochs):
-            epoch_losses = []
-            for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size)
-                inputs = inputs.to(self.device)
-                optimizer.zero_grad()
+            epoch_losses = []  # array that stores the loss history
 
+            # take the data
+            for j in range(pool.size // batch_size):
+                inputs, indexes = pool.sample(batch_size)  # sample the inputs
+                # put them in the current device
+                inputs = inputs.to(self.device)
+                self.update_cell_mask(inputs)
+                optimizer.zero_grad()  # reinitialize the gradient to zero
+
+                # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
 
-                loss, idx_max_loss = criterion(inputs)
+                # calculate the loss of the inputs and return the ones with the biggest loss
+                loss, idx_max_loss = criterion(inputs, n_max_losses)
+                wandb.log({"loss": loss})
+                # add current loss to the loss history
                 epoch_losses.append(loss.item())
+
+                # look a definition of skip_update
                 if j % skip_update != 0:
                     idx_max_loss = None
+
+                # backward-pass
                 loss.backward()
                 optimizer.step()
-                pool.update(inputs, indexes, idx_max_loss)
 
+                # customization of training for the three processes of growing. persisting and regenerating
+
+                # if regenerating, then damage inputs
+                if kind == "regenerating" and j % kwargs["skip_damage"] == 0:
+                    inputs = inputs.detach()
+                    # damages the inputs by removing square portions
+                    inputs = make_squares(inputs)
+
+                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
+                if kind != "growing":
+                    pool.update(indexes, inputs, idx_max_loss)
+
+            # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
 
