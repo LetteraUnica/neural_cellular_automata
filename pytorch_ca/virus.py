@@ -80,7 +80,7 @@ for param in model.CAs[0].parameters():
 # Set up the training 
 params = model.CAs[1].parameters()
 optimizer = torch.optim.Adam(params, lr=config['lr'])
-scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, config["gamma"])
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, config['gamma'])
 criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
 
 
@@ -94,5 +94,7 @@ model.train_CA(
     scheduler=scheduler,
     skip_update=1,
     kind="regenerating",
-    n_max_losses=config['batch_size'] // config["n_max_loss_ratio"],
+    n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
     skip_damage=2)
+
+model.CAs[1].save(f"virus, lr: {config['lr']}")
