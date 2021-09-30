@@ -199,7 +199,7 @@ class CAModel(nn.Module):
                 scheduler.step()
             
             with torch.no_grad():
-                seeds = pool.generator(128)
+                seeds = pool.generator(128, device=self.device)
                 val_loss, _ = criterion(self.evolve(seeds, randint(128, 384)))
 
             wandb.log({"val_loss": val_loss, "bayes_criteria": val_loss + loss})
