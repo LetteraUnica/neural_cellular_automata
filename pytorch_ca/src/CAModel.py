@@ -197,6 +197,12 @@ class CAModel(nn.Module):
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
+            
+            with torch.no_grad():
+                seeds = pool.generator(128)
+                val_loss, _ = criterion(self.evolve(seeds, randint(128, 384)))
+
+            wandb.log({"val_loss": val_loss, "bayes_criteria": val_loss + loss})
 
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")

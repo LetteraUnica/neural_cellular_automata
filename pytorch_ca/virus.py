@@ -73,14 +73,18 @@ target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 target = target.to(device)
 
-#set up the training 
-params=model.CAs[1].parameters()
+# Zero out gradients on the first CA
+for param in model.CAs[0].parameters():
+    param.requires_grad = False
+
+# Set up the training 
+params = model.CAs[1].parameters()
 optimizer = torch.optim.Adam(params, lr=config['lr'])
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, config["gamma"])
 criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
-scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15,30,45], gamma=0.3)
 
 
-#The actual training part
+# The actual training part
 model.train_CA(
     optimizer,
     criterion,
@@ -90,6 +94,5 @@ model.train_CA(
     scheduler=scheduler,
     skip_update=1,
     kind="regenerating",
-    n_max_losses=config['batch_size'] // 4,
+    n_max_losses=config['batch_size'] // config["n_max_loss_ratio"],
     skip_damage=2)
-
