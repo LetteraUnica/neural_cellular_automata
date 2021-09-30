@@ -5,6 +5,7 @@ import torchvision.transforms as T
 
 from .utils import *
 from .CAModel import *
+from .neural_CA import *
 
 
 def compute_random_mask(size: torch.Size, device: torch.device, probability: float = 0.6):
@@ -16,7 +17,7 @@ class VirusCA(CAModel):
     rule if the mask is == 0 or using the new_CA rule if the mask is == 1.
     """
 
-    def __init__(self, old_CA: CAModel, new_CA: CAModel, mutation_probability:float = 0.5):
+    def __init__(self, old_CA: NeuralCA, new_CA: NeuralCA, mutation_probability:float = 0.5):
         """Initializes the model
 
         Args:
@@ -39,13 +40,14 @@ class VirusCA(CAModel):
         self.new_CA = new_CA
         self.mutation_probability = mutation_probability
 
-    def update_cell_mask(self, x: torch.Tensor, mutation_probability: float = 0.9):
-        """Updates the cell masks randomly
+    def update_cell_mask(self, x: torch.Tensor):
+        """Updates the cell mask randomly with mutation probability equal to
+        self.mutation_probability
 
         Args:
             x (torch.Tensor): Input images, only used to take the shape
         """
-        self.new_cells = (torch.rand_like(x) < mutation_probability).float()
+        self.new_cells = (torch.rand_like(x) < self.mutation_probability).float()
         self.old_cells = 1. - self.new_cells
 
     def set_cell_mask(self, mutation_mask: torch.Tensor):
@@ -166,6 +168,15 @@ class VirusCA(CAModel):
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
                     pool.update(indexes, inputs, idx_max_loss)
+
+            # Wandb logging
+            wandb.log({"mutation_probability": self.mutation_probability})
+
+            fname = f"Pretrained_models/virus adiabatico {self.mutation_probability}%.pt"
+            self.new_CA.save(fname, overwrite=True)
+            wandb.save(fname)
+
+            self.mutation_probability -= 0.002
 
             # update the scheduler if there is one at all
             if scheduler is not None:
