@@ -122,3 +122,6 @@ class SamplePool(Dataset):
         if idx_max_loss is not None:
             idx_max_loss = [indexes[i] for i in idx_max_loss]
             self.replace(idx_max_loss)
+
+    def reset(self):
+        self.images = self.generator(self.size, self.device)
