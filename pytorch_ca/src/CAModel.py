@@ -198,14 +198,23 @@ class CAModel(nn.Module):
             if scheduler is not None:
                 scheduler.step()
             
+            # Log epoch losses
+            epoch_loss = np.mean(epoch_losses)
             with torch.no_grad():
                 seeds = pool.generator(128, device=self.device)
                 val_loss, _ = criterion(self.evolve(seeds, randint(128, 384)))
 
-            wandb.log({"val_loss": val_loss, "bayes_criteria": val_loss.item() + np.mean(epoch_losses)})
+            bayes_loss = val_loss.item() + epoch_loss
+            wandb.log({"val_loss": val_loss, "bayes_criteria": bayes_loss})
 
-            self.losses.append(np.mean(epoch_losses))
-            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
+            # Stopping criteria
+            if np.isnan(epoch_loss) or (bayes_loss > 10 and i > 1):
+                break
+            if bayes_loss > 0.5 and i == 40:
+                break
+
+            self.losses.append()
+            print(f"epoch: {i+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
     def plot_losses(self, log_scale=True):

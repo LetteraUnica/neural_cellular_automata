@@ -10,6 +10,6 @@ module load conda/4.9.2
 conda init bash
 conda activate gpu
 
-CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/NeuralCA/g2528j3i & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/NeuralCA/g2528j3i
+CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/NeuralCA/2t8zwc8y & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/NeuralCA/2t8zwc8y
 
 done
