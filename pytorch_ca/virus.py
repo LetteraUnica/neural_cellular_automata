@@ -80,7 +80,7 @@ for param in model.CAs[0].parameters():
 # Set up the training 
 params = model.CAs[1].parameters()
 optimizer = torch.optim.Adam(params, lr=config['lr'])
-scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, config['gamma'])
+scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer,config['lr1'],config['lr1']+config['lr2'],config['step_size'],gamma=config['gamma'])
 criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
 
 
