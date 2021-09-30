@@ -202,7 +202,7 @@ class CAModel(nn.Module):
                 seeds = pool.generator(128, device=self.device)
                 val_loss, _ = criterion(self.evolve(seeds, randint(128, 384)))
 
-            wandb.log({"val_loss": val_loss, "bayes_criteria": val_loss + loss})
+            wandb.log({"val_loss": val_loss, "bayes_criteria": val_loss.item() + np.mean(epoch_losses)})
 
             self.losses.append(np.mean(epoch_losses))
             print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
