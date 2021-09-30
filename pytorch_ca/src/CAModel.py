@@ -194,7 +194,7 @@ class CAModel(nn.Module):
                     pool.update(indexes, inputs, idx_max_loss)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
-                        if np.random.uniform()<reset_prob:
+                        if np.random.uniform()<kwargs['reset_prob']:
                             pool.reset()
                           
 
