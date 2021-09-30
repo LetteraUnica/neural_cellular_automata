@@ -97,4 +97,6 @@ model.train_CA(
     n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
     skip_damage=2)
 
-model.CAs[1].save(f"virus, lr: {config['lr']}")
+
+model.CAs[1].save(f"model.pt",overwrite=True)
+wandb.save('model.pt')
