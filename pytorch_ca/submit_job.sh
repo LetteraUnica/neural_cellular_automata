@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=2
-#PBS -l mem=2gb
+#PBS -l nodes=1:ppn=2,mem=2gb
 #PBS -l walltime=1:00:00
+#PBS -N hyperparam_search
 
 
 cd $PBS_O_WORKDIR
@@ -9,3 +9,5 @@ cd neural_ca/pytorch_ca
 
 conda activate gpu
 wandb agent neural_ca/NeuralCA/0bavlnat
+
+done
