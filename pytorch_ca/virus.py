@@ -95,7 +95,8 @@ model.train_CA(
     skip_update=1,
     kind="regenerating",
     n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
-    skip_damage=2)
+    skip_damage=2,
+    reset_prob=1/40)
 
 
 model.CAs[1].save(f"model.pt",overwrite=True)
