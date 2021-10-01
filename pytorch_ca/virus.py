@@ -28,7 +28,7 @@ default_config={
     }
 
 #improve this code to have better monitorning
-wandb.init(project='sweep', entity="neural_ca", config=default_config)
+wandb.init(project='NeuralCA', entity="neural_ca", config=default_config)
 config=wandb.config
 print(config)
 
