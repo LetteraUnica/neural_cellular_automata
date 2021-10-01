@@ -18,9 +18,13 @@ CELL_FIRE_RATE = 0.5
 
 default_config={
     'percentage':0.97,
-    'lr':2e-2,
-    'batch_size': 64,
-    'n_epochs':60
+    'gamma':0.9404,
+    'lr1':0.002412,
+    'lr2':0.04302,
+    'batch_size': 25,
+    'n_epochs':60,
+    'n_max_loss_ratio':8,
+    'step_size':48.328
     }
 
 #improve this code to have better monitorning
