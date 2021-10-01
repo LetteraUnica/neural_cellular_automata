@@ -5,10 +5,12 @@
 
 cd $PBS_O_WORKDIR
 cd neural_ca/pytorch_ca
+git pull
 
 module load conda/4.9.2
 conda init bash
 conda activate gpu
+
 
 #for i in $N_GPU #metti la variabile giusta per il numero di gpu
 #do 
