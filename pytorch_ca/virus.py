@@ -16,14 +16,21 @@ IMAGE_SIZE = TARGET_PADDING+TARGET_SIZE
 POOL_SIZE = 512
 CELL_FIRE_RATE = 0.5
 
-config={
+default_config={
     'percentage':0.97,
-    'lr':2e-2,
-    'batch_size': 128,
-    'n_epochs':60
+    'gamma':0.9404,
+    'lr1':0.002412,
+    'lr2':0.04302,
+    'batch_size': 25,
+    'n_epochs':60,
+    'n_max_loss_ratio':8,
+    'step_size':48.328
     }
 
-
+#improve this code to have better monitorning
+wandb.init(project='NeuralCA', entity="neural_ca", config=default_config)
+config=wandb.config
+print(config)
 
 torch.backends.cudnn.benchmark = True # Speeds up things
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -36,10 +43,6 @@ target = RGBAtoFloat(target)
 #imshow(target)
 target = target.to(device)
 
-#improve this code to have better monitorning
-wandb.init(project='virus',entity="lettera",config=config, mode="disabled")
-
-
 
 #import the models
 model = MultipleCA(N_CHANNELS, n_CAs=2, device=device)
@@ -49,18 +52,7 @@ model.CAs[1].load_state_dict(torch.load('Pretrained_models/switch.pt', map_locat
 
 model.to(device)
 
-if torch.cuda.device_count() > 1:
-    N = torch.cuda.device_count()
-    torch.distributed.init_process_group(backend='nccl', world_size=N)
-
-    [torch.cuda.set_device(i) for i in range(N)]
-    
-    devices = list(range(N))
-    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=devices, output_device=0)
-
-    print("Let's use", torch.cuda.device_count(), "GPUs!")
-
-wandb.watch(model)
+wandb.watch(model, log_freq = 32)
 
 
 #generate the pool
@@ -73,14 +65,18 @@ target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 target = target.to(device)
 
-#set up the training 
-params=model.CAs[1].parameters()
-optimizer = torch.optim.Adam(params, lr=config['lr'])
+# Zero out gradients on the first CA
+for param in model.CAs[0].parameters():
+    param.requires_grad = False
+
+# Set up the training 
+params = model.CAs[1].parameters()
+optimizer = torch.optim.Adam(params, lr=config['lr1'])
+scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer,config['lr1'],config['lr1']+config['lr2'],config['step_size'],gamma=config['gamma'], cycle_momentum=False)
 criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
-scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15,30,45], gamma=0.3)
 
 
-#The actual training part
+# The actual training part
 model.train_CA(
     optimizer,
     criterion,
@@ -90,6 +86,10 @@ model.train_CA(
     scheduler=scheduler,
     skip_update=1,
     kind="regenerating",
-    n_max_losses=config['batch_size'] // 4,
-    skip_damage=2)
+    n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
+    skip_damage=2,
+    reset_prob=1/40)
 
+
+model.CAs[1].save(f"model.pt",overwrite=True)
+wandb.save('model.pt')

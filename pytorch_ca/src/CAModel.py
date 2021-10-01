@@ -170,7 +170,6 @@ class CAModel(nn.Module):
 
                 # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs, n_max_losses)
-                wandb.log({"loss": loss})
                 # add current loss to the loss history
                 epoch_losses.append(loss.item())
 
@@ -193,13 +192,26 @@ class CAModel(nn.Module):
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
                     pool.update(indexes, inputs, idx_max_loss)
+                    #if we have reset_prob in the kwargs then sometimes the pool resets
+                    if 'reset_prob' in kwargs:
+                        if np.random.uniform()<kwargs['reset_prob']:
+                            pool.reset()
+                          
 
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
+            
+            # Log epoch losses
+            epoch_loss = np.mean(epoch_losses)
 
-            self.losses.append(np.mean(epoch_losses))
-            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
+            # Stopping criteria
+            if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2): break
+            if epoch_loss > 0.25 and i == 40: break
+
+            wandb.log({"loss": epoch_loss})
+            self.losses.append(epoch_loss)
+            print(f"epoch: {i+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
     def plot_losses(self, log_scale=True):
