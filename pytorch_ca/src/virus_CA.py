@@ -170,13 +170,13 @@ class VirusCA(CAModel):
                     pool.update(indexes, inputs, idx_max_loss)
 
             # Wandb logging
-            wandb.log({"mutation_probability": self.mutation_probability})
+            # wandb.log({"mutation_probability": self.mutation_probability})
 
-            fname = f"Pretrained_models/virus adiabatico {self.mutation_probability}%.pt"
-            self.new_CA.save(fname, overwrite=True)
-            wandb.save(fname)
+            # fname = f"Pretrained_models/virus adiabatico {self.mutation_probability}%.pt"
+            # self.new_CA.save(fname, overwrite=True)
+            # wandb.save(fname)
 
-            self.mutation_probability -= 0.002
+            # self.mutation_probability -= 0.002
 
             # update the scheduler if there is one at all
             if scheduler is not None:
