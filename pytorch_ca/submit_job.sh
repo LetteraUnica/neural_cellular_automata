@@ -5,15 +5,17 @@
 
 cd $PBS_O_WORKDIR
 cd neural_ca/pytorch_ca
+git pull
 
 module load conda/4.9.2
 conda init bash
 conda activate gpu
 
+
 #for i in $N_GPU #metti la variabile giusta per il numero di gpu
 #do 
 #    CUDA_VISIBLE_DEVICES=$i, wandb agent neural_ca/NeuralCA/2t8zwc8y &
 
-CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/NeuralCA/vej9rtuo & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/NeuralCA/vej9rtuo
+CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/NeuralCA/mpkayebk & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/NeuralCA/mpkayebk
 
 done

@@ -18,13 +18,17 @@ CELL_FIRE_RATE = 0.5
 
 default_config={
     'percentage':0.97,
-    'lr':2e-2,
-    'batch_size': 64,
-    'n_epochs':60
+    'gamma':0.9404,
+    'lr1':0.002412,
+    'lr2':0.04302,
+    'batch_size': 25,
+    'n_epochs':60,
+    'n_max_loss_ratio':8,
+    'step_size':48.328
     }
 
 #improve this code to have better monitorning
-wandb.init(project='sweep', entity="neural_ca", config=default_config)
+wandb.init(project='NeuralCA', entity="neural_ca", config=default_config)
 config=wandb.config
 print(config)
 
@@ -67,7 +71,7 @@ for param in model.CAs[0].parameters():
 
 # Set up the training 
 params = model.CAs[1].parameters()
-optimizer = torch.optim.Adam(params, lr=config['lr'])
+optimizer = torch.optim.Adam(params, lr=config['lr1'])
 scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer,config['lr1'],config['lr1']+config['lr2'],config['step_size'],gamma=config['gamma'], cycle_momentum=False)
 criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
 
