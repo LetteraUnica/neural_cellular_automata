@@ -155,7 +155,7 @@ def make_video(CA: "CAModel",
 
     if init_state is None:
         n_channels = CA.n_channels
-        init_state = make_seed(1, n_channels-1, 40, alpha_channel=3)
+        init_state = make_seed(1, n_channels-1, 48, alpha_channel=3)
 
     init_state = init_state.to(CA.device)
 
@@ -194,6 +194,62 @@ def make_video(CA: "CAModel",
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
 
     return video, init_state
+
+
+def merge_videos(first: torch.Tensor, second: torch.Tensor) -> torch.Tensor:
+    """Merges two videos together, first is played before second.
+
+    Args:
+        first (torch.Tensor): First video
+        second (torch.Tensor): Second video
+
+    Returns:
+        torch.Tensor: Merged video
+    """
+    return torch.cat((first, second))
+
+
+def switch_video(old_CA: "CAModel",
+                 new_CA: "CAModel",
+                 switch_iters: int = 50,
+                 n_iters: int = 200,
+                 init_state: torch.Tensor = None,
+                 regenerating: bool = False,
+                 fname: str = None,
+                 rescaling: int = 8,
+                 fps: int = 10,
+                 **kwargs) -> torch.Tensor:
+    """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
+        of the evolution of two CAs starting from a given initial state,
+        old_CA is used to evolve the initial image for switch_iters steps
+        while new_CA evolves the resulting image for the next n_iters steps.
+
+    Args:
+        old_CA (CAModel): First cellular automata to evolve
+        new_CA (CAModel): Second cell automata to evolve
+        init_state
+        switch_iters (int): Number of iterations to evolve the first CA
+        n_iters (int): Number of iterations to evolve the second CA
+        init_state (torch.Tensor, optional): Initial state to evolve.
+            Defaults to None, which means a seed state.
+        regenerating (bool, optional): Whether to erase a square portion
+            of the image during the video, useful if you want to show
+            the regenerating capabilities of the CA. Defaults to False.
+        fname (str, optional): File where to save the video.
+            Defaults to None.
+        rescaling (int, optional): Rescaling factor,
+            since the CA is a small image we need to rescale it
+            otherwise it will be blurry. Defaults to 8.
+        fps (int, optional): Fps of the video. Defaults to 10.
+    """
+
+    initial_video, initial_state = make_video(old_CA, switch_iters, init_state,
+                                              rescaling=rescaling, fps=fps,
+                                              **kwargs)
+    return make_video(new_CA, n_iters, init_state=initial_state,
+                      initial_video=initial_video,
+                      fname=fname, rescaling=rescaling, fps=fps,
+                      regenerating=regenerating, **kwargs)
 
 
 def make_seed(n_images: int,
@@ -411,7 +467,7 @@ class VirusGenerator:
 
     def __call__(self, n_images, device):
         start_point = make_seed(n_images, self.n_channels, self.image_size,
-                                self.n_CAs, -2, self.model_device)
+                                self.n_CAs, 3, self.model_device)
 
         batch_size = 32
         i = 0
@@ -420,24 +476,25 @@ class VirusGenerator:
                 start_point[i:i+batch_size], self.iter_func()[0])
             i += batch_size
 
-        start_point = add_virus(start_point, -2, -1, self.virus_rate)
+        # start_point = add_virus(start_point, -2, -1, self.virus_rate)
         return start_point.to(device)
 
 
-def multiple_to_single(images:torch.Tensor,n_channels:int,alpha_channel:int) -> torch.Tensor:
+def multiple_to_single(images: torch.Tensor, n_channels: int, alpha_channel: int) -> torch.Tensor:
     """
     maronn maronn
     """
-    return torch.cat((images[:,:3],
-                           images[:,alpha_channel:alpha_channel+1],
-                           images[:,3:n_channels]), dim=1)
+    return torch.cat((images[:, :3],
+                      images[:, alpha_channel:alpha_channel+1],
+                      images[:, 3:n_channels]), dim=1)
 
-def single_to_multiple(dx:torch.Tensor,shape,n_channels:int,alpha_channel:int):
+
+def single_to_multiple(dx: torch.Tensor, shape, n_channels: int, alpha_channel: int):
     """
     è un miracolo!
     """
     dx_new = torch.zeros(shape)
-    dx_new[:,:3]=dx[:,:3]
+    dx_new[:, :3] = dx[:, :3]
     dx_new[:, 3:n_channels] = dx[:, 4:]
     dx_new[:, alpha_channel] = dx[:, 3]
     return dx_new
