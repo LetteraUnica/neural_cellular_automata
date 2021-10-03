@@ -161,6 +161,7 @@ class CAModel(nn.Module):
             for j in range(pool.size // batch_size):
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
+                self.update(inputs)
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
@@ -229,3 +230,6 @@ class CAModel(nn.Module):
             pl.yscale("log")
             
         pl.show()
+
+    def update(self):
+        return 0
