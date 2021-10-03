@@ -15,18 +15,20 @@ TARGET_SIZE = 40       # Size of the target emoji
 IMAGE_SIZE = TARGET_PADDING+TARGET_SIZE
 POOL_SIZE = 512
 CELL_FIRE_RATE = 0.5
-PATH='../'
-
+PATH=''
 default_config={
-    'percentage':0.7,
-    'lr':0.01,
-    'batch_size': 80,
-    'n_epochs':100,
-    'kind':'persist'
+    'percentage':0.97,
+    'gamma':0.9404,
+    'lr1':0.002412,
+    'lr2':0.04302,
+    'batch_size': 25,
+    'n_epochs':60,
+    'n_max_loss_ratio':8,
+    'step_size':48.328
     }
 
 #improve this code to have better monitorning
-wandb.init(project='mask', entity="neural_ca", config=default_config)
+wandb.init(project='NeuralCA', entity="neural_ca", config=default_config)
 config=wandb.config
 print(config)
 
@@ -43,20 +45,14 @@ target = target.to(device)
 
 
 #import the models
+model = MultipleCA(N_CHANNELS, n_CAs=2, device=device)
 
-old_CA=NeuralCA(device=device)
-new_CA=NeuralCA(device=device)
+model.CAs[0].load_state_dict(torch.load(PATH+'Pretrained_models/firework_growing.pt', map_location=device))
+model.CAs[1].load_state_dict(torch.load(PATH+'Pretrained_models/switch.pt', map_location=device))
 
-for param in old_CA.parameters():
-   param.requires_grad = False
-
-old_CA.load(PATH+'Pretrained_models/firework_growing.pt')
-new_CA.load(PATH+'Pretrained_models/mask 70% persist.pt')
-
-model = VirusCA(old_CA, new_CA, mutation_probability=config['percentage'])
 model.to(device)
 
-wandb.watch(model, log_freq=32)
+wandb.watch(model, log_freq = 32)
 
 
 #generate the pool
@@ -70,15 +66,14 @@ target = RGBAtoFloat(target)
 target = target.to(device)
 
 # Zero out gradients on the first CA
-for param in model.old_CA.parameters():
+for param in model.CAs[0].parameters():
     param.requires_grad = False
 
 # Set up the training 
-params = model.new_CA.parameters()
-
-optimizer = torch.optim.Adam(model.new_CA.parameters(), lr=config['lr'])
-criterion = NCALoss(pad(target, TARGET_PADDING))
-scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[40,80], gamma=0.3)
+params = model.CAs[1].parameters()
+optimizer = torch.optim.Adam(params, lr=config['lr1'])
+scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer,config['lr1'],config['lr1']+config['lr2'],config['step_size'],gamma=config['gamma'], cycle_momentum=False)
+criterion = NCALoss(pad(target, TARGET_PADDING), torch.nn.MSELoss, alpha_channels=[15, 16])
 
 
 # The actual training part
@@ -90,10 +85,11 @@ model.train_CA(
     n_epochs=config['n_epochs'],
     scheduler=scheduler,
     skip_update=1,
-    kind=config['kind'],
-    n_max_losses=5,
+    kind="regenerating",
+    n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
+    skip_damage=2,
     reset_prob=1/40)
 
 
-model.new_CA.save(f"mask_"+str(config['percentage']*100)+ "%.pt",overwrite=True)
-wandb.save("mask_"+str(config['percentage']*100)+ "%.pt")
+model.CAs[1].save(f"model.pt",overwrite=True)
+wandb.save('model.pt')
