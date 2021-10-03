@@ -39,6 +39,7 @@ class VirusCA(CAModel):
         self.old_CA = old_CA
         self.new_CA = new_CA
         self.mutation_probability = mutation_probability
+        self.initialized=False
 
     def update_cell_mask(self, x: torch.Tensor):
         """Updates the cell mask randomly with mutation probability equal to
@@ -72,6 +73,9 @@ class VirusCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
+        if self.initialized==False:
+            update_cell_mask(x)
+
         x_old = self.old_CA(x, angle, step_size)
         x_new = self.new_CA(x, angle, step_size)
         return x_old * self.old_cells + x_new * self.new_cells
