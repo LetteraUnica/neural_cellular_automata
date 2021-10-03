@@ -16,6 +16,6 @@ conda activate gpu
 #do 
 #    CUDA_VISIBLE_DEVICES=$i, wandb agent neural_ca/NeuralCA/2t8zwc8y &
 
-CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/NeuralCA/mpkayebk & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/NeuralCA/mpkayebk
+CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/mask/9wzcztye & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/mask/9wzcztye
 
 done
