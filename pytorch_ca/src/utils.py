@@ -3,7 +3,9 @@ import torch
 import torchvision.transforms as T
 import torch.nn.functional as F
 from torchvision.io import write_video
+from torchvision.utils import save_image
 from einops.layers.torch import Reduce
+from einops import rearrange
 
 import numpy as np
 import pylab as pl
@@ -116,11 +118,39 @@ def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
             Defaults to None i.e. the image is not saved.
     """
 
-    pl.imshow(np.asarray(image.cpu().permute(1, 2, 0)[:, :, :4]))
+    img = pl.imshow(np.asarray(image.cpu().permute(1, 2, 0)[:, :, :4]))
+    if fname is not None:
+        pl.axis('off')
+        pl.savefig(fname=fname, bbox_inches="tight")
+
     pl.show()
 
+    return img
+
+
+def make_collage(images: torch.Tensor, width: int, fname: str = None, rescaling: int = 8) -> torch.Tensor:
+    """Makes a collage out of a batch of images
+
+    Args:
+        images (torch.Tensor): Batch of images with the torch standard
+        width (int): width of the collage, the batch size must be a multiple of it
+        fname (str, optional): Where to save the collage. Defaults to not saving it.
+        rescaling (int, optional): Rescaling factor. Defaults to 8.
+
+    Returns:
+        torch.Tensor: Collage of images
+    """
+    if images.size()[0] % width != 0:
+        Exception("The batch is not a multiple of width")
+
+    rescaler = T.Resize(images.size()[-1] * rescaling,
+                        T.InterpolationMode.NEAREST)
+    image = rearrange(rescaler(images),
+                      '(b1 b2) c h w -> 1 c (b1 h) (b2 w)', b2=width)
     if fname is not None:
-        pl.savefig(fname=fname)
+        save_image(RGBAtoRGB(image[0][:4])/255., fname)
+
+    return image
 
 
 def make_video(CA: "CAModel",
