@@ -47,7 +47,7 @@ class VirusCA(CAModel):
         Args:
             x (torch.Tensor): Input images, only used to take the shape
         """
-        self.new_cells = (torch.rand_like(x) < self.mutation_probability).float()
+        self.new_cells = (torch.rand_like(x[:, 0:1, :, :]) < self.mutation_probability).float()
         self.old_cells = 1. - self.new_cells
 
     def set_cell_mask(self, mutation_mask: torch.Tensor):
