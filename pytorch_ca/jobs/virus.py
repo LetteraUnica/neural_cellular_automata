@@ -15,7 +15,7 @@ TARGET_SIZE = 40       # Size of the target emoji
 IMAGE_SIZE = TARGET_PADDING+TARGET_SIZE
 POOL_SIZE = 512
 CELL_FIRE_RATE = 0.5
-
+PATH='../'
 default_config={
     'percentage':0.97,
     'gamma':0.9404,
@@ -37,7 +37,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 # Imports the target emoji
-target = read_image("images/firework.png", ImageReadMode.RGB_ALPHA).float()
+target = read_image(PATH+"images/firework.png", ImageReadMode.RGB_ALPHA).float()
 target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 #imshow(target)
@@ -47,8 +47,8 @@ target = target.to(device)
 #import the models
 model = MultipleCA(N_CHANNELS, n_CAs=2, device=device)
 
-model.CAs[0].load_state_dict(torch.load('Pretrained_models/firework_growing.pt', map_location=device))
-model.CAs[1].load_state_dict(torch.load('Pretrained_models/switch.pt', map_location=device))
+model.CAs[0].load_state_dict(torch.load(PATH+'Pretrained_models/firework_growing.pt', map_location=device))
+model.CAs[1].load_state_dict(torch.load(PATH+'Pretrained_models/switch.pt', map_location=device))
 
 model.to(device)
 
@@ -60,7 +60,7 @@ generator=VirusGenerator(N_CHANNELS,IMAGE_SIZE,2,model,config['percentage'])
 pool = SamplePool(POOL_SIZE, generator)
 
 # Imports the target emoji
-target = read_image("images/firework.png", ImageReadMode.RGB_ALPHA).float()
+target = read_image(PATH+"images/firework.png", ImageReadMode.RGB_ALPHA).float()
 target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 target = target.to(device)
