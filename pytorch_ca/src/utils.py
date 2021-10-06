@@ -82,6 +82,11 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
     return torch.tensor(viridis(image)).permute(2, 0, 1)
 
 
+def rescale(image, scale=8):
+    size = image.size()[-2:]
+    return T.Resize(size*scale, T.InterpolationMode.NEAREST)(image)
+
+
 def center_crop(images: torch.Tensor, size: int) -> torch.Tensor:
     """Center crops a batch of images
 

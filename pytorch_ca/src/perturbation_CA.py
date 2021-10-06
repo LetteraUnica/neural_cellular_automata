@@ -49,13 +49,13 @@ class PerturbationCA(CAModel):
         Returns:
             torch.Tensor: Next state
         """
-        pre_life_mask = self.new_CA.get_living_mask(x)
+        pre_life_mask = get_living_mask(x, 3)
 
         dx_new = self.new_CA.compute_dx(x, angle, step_size)
         dx_old = self.old_CA.compute_dx(x, angle, step_size)
         x += dx_new + dx_old
 
-        post_life_mask = self.new_CA.get_living_mask(x)
+        post_life_mask = get_living_mask(x, 3)
         life_mask = pre_life_mask & post_life_mask
 
         self.new_cells = dx_new * life_mask.float()
@@ -64,7 +64,7 @@ class PerturbationCA(CAModel):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor, torch.Tensor]],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
@@ -72,17 +72,18 @@ class PerturbationCA(CAModel):
                  skip_update: int = 2,
                  evolution_iters: Tuple[int, int] = (50, 60),
                  kind: str = "growing",
+                 n_max_losses: int = 1,
                  **kwargs):
         """Trains the CA model
 
         Args:
             optimizer (torch.optim.Optimizer): Optimizer to use, recommended Adam
 
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function to use
+            criterion (Callable[[torch.Tensor], Tuple[torch.Tensor,torch.Tensor]]): Loss function to use
 
             pool (SamplePool): Sample pool from which to extract the images
 
-            n_epochs (int): Number of epochs to perform, 
+            n_epochs (int): Number of epochs to perform, _
                 this depends on the size of the sample pool
 
             scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
@@ -107,56 +108,70 @@ class PerturbationCA(CAModel):
                     regenerating: Trains a CA that grows into the target image
                                   and regenerates any damage that it receives
                 Defaults to "growing".
+            n_max_losses(int):
+                number of datapoints with the biggest losses to replace.
+                Defaults to 1
         """
 
-        self.old_CA.train()
-        self.new_CA.train()
+        self.train()
 
         for i in range(n_epochs):
-            epoch_losses = []
-            for j in range(pool.size // batch_size):
-                inputs, indexes = pool.sample(batch_size)
-                inputs = inputs.to(self.device)
-                optimizer.zero_grad()
+            epoch_losses = []  # array that stores the loss history
 
+            # take the data
+            for j in range(pool.size // batch_size):
+                inputs, indexes = pool.sample(batch_size)  # sample the inputs
+                # put them in the current device
+                inputs = inputs.to(self.device)
+                optimizer.zero_grad()  # reinitialize the gradient to zero
+
+                # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
                     criterion.add_perturbation(self.new_cells)
 
-                loss, idx_max_loss = criterion(inputs)
+                # calculate the loss of the inputs and return the ones with the biggest loss
+                loss, idx_max_loss = criterion(inputs, n_max_losses)
+                # add current loss to the loss history
                 epoch_losses.append(loss.item())
+
+                # look a definition of skip_update
                 if j % skip_update != 0:
                     idx_max_loss = None
 
+                # backward-pass
                 loss.backward()
                 optimizer.step()
 
+                # customization of training for the three processes of growing. persisting and regenerating
+
                 # if regenerating, then damage inputs
-                if kind == "regenerating":
+                if kind == "regenerating" and j % kwargs["skip_damage"] == 0:
                     inputs = inputs.detach()
-                    try:
-                        target_size = kwargs['target_size']
-                    except KeyError:
-                        target_size = None
-                    try:
-                        constant_side = kwargs['constant_side']
-                    except KeyError:
-                        constant_side = None
-                    try:
-                        skip_damage = kwargs["skip_damage"]
-                    except KeyError:
-                        skip_damage = 1
+                    # damages the inputs by removing square portions
+                    inputs = make_squares(inputs)
 
-                    if j % skip_damage == 0:
-                        inputs = make_squares(inputs, target_size=target_size,
-                                              constant_side=constant_side)
-
+                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    pool.update(inputs, indexes, idx_max_loss)
+                    pool.update(indexes, inputs, idx_max_loss)
+                    #if we have reset_prob in the kwargs then sometimes the pool resets
+                    if 'reset_prob' in kwargs:
+                        if np.random.uniform()<kwargs['reset_prob']:
+                            pool.reset()
+                          
 
+            # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
+            
+            # Log epoch losses
+            epoch_loss = np.mean(epoch_losses)
 
-            self.losses.append(np.mean(epoch_losses))
-            print(f"epoch: {i+1}\navg loss: {np.mean(epoch_losses)}")
+            # Stopping criteria
+            if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2): break
+            if epoch_loss > 0.25 and i == 40: break
+
+            wandb.log({"loss": epoch_loss})
+            self.losses.append(epoch_loss)
+            print(f"epoch: {i+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
