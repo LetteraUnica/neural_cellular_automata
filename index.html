@@ -1,232 +1,314 @@
 <!doctype html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=1200">
-  <script src="https://distill.pub/template.v2.js"></script>
-  <link rel="stylesheet" href="website/style.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMS9095G9B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BMS9095G9B');
-  </script>
-</head>
+<meta charset="utf-8">
+<script src="website/template-1.1.1/dist/template.js"></script>
 
-<body>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BMS9095G9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BMS9095G9B');
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
 
-  <d-front-matter>
-    <script type="text/json">{
-      "title": "A study of lifespan from a Cellular Automata viewpoint",
-      "description": "With diverse environments, we can analyze, diagnose and edit deep reinforcement learning models using attribution.",
-      "authors": [
-        {
-          "author": "Lorenzo Cavuoti",
-          "authorURL": "https://github.com/LetteraUnica",
-          "affiliation": "University of Triest",
-          "affiliationURL": "https://www.units.it"
-        },
-        {
-            "author": "Francesco Sacco",
-            "authorURL": "https://github.com/Francesco215",
-            "affiliation": "University of Pisa",
-            "affiliationURL": "https://www.unipi.it"
-          }
-        ],
-      "katex": {
-        "delimiters": [
-          {
-            "left": "$",
-            "right": "$",
-            "display": false
-          },
-          {
-            "left": "$$",
-            "right": "$$",
-            "display": true
-          }
-        ]
-      }
-    }</script>
-  </d-front-matter>
+<script type="text/front-matter">
+  title: "Article Title"
+  description: "Description of the post"
+  authors:
+  - Lorenzo Cavuoti: https://github.com/LetteraUnica
+  - Francesco Sacco: http://github.com/Francesco215
+  affiliations:
+  - University of Triest: http://units.it
+  - University of Pisa: http://unipi.it
+</script>
 
-  <d-title>
-    <p>
-      A study of immortality from a neural cellular automata point of view
-    </p>
-    
-  </d-title>
-
-  <d-article>
-
-    <d-contents>
-      <nav class="l-text figcaption">
-        <h3>Contents</h3>
-        <div><a href="#switch">Switching the rule</a></div>
-        <div><a href="#virus">Applying the Virus</a></div>
-        <ul>
-            <li><a href="#model2">Model</a></li>
-            <li><a href="#conc2">Conclusion</a></li>
-        </ul>
-        <div><a href="#perturbation">Adding a perturbation</a></div>
-        <ul>
-          <li><a href="#model1">Model</a></li>
-          <li><a href="#conc1">Conclusion</a></li>
-        </ul>
-      </nav>
-    </d-contents>
-
-    <div>
-      <p>
-        Most living organisms age and eventually die because of it, but a few don’t, and some of them are
-        incredibly hard to kill, even if you cut their head off, it just regrows.
-        Neural Cellular Automata are very good representation of living organisms, scientists
-        managed to create cellural automatas that are able to represent any image, some of them are mortal,
-        some of them are immortal, and some of them are able to regenerate incredibly effectively
-        <d-cite key="randazzo2021adversarial"></d-cite>
-
-      </p>
-      <p>
-        In this paper we are going to discuss the condition necessary to make a mortal neural cellular automata, immortal
-      </p>
-
-        <h2 id="switch">Switching the rule</h2>
-          <p>
-            In this part of the paper we wanted to know if it is possible to take a cellular automata
-            in the growing mode and after a arbitrary number $n$ of steps
-            <d-footnote>By arbitrary we mean any number $n$ of steps before the cellular automata decays</d-footnote>
-            we switch the update rule in order to make it regenerating.
-            We can write it mathematically like this
-          </p>
-          <d-math block>
-            \begin{cases}
-            x_{new}=f_1(x_{old})\quad \textrm{ if }\quad n_{iter} \le n\\
-            x_{new}=f_2(x_{old})\quad \textrm{ if }\quad n_{iter} > n
-            \end{cases}
-          </d-math>
-          <p>
-            Where $f_1$ is a growing rule, and $f_2$ is the rule that we trained to make the organism regenerating
-            <d-footnote>If we change $n$ we don't need to change $f_2$</d-footnote>
-          </p>
-          <p>
-            If we want to make a parallel with a biological system this is equivalent to asking : Is it
-            possible to make an organism immortal if we have the ability to change its DNA in every single
-            cell at once?
-          </p>
-          <p>
-            The answer is yes. Here is a video that shows what happens
-            <d-figure id="switch" class="video-d-figure">
-              <video style="width: 100%;" loop="" controls="" muted="">
-                <source src="pytorch_ca/switch_visuals/switch25.mp4" type="video/mp4">
-              </video>
-            </d-figure>
-          </p>
-
-          
-          <p>
-            In order to achieve this we took a growing CA and evolved it for a number of steps between 0 and
-            60, then we took the final state and passed it to a new cellular automata that we are going to call
-            “Switch”.
-          </p>
-          <p>
-            So we trained Switch to be able to become a Regenerating cellular automata
-            starting from an input Growing
-            <d-footnote>
-              The training seemed to be highly dependent from the starting parameters, in particular if we started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times it wasn't able to converge
-            </d-footnote>
-          </p>
-          <p>
-            Here are some things you cannot do with our procedure:
-            <ul>
-              <li>You cannot just swap the Growing rule with another Regenerating rule</li>
-              <li>You cannot use a Switch CA for a Growing CA which has not been trained for</li>
-              <li>You cannot salvage a Growing rule that has decayed</li>
-            </ul>
-          </p>
-            
-        <h2 id="virus">
-          Applying the Virus
-          <d-footnote>The training for this part is still in progress</d-footnote>
-        </h2>
-        <p>
-          Realistically speaking if we want to make a grown organism immortal we won't have the accuracy necessary
-          to modify every single cell of an organism at once without missing even one.
-          So the next question we asked ourselves was: Is it possible to make
-          an organism immortal without changing all of its cells?
-        </p>
-        <p>
-          To be able to answer the question we first have to ask ourselves another question:
-          how do we model a Cellular Automata can represent an organism with cells of different DNA?
-        </p>
-        <h3 id="model2">Model</h3>
-        <p>
-          For simplicity we are going to restrict ourself in the case where we are going to
-          have 2 rules ($r_1$ and $r_2$).
-        </p>
-        <p>
-          Before, a cell state was represented by a state vector having the first 4 components representing the
-          RGBA of the pixel and the remaining were hidden channels that helped the CA pass more information
-          between its cells.
-          If the $\alpha$ channel (transparency) is >0.1 it means that the cell is alive, otherwise it’s dead
-        </p>
-        <p>
-          If we are going to have two different types of cells we are going to need two alpha channels.
-          Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is >0.1,
-          then $\alpha_2$ must be 0, and the cell update follows $r_1$ and vice versa.
-        </p>
-        <p>
-          When both alphas are below 0.1, then the cell evolves with the sum of both updates
-        </p>
-        <h3 id="conc2">Conclusion</h3>
-        * Waiting for the training results *
+<dt-article>
+  <h1>Stopping Aging in Neural Cellular Automata</h1>
+  <dt-byline></dt-byline>
+  <p>Most living organisms age and eventually die because of it, but a few don’t, and some of
+    them are incredibly hard to kill, even if you cut their head off, it just regrows
+    <dt-cite key="handberg2008stem"></dt-cite>.
+    Neural Cellular Automata are very good representation of living organisms, scientists managed
+    to create cellural automatas that are able to represent any image, some of them are mortal,
+    some of them are immortal, and some of them are able to regenerate incredibly effectively
+    <dt-cite key="mordvintsev2020growing"></dt-cite>
+  </p>
+  <p>
+    In this paper we are going to discuss the condition necessary to make a mortal neural
+    cellular automata, immortal 
+  </p>
 
 
-        <h2 id="perturbation">Adding a perturbation</h2>
-        <p>
-          We wanted to know if we can add a small perturbation to the output of a growing cellular automata
-          in order to make it a persistent one, this is very interesting from a biological perspective because
-          we can answer the question: 
-        </p>
 
-        <blockquote>
-          How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
-        </blockquote>
-        
-        <p>
-        
-        </p>
-        <h3 id="model1">Model</h3>
-          <p>
-            We model the perturbation as a function of the cell state $x$, note that the perturbation
-            can be any function of the cell state, however we chose to use another CA to model it.
-            Finally we compute the next cell state as a sum of both the growing and the perturbation $\Delta f$:
-          </p>
-          <d-math block>
-            x_{new} = f_{grow}(x_{old}) + \Delta f(x_{old}).
-          </d-math>
-          <p>
-            To prevent that the perturbation will overwrite the growing part we added an additional term in
-            the loss, which penalizes the $\mathbf L_2$ norm of the perturbation $||\Delta f||_2$, the goal is to keep the perturbation as
-            low as possible and prevent it overwriting the growing part of the rule
-          </p>
-          <p>
-            It turns out that a very little perturbation (about 20% w.r.t. the total norm)
-            can make the growing CA a persistent or even a regenerating one,
-            with minimal effect on the quality of the image as can be seen on the video below.
 
-            <d-figure id="switch" class="video-d-figure">
-                <video style="width: 100%;" loop="" controls="" muted="">
-                  <source src="pytorch_ca/Presentation_videos/perturbation_l=10.mp4" type="video/mp4">
-                </video>
-            </d-figure>
-          </p>
+  
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
+  <p>
+    In this part of the paper we wanted to know if it is possible to take a cellular automata
+    in the growing mode and after a arbitrary number $n$ of steps 
+    <dt-fn> By arbitrary we mean any number of steps before the cellular automata decays</dt-fn>
+    we switch the update rule in order to make it regenerating. We can write it mathematically like this 
+    $$
+      \begin{cases}
+        x_{new}=f_1(x_{old})\quad \textrm{ if }\quad n_{iter} \le n\\
+        x_{new}=f_2(x_{old})\quad \textrm{ if }\quad n_{iter} > n
+      \end{cases}
+    $$
+  </p>
+  <p>
+    Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism regenerating
+    <dt-fn>if we change $n$ we don't need to change $f_2$</dt-fn>
+  </p>
+  <figure class="l-middle side">
+    <a class="marker" href="#image-1" id="image-1">
+      <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 1: Here the rule switches at the 60th step
+    </figcaption>
+  </figure>
 
-        <h3 id="conc1">Conclusion</h3>
-          The rule that the growing learned is very close to a persistent/regenerating one,
-          could this mean that we need a very little change in the DNA to make a real organism immortal?
-    </div>
-    
+  <p>
+    If we want to make a parallel with a biological system this is equivalent to asking:
+    Is it possible to make an organism immortal if we have the ability to change its DNA in every single cell
+    at once? 
+  </p>
+  <p>
+    The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
+  </p>
+  <p>
+    In order to achieve this we took a growing CA and evolved it for a number
+    of steps between 0 and 60, then we took the final state and passed it to a
+    new cellular automata that we are going to call “Switch”.
+  </p>
+  <p>
+    So we trained Switch to be able to become a Regenerating cellular automata starting from an input Growing
+    <dt-fn>
+      The training seemed to be highly dependent from the starting parameters,
+      in particular if we started from a Regenerating CA the net seemed to converge faster,
+      if we took another CA, often times it wasn't able to converge
+    </dt-fn>
+  </p>
+  <p>
+    Here are some things you cannot do with our procedure: 
+    <ul>
+      <li>You cannot just swap the Growing rule with another Regenerating rule</li>
+      <li>You cannot use a Switch CA for a Growing CA which has not been trained for</li>
+      <li>You cannot salvage a Growing rule that has decayed</li>
+    </ul>
+  </p>
 
-  <d-bibliography src="website/bibliography.bib"></d-bibliography>
 
-<script type="text/javascript" src="index.bundle.js"></script></body>
+
+
+
+
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-2" id="section-2">2</a> Virus with fixed mask</h2>
+  <p>
+    “The Switch” has some big problems that should be addressed. First of all during the transition
+    from one rule to the next the system undergoes a major restructuring. If this was a living
+    organism that needs it’s organs to function 24h a day it will probably die before the transition
+    is complete, and realistically speaking if we want to make a grown organism immortal we aren’t
+    going to have the precision necessary to be able to influence every single cell of the organism
+    without missing even one.
+  </p>
+  <p>
+    As you can see from the video below, if some of the cells (marked in yellow)
+    don’t transition from $f_1$ to $f_2$ the system degrades
+  </p>
+  <figure class='l-middle'>
+    <a class="marker" href="#mask_switch" id="mask_switch">
+      <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
+      <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 2: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+    </figcaption>
+  </figure>
+  <p>
+    Some papers have been published on how to change global properties of a CA via adding some cells
+    that follow a different rule <dt-cite key="randazzo2021adversarial"></dt-cite>, so we tried to train
+    a $f_2$ that would be able to make a Growing CA into a Persist even if not all the cells follow $f_2$
+    after the switch has happened.
+  </p>
+  <p>
+    In the video below we show what happens with a CA rule trained to switch with 80% of the cells.
+    With this technique we were able to make the switch more flexible and as a bonus we were
+    able to avoid the restructuring phase
+    <dt-fn>
+      This is because by having some of the old cells still around the new rule has to learn to
+      collaborate with the old cellsto be able to reach a stationary state
+    </dt-fn>
+  </p>
+  <figure class='l-middle'>
+    <a class="marker" href="#80%mask" id="80%mask">
+      <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain'>
+      <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 3: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+    </figcaption>
+  </figure>
+  <p>
+    From our tests we need a bare minimum of x% of new cells to be able to make the Growing CA Persist,
+    in this graph we show you the final loss as a function of the percentage of cells substituted
+  </p>
+  <p>*inserire grafico*</p>
+  <p>
+    By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
+    or higher than the minimum percentage
+  </p>
+
+
+
+
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
+  <p>
+    One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
+    overtakes the other. This is very important because having the new cells overtake the old one helps
+    to reduce the minimum percentage of initial cells that change update rules
+    <dt-fn>
+      The minimum percentage required depends from the speed of the aging process, if it's slow
+      you can start with fewer cells since they will have plenty of time to overtake the old ones
+    </dt-fn>
+  </p>
+  <p>
+    To be able to answer this we first have to ask ourselves how do we model the evolution of the mask? 
+  </p>
+  <h3><a class="marker" href="#section-3.1" id="section-3.1">3.1</a> The Model</h2>
+  <p>
+    For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
+  </p>
+  <figure class="l-page side">
+    <a class="marker" href="#evolving_mask" id="evolving_mask">
+      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Image 1: In this image the red cells evolve following $f_1$, the yellow
+      follow $f_2$ and the orange ones follow both
+    </figcaption>
+  </figure>  
+  <p>
+    Before, a cell state was represented by a state vector having the first 4 components representing
+    the RGBA of the pixel and the remaining were hidden channels that helped the CA pass more
+    information between its cells. If the $\alpha$ channel (transparency) is >0.1 it means
+    that the cell is alive, otherwise it’s dead
+  </p>
+  <p>
+    If we are going to have two different types of cells we are going to need two alpha channels.
+    Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is $>0.1$, then
+    $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
+  </p>
+  <p>
+    When both alphas are below $0.1$, then the cell evolves with the sum of both updates 
+  </p>
+  <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Conclusion</h2>
+  <p>
+    * Waiting for the training results * 
+  </p>
+  
+  
+  
+  
+  
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-4" id="section-4">3</a> Adding a perturbation</h2>
+  <p>
+    We wanted to know if we can add a small perturbation to the output of a growing cellular automata
+    in order to make it a persistent one, this is very interesting from a biological perspective
+    because we can answer the question: 
+  </p>
+  <p>
+    How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
+  </p>
+  <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
+
+  <p>
+    We model the perturbation as a function of the cell state $x$, note that the perturbation can
+    be any function of the cell state, however we chose to use another CA to model it. Finally
+    we compute the next cell state as a sum of both the growing and the perturbation $\Delta f$:
+    $$
+      x_{new}=f_{grow}(x_{old})+ \Delta f(x_{old})
+    $$
+  </p>
+  <figure class="l-middle side">
+    <a class="marker" href="#image-" id="image-">
+      <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+      Video 3: Perturbation with $\lambda=10$
+    </figcaption>
+  </figure>
+  <p>
+    To prevent that the perturbation will overwrite the growing part we added an additional term
+    in the loss, which penalizes the $\mathbf L_2$ norm of the perturbation $||\Delta f||_2$,
+    the goal is to keep the perturbation as low as possible and prevent it overwriting the growing
+    part of the rule
+  </p>
+  <p>
+    It turns out that a very little perturbation (about 20% w.r.t. the total norm) can
+    make the growing CA a persistent or even a regenerating one, with minimal effect
+    on the quality of the image as can be seen on the video below. 
+  </p>
+  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Conclusion</h2>
+  <p>
+    The rule that the growing learned is very close to a persistent/regenerating one, could this
+    mean that we need a very little change in the DNA to make a real organism immortal? 
+  </p>
+
+
+</dt-article>
+
+<dt-appendix>
+</dt-appendix>
+
+<script type="text/bibliography">
+  @article{mordvintsev2020growing,
+    author = {Mordvintsev, Alexander and Randazzo, Ettore and Niklasson, Eyvind and Levin, Michael},
+    title = {Growing Neural Cellular Automata},
+    journal = {Distill},
+    year = {2020},
+    url = {https://distill.pub/2020/growing-ca},
+  }
+
+  @article{randazzo2021adversarial,
+    author = {Randazzo, Ettore and Mordvintsev, Alexander and Niklasson, Eyvind and Levin, Michael},
+    title = {Adversarial Reprogramming of Neural Cellular Automata},
+    journal = {Distill},
+    year = {2021},
+    url = {https://distill.pub/selforg/2021/adversarial},
+    doi = {10.23915/distill.00027.004}
+  }
+  @article{handberg2008stem,
+    title={Stem cells and regeneration in planarians},
+    author={Handberg-Thorsager, Mette and Fernandez, Enrique and Salo, Emili},
+    journal={Front Biosci},
+    volume={13},
+    pages={6374--6394},
+    year={2008},
+    url ={https://www.fbscience.com/Landmark/articles/pdf/Landmark3160.pdf}
+  }
+</script>
