@@ -44,10 +44,10 @@
 
 <dt-article>
   <h1>Stopping Aging in Neural Cellular Automata</h1>
-  <h2>Cause being old sucks</h2>
   <dt-byline></dt-byline>
   <p>Most living organisms age and eventually die because of it, but a few don’t, and some of
-    them are incredibly hard to kill, even if you cut their head off, it just regrows.
+    them are incredibly hard to kill, even if you cut their head off, it just regrows
+    <dt-cite key="handberg2008stem"></dt-cite>.
     Neural Cellular Automata are very good representation of living organisms, scientists managed
     to create cellural automatas that are able to represent any image, some of them are mortal,
     some of them are immortal, and some of them are able to regenerate incredibly effectively
@@ -57,6 +57,12 @@
     In this paper we are going to discuss the condition necessary to make a mortal neural
     cellular automata, immortal 
   </p>
+
+
+
+
+  
+  <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
   <p>
     In this part of the paper we wanted to know if it is possible to take a cellular automata
@@ -74,14 +80,14 @@
     Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism regenerating
     <dt-fn>if we change $n$ we don't need to change $f_2$</dt-fn>
   </p>
-  <div class="l-middle side">
+  <figure class="l-middle side">
     <a class="marker" href="#image-1" id="image-1">
       <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain'>
     </a>
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 1: Here the rule switches at the 60th step
     </figcaption>
-  </div>
+  </figure>
 
   <p>
     If we want to make a parallel with a biological system this is equivalent to asking:
@@ -112,24 +118,99 @@
       <li>You cannot salvage a Growing rule that has decayed</li>
     </ul>
   </p>
+
+
+
+
+
+
+  <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-2" id="section-2">2</a> Virus with fixed mask</h2>
-  <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
   <p>
-    Realistically speaking if we want to make a grown organism immortal
-    we won't have the accuracy necessary to modify every single cell of an
-    organism at once without missing even one. So the next question we asked
-    ourselves was: Is it possible to make an organism immortal without
-    changing all of its cells? 
+    “The Switch” has some big problems that should be addressed. First of all during the transition
+    from one rule to the next the system undergoes a major restructuring. If this was a living
+    organism that needs it’s organs to function 24h a day it will probably die before the transition
+    is complete, and realistically speaking if we want to make a grown organism immortal we aren’t
+    going to have the precision necessary to be able to influence every single cell of the organism
+    without missing even one.
   </p>
   <p>
-    To be able to answer the question we first have to ask ourselves another
-    question: how do we model a Cellular Automata can represent an organism
-    with cells of different DNA? 
+    As you can see from the video below, if some of the cells (marked in yellow)
+    don’t transition from $f_1$ to $f_2$ the system degrades
+  </p>
+  <figure class='l-middle'>
+    <a class="marker" href="#mask_switch" id="mask_switch">
+      <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
+      <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 2: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+    </figcaption>
+  </figure>
+  <p>
+    Some papers have been published on how to change global properties of a CA via adding some cells
+    that follow a different rule <dt-cite key="randazzo2021adversarial"></dt-cite>, so we tried to train
+    a $f_2$ that would be able to make a Growing CA into a Persist even if not all the cells follow $f_2$
+    after the switch has happened.
+  </p>
+  <p>
+    In the video below we show what happens with a CA rule trained to switch with 80% of the cells.
+    With this technique we were able to make the switch more flexible and as a bonus we were
+    able to avoid the restructuring phase
+    <dt-fn>
+      This is because by having some of the old cells still around the new rule has to learn to
+      collaborate with the old cellsto be able to reach a stationary state
+    </dt-fn>
+  </p>
+  <figure class='l-middle'>
+    <a class="marker" href="#80%mask" id="80%mask">
+      <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain'>
+      <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 3: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+    </figcaption>
+  </figure>
+  <p>
+    From our tests we need a bare minimum of x% of new cells to be able to make the Growing CA Persist,
+    in this graph we show you the final loss as a function of the percentage of cells substituted
+  </p>
+  <p>*inserire grafico*</p>
+  <p>
+    By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
+    or higher than the minimum percentage
+  </p>
+
+
+
+
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
+  <p>
+    One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
+    overtakes the other. This is very important because having the new cells overtake the old one helps
+    to reduce the minimum percentage of initial cells that change update rules
+    <dt-fn>
+      The minimum percentage required depends from the speed of the aging process, if it's slow
+      you can start with fewer cells since they will have plenty of time to overtake the old ones
+    </dt-fn>
+  </p>
+  <p>
+    To be able to answer this we first have to ask ourselves how do we model the evolution of the mask? 
   </p>
   <h3><a class="marker" href="#section-3.1" id="section-3.1">3.1</a> The Model</h2>
   <p>
     For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
   </p>
+  <figure class="l-page side">
+    <a class="marker" href="#evolving_mask" id="evolving_mask">
+      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
+    </a>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Image 1: In this image the red cells evolve following $f_1$, the yellow
+      follow $f_2$ and the orange ones follow both
+    </figcaption>
+  </figure>  
   <p>
     Before, a cell state was represented by a state vector having the first 4 components representing
     the RGBA of the pixel and the remaining were hidden channels that helped the CA pass more
@@ -148,6 +229,12 @@
   <p>
     * Waiting for the training results * 
   </p>
+  
+  
+  
+  
+  
+  <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-4" id="section-4">3</a> Adding a perturbation</h2>
   <p>
     We wanted to know if we can add a small perturbation to the output of a growing cellular automata
@@ -167,14 +254,14 @@
       x_{new}=f_{grow}(x_{old})+ \Delta f(x_{old})
     $$
   </p>
-  <div class="l-middle side">
+  <figure class="l-middle side">
     <a class="marker" href="#image-" id="image-">
       <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain'>
     </a>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-      Video 2: Perturbation of the weights with $\lambda=10$
+      Video 3: Perturbation with $\lambda=10$
     </figcaption>
-  </div>
+  </figure>
   <p>
     To prevent that the perturbation will overwrite the growing part we added an additional term
     in the loss, which penalizes the $\mathbf L_2$ norm of the perturbation $||\Delta f||_2$,
@@ -212,7 +299,16 @@
     title = {Adversarial Reprogramming of Neural Cellular Automata},
     journal = {Distill},
     year = {2021},
-    note = {https://distill.pub/selforg/2021/adversarial},
+    url = {https://distill.pub/selforg/2021/adversarial},
     doi = {10.23915/distill.00027.004}
+  }
+  @article{handberg2008stem,
+    title={Stem cells and regeneration in planarians},
+    author={Handberg-Thorsager, Mette and Fernandez, Enrique and Salo, Emili},
+    journal={Front Biosci},
+    volume={13},
+    pages={6374--6394},
+    year={2008},
+    url ={https://www.fbscience.com/Landmark/articles/pdf/Landmark3160.pdf}
   }
 </script>
