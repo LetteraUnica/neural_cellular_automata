@@ -31,7 +31,7 @@
 </script>
 
 <script type="text/front-matter">
-  title: "Article Title"
+  title: "Stopping Aging in Neural Cellular Automata"
   description: "Description of the post"
   authors:
   - Lorenzo Cavuoti: https://github.com/LetteraUnica
@@ -43,7 +43,20 @@
 
 <dt-article>
   <h1>Stopping Aging in Neural Cellular Automata</h1>
+  <h2>
+    In this paper we are going to discuss the condition necessary to make a mortal
+    neural cellular automata, immortal
+  </h2>
   <dt-byline></dt-byline>
+  <figure class="l-page side">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/stable.mp4" type="video/mp4" id="stable">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      Figure 1: Example of Regenerating CA <dt-cite key="mordvintsev2020growing"></dt-cite>
+    </figcaption>
+  </figure>
   <p>Most living organisms age and eventually die because of it, but a few don’t, and some of
     them are incredibly hard to kill, even if you cut their head off, it just regrows
     <dt-cite key="handberg2008stem"></dt-cite>.
@@ -52,10 +65,17 @@
     some of them are immortal, and some of them are able to regenerate incredibly effectively
     <dt-cite key="mordvintsev2020growing"></dt-cite>
   </p>
-  <p>
-    In this paper we are going to discuss the condition necessary to make a mortal neural
-    cellular automata, immortal 
-  </p>
+  <figure class="l-page outset">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/unstable.mp4" type="video/mp4" id="unstable">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      Figure 2: Example of Growing CA, as you can see, they eventually degrade <dt-cite key="mordvintsev2020growing"></dt-cite>
+    </figcaption>
+  </figure>
+
+
 
 
 
@@ -64,7 +84,7 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
   <p>
-    In this part of the paper we wanted to know if it is possible to take a cellular automata
+    First of all we wanted to know if it is possible to take a cellular automata
     in the growing mode and after a arbitrary number $n$ of steps 
     <dt-fn> By arbitrary we mean any number of steps before the cellular automata decays</dt-fn>
     we switch the update rule in order to make it regenerating. We can write it mathematically like this 
@@ -80,9 +100,7 @@
     <dt-fn>if we change $n$ we don't need to change $f_2$</dt-fn>
   </p>
   <figure class="l-middle side">
-    <a class="marker" href="#image-1" id="image-1">
-      <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain'>
-    </a>
+    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 1: Here the rule switches at the 60th step
     </figcaption>
@@ -138,10 +156,8 @@
     don’t transition from $f_1$ to $f_2$ the system degrades
   </p>
   <figure class='l-middle'>
-    <a class="marker" href="#mask_switch" id="mask_switch">
-      <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
-      <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain'>
-    </a>
+    <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain' id="mask_swich">
+    <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain' id="wrong_switch">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 2: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
     </figcaption>
@@ -162,10 +178,8 @@
     </dt-fn>
   </p>
   <figure class='l-middle'>
-    <a class="marker" href="#80%mask" id="80%mask">
-      <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain'>
-      <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain'>
-    </a>
+  <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain' id="80%mask">
+  <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain' id="80%video">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 3: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
     </figcaption>
@@ -202,9 +216,7 @@
     For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
   </p>
   <figure class="l-page side">
-    <a class="marker" href="#evolving_mask" id="evolving_mask">
-      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
-    </a>
+    <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain' id="evolving_mask">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Image 1: In this image the red cells evolve following $f_1$, the yellow
       follow $f_2$ and the orange ones follow both
@@ -222,8 +234,30 @@
     $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
   </p>
   <p>
-    When both alphas are below $0.1$, then the cell evolves with the sum of both updates 
+    When both alphas are below $0.1$, then the cell evolves with the sum of both updates.    
   </p>
+  <!--
+  <dt-code block language="python">
+    def multiple_living_mask(images: torch.Tensor):
+
+      # gives the biggest alpha per pixel
+      biggest = Reduce('b c w h-> b 1 w h', reduction='max')(images)
+      # the free cells are the ones who have all of the alphas lower than 0.1
+      free = biggest < 0.1
+
+      # this is the mask where already one of the alpha is bigger than 0.1, if more than one
+      # alpha is bigger than 0.1, than the biggest one wins
+      old = (images == biggest) & (images >= 0.1)
+      # this is the mask of the cells neighboring each alpha
+      neighbor = F.max_pool2d(wrap_edges(images), 3, stride=1) >= 0.1
+      # the cells where the CA can expand are the one who are free and neighboring
+      expanding = free & neighbor
+      # the CA evolves int the cells where it can expand and the ones where is already present
+      evolution = expanding | old
+
+      return evolution
+  </dt-code>
+  -->
   <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Conclusion</h2>
   <p>
     * Waiting for the training results * 
@@ -254,9 +288,7 @@
     $$
   </p>
   <figure class="l-middle side">
-    <a class="marker" href="#image-" id="image-">
-      <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain'>
-    </a>
+    <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
       Video 3: Perturbation with $\lambda=10$
     </figcaption>
@@ -270,7 +302,7 @@
   <p>
     It turns out that a very little perturbation (about 20% w.r.t. the total norm) can
     make the growing CA a persistent or even a regenerating one, with minimal effect
-    on the quality of the image as can be seen on the video below. 
+    on the quality of the image as can be seen on the video here on the side. 
   </p>
   <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Conclusion</h2>
   <p>
