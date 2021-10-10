@@ -40,7 +40,7 @@ def FloattoRGBA(images: torch.Tensor) -> torch.Tensor:
     return torch.clip((images * 255), 0, 255).type(torch.uint8)
 
 
-def RGBAtoRGB(images: torch.Tensor) -> torch.Tensor:
+def RGBAtoRGB(images: torch.Tensor, alpha_channel: int = 3) -> torch.Tensor:
     """Converts a 0-1 RGBA image into RGB
 
     Args:
@@ -52,7 +52,14 @@ def RGBAtoRGB(images: torch.Tensor) -> torch.Tensor:
 
     if len(images.size()) < 4:
         images = torch.unsqueeze(images, 0)
-    return torch.clip(images[:, :3, :, :] * images[:, 3, :, :] * 255 + (1-images[:, 3, :, :])*255, 0, 255).type(torch.uint8)
+    if type(alpha_channel)==int:
+        alpha_channel=[alpha_channel]
+
+    multip=torch.zeros_like(images[:,0,:,:]) #controlla
+
+    for ac in alpha_channel:
+        multip=multip+images[:,ac,:,:] #controlla
+    return torch.clip(images[:, :3, :, :] * multip * 255 + (1-multip)*255, 0, 255).type(torch.uint8)
 
 
 def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
@@ -185,12 +192,15 @@ def make_video(CA: "CAModel",
             otherwise it will be blurry. Defaults to 8.
         fps (int, optional): Fps of the video. Defaults to 10.
         initial_video (torch.Tensor, optional): Video that gets played before
-        the new one
+            the new one
     """
+
+    alpha_channel=CA.alpha_channel
+    if type(alpha_channel)==list: alpha_channel=alpha_channel[0]
 
     if init_state is None:
         n_channels = CA.n_channels
-        init_state = make_seed(1, n_channels-1, 48, alpha_channel=3)
+        init_state = make_seed(1, n_channels-1, 48, alpha_channel=alpha_channel)
 
     init_state = init_state.to(CA.device)
 
@@ -200,26 +210,23 @@ def make_video(CA: "CAModel",
     rescaler = T.Resize((video_size, video_size),
                         interpolation=T.InterpolationMode.NEAREST)
 
+    
+    if regenerating:
+        target_size=None
+        constant_side=None
+        if 'target_size' in kwargs:
+            target_size=kwargs['target_size']
+        if 'constant_side' in kwargs:
+            constant_side = kwargs['constant_side']
+
     # evolution
     with torch.no_grad():
         for i in range(n_iters):
             video[i] = RGBAtoRGB(rescaler(init_state))[0].cpu()
             init_state = CA.forward(init_state)
 
-            if regenerating:
-                if i == n_iters//3:
-                    try:
-                        target_size = kwargs['target_size']
-                    except KeyError:
-                        target_size = None
-                    try:
-                        constant_side = kwargs['constant_side']
-                    except KeyError:
-                        constant_side = None
-
-                    init_state = make_squares(init_state,
-                                              target_size=target_size,
-                                              constant_side=constant_side)
+            if regenerating and i == n_iters//3:
+                init_state = make_squares(init_state,target_size,constant_side=constant_side)
 
     # this concatenates the new video with the old one
     if initial_video is not None:
@@ -483,8 +490,7 @@ def add_virus(images: torch.Tensor, original_channel: int,
     virus_mask = torch.rand_like(images[:, original_channel]) < virus_rate
 
     images[:, virus_channel] = images[:, original_channel] * virus_mask.float()
-    images[:, original_channel] = images[:,
-                                         original_channel] * (~virus_mask).float()
+    images[:, original_channel] = images[:,original_channel] * (~virus_mask).float()
 
     return images
 

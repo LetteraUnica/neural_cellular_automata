@@ -231,5 +231,5 @@ class CAModel(nn.Module):
             
         pl.show()
 
-    def update(self):
-        return 0
+    def update(self,x):
+        return 

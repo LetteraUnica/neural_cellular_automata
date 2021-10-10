@@ -79,6 +79,7 @@ class MultipleCA(CAModel):
                     for i in range(n_CAs)]
 
         self.mask_channels = list(range(n_channels, n_channels+n_CAs))
+        self.alpha_channel = [*range(n_channels,n_channels+n_CAs)]
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
