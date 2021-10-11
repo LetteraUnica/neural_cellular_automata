@@ -402,12 +402,12 @@ def get_living_mask(images: torch.Tensor, channels: List[int]) -> torch.Tensor:
     return torch.max(neighbors, dim=1)[0].unsqueeze(1)
 
 
-def multiple_living_mask(images: torch.Tensor):
+def multiple_living_mask(alphas: torch.Tensor):
     """It gives the mask where the CA rules apply in the case where multiple alphas
     are included in the CA
 
     Args:
-        images (torch.Tensor):
+        alphas (torch.Tensor):
             The first index refers to the batch, the second to the alphas,
             the third and the fourth to the pixels in the image
 
@@ -417,21 +417,21 @@ def multiple_living_mask(images: torch.Tensor):
     """
 
     # gives the biggest alpha per pixel
-    biggest = Reduce('b c w h-> b 1 w h', reduction='max')(images)
+    biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
     # the free cells are the ones who have all of the alphas lower than 0.1
     free = biggest < 0.1
 
     # this is the mask where already one of the alpha is bigger than 0.1, if more than one
     # alpha is bigger than 0.1, than the biggest one wins
-    old = (images == biggest) & (images >= 0.1)
+    old = (alphas == biggest) & (alphas >= 0.1)
     # this is the mask of the cells neighboring each alpha
-    neighbor = F.max_pool2d(wrap_edges(images), 3, stride=1) >= 0.1
+    neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
     # the cells where the CA can expand are the one who are free and neighboring
     expanding = free & neighbor
     # the CA evolves in the cells where it can expand and the ones where is already present
     mask = expanding | old
 
-    return mask #the mask has the same shape of images and the values inside ar bool
+    return mask #the mask has the same shape of alphas and the values inside ar bool
 
 
 def n_largest_indexes(array: list, n: int = 1) -> list:

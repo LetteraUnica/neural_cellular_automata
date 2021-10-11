@@ -238,28 +238,43 @@
   <p>
     When both alphas are below $0.1$, then the cell evolves with the sum of both updates.    
   </p>
-  <!--
-  <dt-code block language="python">
-    def multiple_living_mask(images: torch.Tensor):
+  <div class="l-body">
+  <details>
+    <p><summary>Show the code</summary></p>
+    <dt-code block language="python">
+      def multiple_living_mask(alphas: torch.Tensor):
+          """It gives the mask where the CA rules apply in the case where multiple alphas
+          are included in the CA
 
-      # gives the biggest alpha per pixel
-      biggest = Reduce('b c w h-> b 1 w h', reduction='max')(images)
-      # the free cells are the ones who have all of the alphas lower than 0.1
-      free = biggest < 0.1
+          Args:
+              alphas (torch.Tensor):
+                  The first index refers to the batch, the second to the alphas,
+                  the third and the fourth to the pixels in the image
 
-      # this is the mask where already one of the alpha is bigger than 0.1, if more than one
-      # alpha is bigger than 0.1, than the biggest one wins
-      old = (images == biggest) & (images >= 0.1)
-      # this is the mask of the cells neighboring each alpha
-      neighbor = F.max_pool2d(wrap_edges(images), 3, stride=1) >= 0.1
-      # the cells where the CA can expand are the one who are free and neighboring
-      expanding = free & neighbor
-      # the CA evolves int the cells where it can expand and the ones where is already present
-      evolution = expanding | old
+          Returns:
+              (torch.Tensor) A tensor with bool elements with the same shape on the input tensor
+              that represents where each CA rule applies
+          """
 
-      return evolution
-  </dt-code>
-  -->
+          # gives the biggest alpha per pixel
+          biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
+          # the free cells are the ones who have all of the alphas lower than 0.1
+          free = biggest < 0.1
+
+          # this is the mask where already one of the alpha is bigger than 0.1, if more than one
+          # alpha is bigger than 0.1, than the biggest one wins
+          old = (alphas == biggest) & (alphas >= 0.1)
+          # this is the mask of the cells neighboring each alpha
+          neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
+          # the cells where the CA can expand are the one who are free and neighboring
+          expanding = free & neighbor
+          # the CA evolves in the cells where it can expand and the ones where is already present
+          mask = expanding | old
+
+          return mask #the mask has the same shape of alphas and the values inside ar bool
+    </dt-code>
+  </details></div>
+
   <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Conclusion</h2>
   <p>
     * Waiting for the training results * 
