@@ -143,3 +143,6 @@ __pycache__
 
 #keys
 .ssh/
+
+
+connect_orfeo.sh

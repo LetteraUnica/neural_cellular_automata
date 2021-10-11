@@ -55,10 +55,10 @@ def RGBAtoRGB(images: torch.Tensor, alpha_channel: int = 3) -> torch.Tensor:
     if type(alpha_channel)==int:
         alpha_channel=[alpha_channel]
 
-    multip=torch.zeros_like(images[:,0,:,:]) #controlla
+    multip=torch.zeros_like(images[:,0,:,:])
 
     for ac in alpha_channel:
-        multip=multip+images[:,ac,:,:] #controlla
+        multip=multip+images[:,ac,:,:]
     return torch.clip(images[:, :3, :, :] * multip * 255 + (1-multip)*255, 0, 255).type(torch.uint8)
 
 
@@ -195,9 +195,6 @@ def make_video(CA: "CAModel",
             the new one
     """
 
-    alpha_channel=CA.alpha_channel
-    if type(alpha_channel)==list: alpha_channel=alpha_channel[0]
-
     if init_state is None:
         n_channels = CA.n_channels
         init_state = make_seed(1, n_channels-1, 48, alpha_channel=alpha_channel)
@@ -222,7 +219,7 @@ def make_video(CA: "CAModel",
     # evolution
     with torch.no_grad():
         for i in range(n_iters):
-            video[i] = RGBAtoRGB(rescaler(init_state))[0].cpu()
+            video[i] = RGBAtoRGB(rescaler(init_state),CA.alpha_channel)[0].cpu()
             init_state = CA.forward(init_state)
 
             if regenerating and i == n_iters//3:
@@ -431,10 +428,10 @@ def multiple_living_mask(images: torch.Tensor):
     neighbor = F.max_pool2d(wrap_edges(images), 3, stride=1) >= 0.1
     # the cells where the CA can expand are the one who are free and neighboring
     expanding = free & neighbor
-    # the CA evolves int the cells where it can expand and the ones where is already present
-    evolution = expanding | old
+    # the CA evolves in the cells where it can expand and the ones where is already present
+    mask = expanding | old
 
-    return evolution
+    return mask #the mask has the same shape of images and the values inside ar bool
 
 
 def n_largest_indexes(array: list, n: int = 1) -> list:

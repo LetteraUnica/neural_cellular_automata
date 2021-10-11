@@ -6,3 +6,4 @@ einops
 torch
 torchvision
 torchaudio
+wandb

@@ -1,7 +1,7 @@
 # Tutorial orfeo
 
 ## Comandi base
-`ssh s277227@ct1-005.area.trieste.it` connettersi a orfeo
+`ssh s277227@ct1-005.area.trieste.it` connettersi a orfeo  
 `qstat` Controllare la coda, -Q meno informazioni, -n più informazioni  
 `pbsnodes -aS` Controllare le risorse dei nodi  
 `qsub -q "queue name" "bash script"` Submit a job  
