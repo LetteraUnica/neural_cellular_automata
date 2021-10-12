@@ -74,10 +74,12 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
         torch.Tensor: RGB image in 0-1 range
     """
     if len(image.size()) > 2:
-        Exception(
+        raise Exception(
             f"images must be a 1d or 2d tensor, got {image.shape} instead")
         return
-
+        
+    image=image.cpu()
+    
     with torch.no_grad():
         scale = torch.max(image) - torch.min(image)
         if scale < 1e-6:
@@ -116,9 +118,9 @@ class tensor_to_RGB():
         
         if type(function)==int:
             self.channel=function
-            self.funtion=self.gray
+            self.function=self.gray
 
-    def __call__(tensor: torch.Tensor):
+    def __call__(self,tensor: torch.Tensor):
         """Converts a tensor to RGB
 
         Args:
@@ -248,7 +250,7 @@ def make_video(CA: "CAModel",
     init_state = init_state.to(CA.device)
 
     # set video visualization features
-    video_size = init_state.size()[-1] * rescaling
+    video_size = init_state.size()[-1] * converter.rescaling
     video = torch.empty((n_iters, 3, video_size, video_size), device="cpu")
 
     
