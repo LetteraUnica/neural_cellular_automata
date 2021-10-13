@@ -95,23 +95,16 @@ model.CAs[1].save(f"model.pt",overwrite=True)
 wandb.save('model.pt')
 
 
-converter=tensor_to_RGB(function=-2,CA=model)
+converter=[tensor_to_RGB(function="RGBA",CA=model),
+           tensor_to_RGB(function=-2,CA=model),
+           tensor_to_RGB(function=-1,CA=model)]
+
 seed=make_seed(1,N_CHANNELS,IMAGE_SIZE,n_CAs=2,alpha_channel=-2,device=device)
+
 video,init_state=make_video(model,30,seed,converter=converter)
 init_state=add_virus(init_state,-2,-1,0.995)
-make_video(model,50,init_state,fname="-2.mp4",initial_video=video,converter=converter)
+make_video(model,50,init_state,fname=["RGBA.mp4","-2.mp4","-1.mp4"],initial_video=video,converter=converter)
+
 wandb.save("-2.mp4")
-
-converter=tensor_to_RGB(function=-1,CA=model)
-seed=make_seed(1,N_CHANNELS,IMAGE_SIZE,n_CAs=2,alpha_channel=-2,device=device)
-video,init_state=make_video(model,30,seed,converter=converter)
-init_state=add_virus(init_state,-2,-1,0.995)
-make_video(model,50,init_state,fname="-1.mp4",initial_video=video,converter=converter)
 wandb.save("-1.mp4")
-
-converter=tensor_to_RGB(function="RGBA",CA=model)
-seed=make_seed(1,N_CHANNELS,IMAGE_SIZE,n_CAs=2,alpha_channel=-2,device=device)
-video,init_state=make_video(model,30,seed,converter=converter)
-init_state=add_virus(init_state,-2,-1,0.995)
-make_video(model,50,init_state,fname="RGB.mp4",initial_video=video,converter=converter)
-wandb.save("RBG.mp4")
+wandb.save("RGBA.mp4")

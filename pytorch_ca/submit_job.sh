@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=4,mem=4gb
+#PBS -l nodes=1:ppn=48,mem=4gb
 #PBS -l walltime=1:00:00
 #PBS -N hyperparam_search
 
@@ -16,6 +16,6 @@ conda activate gpu
 #do 
 #    CUDA_VISIBLE_DEVICES=$i, wandb agent neural_ca/NeuralCA/2t8zwc8y &
 
-CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/mask/9wzcztye & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/mask/9wzcztye
+CUDA_VISIBLE_DEVICES=0, wandb agent neural_ca/mask/rjpsofye & CUDA_VISIBLE_DEVICES=1, wandb agent neural_ca/mask/rjpsofye
 
 done

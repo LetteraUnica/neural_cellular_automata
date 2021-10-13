@@ -248,9 +248,15 @@ def make_video(CA: "CAModel",
 
     init_state = init_state.to(CA.device)
 
+    if type(converter) is not list:
+        converter=[converter]
+    for c in converter:
+        if c.rescaling!=converter[0].rescaling:
+            raise Exception("the rescaling must be the same for all converters!")
+
     # set video visualization features
-    video_size = init_state.size()[-1] * converter.rescaling
-    video = torch.empty((n_iters, 3, video_size, video_size), device="cpu")
+    video_size = init_state.size()[-1] * converter[0].rescaling    
+    video = [torch.empty((n_iters, 3, video_size, video_size), device="cpu")]*len(converter)
 
     
     if regenerating:
@@ -264,7 +270,8 @@ def make_video(CA: "CAModel",
     # evolution
     with torch.no_grad():
         for i in range(n_iters):
-            video[i]=converter(init_state)
+            for k,conv in enumerate(converter):
+                video[k][i]=conv(init_state)
             init_state = CA.forward(init_state)
 
             if regenerating and i == n_iters//3:
@@ -272,7 +279,12 @@ def make_video(CA: "CAModel",
 
     # this concatenates the new video with the old one
     if initial_video is not None:
-        video = torch.cat((initial_video, video))
+        if type(initial_video) is not list:
+            initial_video=[initial_video]
+        if len(initial_video)!=len(converter):
+            raise Exception("The lenght of the initial_video must be the same of the converter")
+        for i,init in enumerate(initial_video):    
+            video[i] = torch.cat((init, video[i]))
 
     if fname is not None:
         write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
