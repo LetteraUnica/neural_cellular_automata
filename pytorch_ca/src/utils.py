@@ -11,7 +11,7 @@ import numpy as np
 import pylab as pl
 from random import randint
 
-from matplotlib import cm
+from matplotlib.pyplot import get_cmap
 
 from typing import Tuple, List
 
@@ -87,7 +87,7 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
         else:
             image = (image - torch.min(image)) / scale
 
-    viridis = cm.get_cmap(cmap)
+    viridis = get_cmap(cmap)
     return torch.tensor(viridis(image)).permute(2, 0, 1)
 
 class tensor_to_RGB():
