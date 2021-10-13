@@ -11,7 +11,7 @@ import numpy as np
 import pylab as pl
 from random import randint
 
-from matplotlib.pyplot import get_cmap
+from matplotlib import pyplot as plt
 
 from typing import Tuple, List
 
@@ -73,22 +73,21 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
     Returns:
         torch.Tensor: RGB image in 0-1 range
     """
-    if len(image.size()) > 2:
-        raise Exception(
-            f"images must be a 1d or 2d tensor, got {image.shape} instead")
-        return
-        
-    image=image.cpu()
-    
-    with torch.no_grad():
-        scale = torch.max(image) - torch.min(image)
-        if scale < 1e-6:
-            image = torch.zeros_like(image)
-        else:
-            image = (image - torch.min(image)) / scale
 
-    viridis = get_cmap(cmap)
-    return torch.tensor(viridis(image)).permute(2, 0, 1)
+    assert image.dim() == 2, "image must be 2D"
+    assert cmap in plt.colormaps(), "cmap must be a valid matplotlib colormap"
+
+    #here i clip the values to 1
+    with torch.no_grad(): image = (image<=1)*image + (image>1)*torch.ones_like(image) 
+
+    image=image.cpu()
+
+    cmap = plt.get_cmap(cmap)
+    image = image.numpy()
+    image = cmap(image)
+    image = torch.from_numpy(image)
+    image = image.permute(2, 0, 1)
+    return RGBAtoRGB(image)
 
 class tensor_to_RGB():
     """ Converts a tensor to RGB, it will be used as an argument for the function make_video() """
