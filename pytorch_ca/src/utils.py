@@ -241,7 +241,7 @@ def make_video(CA: "CAModel",
             function that converts the torch.Tensor of the state to an image.
             Defaults to RGBAtoRGB
     """
-
+    #create the initial state in case there is none
     if init_state is None:
         n_channels = CA.n_channels
         init_state = make_seed(1, n_channels-1, 48, alpha_channel=alpha_channel)
@@ -259,7 +259,7 @@ def make_video(CA: "CAModel",
     video_size = init_state.size()[-1] * converter[0].rescaling    
     video = [torch.empty((n_iters, 3, video_size, video_size), device="cpu") for _ in range(l)]
 
-    
+    # this manages the kwargs necessary for the regenerating case
     if regenerating:
         target_size=None
         constant_side=None
@@ -285,8 +285,9 @@ def make_video(CA: "CAModel",
         if len(initial_video)!=l:
             raise Exception("The lenght of the initial_video must be the same of the converter")
         for i in range(l):    
-            video[i] = torch.cat((inititial_video[i], video[i]))
+            video[i] = torch.cat((initial_video[i], video[i]))
 
+    #this saves the video 
     if fname is not None:
         if type(fname) is not list:
             fname=[fname]
@@ -568,12 +569,15 @@ class VirusGenerator:
         self.CA = CA
         self.virus_rate = virus_rate
         self.iter_func = iter_func
+        self.alpha_channel=CA.alpha_cannel
+        if type(self.alpha_channel)==list:
+            self.alpha_channel=self.alpha_channel[0]
 
         self.model_device = self.CA.device
 
     def __call__(self, n_images, device):
         start_point = make_seed(n_images, self.n_channels, self.image_size,
-                                self.n_CAs, 3, self.model_device)
+                                self.n_CAs, self.alpha_channel, self.model_device)
 
         batch_size = 32
         i = 0

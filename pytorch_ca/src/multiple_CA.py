@@ -29,8 +29,7 @@ class CustomCA(NeuralCA):
                 Defaults to 0.5.
         """
         if alpha_channel < n_channels:
-            raise Exception(
-                "alpha_channel must be greater or equal to n_channels")
+            raise Exception("alpha_channel must be greater or equal to n_channels")
 
         super().__init__(n_channels+1, device, fire_rate)
 

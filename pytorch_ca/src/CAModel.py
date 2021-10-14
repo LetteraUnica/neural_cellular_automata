@@ -23,6 +23,7 @@ class CAModel(nn.Module):
 
         # useless comment
         self.n_channels = n_channels
+        self.alpha_channel = 3
 
         # defines the device
         if device is None:

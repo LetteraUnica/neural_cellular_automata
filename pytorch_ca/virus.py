@@ -21,8 +21,8 @@ default_config={
     'gamma':0.9404,
     'lr1':0.002412,
     'lr2':0.04302,
-    'batch_size': 25,
-    'n_epochs':60,
+    'batch_size': 85,
+    'n_epochs':100,
     'n_max_loss_ratio':8,
     'step_size':48.328
     }
@@ -34,14 +34,6 @@ print(config)
 
 torch.backends.cudnn.benchmark = True # Speeds up things
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
-# Imports the target emoji
-target = read_image(PATH+"images/firework.png", ImageReadMode.RGB_ALPHA).float()
-target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
-target = RGBAtoFloat(target)
-#imshow(target)
-target = target.to(device)
 
 
 #import the models
@@ -66,8 +58,8 @@ target = RGBAtoFloat(target)
 target = target.to(device)
 
 # Zero out gradients on the first CA
-for param in model.CAs[0].parameters():
-    param.requires_grad = False
+#for param in model.CAs[0].parameters():
+#    param.requires_grad = False
 
 # Set up the training 
 params = model.CAs[1].parameters()
