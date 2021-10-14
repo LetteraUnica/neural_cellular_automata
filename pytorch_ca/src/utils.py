@@ -569,7 +569,8 @@ class VirusGenerator:
         self.CA = CA
         self.virus_rate = virus_rate
         self.iter_func = iter_func
-        self.alpha_channel=CA.alpha_cannel
+
+        self.alpha_channel=CA.alpha_channel
         if type(self.alpha_channel)==list:
             self.alpha_channel=self.alpha_channel[0]
 
@@ -586,7 +587,8 @@ class VirusGenerator:
                 start_point[i:i+batch_size], self.iter_func()[0])
             i += batch_size
 
-        # start_point = add_virus(start_point, -2, -1, self.virus_rate)
+        #TODO check if the line below should be deactivated in some cases
+        start_point = add_virus(start_point, -2, -1, self.virus_rate)
         return start_point.to(device)
 
 
