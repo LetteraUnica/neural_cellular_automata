@@ -92,11 +92,11 @@ converter=[tensor_to_RGB(function="RGBA",CA=model),
            tensor_to_RGB(function=-1,CA=model)]
 
 seed=make_seed(1,N_CHANNELS,IMAGE_SIZE,n_CAs=2,alpha_channel=-2,device=device)
+fname=["RGBA.mp4","-2.mp4","-1.mp4"]
 
 video,init_state=make_video(model,30,seed,converter=converter)
 init_state=add_virus(init_state,-2,-1,0.995)
-make_video(model,50,init_state,fname=["RGBA.mp4","-2.mp4","-1.mp4"],initial_video=video,converter=converter)
+make_video(model,50,init_state,fname=fname,initial_video=video,converter=converter)
 
-wandb.save("-2.mp4")
-wandb.save("-1.mp4")
-wandb.save("RGBA.mp4")
+for name in fname:
+    wandb.log({name : wandb.Video(name,fps=10,format='mp4')})
