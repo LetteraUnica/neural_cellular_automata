@@ -11,7 +11,7 @@ import numpy as np
 import pylab as pl
 from random import randint
 
-from matplotlib import cm
+from matplotlib import pyplot as plt
 
 from typing import Tuple, List
 
@@ -73,25 +73,72 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
     Returns:
         torch.Tensor: RGB image in 0-1 range
     """
-    if len(image.size()) > 2:
-        Exception(
-            f"images must be a 1d or 2d tensor, got {image.shape} instead")
-        return
 
-    with torch.no_grad():
-        scale = torch.max(image) - torch.min(image)
-        if scale < 1e-6:
-            image = torch.zeros_like(image)
-        else:
-            image = (image - torch.min(image)) / scale
+    assert image.dim() == 2, "image must be 2D"
+    assert cmap in plt.colormaps(), "cmap must be a valid matplotlib colormap"
 
-    viridis = cm.get_cmap(cmap)
-    return torch.tensor(viridis(image)).permute(2, 0, 1)
+    #here i clip the values to 1
+    with torch.no_grad(): image = (image<=1)*image + (image>1)*torch.ones_like(image) 
 
+    image=image.cpu()
 
-def rescale(image, scale=8):
-    size = image.size()[-2:]
-    return T.Resize(size*scale, T.InterpolationMode.NEAREST)(image)
+    cmap = plt.get_cmap(cmap)
+    image = image.numpy()
+    image = cmap(image)
+    image = torch.from_numpy(image)
+    image = image.permute(2, 0, 1)
+    return RGBAtoRGB(image)
+
+class tensor_to_RGB():
+    """ Converts a tensor to RGB, it will be used as an argument for the function make_video() """
+
+    def __init__(self, rescaling : int =8,function='RGBA',CA : "CAModel"=None):
+        """
+        Args:
+            CA: the CA rule
+            rescaling (int, optional): Rescaling factor,
+                since the CA is a small image we need to rescale it
+                otherwise it will be blurry. Defaults to 8.
+            function (callable, optional):
+                -If it is a callable, it represent the function that converts the torch tensor of shape
+                    (1,n_channels,image_size,image_size) to the image of size
+                    (3,image_size*rescaling,image_size*rescaling).
+                -If it is a int, it will return a heatmap of the channel represented by the int
+                -If it is the string "RGBA" it will return the RGBA image following the info from the CA
+        """
+        self.rescaling=rescaling
+        self.function=function
+        
+        if function == 'RGBA':
+            if CA==None:
+                raise Exception('If the function is "RGBA" you must specify the CA rule')
+            self.CA=CA
+            self.function=self.RGBA
+        
+        if type(function)==int:
+            self.channel=function
+            self.function=self.gray
+
+    def __call__(self,tensor: torch.Tensor):
+        """Converts a tensor to RGB
+
+        Args:
+            tensor (torch.Tensor): tensor that represents the CA state
+
+        Returns:
+            torch.Tensor: with shape (3,image_size*rescaling,image_size*rescaling)
+        """
+        video_size = tensor.size()[-1] * self.rescaling
+        rescaler=T.Resize((video_size, video_size),interpolation=T.InterpolationMode.NEAREST)
+        tensor=rescaler(tensor)
+        return self.function(tensor)
+
+    def RGBA(self,tensor):
+        return RGBAtoRGB(tensor,self.CA.alpha_channel)[0].cpu()
+
+    def gray(self,tensor):
+        return GrayscaletoCmap(tensor[0,self.channel])
+
 
 
 def center_crop(images: torch.Tensor, size: int) -> torch.Tensor:
@@ -170,9 +217,9 @@ def make_video(CA: "CAModel",
                init_state: torch.Tensor = None,
                regenerating: bool = False,
                fname: str = None,
-               rescaling: int = 8,
                fps: int = 10,
                initial_video: torch.Tensor = None,
+               converter: callable = RGBAtoRGB,
                **kwargs) -> torch.Tensor:
     """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
         of the evolution of the CA starting from a given initial state
@@ -187,12 +234,12 @@ def make_video(CA: "CAModel",
             the regenerating capabilities of the CA. Defaults to False.
         fname (str, optional): File where to save the video.
             Defaults to None.
-        rescaling (int, optional): Rescaling factor,
-            since the CA is a small image we need to rescale it
-            otherwise it will be blurry. Defaults to 8.
         fps (int, optional): Fps of the video. Defaults to 10.
         initial_video (torch.Tensor, optional): Video that gets played before
             the new one
+        converter (callable, optional):
+            function that converts the torch.Tensor of the state to an image.
+            Defaults to RGBAtoRGB
     """
 
     if init_state is None:
@@ -201,11 +248,16 @@ def make_video(CA: "CAModel",
 
     init_state = init_state.to(CA.device)
 
+    if type(converter) is not list:
+        converter=[converter]
+    l=len(converter)
+    for c in converter:
+        if c.rescaling!=converter[0].rescaling:
+            raise Exception("the rescaling must be the same for all converters!")
+
     # set video visualization features
-    video_size = init_state.size()[-1] * rescaling
-    video = torch.empty((n_iters, 3, video_size, video_size), device="cpu")
-    rescaler = T.Resize((video_size, video_size),
-                        interpolation=T.InterpolationMode.NEAREST)
+    video_size = init_state.size()[-1] * converter[0].rescaling    
+    video = [torch.empty((n_iters, 3, video_size, video_size), device="cpu") for _ in range(l)]
 
     
     if regenerating:
@@ -219,7 +271,8 @@ def make_video(CA: "CAModel",
     # evolution
     with torch.no_grad():
         for i in range(n_iters):
-            video[i] = RGBAtoRGB(rescaler(init_state),CA.alpha_channel)[0].cpu()
+            for k in range(l):
+                video[k][i]=converter[k](init_state)
             init_state = CA.forward(init_state)
 
             if regenerating and i == n_iters//3:
@@ -227,10 +280,20 @@ def make_video(CA: "CAModel",
 
     # this concatenates the new video with the old one
     if initial_video is not None:
-        video = torch.cat((initial_video, video))
+        if type(initial_video) is not list:
+            initial_video=[initial_video]
+        if len(initial_video)!=l:
+            raise Exception("The lenght of the initial_video must be the same of the converter")
+        for i in range(l):    
+            video[i] = torch.cat((inititial_video[i], video[i]))
 
     if fname is not None:
-        write_video(fname, video.permute(0, 2, 3, 1), fps=fps)
+        if type(fname) is not list:
+            fname=[fname]
+        if len(fname)!=l:
+            raise Exception("The lenght of f_name must be the same of the converter")
+        for i in range(l):
+            write_video(fname[i], video[i].permute(0, 2, 3, 1), fps=fps)
 
     return video, init_state
 
@@ -248,6 +311,7 @@ def merge_videos(first: torch.Tensor, second: torch.Tensor) -> torch.Tensor:
     return torch.cat((first, second))
 
 
+#TODO test this
 def switch_video(old_CA: "CAModel",
                  new_CA: "CAModel",
                  switch_iters: int = 50,
@@ -255,8 +319,8 @@ def switch_video(old_CA: "CAModel",
                  init_state: torch.Tensor = None,
                  regenerating: bool = False,
                  fname: str = None,
-                 rescaling: int = 8,
                  fps: int = 10,
+                 converter: callable = RGBAtoRGB,
                  **kwargs) -> torch.Tensor:
     """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
         of the evolution of two CAs starting from a given initial state,
@@ -282,13 +346,13 @@ def switch_video(old_CA: "CAModel",
         fps (int, optional): Fps of the video. Defaults to 10.
     """
 
-    initial_video, initial_state = make_video(old_CA, switch_iters, init_state,
-                                              rescaling=rescaling, fps=fps,
-                                              **kwargs)
+    initial_video, initial_state = make_video(old_CA, switch_iters, init_state, fps=fps,converter=converter,**kwargs)
     return make_video(new_CA, n_iters, init_state=initial_state,
                       initial_video=initial_video,
-                      fname=fname, rescaling=rescaling, fps=fps,
-                      regenerating=regenerating, **kwargs)
+                      fname=fname, fps=fps,
+                      regenerating=regenerating,
+                      converter=converter,
+                      **kwargs)
 
 
 def make_seed(n_images: int,
@@ -418,16 +482,20 @@ def multiple_living_mask(alphas: torch.Tensor):
 
     # gives the biggest alpha per pixel
     biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
+    
     # the free cells are the ones who have all of the alphas lower than 0.1
     free = biggest < 0.1
 
     # this is the mask where already one of the alpha is bigger than 0.1, if more than one
     # alpha is bigger than 0.1, than the biggest one wins
     old = (alphas == biggest) & (alphas >= 0.1)
+    
     # this is the mask of the cells neighboring each alpha
     neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
+    
     # the cells where the CA can expand are the one who are free and neighboring
     expanding = free & neighbor
+    
     # the CA evolves in the cells where it can expand and the ones where is already present
     mask = expanding | old
 
