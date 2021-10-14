@@ -257,7 +257,7 @@ def make_video(CA: "CAModel",
 
     # set video visualization features
     video_size = init_state.size()[-1] * converter[0].rescaling    
-    video = [torch.empty((n_iters, 3, video_size, video_size), device="cpu")]*len(converter)
+    video = [torch.empty((n_iters, 3, video_size, video_size), device="cpu") for _ in range(l)]
 
     
     if regenerating:
@@ -290,7 +290,7 @@ def make_video(CA: "CAModel",
     if fname is not None:
         if type(fname) is not list:
             fname=[fname]
-        if len(initial_video)!=l:
+        if len(fname)!=l:
             raise Exception("The lenght of f_name must be the same of the converter")
         for i in range(l):
             write_video(fname[i], video[i].permute(0, 2, 3, 1), fps=fps)
