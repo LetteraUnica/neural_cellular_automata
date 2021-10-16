@@ -1,9 +1,6 @@
 import torch
-from torchvision.io import write_video
-import torchvision.transforms as T
 
-
-from .utils import *
+from ..utils import *
 from .CAModel import *
 from .neural_CA import *
 
@@ -77,7 +74,7 @@ class VirusCA(CAModel):
             torch.Tensor: Next CA state
         """
         if self.initialized==False:
-            update_cell_mask(x)
+            self.update_cell_mask(x)
 
         x_old = self.old_CA(x, angle, step_size)
         x_new = self.new_CA(x, angle, step_size)

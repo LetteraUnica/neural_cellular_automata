@@ -9,8 +9,8 @@ from typing import Callable, Tuple
 from abc import abstractmethod
 import numpy as np
 
-from .utils import *
-from .sample_pool import *
+from ..utils import *
+from ..sample_pool import *
 from .CAModel import *
 
 

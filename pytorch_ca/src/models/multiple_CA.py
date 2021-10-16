@@ -7,7 +7,7 @@ from einops.layers.torch import Reduce
 from einops import rearrange
 
 
-from .utils import *
+from ..utils import *
 from .neural_CA import *
 from .CAModel import *
 

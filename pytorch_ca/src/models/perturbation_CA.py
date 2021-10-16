@@ -1,106 +1,66 @@
 import torch
-from torch import nn
-import torch.nn.functional as F
+from torchvision.io import write_video
 import torchvision.transforms as T
-import os.path
-from random import randint
-from IPython.display import clear_output
-from typing import Callable, Tuple
-from abc import abstractmethod
-import numpy as np
-import wandb
 
-from .utils import *
-from .sample_pool import *
+from ..utils import *
+from .CAModel import *
 
 
-class CAModel(nn.Module):
-    """Base CA class, each CA class inherits from this class
+class PerturbationCA(CAModel):
+    """Given two CA rules evolves the image pixels using the formula:
+    x_t+1 = base_CA(x_t) + new_CA(x_t). To avoid that new_CA overwrites the
+    base_CA a L2 loss on the update of new_CA should be used.
     """
 
-    def __init__(self, n_channels=16, device=None, fire_rate=0.5):
-        super(CAModel, self).__init__()
+    def __init__(self, base_CA: CAModel, new_CA: CAModel):
+        """Initializes the model
 
-        # useless comment
-        self.n_channels = n_channels
-        self.alpha_channel = 3
+        Args:
+            old_CA (CAModel): base_CA model
+            new_CA (CAModel): new_CA model, implements the perturbation
+        """
+        super().__init__()
 
-        # defines the device
-        if device is None:
-            device = torch.device(
-                "cuda" if torch.cuda.is_available() else "cpu")
-        self.device = device
+        if base_CA.device != new_CA.device:
+            Exception(f"The two CAs are on different devices: " +
+                      f"decaying_CA.device: {base_CA.device} and " +
+                      f"regenerating_CA.device: {new_CA.device}")
 
-        # Stores losses during training
+        self.device = base_CA.device
+        self.old_CA = base_CA
+        self.new_CA = new_CA
+
+        self.new_cells = None
         self.losses = []
 
-        self.fire_rate = fire_rate
+    def forward(self, x: torch.Tensor,
+                angle: float = 0.,
+                step_size: float = 1.) -> torch.Tensor:
+        """Single update step of the CA
 
-        self.to(self.device)
-
-    @abstractmethod
-    def forward():
-        pass
-
-    def evolve(self, x: torch.Tensor, iters: int, angle: float = 0.,
-               step_size: float = 1.) -> torch.Tensor:
-        """Evolves the input images "x" for "iters" steps
+        Forward pass, computes the new state:
+        x_t+1 = base_CA(x_t) + new_CA(x_t)
 
         Args:
-            x (torch.Tensor): Previous CA state
-            iters (int): Number of steps to perform
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
+            x (torch.Tensor): Current state
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
 
         Returns:
-            torch.Tensor: dx
+            torch.Tensor: Next state
         """
-        self.eval()
-        with torch.no_grad():
-            for i in range(iters):
-                x = self.forward(x, angle=angle, step_size=step_size)
+        pre_life_mask = get_living_mask(x, 3)
 
-        return x
+        dx_new = self.new_CA.compute_dx(x, angle, step_size)
+        dx_old = self.old_CA.compute_dx(x, angle, step_size)
+        x += dx_new + dx_old
 
-    def test_CA(self,
-                criterion: Callable[[torch.Tensor], torch.Tensor],
-                images: torch.Tensor,
-                evolution_iters: int = 1000,
-                batch_size: int = 32) -> torch.Tensor:
-        """Evaluates the model over the given images by evolving them
-            and computing the loss against the target at each iteration.
-            Returns the mean loss at each iteration
+        post_life_mask = get_living_mask(x, 3)
+        life_mask = pre_life_mask & post_life_mask
 
-        Args:
-            criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
-            images (torch.Tensor): Images to evolve
-            evolution_iters (int, optional): Evolution steps. Defaults to 1000.
-            batch_size (int, optional): Batch size. Defaults to 32.
+        self.new_cells = dx_new * life_mask.float()
 
-        Returns:
-            torch.Tensor: tensor of size (evolution_iters) 
-                which contains the mean loss at each iteration
-        """
-
-        self.eval()
-        evolution_losses = torch.zeros((evolution_iters), device="cpu")
-        eval_samples = images.size()[0]
-
-        n = 0
-        with torch.no_grad():
-            for i in range(0, eval_samples, batch_size):
-                inputs = images[i:i+batch_size].to(self.device)
-                for j in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    loss, _ = criterion(inputs)
-
-                    # Updates the average error
-                    evolution_losses[j] = (n*evolution_losses[j] +
-                                           batch_size*loss.cpu()) / (n+batch_size)
-
-                n += batch_size
-
-        return evolution_losses
+        return x * life_mask.float()
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -162,13 +122,13 @@ class CAModel(nn.Module):
             for j in range(pool.size // batch_size):
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
-                self.update(inputs)
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
                 # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
                     inputs = self.forward(inputs)
+                    criterion.add_perturbation(self.new_cells)
 
                 # calculate the loss of the inputs and return the ones with the biggest loss
                 loss, idx_max_loss = criterion(inputs, n_max_losses)
@@ -215,22 +175,3 @@ class CAModel(nn.Module):
             self.losses.append(epoch_loss)
             print(f"epoch: {i+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
-
-    def plot_losses(self, log_scale=True):
-        """Plots the training losses of the model
-
-        Args:
-            log_scale (bool, optional): Whether to log scale the loss.
-            Defaults to True.
-        """
-        n = list(range(1, len(self.losses) + 1))
-        pl.plot(n, self.losses)
-        pl.xlabel("Epochs")
-        pl.ylabel("Loss")
-        if log_scale:
-            pl.yscale("log")
-            
-        pl.show()
-
-    def update(self,x):
-        return 

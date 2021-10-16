@@ -1,22 +1,16 @@
 import torch
+from torch import nn
 from typing import Tuple, List
 
 from .utils import *
 
 
-def image_distance(x: torch.Tensor, y: torch.Tensor, order=2) -> torch.Tensor:
-    """Returns the distance between two batches of images
+def n_largest_indexes(array: list, n: int = 1) -> list:
+    """returns the indexes of the n largest elements of the array
 
-    Args:
-        x (torch.Tensor): First batch of images
-        y (torch.Tensor): Second batch of images
-        order (int, optional): Order of the norm. Defaults to 2.
-
-    Returns:
-        torch.Tensor: Distance between each of the images in the batches
+    url:https://stackoverflow.com/questions/16878715/how-to-find-the-index-of-n-largest-elements-in-a-list-or-np-array-python
     """
-
-    return torch.mean(torch.abs(x - y)**order, dim=[1, 2, 3])
+    return sorted(range(len(array)), key=lambda x: array[x])[-n:]
 
 
 class NCALoss:
@@ -60,7 +54,7 @@ class NCALoss:
                 Average loss of all images in the batch, 
                 index of the image with maximum loss
         """
-        
+
         alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
         predicted = torch.cat((x[:, :3], alpha), dim=1)
 
@@ -92,13 +86,44 @@ class MultipleCALoss(NCALoss):
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
     """
+
     def __call__(self, x, n_max_losses=1):
-        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1,2])
-        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1,2])
+        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
+        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells)
 
         loss, idx_max_loss = super().__call__(x, n_max_losses)
 
         loss = loss + original_cell_ratio.sum()
 
+        return loss, idx_max_loss
+
+
+class NCADistance(NCALoss):
+    def __init__(self, model1: nn.Module, model2: nn.Module, target: torch.Tensor,
+                 criterion=torch.nn.MSELoss, l: float = 0., alpha_channels: Tuple[int] = [3]):
+        """Extension of the NCALoss that penalizes the distance between two
+        models using the parameter l
+
+        """
+        self.model1 = model1
+        self.model2 = model2
+        super().__init__(target, criterion, l, alpha_channels)
+
+    def __call__(self, x: torch.Tensor, n_max_losses: int = 1) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Returns the loss and the index of the image with maximum loss
+
+        Args:
+            x (torch.Tensor): Images to compute the loss
+            n (int): The number of indexes with the max loss to return
+
+        Returns:
+            Tuple(torch.Tensor, torch.Tensor): 
+                Average loss of all images in the batch, 
+                index of the image with maximum loss
+        """
+
+        loss, idx_max_loss = super().__call__(x, n_max_losses)
+
+        loss += self.l * model_distance(self.model1, self.model2)
         return loss, idx_max_loss
