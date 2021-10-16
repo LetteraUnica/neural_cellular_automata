@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -l nodes=1:ppn=48,mem=4gb
-#PBS -l walltime=1:00:00
+#PBS -l walltime=4:00:00
 #PBS -N hyperparam_search
 
 cd $PBS_O_WORKDIR

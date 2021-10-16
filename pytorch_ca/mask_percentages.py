@@ -34,16 +34,7 @@ torch.backends.cudnn.benchmark = True # Speeds up things
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-# Imports the target emoji
-target = read_image(PATH+"images/firework.png", ImageReadMode.RGB_ALPHA).float()
-target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
-target = RGBAtoFloat(target)
-#imshow(target)
-target = target.to(device)
-
-
 #import the models
-
 old_CA=NeuralCA(device=device)
 new_CA=NeuralCA(device=device)
 
@@ -97,3 +88,4 @@ model.train_CA(
 
 model.new_CA.save(f"mask_"+str(config['percentage']*100)+ "%.pt",overwrite=True)
 wandb.save("mask_"+str(config['percentage']*100)+ "%.pt")
+

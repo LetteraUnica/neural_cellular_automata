@@ -19,10 +19,10 @@ PATH=''
 default_config={
     'percentage':0.97,
     'gamma':0.9404,
-    'lr1':0.002412,
-    'lr2':0.04302,
+    'lr1':0.002,
+    'lr2':0.002,
     'batch_size': 85,
-    'n_epochs':100,
+    'n_epochs':300,
     'n_max_loss_ratio':8,
     'step_size':48.328
     }
