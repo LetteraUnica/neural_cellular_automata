@@ -14,7 +14,7 @@ def make_video(CA: "CAModel",
                fname: str = None,
                fps: int = 10,
                initial_video: torch.Tensor = None,
-               converter: callable = RGBAtoRGB,
+               converter: callable = None,
                **kwargs) -> torch.Tensor:
     """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
         of the evolution of the CA starting from a given initial state
@@ -40,9 +40,11 @@ def make_video(CA: "CAModel",
     if init_state is None:
         n_channels = CA.n_channels
         init_state = make_seed(1, n_channels-1, 48, alpha_channel=3)
-
     init_state = init_state.to(CA.device)
 
+    # create the converter if there is none
+    if converter==None:
+        converter=tensor_to_RGB(CA=CA)
     if type(converter) is not list:
         converter = [converter]
     l = len(converter)
@@ -121,7 +123,7 @@ def switch_video(old_CA: "CAModel",
                  regenerating: bool = False,
                  fname: str = None,
                  fps: int = 10,
-                 converter: callable = RGBAtoRGB,
+                 converter: callable = None,
                  **kwargs) -> torch.Tensor:
     """Returns the video (torch.Tensor of size (n_iters, init_state.size()))
         of the evolution of two CAs starting from a given initial state,
@@ -145,6 +147,9 @@ def switch_video(old_CA: "CAModel",
             since the CA is a small image we need to rescale it
             otherwise it will be blurry. Defaults to 8.
         fps (int, optional): Fps of the video. Defaults to 10.
+        converter (callable, optional):
+            function that converts the torch.Tensor of the state to an image.
+            Defaults to RGBAtoRGB
     """
 
     initial_video, initial_state = make_video(
