@@ -78,12 +78,12 @@ class VirusGenerator:
                                 self.n_CAs, self.alpha_channel, self.model_device)
 
         batch_size = 32
+        self.n_steps=torch.empty(n_images)
         i = 0
-        while i < n_images:
-            start_point[i:i+batch_size] = self.CA.evolve(
-                start_point[i:i+batch_size], self.iter_func()[0])
-            i += batch_size
+        for i in range(0,n_images,batch_size):
+            n_steps=self.iter_func()[0]
+            start_point[i:i+batch_size] = self.CA.evolve(start_point[i:i+batch_size],n_steps)
+            self.n_steps[i:i+batch_size]=n_steps
 
-        # TODO check if the line below should be deactivated in some cases
         start_point = add_virus(start_point, -2, -1, self.virus_rate)
         return start_point.to(device)

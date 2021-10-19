@@ -77,7 +77,6 @@ class MultipleCA(CAModel):
         self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
                     for i in range(n_CAs)]
 
-        self.mask_channels = list(range(n_channels, n_channels+n_CAs))
         self.alpha_channel = [*range(n_channels,n_channels+n_CAs)]
 
     def forward(self, x: torch.Tensor,

@@ -22,13 +22,13 @@ default_config={
     'lr1':0.002,
     'lr2':0.002,
     'batch_size': 85,
-    'n_epochs':100,
+    'n_epochs':500,
     'n_max_loss_ratio':8,
     'step_size':48.328
     }
 
 #improve this code to have better monitorning
-wandb.init(project='NeuralCA', entity="neural_ca", config=default_config)
+wandb.init(project='NeuralCA', entity="quick_virus", config=default_config)
 config=wandb.config
 print(config)
 
@@ -57,10 +57,6 @@ target = T.Resize((TARGET_SIZE, TARGET_SIZE))(target)
 target = RGBAtoFloat(target)
 target = target.to(device)
 
-# Zero out gradients on the first CA
-#for param in model.CAs[0].parameters():
-#    param.requires_grad = False
-
 # Set up the training 
 params = model.CAs[1].parameters()
 optimizer = torch.optim.Adam(params, lr=config['lr1'])
@@ -80,7 +76,9 @@ model.train_CA(
     kind="regenerating",
     n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
     skip_damage=2,
-    reset_prob=1/40)
+    reset_prob=1/40,
+    evolution_iters=[5,10]
+    )
 
 
 model.CAs[1].save(f"model.pt",overwrite=True)
