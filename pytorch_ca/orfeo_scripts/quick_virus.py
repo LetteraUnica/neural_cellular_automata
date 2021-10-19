@@ -13,22 +13,22 @@ N_CHANNELS = 15        # Number of CA state channels
 TARGET_PADDING = 8     # Number of pixels used to pad the target image border
 TARGET_SIZE = 40       # Size of the target emoji
 IMAGE_SIZE = TARGET_PADDING+TARGET_SIZE
-POOL_SIZE = 512
+POOL_SIZE = 2**11
 CELL_FIRE_RATE = 0.5
 PATH=''
 default_config={
     'percentage':0.97,
     'gamma':0.9404,
-    'lr1':0.002,
-    'lr2':0.002,
-    'batch_size': 85,
+    'lr1':0.02,
+    'lr2':0.02,
+    'batch_size': 2**9,
     'n_epochs':500,
     'n_max_loss_ratio':8,
     'step_size':48.328
     }
 
 #improve this code to have better monitorning
-wandb.init(project='NeuralCA', entity="quick_virus", config=default_config)
+wandb.init(project='quick_virus', entity="neural_ca", config=default_config)
 config=wandb.config
 print(config)
 
@@ -40,7 +40,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = MultipleCA(N_CHANNELS, n_CAs=2, device=device)
 
 model.CAs[0].load_state_dict(torch.load(PATH+'Pretrained_models/firework_growing.pt', map_location=device))
-model.CAs[1].load_state_dict(torch.load(PATH+'Pretrained_models/glamorous-sweep-21.pt', map_location=device))
+model.CAs[1].load_state_dict(torch.load('Pretrained_models/growing_regeneration_distance.pt', map_location=device))
 
 model.to(device)
 
@@ -48,7 +48,9 @@ wandb.watch(model, log_freq = 32)
 
 
 #generate the pool
-generator=VirusGenerator(N_CHANNELS,IMAGE_SIZE,2,model,config['percentage'])
+def prova():return [randint(40,50)]
+generator=VirusGenerator(N_CHANNELS,IMAGE_SIZE,2,model,config['percentage'],iter_func=prova)
+
 pool = SamplePool(POOL_SIZE, generator)
 
 # Imports the target emoji
@@ -77,7 +79,7 @@ model.train_CA(
     n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
     skip_damage=2,
     reset_prob=1/40,
-    evolution_iters=[5,10]
+    evolution_iters=[5,15]
     )
 
 
