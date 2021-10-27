@@ -48,7 +48,9 @@ class VirusCA(CAModel):
         self.new_cells = (torch.rand_like(x[:, 0:1, :, :]) < self.mutation_probability).float()
         self.old_cells = 1. - self.new_cells
 
-    def update(self,x):
+        self.initialized = True
+
+    def update(self, x):
         self.update_cell_mask(x)
 
     def set_cell_mask(self, mutation_mask: torch.Tensor):

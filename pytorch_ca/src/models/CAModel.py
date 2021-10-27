@@ -161,9 +161,10 @@ class CAModel(nn.Module):
             for j in range(pool.size // batch_size):
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
-                self.update(inputs)
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
+
+                self.update(inputs)
 
                 # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
