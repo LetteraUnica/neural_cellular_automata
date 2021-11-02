@@ -125,3 +125,6 @@ class SamplePool(Dataset):
 
     def reset(self):
         self.images = self.generator(self.size, self.device)
+
+    def size(self):
+        return self.size
