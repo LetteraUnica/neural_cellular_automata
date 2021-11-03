@@ -63,8 +63,8 @@
     <dt-cite key="handberg2008stem"></dt-cite>.
     Neural Cellular Automata are very good representation of living organisms, scientists managed
     to create cellural automatas that are able to represent any image, some of them after a while
-    decay (figure <a href="#unstable">2</a>), some of them reach a steady state,
-    and some of them are able to regenerate if damaged (figure <a href="#stable">1</a>)
+    decay (figure <a href="#unstable">2</a>), others manage to maintain the final state, and some
+    of them are even able to regenerate damage. (figure <a href="#stable">1</a>)
     <dt-cite key="mordvintsev2020growing"></dt-cite>
   </p>
   <figure class="l-middle outset">
@@ -84,6 +84,19 @@
 
   
   <dt-byline></dt-byline>
+  <h2><a class="marker" href="#intro" id="intro"></a>Introduction</h2>
+  <p>
+    Throughout this paper we are going to use different terms to refer to different types of cellular automatas:
+    <ul>
+      <li>With “Growing” with capital letter we indicate a neural cellular automata that grows into a final state and then decays, this represents growing and aging biological organisms</li>
+      <li>With “Persistent” we indicate a cellular automaton that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
+      <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan,<dt-fn>This means that a Regenerating CA is also Persistent</dt-fn> biological examples of these are the  planarians.</li>
+    </ul>
+  </p>
+  <p>
+    Biological organisms often times blur the line between this categories, for example most aging organisms like ourselves are able to heal wounds and some like salamanders even are able regenerate missing limbs, but for practical reasons we are going to stick with this 3 categories
+  </p>
+  <p>Sometimes we will abbreviate Cellular Automata with CA to make the descriptions less verbose</p>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
   <p>
     First of all we wanted to know if it is possible to take a cellular automata
@@ -331,6 +344,16 @@
 </dt-article>
 
 <dt-appendix>
+  <h3>Glossary</h3>
+  <ul>
+    <li>Growing</li>
+    <li>Persist</li>
+    <li>Regenerating</li>
+    <li>Switch</li>
+    <li>Mask</li>
+    <li>Virus</li>
+    <li>Perturbation</li>
+  </ul>
 </dt-appendix>
 
 <script type="text/bibliography">
