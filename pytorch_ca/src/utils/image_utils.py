@@ -245,7 +245,6 @@ class tensor_to_RGB():
         return GrayscaletoCmap(tensor[0, self.channel])
 
     def two(self, tensor):
-        tensor=tensor[0]
         t=torch.empty([2,*tensor[0].size()[1:]])
         t[0]=tensor[0,self.channel[0]]
         t[1]=tensor[0,self.channel[1]]        
