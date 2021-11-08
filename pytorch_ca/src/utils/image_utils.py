@@ -98,7 +98,7 @@ def two_channels(image: torch.Tensor, colors=torch.tensor([[1,0,0.1],[1,1,0.1]])
         torch.Tensor: RGB image in 0-1 range
     """
     
-    assert image.dim() == 3, "image have 3 dimentions"
+    assert image.dim() == 3, "image must have 3 dimentions"
     assert image.size(0) == 2, "image must have 2 channels"
     assert colors.shape==(2,3), "colors must be a 2x3 tensor"
 
@@ -221,7 +221,7 @@ class tensor_to_RGB():
 
         if type(function) == list and len(function) == 2 and type(function[0])==int:
             self.channel = function
-            self.function = self.two_channels
+            self.function = self.two
 
     def __call__(self, tensor: torch.Tensor):
         """Converts a tensor to RGB
@@ -245,7 +245,8 @@ class tensor_to_RGB():
         return GrayscaletoCmap(tensor[0, self.channel])
 
     def two(self, tensor):
-        t=torch.empty([2,tensor.size()[1:]])
-        t[0]=tensor[self.channel[0]]
-        t[1]=tensor[self.channel[1]]        
+        tensor=tensor[0]
+        t=torch.empty([2,*tensor[0].size()[1:]])
+        t[0]=tensor[0,self.channel[0]]
+        t[1]=tensor[0,self.channel[1]]        
         return two_channels(t) 
