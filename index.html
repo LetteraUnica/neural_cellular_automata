@@ -135,13 +135,21 @@
     Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
     however was a complete failure as can be seen from the video below where the switch happens at $n=30$
   </p>
-  <p>INSERT VIDEO</p>
+  <figure class="l-middle side">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/rswitch40.mp4" type="video/mp4" id="boom">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      This is what happens when we evolve the CA with a $f_1$ that is Growing and then
+      switch to a $f_2$ that is Regenerating after 40 steps
+    </figcaption>
+  </figure>
   <p>
     This outcome at first sight might be surprising, because as can be seen in the first video the visible
     RGBA channels of the cell evolve in a similar fashion in the growing and regenerating CA. The hidden
     channels however, which are the ones used from the cells to transfer information between them, are
-    in general completely different(we don’t restrict in any way the values that the hidden channels must take),
-    which makes the two CA incompatible.
+    in general completely different, which makes the two CA incompatible.
   </p>
   <p>
     A simple example is: suppose that $f_1$ uses hidden channel $1$ to tell if the cell has a dead neighbor,
@@ -160,17 +168,22 @@
       it didn’t want to converge
     </dt-fn>
   </p>
-  <p>Below you can see the images of the training pool INSERIRE IMMAGINI</p>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 1: Here the rule switches at the 60th step, you can clearly see when the switch happens
+  <figure class="l-middle outset">
+    <img src="pytorch_ca/Presentation_images/collage switch.png" alt="training pool" width="100%" height="100%">
+    <figcaption>
+      Figure 3: Training pool used to train the model
     </figcaption>
   </figure>
   <p>
     So, does it work if we train $f_2$ with this method?
     The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
   </p>
+  <figure class="l-middle side">
+    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 1: Here the rule switches at the 60th step, you can clearly see when the switch happens
+    </figcaption>
+  </figure>
   <h3>Some considerations</h3>
   <p>
     As already explained above, different CA rules will use different encodings to store the informations of
