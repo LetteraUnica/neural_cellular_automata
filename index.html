@@ -82,6 +82,10 @@
 
 
 
+
+
+
+
   
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#intro" id="intro"></a>Introduction</h2>
@@ -102,7 +106,7 @@
     First of all we wanted to know if it is possible to take a cellular automata
     in the growing mode and after a arbitrary number $n$ of steps 
     <dt-fn> By arbitrary we mean any number of steps before the cellular automata decays</dt-fn>
-    we switch the update rule in order to make it regenerating. We can write it mathematically like this 
+    we switch the update rule in order to make it Regenerating. We can write it mathematically like this 
     $$
       \begin{cases}
         x_{new}=f_1(x_{old})\quad \textrm{ if }\quad n_{iter} \le n\\
@@ -111,45 +115,84 @@
     $$
   </p>
   <p>
-    Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism regenerating
+    Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism Regenerating
     <dt-fn>if we change $n$ we don't need to change $f_2$</dt-fn>
   </p>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 1: Here the rule switches at the 60th step
-    </figcaption>
-  </figure>
 
   <p>
     If we want to make a parallel with a biological system this is equivalent to asking:
     Is it possible to make an organism immortal if we have the ability to change its DNA in every single cell
-    at once? 
-  </p>
-  <p>
-    The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
-  </p>
-  <p>
-    In order to achieve this we took a growing CA and evolved it for a number
-    of steps between 0 and 60, then we took the final state and passed it to a
-    new cellular automata that we are going to call “Switch”.
-  </p>
-  <p>
-    So we trained Switch to be able to become a Regenerating cellular automata starting from an input Growing
+    at once?
     <dt-fn>
-      The training seemed to be highly dependent from the starting parameters,
-      in particular if we started from a Regenerating CA the net seemed to converge faster,
-      if we took another CA, often times it wasn't able to converge
+      This is not entirely a correct statement, there are more than one way to change the update rule of
+      a biological system, one of them is changing the DNA, but there are many other ways to change the update rule,
+      for example you can do so by adding some substances in the organism.
+      There is also the possibility that some changes to the update rule are impossible to encode in the DNA or
+      in any other form of agent that is able to influence an organism.
+    </dt-fn> 
+  </p>
+  <p>
+    Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
+    however was a complete failure as can be seen from the video below where the switch happens at $n=30$
+  </p>
+  <p>INSERT VIDEO</p>
+  <p>
+    This outcome at first sight might be surprising, because as can be seen in the first video the visible
+    RGBA channels of the cell evolve in a similar fashion in the growing and regenerating CA. The hidden
+    channels however, which are the ones used from the cells to transfer information between them, are
+    in general completely different(we don’t restrict in any way the values that the hidden channels must take),
+    which makes the two CA incompatible.
+  </p>
+  <p>
+    A simple example is: suppose that $f_1$ uses hidden channel $1$ to tell if the cell has a dead neighbor,
+    while $f_2$ uses hidden channel $2$ to pass the same information. If we switch the update rule midway $f_2$
+    can’t understand what $f_1$ has encoded and will likely lead to a disruption of the organism.
+  </p>
+  <p>
+    This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
+    regenerating. The only difference between training a Regenerating CA and $f_2$ is the starting pool: instead
+    of starting with a single dot on the canvas, the pool is initialized by having each element be the output
+    of n steps of the Growing CA $f_1$. That way $f_2$ learns to start from a state of a Growing CA and reach the
+    state of a Regenereting one.
+    <dt-fn>
+      The training seemed to be highly dependent from the starting parameters, in particular if we
+      started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times
+      it didn’t want to converge
     </dt-fn>
   </p>
+  <p>Below you can see the images of the training pool INSERIRE IMMAGINI</p>
+  <figure class="l-middle side">
+    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Video 1: Here the rule switches at the 60th step, you can clearly see when the switch happens
+    </figcaption>
+  </figure>
   <p>
-    Here are some things you cannot do with our procedure: 
+    So, does it work if we train $f_2$ with this method?
+    The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
+  </p>
+  <h3>Some considerations</h3>
+  <p>
+    As already explained above, different CA rules will use different encodings to store the informations of
+    the organisms, so here are some other things that you can’t do:
     <ul>
-      <li>You cannot just swap the Growing rule with another Regenerating rule</li>
-      <li>You cannot use a Switch CA for a Growing CA which has not been trained for</li>
-      <li>You cannot salvage a Growing rule that has decayed</li>
+      <li>
+        You can’t use a Switch CA for a Growing one which has not been trained for
+        <dt-fn>The Switch rule is tailor-made to be able to understand the specific encoding of the Growing rule</dt-fn>
+      </li>
+      <li>You cannot just swap the Growing rule with another Regenerating (or Persist) rule
+        <dt-fn>For the same reason of the one above and because the regenerating (and the persist) are trained with different starting points </dt-fn>
+      </li>
+      <li>You cannot salvage a Growing rule that has decayed
+        <dt-fn>We are not trying to resuscitate the dead, and so we didn’t train for it</dt-fn>
+      </li>
     </ul>
   </p>
+
+
+
+
+
 
 
 
@@ -159,16 +202,22 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-2" id="section-2">2</a> Virus with fixed mask</h2>
   <p>
-    “The Switch” has some big problems that should be addressed. First of all during the transition
-    from one rule to the next the system undergoes a major restructuring. If this was a living
-    organism that needs it’s organs to function 24h a day it will probably die before the transition
-    is complete, and realistically speaking if we want to make a grown organism immortal we aren’t
-    going to have the precision necessary to be able to influence every single cell of the organism
-    without missing even one.
+    “The Switch” some big problems that should be addressed.
   </p>
   <p>
-    As you can see from the video below, if some of the cells (marked in yellow)
-    don’t transition from $f_1$ to $f_2$ the system degrades
+    First of all during the transition from one rule to the next the system undergoes a major restructuring.
+    <dt-fn>
+      You can see from the video of the switch that when the switch happens the organism becomes amorphus.
+    </dt-fn>
+    If this was a living organism that needs it’s organs to function 24h a day it will probably die before
+    the transition is completed.
+  </p>
+  <p>
+    The second problem is that we need to change every single cell of the organism in order to make it immortal,
+    as missing even one could be catastrophic, however in practice we aren’t going to have the precision necessary
+    to be able to influence every single cell one organism without missing even one.
+    As you can see from the video above (below) if some of the cells (marked in yellow) don’t transition from $f_1$
+    to $f_2$ the system decays.
   </p>
   <figure class='l-middle'>
     <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain' id="mask_swich">
@@ -179,14 +228,13 @@
   </figure>
   <p>
     Some papers have been published on how to change global properties of a CA via adding some cells
-    that follow a different rule <dt-cite key="randazzo2021adversarial"></dt-cite>, so we tried to train
-    a $f_2$ that would be able to make a Growing CA into a Persist even if not all the cells follow $f_2$
-    after the switch has happened.
+    that follow a different rule <dt-cite key="randazzo2021adversarial"></dt-cite>, so the next thing
+    that we tried to do was to train a $f_2$ that would be able to make a Growing CA into a Persist even
+    if not all the cells follow $f_2$ after the switch has happened.
   </p>
   <p>
-    In the video below we show what happens with a CA rule trained to switch with 80% of the cells.
-    With this technique we were able to make the switch more flexible and as a bonus we were
-    able to avoid the restructuring phase
+    In the video we show what happens with a CA rule trained to switch 70% of the cells. With this technique
+    we were able to make the switch more flexible and as a bonus we were able to avoid the restructuring phase
     <dt-fn>
       This is because by having some of the old cells still around the new rule has to learn to
       collaborate with the old cellsto be able to reach a stationary state
@@ -208,6 +256,13 @@
     By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
     or higher than the minimum percentage
   </p>
+
+
+
+
+
+
+
 
 
 
@@ -295,6 +350,12 @@
   
   
   
+
+
+
+
+
+
   
   
   <dt-byline></dt-byline>
