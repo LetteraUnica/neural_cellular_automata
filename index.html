@@ -282,6 +282,13 @@
 
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
+  <figure class="l-middle side">
+    <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain' id="evo">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      The idea is that the new cells learn to overtake the old one and than make the organism immortal,
+      so you need to inject fewer cells in the new organism
+    </figcaption>
+  </figure>
   <p>
     One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
     overtakes the other. This is very important because having the new cells overtake the old one helps
@@ -440,9 +447,9 @@
 <dt-appendix>
   <h3>Glossary</h3>
   <ul>
-    <li>Growing</li>
-    <li>Persist</li>
-    <li>Regenerating</li>
+    <li>Growing: CA trained to reach the target image in a finite number of steps, but then it can do whatever it wants</li>
+    <li>Persist: CA trained to reach the target image in a finite number of steps and then keep its shape </li>
+    <li>Regenerating: CA trained to reach the target image in a finite number of steps, keep its shape and be able to resist damage</li>
     <li>Switch</li>
     <li>Mask</li>
     <li>Virus</li>
