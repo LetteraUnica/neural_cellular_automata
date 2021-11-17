@@ -390,14 +390,14 @@
     because we can answer the question: 
   </p>
   <p>
-    How much do we need to change the rule (or DNA) in order to have a non-aging organism? 
+    How much do we need to change the rule (or DNA) in order to have a newborn non-aging organism? 
   </p>
   <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
 
   <p>
     We model the perturbation as a function of the cell state, note that the perturbation can be any
     function of the cell state, however we chose to use another CA to model it. Finally we compute the
-    next cell state as a sum of both the growing and the perturbation, w_new = w_growing + Delta w.
+    next cell state as a sum of both the growing and the perturbation
     $$
       w_\textrm{new}=w_\textrm{growing}+ \Delta w
     $$
@@ -410,15 +410,25 @@
   </figure>
   <p>
     To prevent that the perturbation will overwrite the growing part we added an additional term in the loss,
-    this term penalizes the L2 norm of the perturbation $||\Delta w||^2$, this term keeps the perturbation
+    this term penalizes the L2 norm of the perturbation $|\Delta w|^2$, this term keeps the perturbation
     weights as low as possible and avoids that the perturbation will overwrite the growing part of the rule
   </p>
   <p>
-    It turns out that a very little perturbation (about 20% w.r.t. the total norm) can
-    make the growing CA a persistent or even a regenerating one, with minimal effect
-    on the quality of the image as can be seen on the video here on the side. 
+    It turns out that a very little perturbation can make the growing CA a persistent or even
+    a regenerating one. Below there is some data and on the side a video that shows the resulting CA output
+    $$
+    \frac{|\Delta w|^2}{|w_\textrm{growing}|^2}=0.17
+    $$
+    $$
+    \frac{\langle w_{\textrm{new}}, w_\textrm{growing}\rangle}{|w_\textrm{growing}||w_{\textrm{new}}|}=0.914
+    $$
   </p>
-  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Conclusion</h2>
+  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Unexpected Results</h2>
+    <p>
+    If you take this model and you use it as a Switch it works, not only that, it also works as a Mask with
+    a decent performance up to a percentage with 80%
+    </p>
+  <h3><a class="marker" href="#section-4.3" id="section-4.3">4.3</a> Conclusion</h2>
   <p>
     The rule that the growing learned is very close to a persistent/regenerating one, could this
     mean that we need a very little change in the DNA to make a real organism immortal? 
