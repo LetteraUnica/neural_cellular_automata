@@ -298,19 +298,12 @@
   <p>
     For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
   </p>
-  <figure class="l-page side">
-    <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain' id="evolving_mask">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Image 1: In this image the red cells evolve following $f_1$, the yellow
-      follow $f_2$ and the orange ones follow both
-    </figcaption>
-  </figure>  
   <p>
     Before, a cell state was represented by a state vector having the first 4 components representing
     the RGBA of the pixel and the remaining were hidden channels that helped the CA pass more
     information between its cells. If the $\alpha$ channel (transparency) is >0.1 it means
     that the cell is alive, otherwise it’s dead
-  </p>
+  </p> 
   <p>
     If we are going to have two different types of cells we are going to need two alpha channels.
     Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is $>0.1$, then
@@ -319,42 +312,60 @@
   <p>
     When both alphas are below $0.1$, then the cell evolves with the sum of both updates.    
   </p>
+  <div class="l-middle">
+    <figure style='float:left; height: 50%; width: 50%;'>
+      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain' id="evolving_mask">
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Image 1: In this image the red cells evolve following $f_1$, the yellow
+        follow $f_2$ and the orange ones follow both
+      </figcaption>
+    </figure>
+    <figure style='float:right; height: 50%; width: 50%;'>
+      <img src="pytorch_ca/images/Canali.svg" style='height: 100%; width: 100%; object-fit: contain'>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Image 2: On the vector on the left represents the old represetation of the CA state, and the one
+        on the right is the new representation. This new representation of the cells has an additional
+        $\alpha$ channel and to make the code simpler the alpha channels now are the last two components 
+      </figcaption>
+    </figure> 
+  </div>  
   <div class="l-body">
-  <details>
-    <p><summary>Show the code</summary></p>
-    <dt-code block language="python">
-      def multiple_living_mask(alphas: torch.Tensor):
-          """It gives the mask where the CA rules apply in the case where multiple alphas
-          are included in the CA
+    <details>
+      <p><summary>Show the code</summary></p>
+      <dt-code block language="python">
+        def multiple_living_mask(alphas: torch.Tensor):
+            """It gives the mask where the CA rules apply in the case where multiple alphas
+            are included in the CA
 
-          Args:
-              alphas (torch.Tensor):
-                  The first index refers to the batch, the second to the alphas,
-                  the third and the fourth to the pixels in the image
+            Args:
+                alphas (torch.Tensor):
+                    The first index refers to the batch, the second to the alphas,
+                    the third and the fourth to the pixels in the image
 
-          Returns:
-              (torch.Tensor) A tensor with bool elements with the same shape on the input tensor
-              that represents where each CA rule applies
-          """
+            Returns:
+                (torch.Tensor) A tensor with bool elements with the same shape on the input tensor
+                that represents where each CA rule applies
+            """
 
-          # gives the biggest alpha per pixel
-          biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
-          # the free cells are the ones who have all of the alphas lower than 0.1
-          free = biggest < 0.1
+            # gives the biggest alpha per pixel
+            biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
+            # the free cells are the ones who have all of the alphas lower than 0.1
+            free = biggest < 0.1
 
-          # this is the mask where already one of the alpha is bigger than 0.1, if more than one
-          # alpha is bigger than 0.1, than the biggest one wins
-          old = (alphas == biggest) & (alphas >= 0.1)
-          # this is the mask of the cells neighboring each alpha
-          neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
-          # the cells where the CA can expand are the one who are free and neighboring
-          expanding = free & neighbor
-          # the CA evolves in the cells where it can expand and the ones where is already present
-          mask = expanding | old
+            # this is the mask where already one of the alpha is bigger than 0.1, if more than one
+            # alpha is bigger than 0.1, than the biggest one wins
+            old = (alphas == biggest) & (alphas >= 0.1)
+            # this is the mask of the cells neighboring each alpha
+            neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
+            # the cells where the CA can expand are the one who are free and neighboring
+            expanding = free & neighbor
+            # the CA evolves in the cells where it can expand and the ones where is already present
+            mask = expanding | old
 
-          return mask #the mask has the same shape of alphas and the values inside ar bool
-    </dt-code>
-  </details></div>
+            return mask #the mask has the same shape of alphas and the values inside ar bool
+      </dt-code>
+    </details>
+  </div>
 
   <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Conclusion</h2>
   <p>
@@ -384,24 +395,23 @@
   <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
 
   <p>
-    We model the perturbation as a function of the cell state $x$, note that the perturbation can
-    be any function of the cell state, however we chose to use another CA to model it. Finally
-    we compute the next cell state as a sum of both the growing and the perturbation $\Delta f$:
+    We model the perturbation as a function of the cell state, note that the perturbation can be any
+    function of the cell state, however we chose to use another CA to model it. Finally we compute the
+    next cell state as a sum of both the growing and the perturbation, w_new = w_growing + Delta w.
     $$
-      x_{new}=f_{grow}(x_{old})+ \Delta f(x_{old})
+      w_\textrm{new}=w_\textrm{growing}+ \Delta w
     $$
   </p>
   <figure class="l-middle side">
     <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-      Video 3: Perturbation with $\lambda=10$
+      Video 3: Perturbation with $\lambda=10$ METTI QUELLA GIUSTA NUOVA
     </figcaption>
   </figure>
   <p>
-    To prevent that the perturbation will overwrite the growing part we added an additional term
-    in the loss, which penalizes the $\mathbf L_2$ norm of the perturbation $||\Delta f||_2$,
-    the goal is to keep the perturbation as low as possible and prevent it overwriting the growing
-    part of the rule
+    To prevent that the perturbation will overwrite the growing part we added an additional term in the loss,
+    this term penalizes the L2 norm of the perturbation $||\Delta w||^2$, this term keeps the perturbation
+    weights as low as possible and avoids that the perturbation will overwrite the growing part of the rule
   </p>
   <p>
     It turns out that a very little perturbation (about 20% w.r.t. the total norm) can
