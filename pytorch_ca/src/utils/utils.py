@@ -51,25 +51,3 @@ def make_squares(images, target_size=None, side=side, constant_side=False):
                2, y-side(target_size, constant_side)//2:y+side(target_size, constant_side)//2] = 0.
 
     return images.clone()
-
-
-def number_of_params(model: nn.Module):
-    """Given a torch model returns the number of parameters"""
-    return sum(p.numel() for p in model.parameters())
-
-
-def parameters_to_vector(model: nn.Module):
-    """Given a torch model returns a torch tensor with all its parameters"""
-    return torch.cat([p.data.view(-1) for p in model.parameters()], dim=0)
-
-
-def cosine_similarity(v1: torch.Tensor, v2: torch.Tensor):
-    """Computes the cosine similarity between two vectors"""
-    v1, v2 = v1 / v1.norm(), v2 / v2.norm()
-    return v1 @ v2
-
-
-def model_distance(model1: nn.Module, model2: nn.Module):
-    """Computes the distance between the parameters of two models"""
-    p1, p2 = parameters_to_vector(model1), parameters_to_vector(model2)
-    return nn.MSELoss()(p1, p2)
