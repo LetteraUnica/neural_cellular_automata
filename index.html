@@ -158,7 +158,7 @@
   </p>
   <p>
     We can show this behaviour empirically by visualizing the hidden states of the two CAs after they reached
-    the target state, in particular below we plotted the 6th hidden state alter 300 steps of two regenerating CAs trained independently.
+    the target state, in particular below we plotted the 6th hidden state after 300 steps of two regenerating CAs trained independently.
   </p>
 
   <figure class='l-body'>
@@ -276,11 +276,10 @@
     </figcaption>
   </figure>
   <p>
-    From our tests we need a bare minimum of x% of new cells to be able to make the Growing CA Persist,
-    in this graph we show you the final loss as a function of the percentage of cells substituted
+    By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
+    or higher than the minimum percentage
   </p>
-  
-  <figure class='l-middle'>
+  <figure class='l-page side'>
     <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Figure: Evaluation loss as the percentage of cells substituted changes, to have a figure that resembles the target
@@ -288,25 +287,40 @@
       while only the ones with more than 95% of the cells substituted survives until the end
     </figcaption>
   </figure>
-
+  <p>
+    One of the problems is that the efficacy of the mask decreases as you increase the number of steps,
+    however it significantly increase the lifespan of the CA.
+  </p>
+  <p>
+    From our tests we need a bare minimum of 70% of new cells to be able to increase the lifespan
+    of the growing CA of a order of magnitude and at least 95% of new cells to be able to do this indefenetly.
+  </p>
+  <p>  
+    In this graph we show you the final loss as a function of the percentage of cells substituted with
+    the Growing rule as a comparison
+  </p>
+  
   <p>
     Below we plot some images and the corresponding losses
   </p>
 
-  <figure class='l-middle'>
+  <div style="height:10px"></div>
+
+  <figure class='l-body'>
     <img src="pytorch_ca/Presentation_images/loss_5e-3.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
     <img src="pytorch_ca/Presentation_images/loss_1e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%video">
     <img src="pytorch_ca/Presentation_images/loss_5e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
+    <div style="position:relative; height:30px">
+      <div style="position: absolute; width:33%; top:0px; text-align:center">$5\times 10^{-3}$</div>
+      <div style="position: absolute; width:33%; top:0px; left:210px; text-align:center">$1\times 10^{-2}$</div>
+      <div style="position: absolute; width:33%; top:0px; left:420px; text-align:center">$5\times 10^{-2}$</div>
+    </div>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure: Corresponging images as the loss changes, we can see that if the loss $$
+        Figure: Corresponging images as the loss changes, we can see that if the loss $\approx 5\times 10^2$
+        the image starts to deteriorate significantly
       </figcaption>
   </figure>
 
-
-  <p>
-    By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
-    or higher than the minimum percentage
-  </p>
 
 
 
