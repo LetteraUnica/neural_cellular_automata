@@ -44,7 +44,7 @@ def distance(x, y):
 def normalized_distance(x, y):
     """Distance between two vectors normalized by the number of elements and
      the norm of the first vector"""
-    return distance(x, y) / norm(x)
+    return distance(x, y) / torch.sqrt(norm(x)*norm(y))
 
 
 def distance_matrix(vectors, distance_fn=cosine_similarity):

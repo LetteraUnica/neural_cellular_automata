@@ -157,6 +157,21 @@
     can’t understand what $f_1$ has encoded and will likely lead to a disruption of the organism.
   </p>
   <p>
+    We can show this behaviour empirically by visualizing the hidden states of the two CAs after they reached
+    the target state, in particular below we plotted the 6th hidden state alter 300 steps of two regenerating CAs trained independently.
+  </p>
+
+  <figure class='l-body'>
+    <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
+    <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Figure 2: The 6th hidden state of two Regenerating CAs trained independently,
+        we can see that the CA on the left uses this hidden state to encode something similar to a x coordinate,
+        while the CA on the right uses the hidden state to represent a sort of distance from the center
+      </figcaption>
+    </figure>
+
+  <p>
     This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
     regenerating. The only difference between training a Regenerating CA and $f_2$ is the starting pool: instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
@@ -253,7 +268,7 @@
       collaborate with the old cellsto be able to reach a stationary state
     </dt-fn>
   </p>
-  <figure class='l-middle'>
+  <figure class='l-body'>
   <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain' id="80%mask">
   <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain' id="80%video">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
@@ -264,7 +279,30 @@
     From our tests we need a bare minimum of x% of new cells to be able to make the Growing CA Persist,
     in this graph we show you the final loss as a function of the percentage of cells substituted
   </p>
-  <p>*inserire grafico*</p>
+  
+  <figure class='l-middle'>
+    <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Figure: Evaluation loss as the percentage of cells substituted changes, to have a figure that resembles the target
+      the loss should be less than $10^{-2}$ so we can see that after 300 iterations most of the CAs decay,
+      while only the ones with more than 95% of the cells substituted survives until the end
+    </figcaption>
+  </figure>
+
+  <p>
+    Below we plot some images and the corresponding losses
+  </p>
+
+  <figure class='l-middle'>
+    <img src="pytorch_ca/Presentation_images/loss_5e-3.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
+    <img src="pytorch_ca/Presentation_images/loss_1e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%video">
+    <img src="pytorch_ca/Presentation_images/loss_5e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Figure: Corresponging images as the loss changes, we can see that if the loss $$
+      </figcaption>
+  </figure>
+
+
   <p>
     By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
     or higher than the minimum percentage
