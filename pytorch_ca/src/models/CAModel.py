@@ -91,7 +91,7 @@ class CAModel(nn.Module):
                 inputs = images[i:i+batch_size].to(self.device)
                 for j in range(evolution_iters):
                     inputs = self.forward(inputs)
-                    loss, _ = criterion(inputs)
+                    loss, _ = criterion(inputs,n_max_losses=0)
 
                     # Updates the average error
                     evolution_losses[j] = (n*evolution_losses[j] +

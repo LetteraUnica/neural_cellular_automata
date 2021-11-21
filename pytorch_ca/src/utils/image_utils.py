@@ -85,6 +85,35 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
     image = image.permute(2, 0, 1)
     return RGBAtoRGB(image)
 
+def two_channels(image: torch.Tensor, colors=torch.tensor([[1,0,0.1],[1,1,0.1]])) -> torch.Tensor:
+    """Converts two-channel 2D tensor (2,W,H) representing an image into a colormap
+        each of the two channels is a different color
+
+    Args:
+        image (torch.Tensor): (2,W,H) tensor in 0-1 range
+        colors (str, optional): color map to use, must be present in the
+            matplotlib package. Defaults to ['red','yellow'].
+
+    Returns:
+        torch.Tensor: RGB image in 0-1 range
+    """
+    
+    assert image.dim() == 3, "image must have 3 dimentions"
+    assert image.size(0) == 2, "image must have 2 channels"
+    assert colors.shape==(2,3), "colors must be a 2x3 tensor"
+
+    #adds an extra one at the tail, it will be useful later
+    # [[1,0.25,0.1],[1,1,0.1]] -> [[1,0.25,0.1,1],[1,1,0.1,1]]
+    colors=torch.cat((colors,torch.ones([2,1])), 1) 
+
+    # here i clip the values to 1
+    with torch.no_grad():
+        image = (image <= 1)*image + (image > 1)*torch.ones_like(image)
+
+    new_image=torch.tensordot(colors,image,([0],[0]))
+    new_image[:-1]=new_image[:-1]/new_image[-1]
+    
+    return RGBAtoRGB(new_image)
 
 def center_crop(images: torch.Tensor, size: int) -> torch.Tensor:
     """Center crops a batch of images
@@ -173,6 +202,8 @@ class tensor_to_RGB():
                     (3,image_size*rescaling,image_size*rescaling).
                 -If it is a int, it will return a heatmap of the channel represented by the int
                 -If it is the string "RGBA" it will return the RGBA image following the info from the CA
+                -if it is a list with two elements, it will return the image of the two channels
+                    in the list
         """
         self.rescaling = rescaling
         self.function = function
@@ -187,6 +218,10 @@ class tensor_to_RGB():
         if type(function) == int:
             self.channel = function
             self.function = self.gray
+
+        if type(function) == list and len(function) == 2 and type(function[0])==int:
+            self.channel = function
+            self.function = self.two
 
     def __call__(self, tensor: torch.Tensor):
         """Converts a tensor to RGB
@@ -208,3 +243,9 @@ class tensor_to_RGB():
 
     def gray(self, tensor):
         return GrayscaletoCmap(tensor[0, self.channel])
+
+    def two(self, tensor):
+        t=torch.empty([2,*tensor[0].size()[1:]])
+        t[0]=tensor[0,self.channel[0]]
+        t[1]=tensor[0,self.channel[1]]        
+        return two_channels(t) 
