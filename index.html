@@ -77,6 +77,21 @@
     </figcaption>
   </figure>
 
+  <figure class="l-middle outset">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/grow_persist_regen.mp4" type="video/mp4" id="unstable">
+      Your browser does not support the video tag.
+    </video>
+    <div style="position:relative; height:30px">
+        <div style="position: absolute; width:33%; top:0px; text-align:center">Growing</div>
+        <div style="position: absolute; width:33%; top:0px; left:275px; text-align:center">Persistent</div>
+        <div style="position: absolute; width:33%; top:0px; left:550px; text-align:center">Regenerating</div>
+    </div>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Left: evolution of a growing CA, Center: Evolution of a persistent CA, Right: Evolution of a regenerating CA
+    </figcaption>
+  </figure>
+
 
 
 
@@ -287,9 +302,9 @@
   <figure class='l-page side'>
     <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Figure: Evaluation loss as the percentage of cells substituted changes, to have an image close to the target
-      the loss should be less than $10^{-2}$, so we can see that after 300 iterations most of the CAs decay,
-      while only the ones with more than 95% of the cells substituted survives until the end
+      Figure: Evaluation loss as the percentage of cells substituted changes, to have an image that resembles the target
+      the loss should be less than $10^{-2}$, we can see that after 300 iterations most of the CAs decay,
+      while only the ones with more than 95% of cells substituted survive until the end
     </figcaption>
   </figure>
   <p>
@@ -491,13 +506,28 @@
 	
 	<p>
 		Even more interesting is the fact that the switch trained in this way works even if we don't change the update rule of all the cells,
-		but only some of them<dt-fn>Even though the virus trained in this way needs a higher percentage of cells to work effectively (95%+)</dt-fn>,
+		but only some of them<dt-fn>Even though the virus trained in this way needs a very high percentage of cells to work effectively (99%+)</dt-fn>,
 		like we did in secion 2
 	</p>
 		
 	<p>
 		The video below shows all the above points in action
 	</p>
+
+    <figure class="l-body">
+        <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+          <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>
+          Video: On the left you can see the cell mask, with yellow being the regenerating cells and blue the growing cells.
+          For the first 20 steps the CA evolves with a random mix of 20% regenerating cells and 80% of growing cells.
+          Then for the next 30 iterations it uses a checkered pattern.
+          Finally for the remaining 150 iterations we use only the regenerating cells.
+        </figcaption>
+    </figure>
+    
+    
 
 
 
@@ -510,7 +540,7 @@
   
   
   <dt-byline></dt-byline>
-  <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
+  <h2><a class="marker" href="#section-5" id="section-5">5</a> Adding a perturbation</h2>
   <p>
     We wanted to know if we can add a small perturbation to the output of a growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
