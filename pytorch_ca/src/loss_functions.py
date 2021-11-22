@@ -105,6 +105,11 @@ class MultipleCALoss(NCALoss):
 
 
 class NCADistance(NCALoss):
+    def model_distance(self, model1: nn.Module, model2: nn.Module):
+        """Computes the distance between the parameters of two models"""
+        p1, p2 = ruler.parameters_to_vector(model1), ruler.parameters_to_vector(model2)
+        return nn.MSELoss()(p1, p2)
+
     def __init__(self, model1: nn.Module, model2: nn.Module, target: torch.Tensor,
                  criterion=torch.nn.MSELoss, l: float = 0., alpha_channels: Tuple[int] = [3],
                  n_max_losses : int = 1):
@@ -131,5 +136,5 @@ class NCADistance(NCALoss):
 
         loss, idx_max_loss = super().__call__(x, n_max_losses)
 
-        loss += self.l * model_distance(self.model1, self.model2)
+        loss += self.l * self.model_distance(self.model1, self.model2)
         return loss, idx_max_loss
