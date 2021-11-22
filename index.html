@@ -37,7 +37,7 @@
   - Lorenzo Cavuoti: https://github.com/LetteraUnica
   - Francesco Sacco: http://github.com/Francesco215
   affiliations:
-  - University of Triest: http://units.it
+  - University of Trieste: http://units.it
   - University of Pisa: http://unipi.it
 </script>
 
@@ -61,7 +61,7 @@
     Most living organisms age and eventually die because of it, but a few don’t, and some of
     them are incredibly hard to kill, even if you cut their head off, it just regrows
     <dt-cite key="handberg2008stem"></dt-cite>.
-    Neural Cellular Automata are very good representation of living organisms, scientists managed
+    Neural Cellular Automata are a very good representation of living organisms: scientists managed
     to create cellural automatas that are able to represent any image, some of them after a while
     decay (figure <a href="#unstable">2</a>), others manage to maintain the final state, and some
     of them are even able to regenerate damage. (figure <a href="#stable">1</a>)
@@ -93,12 +93,14 @@
     Throughout this paper we are going to use different terms to refer to different types of cellular automatas:
     <ul>
       <li>With “Growing” with capital letter we indicate a neural cellular automata that grows into a final state and then decays, this represents growing and aging biological organisms</li>
-      <li>With “Persistent” we indicate a cellular automaton that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
+      <li>With “Persistent” we indicate a cellular automata that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
       <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan,<dt-fn>This means that a Regenerating CA is also Persistent</dt-fn> biological examples of these are the  planarians.</li>
     </ul>
   </p>
   <p>
-    Biological organisms often times blur the line between this categories, for example most aging organisms like ourselves are able to heal wounds and some like salamanders even are able regenerate missing limbs, but for practical reasons we are going to stick with this 3 categories
+    Biological organisms often times blur the line between this categories, for example most aging organisms like ourselves
+    are able to heal wounds and some like salamanders are even able to regenerate missing limbs,
+    for practical reasons, however, we are going to stick with these 3 categories
   </p>
   <p>Sometimes we will abbreviate Cellular Automata with CA to make the descriptions less verbose</p>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
@@ -116,19 +118,18 @@
   </p>
   <p>
     Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism Regenerating
-    <dt-fn>if we change $n$ we don't need to change $f_2$</dt-fn>
+    <dt-fn>$n$ in this case should be considered a parameter, that is, if we change $n$ we don't need to change $f_2$, so the switch can happen at any iteration</dt-fn>
   </p>
 
   <p>
-    If we want to make a parallel with a biological system this is equivalent to asking:
+    To make a parallel with a biological system, this is equivalent to asking:
     Is it possible to make an organism immortal if we have the ability to change its DNA in every single cell
     at once?
     <dt-fn>
-      This is not entirely a correct statement, there are more than one way to change the update rule of
-      a biological system, one of them is changing the DNA, but there are many other ways to change the update rule,
-      for example you can do so by adding some substances in the organism.
-      There is also the possibility that some changes to the update rule are impossible to encode in the DNA or
-      in any other form of agent that is able to influence an organism.
+      This is not entirely a correct statement since there are more ways to change the behaviour of
+      a biological system, for example you can do so by changing the electric potential <dt-cite key="TransmembraneVoltagePotential"></dt-cite>.
+      There is also the possibility that some changes to the update rule are impossible to encode in the DNA by itself,
+      so the best way to view the switch is by considering it as a change in the way the cells operate.
     </dt-fn> 
   </p>
   <p>
@@ -148,24 +149,24 @@
   <p>
     This outcome at first sight might be surprising, because as can be seen in the first video the visible
     RGBA channels of the cell evolve in a similar fashion in the growing and regenerating CA. The hidden
-    channels however, which are the ones used from the cells to transfer information between them, are
-    in general completely different, which makes the two CA incompatible.
+    channels however, which are the ones used by the cells to transfer information between them, are
+    in general completely different, which makes the two CAs incompatible.
   </p>
   <p>
     A simple example is: suppose that $f_1$ uses hidden channel $1$ to tell if the cell has a dead neighbor,
-    while $f_2$ uses hidden channel $2$ to pass the same information. If we switch the update rule midway $f_2$
+    while $f_2$ uses hidden channel $2$ to pass the same information. If we switch the update rule midway, $f_2$
     can’t understand what $f_1$ has encoded and will likely lead to a disruption of the organism.
   </p>
   <p>
     We can show this behaviour empirically by visualizing the hidden states of the two CAs after they reached
-    the target state, in particular below we plotted the 6th hidden state after 300 steps of two regenerating CAs trained independently.
+    the target state, below we plotted the 6th hidden state after 300 steps of two regenerating CAs trained independently.
   </p>
 
   <figure class='l-body'>
     <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
     <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure 2: The 6th hidden state of two Regenerating CAs trained independently,
+        Figure 2: The 6th hidden state after 300 iterations of two Regenerating CAs trained independently,
         we can see that the CA on the left uses this hidden state to encode something similar to a x coordinate,
         while the CA on the right uses the hidden state to represent a sort of distance from the center
       </figcaption>
@@ -173,24 +174,25 @@
 
   <p>
     This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
-    regenerating. The only difference between training a Regenerating CA and $f_2$ is the starting pool: instead
+    regenerating, we will call the trained $f_2$ rule Switch.
+    The only difference between training a Regenerating CA and Switch is the starting pool: instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
-    of n steps of the Growing CA $f_1$. That way $f_2$ learns to start from a state of a Growing CA and reach the
-    state of a Regenereting one.
+    of $n$ steps of the Growing CA $f_1$. That way Switch learns to start from a state of a Growing CA and reach the
+    state of a Regenerating one.
     <dt-fn>
       The training seemed to be highly dependent from the starting parameters, in particular if we
-      started from a Regenerating CA the net seemed to converge faster, if we took another CA, often times
-      it didn’t want to converge
+      started from a Regenerating CA the net seemed to converge faster, instead
+      if we started from a random initialization often times it didn't converge
     </dt-fn>
   </p>
   <figure class="l-middle outset">
     <img src="pytorch_ca/Presentation_images/collage switch.png" alt="training pool" width="100%" height="100%">
     <figcaption>
-      Figure 3: Training pool used to train the model
+      Figure 3: Sample of 15 images from the training pool used to train the Switch CA
     </figcaption>
   </figure>
   <p>
-    So, does it work if we train $f_2$ with this method?
+    So, does it work if we train Switch with this method?
     The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
   </p>
   <figure class="l-middle side">
@@ -230,78 +232,82 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-2" id="section-2">2</a> Virus with fixed mask</h2>
   <p>
-    “The Switch” some big problems that should be addressed.
+    “The Switch” has some relevant problems that need to be addressed.
   </p>
   <p>
     First of all during the transition from one rule to the next the system undergoes a major restructuring.
     <dt-fn>
-      You can see from the video of the switch that when the switch happens the organism becomes amorphus.
+      You can see it from video 1: when the switch happens the organism becomes amorphus.
     </dt-fn>
     If this was a living organism that needs it’s organs to function 24h a day it will probably die before
     the transition is completed.
   </p>
   <p>
     The second problem is that we need to change every single cell of the organism in order to make it immortal,
-    as missing even one could be catastrophic, however in practice we aren’t going to have the precision necessary
-    to be able to influence every single cell one organism without missing even one.
-    As you can see from the video above (below) if some of the cells (marked in yellow) don’t transition from $f_1$
-    to $f_2$ the system decays.
+    in practice, however, we aren’t going to have the precision necessary
+    to be able to influence every single cell of a organism without missing even one, and,
+    as you can see from the video below, if some of the cells (marked in blue) don’t transition from $f_1$
+    to $f_2$ the organism decays rather quickly.
   </p>
   <figure class='l-middle'>
     <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain' id="mask_swich">
     <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain' id="wrong_switch">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 2: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+      Video 2: On the left we plotted the cell mask, where the yellow cells evolve according to $f_2$ and the blue ones to $f_1$,
+      while on the right you can see the evolution video.
+      We can see that leaving only a couple of cells with the old update rule can be catastrophic for the organism
     </figcaption>
   </figure>
   <p>
-    Some papers have been published on how to change global properties of a CA via adding some cells
-    that follow a different rule <dt-cite key="randazzo2021adversarial"></dt-cite>, so the next thing
+    Randazzo et al. published a paper<dt-cite key="randazzo2021adversarial"></dt-cite>
+    in which they change the global properties of a CA by adding some cells that follow a different rule, so the next thing
     that we tried to do was to train a $f_2$ that would be able to make a Growing CA into a Persist even
-    if not all the cells follow $f_2$ after the switch has happened.
+    if not all the cells, follow $f_2$ after the switch has happened.
+    The training proceeds as before, however we switch the update rule of only a percentage of the cells
   </p>
   <p>
-    In the video we show what happens with a CA rule trained to switch 70% of the cells. With this technique
-    we were able to make the switch more flexible and as a bonus we were able to avoid the restructuring phase
+    In video 3 we show what happens with a CA rule trained to switch 70% of the cells. With this technique
+    we were able to make the switch more flexible and at the same time we managed to avoid the restructuring phase without training for it.
     <dt-fn>
-      This is because by having some of the old cells still around the new rule has to learn to
-      collaborate with the old cellsto be able to reach a stationary state
+      This is because by having some of the old cells still around, the new rule has to learn to
+      collaborate and influence the old cells to be able to reach a stationary state.
+      Below we will explore further and provide more explanations for this behaviour
     </dt-fn>
   </p>
   <figure class='l-body'>
   <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain' id="80%mask">
   <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain' id="80%video">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 3: Here the rule switches at the 40th step with 80% of new cells, the transition is not even noticeble
+      Video 3: The rule switches at the 40th step with 80% of new cells, here the transition is not even noticeble
     </figcaption>
   </figure>
   <p>
-    By the way,  the density of new cells does not need to be uniform, it just needs to locally equal
+    By the way, the density of new cells does not need to be uniform, it just needs to locally equal
     or higher than the minimum percentage
   </p>
   <figure class='l-page side'>
     <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Figure: Evaluation loss as the percentage of cells substituted changes, to have a figure that resembles the target
-      the loss should be less than $10^{-2}$ so we can see that after 300 iterations most of the CAs decay,
+      Figure: Evaluation loss as the percentage of cells substituted changes, to have an image close to the target
+      the loss should be less than $10^{-2}$, so we can see that after 300 iterations most of the CAs decay,
       while only the ones with more than 95% of the cells substituted survives until the end
     </figcaption>
   </figure>
   <p>
-    One of the problems is that the efficacy of the mask decreases as you increase the number of steps,
-    however it significantly increase the lifespan of the CA.
+    One of the problems is that the effectiveness of the mask decreases as you increase the number of steps,
+    however it still significantly increase the lifespan of the CA.
   </p>
   <p>
-    From our tests we need a bare minimum of 70% of new cells to be able to increase the lifespan
-    of the growing CA of a order of magnitude and at least 95% of new cells to be able to do this indefenetly.
+    In particular from our tests we need a bare minimum of 70% of new cells to be able to increase the lifespan
+    of the growing CA of a order of magnitude and at least 95% of new cells to be able to make the CA persist indefinitely.
   </p>
   <p>  
-    In this graph we show you the final loss as a function of the percentage of cells substituted with
-    the Growing rule as a comparison
+    In the graph on the left we plotted the loss as a function of the percentage of cells substituted with
+    the Growing rule
   </p>
   
   <p>
-    Below we plot some images and the corresponding losses
+    In order to better understand the graph, below we plotted some images and the corresponding losses 
   </p>
 
   <div style="height:10px"></div>
@@ -316,7 +322,7 @@
       <div style="position: absolute; width:33%; top:0px; left:420px; text-align:center">$5\times 10^{-2}$</div>
     </div>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure: Corresponging images as the loss changes, we can see that if the loss $\approx 5\times 10^2$
+        Figure: Corresponging images as the loss changes, we can see that for losses $\approx 5\times 10^2$
         the image starts to deteriorate significantly
       </figcaption>
   </figure>
@@ -343,8 +349,10 @@
   </figure>
   <p>
     One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
-    overtakes the other. This is very important because having the new cells overtake the old one helps
-    to reduce the minimum percentage of initial cells that change update rules
+    overtakes the other. This is very important because having the new cells overtake the old ones would be both more biologically plausible and would help
+    to reduce the minimum percentage of initial cells that need to change update rule.
+    In an ideal case, we would only substitute a small percentage of cells, then these would be able to gradually overtake the entire organism,
+    making it immortal.
     <dt-fn>
       The minimum percentage required depends from the speed of the aging process, if it's slow
       you can start with fewer cells since they will have plenty of time to overtake the old ones
@@ -442,7 +450,7 @@
   
   
   <dt-byline></dt-byline>
-  <h2><a class="marker" href="#section-4" id="section-4">3</a> Adding a perturbation</h2>
+  <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
   <p>
     We wanted to know if we can add a small perturbation to the output of a growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
@@ -535,4 +543,20 @@
     year={2008},
     url ={https://www.fbscience.com/Landmark/articles/pdf/Landmark3160.pdf}
   }
+
+  @article{TransmembraneVoltagePotential,
+    author = {Pai, Vaibhav P. and Aw, Sherry and Shomrat, Tal and Lemire, Joan M. and Levin, Michael},
+    title = "{Transmembrane voltage potential controls embryonic eye patterning in Xenopus laevis}",
+    journal = {Development},
+    volume = {139},
+    number = {2},
+    pages = {313-323},
+    year = {2012},
+    month = {01},
+    issn = {0950-1991},
+    doi = {10.1242/dev.073759},
+    url = {https://doi.org/10.1242/dev.073759},
+    eprint = {https://journals.biologists.com/dev/article-pdf/139/2/313/1160014/313.pdf}
+}
+
 </script>
