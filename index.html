@@ -93,8 +93,13 @@
     Throughout this paper we are going to use different terms to refer to different types of cellular automatas:
     <ul>
       <li>With “Growing” with capital letter we indicate a neural cellular automata that grows into a final state and then decays, this represents growing and aging biological organisms</li>
+<<<<<<< Updated upstream
       <li>With “Persistent” we indicate a cellular automata that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
       <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan,<dt-fn>This means that a Regenerating CA is also Persistent</dt-fn> biological examples of these are the  planarians.</li>
+=======
+      <li>With “Persistent” we indicate a cellular automaton that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
+      <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan, biological examples of these are the  planarians.</li>
+>>>>>>> Stashed changes
     </ul>
   </p>
   <p>
@@ -166,8 +171,13 @@
     <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
     <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+<<<<<<< Updated upstream
         Figure 2: The 6th hidden state after 300 iterations of two Regenerating CAs trained independently,
         we can see that the CA on the left uses this hidden state to encode something similar to a x coordinate,
+=======
+        Figure 2: The 6th hidden state of two Regenerating CAs trained independently,
+        we can see that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
+>>>>>>> Stashed changes
         while the CA on the right uses the hidden state to represent a sort of distance from the center
       </figcaption>
     </figure>
@@ -340,13 +350,6 @@
 
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain' id="evo">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      The idea is that the new cells learn to overtake the old one and than make the organism immortal,
-      so you need to inject fewer cells in the new organism
-    </figcaption>
-  </figure>
   <p>
     One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
     overtakes the other. This is very important because having the new cells overtake the old ones would be both more biologically plausible and would help
@@ -358,6 +361,13 @@
       you can start with fewer cells since they will have plenty of time to overtake the old ones
     </dt-fn>
   </p>
+  <figure class="l-body">
+    <img src="pytorch_ca/images/evoluzione.svg" style='height: 100%; width: 100%; object-fit: contain' id="evo">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      The idea is that the new cells learn to overtake the old one and than make the organism immortal,
+      so you need to inject fewer cells in the new organism
+    </figcaption>
+  </figure>
   <p>
     To be able to answer this we first have to ask ourselves how do we model the evolution of the mask? 
   </p>
@@ -396,47 +406,37 @@
       </figcaption>
     </figure> 
   </div>  
-  <div class="l-body">
-    <details>
-      <p><summary>Show the code</summary></p>
-      <dt-code block language="python">
-        def multiple_living_mask(alphas: torch.Tensor):
-            """It gives the mask where the CA rules apply in the case where multiple alphas
-            are included in the CA
 
-            Args:
-                alphas (torch.Tensor):
-                    The first index refers to the batch, the second to the alphas,
-                    the third and the fourth to the pixels in the image
 
-            Returns:
-                (torch.Tensor) A tensor with bool elements with the same shape on the input tensor
-                that represents where each CA rule applies
-            """
-
-            # gives the biggest alpha per pixel
-            biggest = Reduce('b c w h-> b 1 w h', reduction='max')(alphas)
-            # the free cells are the ones who have all of the alphas lower than 0.1
-            free = biggest < 0.1
-
-            # this is the mask where already one of the alpha is bigger than 0.1, if more than one
-            # alpha is bigger than 0.1, than the biggest one wins
-            old = (alphas == biggest) & (alphas >= 0.1)
-            # this is the mask of the cells neighboring each alpha
-            neighbor = F.max_pool2d(wrap_edges(alphas), 3, stride=1) >= 0.1
-            # the cells where the CA can expand are the one who are free and neighboring
-            expanding = free & neighbor
-            # the CA evolves in the cells where it can expand and the ones where is already present
-            mask = expanding | old
-
-            return mask #the mask has the same shape of alphas and the values inside ar bool
-      </dt-code>
-    </details>
-  </div>
-
-  <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Conclusion</h2>
+  <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Results</h2>
   <p>
-    * Waiting for the training results * 
+    The test we have made so far are unsuccesful, this is because the cells that follow the Growing rule (red),
+    if they are not sorrounded by the adversarial cells (yellow) will tend to explode.
+  </p>
+  <figure class="l-body">
+    <div style="float:left; width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/alphas_no.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      This is what happens when a old cell is not surrounded by the new cells
+    </figcaption>
+    </div>
+    <div style="float:right; width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/alphas_yes.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      This is what happens when a old cell is surrounded by the new cells
+    </figcaption>
+    </div>
+  </figure>
+  <h3><a class="marker" href="#section-3.3" id="section-3.3">3.3</a> Conclusion</h2>
+
+  <p>
+    *Work in progress, we are trying to solve this problem* 
   </p>
   
   
@@ -456,6 +456,12 @@
     in order to make it a persistent one, this is very interesting from a biological perspective
     because we can answer the question: 
   </p>
+  <figure class="l-middle side">
+    <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+      Video 3: Perturbation with $\lambda=10$ METTI QUELLA GIUSTA NUOVA
+    </figcaption>
+  </figure>
   <p>
     How much do we need to change the rule (or DNA) in order to have a newborn non-aging organism? 
   </p>
@@ -469,17 +475,13 @@
       w_\textrm{new}=w_\textrm{growing}+ \Delta w
     $$
   </p>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-      Video 3: Perturbation with $\lambda=10$ METTI QUELLA GIUSTA NUOVA
-    </figcaption>
-  </figure>
   <p>
     To prevent that the perturbation will overwrite the growing part we added an additional term in the loss,
     this term penalizes the L2 norm of the perturbation $|\Delta w|^2$, this term keeps the perturbation
     weights as low as possible and avoids that the perturbation will overwrite the growing part of the rule
   </p>
+  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
+
   <p>
     It turns out that a very little perturbation can make the growing CA a persistent or even
     a regenerating one. Below there is some data and on the side a video that shows the resulting CA output
@@ -490,9 +492,8 @@
     \frac{\langle w_{\textrm{new}}, w_\textrm{growing}\rangle}{|w_\textrm{growing}||w_{\textrm{new}}|}=0.914
     $$
   </p>
-  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Unexpected Results</h2>
-    <p>
-    If you take this model and you use it as a Switch it works, not only that, it also works as a Mask with
+  <p>
+    There is also an unexpected result!, If you take this model and you use it as a Switch it works, not only that, it also works as a Mask with
     a decent performance up to a percentage with 80%
     </p>
   <h3><a class="marker" href="#section-4.3" id="section-4.3">4.3</a> Conclusion</h2>
