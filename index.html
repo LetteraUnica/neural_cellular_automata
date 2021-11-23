@@ -77,20 +77,6 @@
     </figcaption>
   </figure>
 
-  <figure class="l-middle outset">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/grow_persist_regen.mp4" type="video/mp4" id="unstable">
-      Your browser does not support the video tag.
-    </video>
-    <div style="position:relative; height:30px">
-        <div style="position: absolute; width:33%; top:0px; text-align:center">Growing</div>
-        <div style="position: absolute; width:33%; top:0px; left:275px; text-align:center">Persistent</div>
-        <div style="position: absolute; width:33%; top:0px; left:550px; text-align:center">Regenerating</div>
-    </div>
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Left: evolution of a growing CA, Center: Evolution of a persistent CA, Right: Evolution of a regenerating CA
-    </figcaption>
-  </figure>
 
 
 
@@ -112,6 +98,20 @@
       <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan, biological examples of these are the  planarians.</li>
     </ul>
   </p>
+  <figure class="l-body">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/grow_persist_regen.mp4" type="video/mp4" id="unstable">
+      Your browser does not support the video tag.
+    </video>
+    <div style="position:relative; height:30px; display:flex">
+        <div style="width:33%; top:0px; text-align:center">Growing</div>
+        <div style="width:33%; top:0px; left:275px; text-align:center">Persistent</div>
+        <div style="width:33%; top:0px; left:550px; text-align:center">Regenerating</div>
+    </div>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Example of the three types of Cellular Automata
+    </figcaption>
+  </figure>
   <p>
     Biological organisms often times blur the line between this categories, for example most aging organisms like ourselves
     are able to heal wounds and some like salamanders are even able to regenerate missing limbs,
@@ -294,6 +294,7 @@
   <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain' id="80%video">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 3: The rule switches at the 40th step with 80% of new cells, here the transition is not even noticeble
+      FARE IN MODO CHE L'IMMAGINE A SINISTRA SIA UN VIDEO, COSì SI CAPISCE BENE CHE LA REGOLA SWITCHA
     </figcaption>
   </figure>
   <p>
@@ -358,6 +359,8 @@
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Video 4: The rule switches at the 50th step with 70% of new cells on the left side, and 100% of new cells on the right side,
 				while the switch was trained with 80% of new cells
+        FARE IN MODO CHE L'IMMAGINE A SINISTRA SIA UN VIDEO, COSì SI CAPISCE BENE CHE LA REGOLA SWITCHA
+
       </figcaption>
   </figure>
 
@@ -470,62 +473,6 @@
 
 
 
-	<dt-byline></dt-byline>
-  <h2><a class="marker" href="#appendix-1" id="appendix-1">4</a> Making two CAs compatible</h2>
-	<p>
-		A major problem of all the neural CA models is that if we train independently two CAs on the same image they will learn completely different encodings,
-		so they aren't able to communicate between each other, as explained above.
-		While there can be a lot of ways to solve this problem, a simple but effective one that we found<dt-fn>we thank Ettore Randazzo for the suggestion</dt-fn>
-		is to penalize the L2 distance between the weights two CAs. In particular the steps taken are:
-		<ul>
-			<li>
-				Train a CA or take an existing one, we will call this $CA_1$ and the corresponding weights $w_{CA_1}$
-			</li>
-			<li>
-				Generate another CA, we will call this $CA_2$ with weights $w_{CA_2}$
-			</li>
-			<li>
-				Define a new loss function $L = L_{target} + \lambda ||w_{CA_1} - w_{CA_2}||^2$ where $L_{target}$ represents the objective of the CA,
-				in our case is the distance to the target image, while the second term penalizes weights of $CA_2$ that are far from the ones of $CA_1$. 
-			</li>
-			<li>
-				Train $CA_2$ with the new loss function 
-			</li>
-		</ul>
-	</p>
-
-	<p>
-		Using this procedure and setting $CA_1$ to be the Growing CA and $CA_2$ to become a Regenerating CA we managed to create a Regenerating CA
-		that has the same encoding of the Growing CA. We can say this because if we switch the update rule midway the CA continues its evolution unfazed
-		as can be seen from the video below.
-	</p>
-	<p>
-		This means that the regenerating CA trained in this way acts as a Switch, because we can switch all the cells of the growing CA to
-		become regenerating ones without any problem.
-	</p>
-	
-	<p>
-		Even more interesting is the fact that the switch trained in this way works even if we don't change the update rule of all the cells,
-		but only some of them<dt-fn>Even though the virus trained in this way needs a very high percentage of cells to work effectively (99%+)</dt-fn>,
-		like we did in secion 2
-	</p>
-		
-	<p>
-		The video below shows all the above points in action
-	</p>
-
-    <figure class="l-body">
-        <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-          <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption>
-          Video: On the left you can see the cell mask, with yellow being the regenerating cells and blue the growing cells.
-          For the first 20 steps the CA evolves with a random mix of 20% regenerating cells and 80% of growing cells.
-          Then for the next 30 iterations it uses a checkered pattern.
-          Finally for the remaining 150 iterations we use only the regenerating cells.
-        </figcaption>
-    </figure>
     
     
 
@@ -540,7 +487,7 @@
   
   
   <dt-byline></dt-byline>
-  <h2><a class="marker" href="#section-5" id="section-5">5</a> Adding a perturbation</h2>
+  <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
   <p>
     We wanted to know if we can add a small perturbation to the output of a growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
@@ -585,7 +532,35 @@
   <p>
     There is also an unexpected result!, If you take this model and you use it as a Switch it works, not only that, it also works as a Mask with
     a decent performance up to a percentage with 80%
-    </p>
+  </p>
+  <p>
+		This means that the regenerating CA trained in this way acts as a Switch, because we can switch all the cells of the growing CA to
+		become regenerating ones without any problem.
+	</p>
+	
+	<p>
+		Even more interesting is the fact that the switch trained in this way works even if we don't change the update rule of all the cells,
+		but only some of them<dt-fn>Even though the virus trained in this way needs a very high percentage of cells to work effectively (99%+)</dt-fn>,
+		like we did in secion 2
+	</p>
+		
+	<p>
+		The video below shows all the above points in action
+	</p>
+
+    <figure class="l-body">
+        <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+          <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>
+          Video: On the left you can see the cell mask, with yellow being the regenerating cells and blue the growing cells.
+          For the first 20 steps the CA evolves with a random mix of 20% regenerating cells and 80% of growing cells.
+          Then for the next 30 iterations it uses a checkered pattern.
+          Finally for the remaining 150 iterations we use only the regenerating cells.
+        </figcaption>
+    </figure>
+
   <h3><a class="marker" href="#section-4.3" id="section-4.3">4.3</a> Conclusion</h2>
   <p>
     The rule that the growing learned is very close to a persistent/regenerating one, could this
