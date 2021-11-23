@@ -67,6 +67,10 @@
     of them are even able to regenerate damage. (figure <a href="#stable">1</a>)
     <dt-cite key="mordvintsev2020growing"></dt-cite>
   </p>
+  <p>
+    Is it possible to make a Growing neural CA persistant?
+    What is the minimum amout of effort to be able to do so?
+  </p>
   <figure class="l-middle outset">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
       <source src="pytorch_ca/Presentation_videos/unstable.mp4" type="video/mp4" id="unstable">
@@ -516,17 +520,13 @@
   <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
 
   <p>
-    We model the perturbation as a function of the cell state, note that the perturbation can be any
-    function of the cell state, however we chose to use another CA to model it. Finally we compute the
-    next cell state as a sum of both the growing and the perturbation
+    The idea is to generate a new CA with weights $w_\textrm{new}$ that is equal to
     $$
       w_\textrm{new}=w_\textrm{growing}+ \Delta w
     $$
-  </p>
-  <p>
-    To prevent that the perturbation will overwrite the growing part we added an additional term in the loss,
-    this term penalizes the L2 norm of the perturbation $|\Delta w|^2$, this term keeps the perturbation
-    weights as low as possible and avoids that the perturbation will overwrite the growing part of the rule
+    And make sure that $w_\textrm{new}$ is similar to the weights of a Growing CA $w_\textrm{growing}$,
+    so the perturbaton $\Delta w $ should be as small as possible, to do so we added an additional
+    term in the loss, that penalizes the L2 norm of the perturbation $|\Delta w|^2$.
   </p>
   <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
 
@@ -537,7 +537,7 @@
     \frac{|\Delta w|^2}{|w_\textrm{growing}|^2}=0.17
     $$
     $$
-    \frac{\langle w_{\textrm{new}}, w_\textrm{growing}\rangle}{|w_\textrm{growing}||w_{\textrm{new}}|}=0.914
+    \frac{\langle w_\textrm{new}, w_\textrm{growing}\rangle}{|w_\textrm{growing}||w_{\textrm{new}}|}=0.914
     $$
   </p>
   <p>
