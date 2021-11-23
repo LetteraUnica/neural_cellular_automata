@@ -62,6 +62,8 @@ class VirusCA(CAModel):
         self.new_cells = mutation_mask.to(self.device).float()
         self.old_cells = 1. - self.new_cells
 
+        self.initialized = True
+
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
                 step_size: float = 1.) -> torch.Tensor:
