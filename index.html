@@ -120,8 +120,8 @@
   <p>Sometimes we will abbreviate Cellular Automata with CA to make the descriptions less verbose</p>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
   <p>
-    First of all we wanted to know if it is possible to take a cellular automata
-    in the growing mode and after a arbitrary number $n$ of steps 
+    First of all we wanted to know if it is possible to take a Growing cellular automata
+    and after a arbitrary number $n$ of steps 
     <dt-fn> By arbitrary we mean any number of steps before the cellular automata decays</dt-fn>
     we switch the update rule in order to make it Regenerating. We can write it mathematically like this 
     $$
@@ -133,7 +133,8 @@
   </p>
   <p>
     Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism Regenerating
-    <dt-fn>$n$ in this case should be considered a parameter, that is, if we change $n$ we don't need to change $f_2$, so the switch can happen at any iteration</dt-fn>
+    <dt-fn>$n$ in this case should be considered a parameter, that is, if we change $n$ we don't need to change $f_2$,
+        so the switch could happen at any iteration</dt-fn>
   </p>
 
   <p>
@@ -149,7 +150,7 @@
   </p>
   <p>
     Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
-    however was a complete failure as can be seen from the video below where the switch happens at $n=30$
+    however was a complete failure as can be seen from the video below where the switch happens at $n=40$
   </p>
   <figure class="l-middle side">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
@@ -157,24 +158,24 @@
       Your browser does not support the video tag.
     </video>
     <figcaption>
-      This is what happens when we evolve the CA with a $f_1$ that is Growing and then
-      switch to a $f_2$ that is Regenerating after 40 steps
+      The video shows what happens when we use a $f_1 = $Growing CA for the first 40 steps then
+      switch to a $f_2 = $Regenerating CA for the next iterations
     </figcaption>
   </figure>
   <p>
     This outcome at first sight might be surprising, because as can be seen in the first video the visible
-    RGBA channels of the cell evolve in a similar fashion in the growing and regenerating CA. The hidden
-    channels however, which are the ones used by the cells to transfer information between them, are
+    RGBA channels of the cell evolve in a similar fashion in both the growing and regenerating CA. However, the hidden
+    channels, which are the ones used by the cells to transfer information between them, are
     in general completely different, which makes the two CAs incompatible.
   </p>
   <p>
     A simple example is: suppose that $f_1$ uses hidden channel $1$ to tell if the cell has a dead neighbor,
     while $f_2$ uses hidden channel $2$ to pass the same information. If we switch the update rule midway, $f_2$
-    can’t understand what $f_1$ has encoded and will likely lead to a disruption of the organism.
+    can’t understand what $f_1$ has encoded and this will likely lead to a disruption of the organism.
   </p>
   <p>
-    We can show this behaviour empirically by visualizing the hidden states of the two CAs after they reached
-    the target state, below we plotted the 6th hidden state after 300 steps of two regenerating CAs trained independently.
+    We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
+    the target state, as can be seen in the image below.
   </p>
 
   <figure class='l-body'>
@@ -182,17 +183,17 @@
     <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 2: The 6th hidden state after 300 interations of two Regenerating CAs trained independently,
-        we can see that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
-        while the CA on the right uses the hidden state to represent a sort of distance from the center
+        the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
+        while the CA on the right uses the same hidden state to represent a sort of distance from the center.
       </figcaption>
     </figure>
 
   <p>
     This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
     regenerating, we will call the trained $f_2$ rule Switch.
-    The only difference between training a Regenerating CA and Switch is the starting pool: instead
+    The only difference between training a Regenerating CA and Switch is the training pool: instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
-    of $n$ steps of the Growing CA $f_1$. That way Switch learns to start from a state of a Growing CA and reach the
+    of $n$ steps of $f_1$ (in our case the Growing CA). That way Switch learns to start from a state of a Growing CA and reach the
     state of a Regenerating one.
     <dt-fn>
       The training seemed to be highly dependent from the starting parameters, in particular if we
@@ -277,8 +278,8 @@
     Randazzo et al.<dt-cite key="randazzo2021adversarial"></dt-cite> managed to change the 
     global properties of a CA by adding some cells that follow a different rule, so the next thing
     that we tried to do was to train a Switch that would be able to make a Growing into a Persist even
-    if not all the cells follow $f_2$, after the switch has happened.
-    The training proceeds as before, however we switch the update rule of only a given percentage of the cells
+    if not all the cells follow $f_2$ after the switch has happened.
+    The training proceeds as before, however we switch the update rule of only a given percentage of the cells.
   </p>
   <p>
     In video 3 we show what happens with a CA rule trained to switch 80% of the cells. With this technique
@@ -290,11 +291,13 @@
     </dt-fn>
   </p>
   <figure class='l-body'>
-  <img src="pytorch_ca/Presentation_images/mask_80_.png" style='height: 45%; width: 45%; object-fit: contain' id="80%mask">
-  <img src="pytorch_ca/Presentation_videos/mask-80_-correct.gif" style='height: 45%; width: 45%; object-fit: contain' id="80%video">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/mask_80.mp4" type="video/mp4" id="regen_near_grow">
+        Your browser does not support the video tag.
+    </video>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 3: The rule switches at the 40th step with 80% of new cells, here the transition is not even noticeble
-      FARE IN MODO CHE L'IMMAGINE A SINISTRA SIA UN VIDEO, COSì SI CAPISCE BENE CHE LA REGOLA SWITCHA
+      Video 3: On the left we plotted the evolution of the mask, with yellow being the regenerating cells and blue the growing cells
+      the rule switches at the 40th step with 80% of new cells, here the transition is not even noticeble
     </figcaption>
   </figure>
   <p>
@@ -309,8 +312,8 @@
     </figcaption>
   </figure>
   <p>
-    One of the problems is that the effectiveness of the switch decreases as you increase the number of steps and decrease the percentage of cells,
-    however it still significantly increase the lifespan of the CA.
+    One of the problems is that the effectiveness of the switch decreases as you increase the number of steps and decrease the percentage of switched cells,
+    however it still significantly increases the lifespan of the CA.
   </p>
   <p>  
     In particular, on the right we plotted the loss as a function of the number of steps and the percentage of cells substituted with
@@ -343,24 +346,32 @@
   <p>
     By training the Switch in this way we managed to get some nice properties without training for them
     <ul>
-        <li>The density of new cells does not need to be uniform, it just needs to locally equal or higher than the minimum percentage,
-					in fact, if the percentage of cells increases the CA would only benefit from it</li>
-        <li>CA isn’t perfect but does a good job for lower concentration of cells</li> 
+        <li>
+            The density of new cells does not need to be uniform, it just needs to locally equal or higher than the minimum percentage,
+			in fact, if the percentage of cells increases the CA would only benefit from it
+        </li>
+        <li>The density of new cells can change multiple times during the evolution, and,
+            as long as the density remains higher than the minimum percentage, the CA will persist
+        </li>
+        <li>
+            CA isn’t perfect but does a good job for lower concentration of cells
+        </li> 
     </ul>
   </p>
 	<p>
-    The video below illustrates these points. It seems that the Switch has learned rule that works well for a wide range of cell densities,
+    The video below illustrates these points: it seems that the Switch has learned rule that works well for a wide range of cell densities,
     furthermore it manages to communicate effectively with regions with different concentration of cells
   </p>
 
   <figure class='l-body'>
-    <img src="pytorch_ca/Presentation_images/mask_80_100.png" style='height: 45%; width: 45%; object-fit: contain' id="80_100%mask">
-    <img src="pytorch_ca/Presentation_videos/mask_80_100.gif" style='height: 45%; width: 45%; object-fit: contain' id="80_100%video">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/mask_80_100_chekered.mp4" type="video/mp4" id="regen_near_grow">
+        Your browser does not support the video tag.
+    </video>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Video 4: The rule switches at the 50th step with 70% of new cells on the left side, and 100% of new cells on the right side,
-				while the switch was trained with 80% of new cells
-        FARE IN MODO CHE L'IMMAGINE A SINISTRA SIA UN VIDEO, COSì SI CAPISCE BENE CHE LA REGOLA SWITCHA
-
+        Video 4: The rule switches two times: the first at the 40th step with 70% of cells on the left side, and 100% of cells on the right side,
+        the second at the 120th step with a checkered pattern which maintains the minimum density of cells higher than 70%.
+        This Switch was trained to switch always 80% of the cells.
       </figcaption>
   </figure>
 
@@ -436,8 +447,8 @@
 
   <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Results</h2>
   <p>
-    The test we have made so far are unsuccesful, this is because the cells that follow the Growing rule (red),
-    if they are not sorrounded by the adversarial cells (yellow) will tend to explode.
+    The test we have made so far are unsuccesful, because if the cells that follow the Growing rule (red),
+    are not sorrounded by the adversarial cells (yellow) they tend to explode.
   </p>
   <figure class="l-body">
     <div style="float:left; width:49%; height:49%;">
