@@ -249,3 +249,12 @@ class tensor_to_RGB():
         t[0]=tensor[0,self.channel[0]]
         t[1]=tensor[0,self.channel[1]]        
         return two_channels(t) 
+
+
+def repeat_and_resize(image, n_repeats, rescale=8, image_size=48):
+    resizer = T.Resize((image_size*rescale, image_size*rescale), interpolation=T.InterpolationMode.NEAREST)
+    a = image.clone()
+    a = resizer(GrayscaletoCmap(a[0,0]))
+    a = a.repeat(n_repeats, 1, 1, 1)
+
+    return a

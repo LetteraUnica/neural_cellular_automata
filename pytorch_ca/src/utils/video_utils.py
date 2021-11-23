@@ -160,3 +160,27 @@ def switch_video(old_CA: "CAModel",
                       regenerating=regenerating,
                       converter=converter,
                       **kwargs)
+
+
+def mask_and_evolution_video(model, n_iters, initial_state, switch_iters, switch_masks, fname=None):
+    image_size = initial_state.shape[2]
+    video = torch.empty(n_iters, 3, image_size*8, image_size*2*8, device="cpu")
+
+    model.update_cell_mask(initial_state)
+    switch_iters.append(n_iters)
+    switch_masks.insert(0, model.new_cells)
+    current_iter = 0
+    state = initial_state.clone()
+
+    for s, m in zip(switch_iters, switch_masks):
+        model.set_cell_mask(m)
+        new_video, state = make_video(model, s-current_iter, state)
+        new_mask = repeat_and_resize(model.new_cells, s-current_iter, rescale=8, image_size=image_size)
+        video[current_iter:s] = torch.cat((new_mask, new_video[0]), dim=3)
+        
+        current_iter = s
+
+    if fname is not None:
+        write_video(fname, video.permute(0, 2, 3, 1), fps=10)
+    
+    return video, state

@@ -51,3 +51,12 @@ def make_squares(images, target_size=None, side=side, constant_side=False):
                2, y-side(target_size, constant_side)//2:y+side(target_size, constant_side)//2] = 0.
 
     return images.clone()
+
+
+def checkered_mask(matrix_size):
+    grid = torch.zeros(matrix_size, matrix_size)
+    for i in range(matrix_size):
+        for j in range(matrix_size):
+            if (i+j) % 2 == 0:
+                grid[i, j] = 1
+    return grid.unsqueeze(0).unsqueeze(0)
