@@ -521,6 +521,9 @@
   <p>
     It turns out that a very little perturbation can make the growing CA a persistent or even
     a regenerating one. Below there is some data and on the side a video that shows the resulting CA output
+  </p>
+  <div style="height:3px"></div>
+  <p>
     $$
     \frac{|\Delta w|^2}{|w_\textrm{growing}|^2}=0.17
     $$
@@ -528,23 +531,14 @@
     \frac{\langle w_\textrm{new}, w_\textrm{growing}\rangle}{|w_\textrm{growing}||w_{\textrm{new}}|}=0.914
     $$
   </p>
+  <div style="height: 13px;"></div>
   <p>
-
-    This means that the regenerating CA trained in this way acts as a Switch, because we can switch all the cells of the growing CA to
-		become regenerating ones without any problem.
+		Even more interesting is the fact that the new CA works as switch even if we didn't explicitly train for it!
 	</p>
-
-  if we perform the switch using the update rule midway the CA continues its evolution unfazed
-  as can be seen from the video below
-
-  Using this training method we found that the encoding that the new CA learns are the same of the Growing CA
-	
-	<p>
-		Even more interesting is the fact that the switch trained in this way works even if we don't change the update rule of all the cells,
-		but only some of them<dt-fn>Even though the virus trained in this way needs a very high percentage of cells to work effectively (99%+)</dt-fn>,
-		like we did in secion 2
+  <p>
+    This means that the new CA has the same hidden represetation of the Growing CA, and because of it we can use
+    the new CA as a Switch even for percentages lower that 100% 
 	</p>
-		
 	<p>
 		The video below shows all the above points in action
 	</p>
