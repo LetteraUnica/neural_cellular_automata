@@ -48,56 +48,20 @@
     neural cellular automata, immortal
   </h2>
   <dt-byline></dt-byline>
-  <figure class="l-middle side">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/stable.mp4" type="video/mp4" id="stable">
-      Your browser does not support the video tag.
-    </video>
-    <figcaption>
-      Figure 1: Example of Regenerating CA <dt-cite key="mordvintsev2020growing"></dt-cite>
-    </figcaption>
-  </figure>
   <p>
     Most living organisms age and eventually die because of it, but a few don’t, and some of
     them are incredibly hard to kill, even if you cut their head off, it just regrows
     <dt-cite key="handberg2008stem"></dt-cite>.
     Neural Cellular Automata are a very good representation of living organisms: scientists managed
     to create cellural automatas that are able to represent any image, some of them after a while
-    decay (figure <a href="#unstable">2</a>), others manage to maintain the final state, and some
-    of them are even able to regenerate damage. (figure <a href="#stable">1</a>)
+    decay, others manage to maintain the final state, and some
+    of them are even able to regenerate damage.
     <dt-cite key="mordvintsev2020growing"></dt-cite>
   </p>
   <p>
-    Is it possible to make a Growing neural CA persistant?
-    What is the minimum amout of effort to be able to do so?
-  </p>
-  <figure class="l-middle outset">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/unstable.mp4" type="video/mp4" id="unstable">
-      Your browser does not support the video tag.
-    </video>
-    <figcaption>
-      Figure 2: Example of Growing CA, as you can see, they eventually degrade <dt-cite key="mordvintsev2020growing"></dt-cite>
-    </figcaption>
-  </figure>
-
-
-
-
-
-
-
-
-
-
-
-  
-  <dt-byline></dt-byline>
-  <h2><a class="marker" href="#intro" id="intro"></a>Introduction</h2>
-  <p>
-    Throughout this paper we are going to use different terms to refer to different types of cellular automatas:
+    Throughout this paper we are going to use different terms with capital letter to refer to different types of cellular automatas:
     <ul>
-      <li>With “Growing” with capital letter we indicate a neural cellular automata that grows into a final state and then decays, this represents growing and aging biological organisms</li>
+      <li>With “Growing” we indicate a neural cellular automata that grows into a final state and then decays, this represents growing and aging biological organisms</li>
       <li>With “Persistent” we indicate a cellular automaton that grows into a final state and then keeps it for an infinite amount of time, some biological organisms like lobsters have this property.</li>
       <li>Finally with “Regenerating” we refer to persistent organisms that are even able to regenerate damage and have a infinite lifespan, biological examples of these are the  planarians.</li>
     </ul>
@@ -118,10 +82,30 @@
   </figure>
   <p>
     Biological organisms often times blur the line between this categories, for example most aging organisms like ourselves
-    are able to heal wounds and some like salamanders are even able to regenerate missing limbs,
+    are able to heal wounds, and some like salamanders are even able to regenerate missing limbs,
     for practical reasons, however, we are going to stick with these 3 categories
   </p>
   <p>Sometimes we will abbreviate Cellular Automata with CA to make the descriptions less verbose</p>
+  <p>
+    In this Article we are going to ask the following questions:
+    <ul>
+      <li>Is it possible to make a Growing neural CA Persistent or Regenerating?</li>
+      <li>What is the minimum amout of effort to be able to do so?</li>
+    </ul>
+  </p>
+
+
+
+
+
+
+
+
+
+
+  
+  <dt-byline></dt-byline>
+
   <h2><a class="marker" href="#section-1" id="section-1">1</a> Switching the Rule</h2>
   <p>
     First of all we wanted to know if it is possible to take a Growing cellular automata
@@ -173,22 +157,20 @@
     in general completely different, which makes the two CAs incompatible.
   </p>
   <p>
-    A simple example is: suppose that $f_1$ uses hidden channel $1$ to tell if the cell has a dead neighbor,
-    while $f_2$ uses hidden channel $2$ to pass the same information. If we switch the update rule midway, $f_2$
-    can’t understand what $f_1$ has encoded and this will likely lead to a disruption of the organism.
+    We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
+    the target state. In the image below we show the same hidden state
+    of two Regenerating CAs trained independently.
   </p>
   <p>
-    We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
-    the target state, as can be seen in the image below.
+    The CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
+    while the CA on the right uses the same hidden state to represent a sort of distance from the center.
   </p>
 
   <figure class='l-body'>
     <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
     <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure 2: The 6th hidden state after 300 interations of two Regenerating CAs trained independently,
-        the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
-        while the CA on the right uses the same hidden state to represent a sort of distance from the center.
+        Figure 2: Different encodings on the 6th channel for different Regenerating CAs after 300 iterations.
       </figcaption>
     </figure>
 
@@ -325,10 +307,8 @@
     of the Growing CA by an order of magnitude, and at least 95% of cells to be able to make the Growing CA persist indefinitely.
   </p>
   <p>
-    In order to better understand the graph, below we plotted some images and the corresponding losses 
+    In order to better understand the graph below we plotted some images and the corresponding losses 
   </p>
-
-  <div style="height:10px"></div>
 
   <figure class='l-body'>
     <img src="pytorch_ca/Presentation_images/loss_5e-3.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
@@ -358,7 +338,7 @@
             as long as the density remains higher than the minimum percentage, the CA will persist
         </li>
         <li>
-            CA isn’t perfect but does a good job for lower concentration of cells
+            If we train the CA to switch 80% of the cells, and than use it in a case where 70% of cells are new, it performs in a similar way to a Switch that was trained for 70% of adversarial cells 
         </li> 
     </ul>
   </p>
@@ -504,7 +484,7 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
   <p>
-    We wanted to know if we can add a small perturbation to the output of a growing cellular automata
+    We wanted to know if we can add a small perturbation to the weights of a Growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
     because we can answer the question: 
   </p>
