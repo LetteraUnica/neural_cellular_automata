@@ -484,32 +484,40 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
   <p>
-    We wanted to know if we can add a small perturbation to the weights of a Growing cellular automata
+    We wanted to know if we can add a small perturbation $\Delta w$ to the weights of a Growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
     because we can answer the question: 
   </p>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-      Video 3: Perturbation with $\lambda=10$ METTI QUELLA GIUSTA NUOVA
-    </figcaption>
-  </figure>
+
   <p>
     How much do we need to change the rule (or DNA) in order to have a newborn non-aging organism? 
   </p>
   <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
 
   <p>
-    The idea is to generate a new CA with weights $w_\textrm{new}$ that is equal to
+    We keep the weights of the growing CA $w_\textrm{growing}$ fixed and generate a new CA with weights $w_\textrm{new}$ which are equal to
     $$
-      w_\textrm{new}=w_\textrm{growing}+ \Delta w
+      w_\textrm{new} = w_\textrm{growing} + \Delta w
     $$
-    And make sure that $w_\textrm{new}$ is similar to the weights of a Growing CA $w_\textrm{growing}$,
-    so the perturbaton $\Delta w $ should be as small as possible, to do so we added an additional
-    term in the loss, that penalizes the L2 norm of the perturbation $|\Delta w|^2$.
-  </p>
-  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
+    To be sure that $\Delta w$ will be as small as possible, we added an additional
+    term in the loss, that penalizes the $\mathbb L^2$ norm of the perturbation $|\Delta w|^2$.
+    So the total loss will be:
 
+    $$
+    L = L_\textrm{target} + \lambda |\Delta w|^2
+    $$
+
+    Where $L_\textrm{target}$ is the distance to the target image and $\lambda$ is the penalization hyperparameter.
+  </p>
+
+  <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
+  
+    <figure class="l-middle side">
+        <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
+        <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+          Video 3: Persistent CA trained with $\lambda=0.01$
+        </figcaption>
+      </figure>
   <p>
     It turns out that a very little perturbation can make the growing CA a persistent or even
     a regenerating one. Below there is some data and on the side a video that shows the resulting CA output
@@ -521,13 +529,15 @@
     $$
   </p>
   <p>
-    There is also an unexpected result!, If you take this model and you use it as a Switch it works, not only that, it also works as a Mask with
-    a decent performance up to a percentage with 80%
-  </p>
-  <p>
-		This means that the regenerating CA trained in this way acts as a Switch, because we can switch all the cells of the growing CA to
+
+    This means that the regenerating CA trained in this way acts as a Switch, because we can switch all the cells of the growing CA to
 		become regenerating ones without any problem.
 	</p>
+
+  if we perform the switch using the update rule midway the CA continues its evolution unfazed
+  as can be seen from the video below
+
+  Using this training method we found that the encoding that the new CA learns are the same of the Growing CA
 	
 	<p>
 		Even more interesting is the fact that the switch trained in this way works even if we don't change the update rule of all the cells,
