@@ -460,10 +460,11 @@
     This doesn't make any sense! We would never imagine an organism to behave like this.
   </p>
   <p>
-    There are several theories that could explain such a thing in order of playsability:
+    There are several theories that could explain such a thing in order of plausibility:
     <ul>
-      <li>The Growing rule when it dies, instead of shrinking and disappearing, it grows untill it fills all the available space. One way to verify this would be to use a Growing rule that for $t\to\infty$ goes to zero</li>
-      <li>We didn't train enough or whell enought, it might be that the adversarial will eventually learn to suppress the cells in the border</li>
+      <li>The Growing rule when it dies, instead of shrinking and disappearing, it grows until it fills all the available space.
+        One way to verify this would be to use a Growing rule that for $t\to\infty$ goes to zero</li>
+      <li>We didn't train enough or well enough, it might be that the adversarial cells will eventually learn to suppress the cells on the border</li>
       <li>This model is just not feasible</li>
     </ul>
   </p>
@@ -521,6 +522,7 @@
     $$
 
     Where $L_\textrm{target}$ is the distance to the target image and $\lambda$ is a hyperparameter.
+    We will call the new CA trained in this way Perturbation
   </p>
 
   <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
@@ -528,12 +530,13 @@
     <figure class="l-middle side" id="perturbation">
         <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' >
         <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-          Video 9: Persistent CA trained with $\lambda=0.01$
+          Video 9: Perturbation CA trained with $\lambda=0.01$
         </figcaption>
       </figure>
   <p>
-    It turns out that a very little perturbation can make the growing CA a persistent or even
-    a regenerating one. Below there is some data and <a href="#perturbation">Video 9</a> shows the resulting CA output
+    It turns out that a very little perturbation can make the Growing CA into a Persistent or even
+    a Regenerating one, suggesting that a growing and a regenerating organisms aren't so different.
+    Below we show some data on how much different Growing and Perturbation actually are, and Video 9 shows the Perturbation CA evolution
   </p>
   <div style="height:3px"></div>
   <p>
@@ -546,32 +549,37 @@
   </p>
   <div style="height: 13px;"></div>
   <p>
-	  Even more interesting is the fact that the new CA works as switch even if we didn't explicitly train for it!
+    We wanted to know if Perturbation has learned the same encoding of Growing,
+    so we tried to evolve both the Growing and Perturbation together,
+    it turns out that they are able to communicate between each other and
+    coordinate the growth of the organism
   </p>
   <p>
-    This means that the new CA has the same hidden represetation of the Growing CA, and because of it we can use
-    the new CA as a Switch even for percentages lower that 100% 
+    Even more interesting is the fact that Perturbation works as switch even if we didn't explicitly train for it!
   </p>
   <p>
-		The video below shows all the above points in action
+    Finally we noticed that we can also use Perturbation as a Mask, however it needs a high percentage of cells to work well (99%+)
+  </p>
+  <p>
+		Video 10 shows all the above points in action
   </p>
 
-    <figure class="l-body">
-        <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-          <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
-          Your browser does not support the video tag.
-        </video>
-        <figcaption>
-          Video: On the left you can see the cell mask, with yellow being the regenerating cells and blue the growing cells.
-          For the first 20 steps the CA evolves with a random mix of 20% regenerating cells and 80% of growing cells.
-          Then for the next 30 iterations it uses a checkered pattern.
-          Finally for the remaining 150 iterations we use only the regenerating cells.
-        </figcaption>
-    </figure>
+  <figure class="l-body">
+      <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>
+        Video 10: On the left you can see the cell mask, with yellow being the regenerating cells and blue the growing cells.
+        For the first 20 steps the CA evolves with a random mix of 20% regenerating cells and 80% of growing cells.
+        Then for the next 30 iterations it uses a checkered pattern.
+        Finally for the remaining 150 iterations we use only the regenerating cells.
+      </figcaption>
+  </figure>
 
   <h3><a class="marker" href="#section-4.3" id="section-4.3">4.3</a> Conclusion</h2>
   <p>
-    The rule that the growing learned is very close to a persistent/regenerating one, could this
+    We showed that the rule that the Growing has learned is very close to a persistent/regenerating one, could this
     mean that we need a very little change in the DNA to make a real organism immortal? 
   </p>
   
