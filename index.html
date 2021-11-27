@@ -77,7 +77,7 @@
         <div style="width:33%; top:0px; left:550px; text-align:center">Regenerating</div>
     </div>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Example of the three types of Cellular Automata
+      Video 1: Example of the three types of Cellular Automata
     </figcaption>
   </figure>
   <p>
@@ -111,7 +111,7 @@
     First of all we wanted to know if it is possible to take a Growing cellular automata
     and after a arbitrary number $n$ of steps 
     <dt-fn> By arbitrary we mean any number of steps before the cellular automata decays</dt-fn>
-    we switch the update rule in order to make it Regenerating. We can write it mathematically like this 
+    change the update rule in order to make it Regenerating. We can write it mathematically like this 
     $$
       \begin{cases}
         x_{new}=f_1(x_{old})\quad \textrm{ if }\quad n_{iter} \le n\\
@@ -138,7 +138,7 @@
   </p>
   <p>
     Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
-    however was a complete failure as can be seen from the video below where the switch happens at $n=40$
+    however was a complete failure (Video 2) where the switch happens at $n=40$
   </p>
   <figure class="l-middle side">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
@@ -146,7 +146,7 @@
       Your browser does not support the video tag.
     </video>
     <figcaption>
-      The video shows what happens when we use a $f_1 = $Growing CA for the first 40 steps then
+      Video 2: Evolution when we use a $f_1 = $Growing CA for the first 40 steps then
       switch to a $f_2 = $Regenerating CA for the next iterations
     </figcaption>
   </figure>
@@ -158,11 +158,8 @@
   </p>
   <p>
     We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
-    the target state. In the image below we show the same hidden state
-    of two Regenerating CAs trained independently.
-  </p>
-  <p>
-    The CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
+    the target state (Figure 1).  
+    We can notice that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
     while the CA on the right uses the same hidden state to represent a sort of distance from the center.
   </p>
 
@@ -170,14 +167,14 @@
     <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
     <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure 2: Different encodings on the 6th channel for different Regenerating CAs after 300 iterations.
+        Figure 1: Encodings of the 6th channel after 300 iterations of two independently trained Regenerating CAs.
       </figcaption>
     </figure>
 
   <p>
     This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
     regenerating, we will call the trained $f_2$ rule Switch.
-    The only difference between training a Regenerating CA and Switch is the training pool: instead
+    The only difference between training a Regenerating CA and Switch is the training pool (Figure 2): instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
     of $n$ steps of $f_1$ (in our case the Growing CA). That way Switch learns to start from a state of a Growing CA and reach the
     state of a Regenerating one.
@@ -190,17 +187,17 @@
   <figure class="l-middle outset">
     <img src="pytorch_ca/Presentation_images/collage switch.png" alt="training pool" width="100%" height="100%">
     <figcaption>
-      Figure 3: Sample of 15 images from the training pool used to train the Switch CA
+      Figure 2: Sample of 15 images from the training pool used to train the Switch CA
     </figcaption>
   </figure>
   <p>
     So, does it work if we train Switch with this method?
-    The answer is yes. Video <a href="#image-1">1</a> shows you what happens.
+    The answer is yes. Video <a href="#Video 3">1</a> shows you what happens.
   </p>
   <figure class="l-middle side">
     <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 1: Here the rule switches at the 60th step, you can clearly see when the switch happens
+      Video 3: The rule switches at the 60th step, you can clearly see when the switch happens
     </figcaption>
   </figure>
   <h3>Some considerations</h3>
@@ -239,7 +236,7 @@
   <p>
     First of all during the transition from one rule to the next the system undergoes a major restructuring.
     <dt-fn>
-      You can see it from video 1: when the switch happens the organism becomes amorphus.
+      You can see it from Video 2: when the switch happens the organism becomes amorphus.
     </dt-fn>
     If this was a living organism that needs it’s organs to function 24h a day it will probably die before
     the transition is completed.
@@ -248,14 +245,14 @@
     The second problem is that we need to change every single cell of the organism in order to make it immortal,
     in practice, however, we aren’t going to have the precision necessary
     to be able to influence every single cell of a organism without missing even one, and,
-    as you can see from the video below, if some of the cells (marked in blue) don’t transition from $f_1$
-    to $f_2$ the organism decays rather quickly.
+    as you can see from Video 4, if some of the cells (marked in blue) don’t transition from $f_1$
+    to $f_2$ the organism decays quickly.
   </p>
   <figure class='l-middle'>
     <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain' id="mask_swich">
     <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain' id="wrong_switch">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 2: On the left we plotted the cell mask, where the yellow cells evolve according to $f_2$ and the blue ones to $f_1$,
+      Video 4: On the left we plotted the cell mask, where the yellow cells evolve according to $f_2$ and the blue ones to $f_1$,
       while on the right you can see the evolution video.
       We can see that leaving only a couple of cells with the old update rule can be catastrophic for the organism
     </figcaption>
@@ -263,17 +260,18 @@
   <p>
     Randazzo et al.<dt-cite key="randazzo2021adversarial"></dt-cite> managed to change the 
     global properties of a CA by adding some cells that follow a different rule, so the next thing
-    that we tried to do was to train a Switch that would be able to make a Growing into a Persist even
-    if not all the cells follow $f_2$ after the switch has happened.
+    that we tried to do was to train a neural CA that would be able to make a Growing into a Persist even
+    if not all the cells follow $f_2$ after the switch has happened. We will call this new CA Mask
     The training proceeds as before, however we switch the update rule of only a given percentage of the cells.
   </p>
   <p>
-    In video 3 we show what happens with a CA rule trained to switch 80% of the cells. With this technique
-    we were able to make Switch more flexible and at the same time we managed to avoid the restructuring phase, without training for it.
+    Video 5 shows what happens with a CA rule trained to switch 80% of the cells. With this technique
+    we made Mask more flexible than Switch and at the same time we managed to avoid the restructuring phase,
+    without training for it.
     <dt-fn>
       This is because by having some of the old cells still around, the new rule has to learn to
       collaborate and influence the old cells to be able to reach a stationary state.
-      Below we will provide more explanations for this behaviour
+      In section 4 we will provide more explanations for this behaviour
     </dt-fn>
   </p>
   <figure class='l-body'>
@@ -282,8 +280,8 @@
         Your browser does not support the video tag.
     </video>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Video 3: On the left we plotted the evolution of the mask, with yellow being the regenerating cells and blue the growing cells
-      the rule switches at the 40th step with 80% of new cells, here the transition is not even noticeble
+      Video 5: On the left we plotted the evolution of the cell mask, with yellow being the regenerating cells and blue the growing cells.
+      The rule switches at the 40th step with 80% of new cells, here the transition is not even noticeable
     </figcaption>
   </figure>
   <p>
@@ -292,22 +290,23 @@
   <figure class='l-page side'>
     <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Figure: Evaluation loss as the percentage of cells substituted changes, to have an image that resembles the target
-      the loss should be less than $10^{-2}$, we can see that after 300 iterations most of the CAs decay,
+      Figure 3: Evaluation loss as the percentage of cells substituted changes, to have an image that resembles the target
+      the loss should be less than $10^{-2}$, we can see that after 300 iterations most of the Mask CAs decay,
       while only the ones with more than 95% of cells substituted survive until the end
     </figcaption>
   </figure>
   <p>
-    One of the problems is that the effectiveness of the switch decreases as you increase the number of steps and decrease the percentage of switched cells,
+    One of the problems is that the effectiveness of Mask decreases as you increase the number of steps
+    and decrease the percentage of switched cells,
     however it still significantly increases the lifespan of the CA.
   </p>
   <p>  
-    In particular, on the right we plotted the loss as a function of the number of steps and the percentage of cells substituted with
-    the Switch rule. We notice that we need to switch at least 70% of cells to increase the lifespan
+    In particular, Figure 3 shows the loss as a function of the number of steps and the percentage of cells substituted with Mask.
+    We notice that we need to switch at least 70% of cells to increase the lifespan
     of the Growing CA by an order of magnitude, and at least 95% of cells to be able to make the Growing CA persist indefinitely.
   </p>
   <p>
-    In order to better understand the graph below we plotted some images and the corresponding losses 
+    In order to better understand Figure 3, Figure 4 shows some images and the corresponding losses 
   </p>
 
   <figure class='l-body'>
@@ -320,7 +319,7 @@
       <div style="width:33%; top:0px; text-align:center">$5\times 10^{-2}$</div>
     </div>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure: Corresponging images as the loss changes, we can see that for losses $\approx 5\times 10^2$
+        Figure 4: Images as the loss changes, we can see that for losses $\approx 5\times 10^2$
         the image starts to deteriorate significantly
       </figcaption>
   </figure>
@@ -328,22 +327,24 @@
   <h3>Robustness</h3>
 
   <p>
-    By training the Switch in this way we managed to get some nice properties without training for them
+    After training Mask we noticed that it got some nice properties without training for them:
     <ul>
         <li>
             The density of new cells does not need to be uniform, it just needs to locally equal or higher than the minimum percentage,
-			in fact, if the percentage of cells increases the CA would only benefit from it
+			in fact, if the percentage of cells increases Mask would only benefit from it
         </li>
-        <li>The density of new cells can change multiple times during the evolution, and,
+        <li>
+            The density of new cells can change multiple times during the evolution, and,
             as long as the density remains higher than the minimum percentage, the CA will persist
         </li>
         <li>
-            If we train the CA to switch 80% of the cells, and than use it in a case where 70% of cells are new, it performs in a similar way to a Switch that was trained for 70% of adversarial cells 
+            If we train Mask to switch 80% of the cells, then use it in a case where we switch only 70% of cells,
+            it performs in a similar way to a Mask that was trained explicitly for 70% of adversarial cells<dt-fn>Da spiegare qua</dt-fn>
         </li> 
     </ul>
   </p>
 	<p>
-    The video below illustrates these points: it seems that the Switch has learned rule that works well for a wide range of cell densities,
+    Video 6 illustrates these points, it seems that Mask has learned rule that works well for a wide range of cell densities,
     furthermore it manages to communicate effectively with regions with different concentration of cells
   </p>
 
@@ -353,7 +354,7 @@
         Your browser does not support the video tag.
     </video>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Video 4: The rule switches two times: the first at the 40th step with 70% of cells on the left side, and 100% of cells on the right side,
+        Video 6: The rule switches two times: the first at the 40th step with 70% of cells on the left side, and 100% of cells on the right side,
         the second at the 120th step with a checkered pattern which maintains the minimum density of cells higher than 70%.
         This Switch was trained to switch always 80% of the cells.
       </figcaption>
@@ -372,11 +373,12 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-3" id="section-3">3</a> Virus with evolving mask</h2>
   <p>
-    One of the limitations of the fixed mask is that it can’t model what happens when a kind of cells
-    overtakes the other. This is very important because having the new cells overtake the old ones would be both more biologically plausible and would help
-    to reduce the minimum percentage of initial cells that need to change update rule.
-    In an ideal case, we would only substitute a small percentage of cells, then these would be able to gradually overtake the entire organism,
-    making it immortal.
+    One of the limitations of using a fixed mask is that it can’t model what happens when a kind of cell
+    overtakes the other. This is important because having the new cells overtake the old ones would be both more biologically plausible
+    <dt-fn>because in biological organisms cells die and are replaced by new ones</dt-fn> and could
+    reduce the minimum percentage of initial cells that need to be switched.
+    In an ideal case, we would only substitute a small percentage of cells, then these would gradually overtake the entire organism,
+    making it immortal (Figure 7).
     <dt-fn>
       The minimum percentage required depends from the speed of the aging process, if it's slow
       you can start with fewer cells since they will have plenty of time to overtake the old ones
@@ -385,12 +387,12 @@
   <figure class="l-body">
     <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain' id="evo">
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      The idea is that the new cells learn to overtake the old one and than make the organism immortal,
+      Figure 7: The idea is that the new cells learn to overtake the old one and than make the organism immortal,
       so you need to inject fewer cells in the new organism
     </figcaption>
   </figure>
   <p>
-    To be able to answer this we first have to ask ourselves how do we model the evolution of the mask? 
+    To make this work we first have to ask ourselves how do we model the evolution of the mask? 
   </p>
   <h3><a class="marker" href="#section-3.1" id="section-3.1">3.1</a> The Model</h2>
   <p>
@@ -398,7 +400,7 @@
   </p>
   <p>
     Before, a cell state was represented by a state vector having the first 4 components representing
-    the RGBA of the pixel and the remaining were hidden channels that helped the CA pass more
+    the RGBA of the pixel and the remaining were hidden channels that helped the CA pass
     information between its cells. If the $\alpha$ channel (transparency) is >0.1 it means
     that the cell is alive, otherwise it’s dead
   </p> 
@@ -408,22 +410,22 @@
     $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
   </p>
   <p>
-    When both alphas are below $0.1$, then the cell evolves with the sum of both updates.    
+    At the same time, when both alphas are below $0.1$, the cell evolves with the sum of both updates (Figure 8).    
   </p>
   <div class="l-middle">
     <figure style='float:left; height: 50%; width: 50%;'>
       <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain' id="evolving_mask">
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Image 1: In this image the red cells evolve following $f_1$, the yellow
-        follow $f_2$ and the orange ones follow both
+        Figure 8: The red cells evolve following $f_1$ while the yellow cells
+        follow $f_2$, the orange ones follow both
       </figcaption>
     </figure>
     <figure style='float:right; height: 50%; width: 50%;'>
       <img src="pytorch_ca/images/Canali.svg" style='height: 100%; width: 100%; object-fit: contain'>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Image 2: On the vector on the left represents the old represetation of the CA state, and the one
+        Figure 9: The vector on the left represents the old represetation of the CA state, and the one
         on the right is the new representation. This new representation of the cells has an additional
-        $\alpha$ channel and to make the code simpler the alpha channels now are the last two components 
+        $\alpha$ channel and to make the code simpler the alpha channels are now the last two components 
       </figcaption>
     </figure> 
   </div>  
@@ -441,7 +443,7 @@
       Your browser does not support the video tag.
     </video>
     <figcaption>
-      This is what happens when a old cell is not surrounded by the new cells
+      Video 7: This is what happens when a old cell is not surrounded by the new cells
     </figcaption>
     </div>
     <div style="float:right; width:49%; height:49%;">
@@ -450,7 +452,7 @@
       Your browser does not support the video tag.
     </video>
     <figcaption>
-      This is what happens when a old cell is surrounded by the new cells
+      Video 8: This is what happens when a old cell is surrounded by the new cells
     </figcaption>
     </div>
   </figure>
@@ -484,7 +486,7 @@
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-4" id="section-4">4</a> Adding a perturbation</h2>
   <p>
-    We wanted to know if we can add a small perturbation $\Delta w$ to the weights of a Growing cellular automata
+    In this final section we wanted to to know if we can add a small perturbation $\Delta w$ to the weights of a Growing cellular automata
     in order to make it a persistent one, this is very interesting from a biological perspective
     because we can answer the question: 
   </p>
@@ -495,7 +497,7 @@
   <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> The Model</h2>
 
   <p>
-    We keep the weights of the growing CA $w_\textrm{growing}$ fixed and generate a new CA with weights $w_\textrm{new}$ which are equal to
+    In practice we keep the weights of the growing CA $w_\textrm{growing}$ fixed and generate another CA with weights $w_\textrm{new}$ which are equal to
     $$
       w_\textrm{new} = w_\textrm{growing} + \Delta w
     $$
@@ -507,7 +509,7 @@
     L = L_\textrm{target} + \lambda |\Delta w|^2
     $$
 
-    Where $L_\textrm{target}$ is the distance to the target image and $\lambda$ is the penalization hyperparameter.
+    Where $L_\textrm{target}$ is the distance to the target image and $\lambda$ is a hyperparameter.
   </p>
 
   <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
@@ -515,12 +517,12 @@
     <figure class="l-middle side">
         <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
         <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-          Video 3: Persistent CA trained with $\lambda=0.01$
+          Video 9: Persistent CA trained with $\lambda=0.01$
         </figcaption>
       </figure>
   <p>
     It turns out that a very little perturbation can make the growing CA a persistent or even
-    a regenerating one. Below there is some data and on the side a video that shows the resulting CA output
+    a regenerating one. Below there is some data and Video 9 shows the resulting CA output
   </p>
   <div style="height:3px"></div>
   <p>
@@ -533,15 +535,15 @@
   </p>
   <div style="height: 13px;"></div>
   <p>
-		Even more interesting is the fact that the new CA works as switch even if we didn't explicitly train for it!
-	</p>
+	  Even more interesting is the fact that the new CA works as switch even if we didn't explicitly train for it!
+  </p>
   <p>
     This means that the new CA has the same hidden represetation of the Growing CA, and because of it we can use
     the new CA as a Switch even for percentages lower that 100% 
-	</p>
-	<p>
+  </p>
+  <p>
 		The video below shows all the above points in action
-	</p>
+  </p>
 
     <figure class="l-body">
         <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
@@ -561,8 +563,7 @@
     The rule that the growing learned is very close to a persistent/regenerating one, could this
     mean that we need a very little change in the DNA to make a real organism immortal? 
   </p>
-
-
+  
 </dt-article>
 
 <dt-appendix>
