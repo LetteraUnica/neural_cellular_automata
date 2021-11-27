@@ -138,11 +138,11 @@
   </p>
   <p>
     Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
-    however was a complete failure (Video 2) where the switch happens at $n=40$
+    however was a complete failure (<a href="#boom">Video 2</a>) where the switch happens at $n=40$
   </p>
-  <figure class="l-middle side">
+  <figure class="l-middle side" id="boom">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/rswitch40.mp4" type="video/mp4" id="boom">
+      <source src="pytorch_ca/Presentation_videos/rswitch40.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <figcaption>
@@ -158,14 +158,14 @@
   </p>
   <p>
     We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
-    the target state (Figure 1).  
+    the target state (<a href="#80%">Figure 1</a>).  
     We can notice that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
     while the CA on the right uses the same hidden state to represent a sort of distance from the center.
   </p>
 
-  <figure class='l-body'>
-    <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%video">
-    <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain' id="80%mask">
+  <figure class='l-body' id="80%">
+    <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
+    <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 1: Encodings of the 6th channel after 300 iterations of two independently trained Regenerating CAs.
       </figcaption>
@@ -174,7 +174,7 @@
   <p>
     This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
     regenerating, we will call the trained $f_2$ rule Switch.
-    The only difference between training a Regenerating CA and Switch is the training pool (Figure 2): instead
+    The only difference between training a Regenerating CA and Switch is the training pool (<a href="#pool">Figure 2</a>): instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
     of $n$ steps of $f_1$ (in our case the Growing CA). That way Switch learns to start from a state of a Growing CA and reach the
     state of a Regenerating one.
@@ -184,7 +184,7 @@
       if we started from a random initialization often times it didn't converge
     </dt-fn>
   </p>
-  <figure class="l-middle outset">
+  <figure class="l-middle outset" id="pool">
     <img src="pytorch_ca/Presentation_images/collage switch.png" alt="training pool" width="100%" height="100%">
     <figcaption>
       Figure 2: Sample of 15 images from the training pool used to train the Switch CA
@@ -192,10 +192,10 @@
   </figure>
   <p>
     So, does it work if we train Switch with this method?
-    The answer is yes. Video <a href="#Video 3">1</a> shows you what happens.
+    The answer is yes. <a href="#switch">Video  3</a> shows you what happens.
   </p>
-  <figure class="l-middle side">
-    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain' id="switch">
+  <figure class="l-middle side" id="switch">
+    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain'>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 3: The rule switches at the 60th step, you can clearly see when the switch happens
     </figcaption>
@@ -245,12 +245,12 @@
     The second problem is that we need to change every single cell of the organism in order to make it immortal,
     in practice, however, we aren’t going to have the precision necessary
     to be able to influence every single cell of a organism without missing even one, and,
-    as you can see from Video 4, if some of the cells (marked in blue) don’t transition from $f_1$
+    as you can see from <a href="#mask">Video 4</a>, if some of the cells (marked in blue) don’t transition from $f_1$
     to $f_2$ the organism decays quickly.
   </p>
-  <figure class='l-middle'>
-    <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain' id="mask_swich">
-    <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain' id="wrong_switch">
+  <figure class='l-middle' id="mask">
+    <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
+    <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain'>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 4: On the left we plotted the cell mask, where the yellow cells evolve according to $f_2$ and the blue ones to $f_1$,
       while on the right you can see the evolution video.
@@ -265,7 +265,7 @@
     The training proceeds as before, however we switch the update rule of only a given percentage of the cells.
   </p>
   <p>
-    Video 5 shows what happens with a CA rule trained to switch 80% of the cells. With this technique
+    <a href="#80%mask">Video 5</a> shows what happens with a CA rule trained to switch 80% of the cells. With this technique
     we made Mask more flexible than Switch and at the same time we managed to avoid the restructuring phase,
     without training for it.
     <dt-fn>
@@ -274,9 +274,9 @@
       In section 4 we will provide more explanations for this behaviour
     </dt-fn>
   </p>
-  <figure class='l-body'>
+  <figure class='l-body' id="80%mask">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-        <source src="pytorch_ca/Presentation_videos/mask_80.mp4" type="video/mp4" id="regen_near_grow">
+        <source src="pytorch_ca/Presentation_videos/mask_80.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
@@ -287,8 +287,8 @@
   <p>
    
   </p>
-  <figure class='l-page side'>
-    <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain' id="mask_swich">
+  <figure class='l-page side' id="grafico_loss">
+    <img src="pytorch_ca/Presentation_images/mask_by_percentage.svg" style='height: 100%; width: 100%; object-fit: contain'>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Figure 3: Evaluation loss as the percentage of cells substituted changes, to have an image that resembles the target
       the loss should be less than $10^{-2}$, we can see that after 300 iterations most of the Mask CAs decay,
@@ -301,18 +301,18 @@
     however it still significantly increases the lifespan of the CA.
   </p>
   <p>  
-    In particular, Figure 3 shows the loss as a function of the number of steps and the percentage of cells substituted with Mask.
+    In particular, <a href="#grafico_loss">Figure 3</a> shows the loss as a function of the number of steps and the percentage of cells substituted with Mask.
     We notice that we need to switch at least 70% of cells to increase the lifespan
     of the Growing CA by an order of magnitude, and at least 95% of cells to be able to make the Growing CA persist indefinitely.
   </p>
   <p>
-    In order to better understand Figure 3, Figure 4 shows some images and the corresponding losses 
+    In order to better understand <a href="#grafico_loss">Figure 3</a>, <a href="#images_loss">Figure 4</a> shows some images and the corresponding losses 
   </p>
 
-  <figure class='l-body'>
-    <img src="pytorch_ca/Presentation_images/loss_5e-3.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
-    <img src="pytorch_ca/Presentation_images/loss_1e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%video">
-    <img src="pytorch_ca/Presentation_images/loss_5e-2.png" style='height: 32%; width: 32%; object-fit: contain' id="80%mask">
+  <figure class='l-body' id="images_loss">
+    <img src="pytorch_ca/Presentation_images/loss_5e-3.png" style='height: 32%; width: 32%; object-fit: contain'>
+    <img src="pytorch_ca/Presentation_images/loss_1e-2.png" style='height: 32%; width: 32%; object-fit: contain'>
+    <img src="pytorch_ca/Presentation_images/loss_5e-2.png" style='height: 32%; width: 32%; object-fit: contain'>
     <div style="position:relative; height:30px; display:flex">
       <div style="width:33%; top:0px; text-align:center">$5\times 10^{-3}$</div>
       <div style="width:33%; top:0px; text-align:center">$1\times 10^{-2}$</div>
@@ -344,13 +344,13 @@
     </ul>
   </p>
 	<p>
-    Video 6 illustrates these points, it seems that Mask has learned rule that works well for a wide range of cell densities,
+    <a href="#regen_near_grow">Video 6</a> illustrates these points, it seems that Mask has learned rule that works well for a wide range of cell densities,
     furthermore it manages to communicate effectively with regions with different concentration of cells
   </p>
 
-  <figure class='l-body'>
+  <figure class='l-body' id="regen_near_grow">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-        <source src="pytorch_ca/Presentation_videos/mask_80_100_chekered.mp4" type="video/mp4" id="regen_near_grow">
+        <source src="pytorch_ca/Presentation_videos/mask_80_100_chekered.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
@@ -378,14 +378,14 @@
     <dt-fn>because in biological organisms cells die and are replaced by new ones</dt-fn> and could
     reduce the minimum percentage of initial cells that need to be switched.
     In an ideal case, we would only substitute a small percentage of cells, then these would gradually overtake the entire organism,
-    making it immortal (Figure 7).
+    making it immortal (<a href="#illutration_replacement">Figure 7</a>).
     <dt-fn>
       The minimum percentage required depends from the speed of the aging process, if it's slow
       you can start with fewer cells since they will have plenty of time to overtake the old ones
     </dt-fn>
   </p>
-  <figure class="l-body">
-    <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain' id="evo">
+  <figure class="l-body" id="illutration_replacement">
+    <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain'>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Figure 7: The idea is that the new cells learn to overtake the old one and than make the organism immortal,
       so you need to inject fewer cells in the new organism
@@ -410,11 +410,11 @@
     $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
   </p>
   <p>
-    At the same time, when both alphas are below $0.1$, the cell evolves with the sum of both updates (Figure 8).    
+    At the same time, when both alphas are below $0.1$, the cell evolves with the sum of both updates (<a href="#evolving_mask">Figure 8,9</a>).    
   </p>
-  <div class="l-middle">
+  <div class="l-middle" id="evolving_mask">
     <figure style='float:left; height: 50%; width: 50%;'>
-      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain' id="evolving_mask">
+      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 8: The red cells evolve following $f_1$ while the yellow cells
         follow $f_2$, the orange ones follow both
@@ -456,6 +456,17 @@
     </figcaption>
     </div>
   </figure>
+  <p>
+    This doesn't make any sense! We would never imagine an organism to behave like this.
+  </p>
+  <p>
+    There are several theories that could explain such a thing in order of playsability:
+    <ul>
+      <li>The Growing rule when it dies, instead of shrinking and disappearing, it grows untill it fills all the available space. One way to verify this would be to use a Growing rule that for $t\to\infty$ goes to zero</li>
+      <li>We didn't train enough or whell enought, it might be that the adversarial will eventually learn to suppress the cells in the border</li>
+      <li>This model is just not feasible</li>
+    </ul>
+  </p>
   <h3><a class="marker" href="#section-3.3" id="section-3.3">3.3</a> Conclusion</h2>
 
   <p>
@@ -514,15 +525,15 @@
 
   <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Results</h2>
   
-    <figure class="l-middle side">
-        <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' id="perturbation">
+    <figure class="l-middle side" id="perturbation">
+        <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' >
         <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
           Video 9: Persistent CA trained with $\lambda=0.01$
         </figcaption>
       </figure>
   <p>
     It turns out that a very little perturbation can make the growing CA a persistent or even
-    a regenerating one. Below there is some data and Video 9 shows the resulting CA output
+    a regenerating one. Below there is some data and <a href="#perturbation">Video 9</a> shows the resulting CA output
   </p>
   <div style="height:3px"></div>
   <p>
