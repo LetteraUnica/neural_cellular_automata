@@ -109,7 +109,7 @@ class CAModel(nn.Module):
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
                  batch_size: int = 4,
                  skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (50, 60),
+                 evolution_iters: Tuple[int, int] = (40, 70),
                  kind: str = "growing",
                  n_max_losses: int = 1,
                  **kwargs):
@@ -181,14 +181,7 @@ class CAModel(nn.Module):
 
                 # backward-pass
                 loss.backward()
-
-                # Add gradient noise
-                with torch.no_grad():
-                    nu = 1 / (1+i)**0.55
-                    if hasattr(self, "grad_noise"):
-                        for p in self.parameters():
-                            p.grad.add_(self.grad_noise * nu * torch.randn_like(p.grad))
-
+                
                 optimizer.step()
 
                 # customization of training for the three processes of growing. persisting and regenerating
