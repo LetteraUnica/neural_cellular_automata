@@ -181,6 +181,14 @@ class CAModel(nn.Module):
 
                 # backward-pass
                 loss.backward()
+
+                # Add gradient noise
+                with torch.no_grad():
+                    nu = 1 / (1+i)**0.55
+                    if hasattr(self, "grad_noise"):
+                        for p in self.parameters():
+                            p.grad.add_(self.grad_noise * nu * torch.randn_like(p.grad))
+
                 optimizer.step()
 
                 # customization of training for the three processes of growing. persisting and regenerating
