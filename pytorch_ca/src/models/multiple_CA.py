@@ -49,7 +49,7 @@ class CustomCA(NeuralCA):
         """
 
         # reshape x in such a way that is good for the NeuralCA class
-        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)                 
+        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)
 
         # compute update increment
         dx = super().compute_dx(x_new,angle,step_size)
@@ -100,13 +100,13 @@ class MultipleCA(CAModel):
         #calculate the global mask
         pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
 
-        #apply the mask to the imput tensor
+        #apply the mask to the input tensor
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
         #set to zero every cell that is dead
         x = x * pre_life_mask.float()
 
-        #create the updates tensor, 
+        #create the updates tensor
         updates = torch.empty([self.n_CAs, *x.shape], device=self.device)
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
