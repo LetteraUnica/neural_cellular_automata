@@ -168,24 +168,35 @@ class CAModel(nn.Module):
                 self.update(inputs) #This is useful when you update the mask
 
                 # recursive forward-pass
-                for k in range(randint(*evolution_iters)):
+                for k in range(evolution_iters[0]):
                     inputs = self.forward(inputs)
 
-                # calculate the loss of the inputs and return the ones with the biggest loss
-                loss, idx_max_loss = criterion(inputs, n_max_losses)
+                total_loss = torch.Tensor([0.], device=self.device)
+                for k in range(evolution_iters[1] - evolution_iters[0]):
+                    inputs = self.forward(inputs)
+
+                    # calculate the loss of the inputs and return the ones with the biggest loss
+                    loss, idx_max_loss = criterion(inputs, n_max_losses)
+                    total_loss += loss
+                
+                total_loss /= (evolution_iters[1] - evolution_iters[0])
+
                 # add current loss to the loss history
-                epoch_losses.append(loss.item())
+                epoch_losses.append(total_loss.item())
 
                 # look a definition of skip_update
                 if j % skip_update != 0:
                     idx_max_loss = None
 
                 # backward-pass
-                loss.backward()
-                if normalize_gradients==True:
-                    for param in self.parameters():
-                        param.grad.data.div_(param.grad.data.norm() + 1e-8)
+                total_loss.backward()
 
+                # normalize gradients
+                with torch.no_grad():
+                    if normalize_gradients==True:
+                        for param in self.parameters():
+                            param.grad.data.div_(param.grad.data.norm() + 1e-8)
+                    
                 optimizer.step()
 
                 # customization of training for the three processes of growing. persisting and regenerating
