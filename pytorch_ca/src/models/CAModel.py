@@ -171,7 +171,7 @@ class CAModel(nn.Module):
                 for k in range(evolution_iters[0]):
                     inputs = self.forward(inputs)
 
-                total_loss = torch.Tensor([0.], device=self.device)
+                total_loss = torch.tensor([0.], device=self.device)
                 for k in range(evolution_iters[1] - evolution_iters[0]):
                     inputs = self.forward(inputs)
 
