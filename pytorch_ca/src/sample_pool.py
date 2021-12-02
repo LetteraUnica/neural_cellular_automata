@@ -91,7 +91,7 @@ class SamplePool(Dataset):
                 the corresponding indexes in the sample pool
         """
         idx = np.random.choice(self.size, batch_size, False)
-        return self.transform(self.images[idx]), idx
+        return self.transform(self.images[idx]).clone(), idx
 
     def replace(self, indexes: List[int]) -> None:
         """Replaces images at indexes "indexes" of the pool with new_images

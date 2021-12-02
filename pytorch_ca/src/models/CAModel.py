@@ -112,6 +112,7 @@ class CAModel(nn.Module):
                  evolution_iters: Tuple[int, int] = (40, 70),
                  kind: str = "growing",
                  n_max_losses: int = 1,
+                 normalize_gradients=False,
                  **kwargs):
         """Trains the CA model
 
@@ -164,7 +165,7 @@ class CAModel(nn.Module):
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
-                self.update(inputs)
+                self.update(inputs) #This is useful when you update the mask
 
                 # recursive forward-pass
                 for k in range(randint(*evolution_iters)):
@@ -181,7 +182,10 @@ class CAModel(nn.Module):
 
                 # backward-pass
                 loss.backward()
-                
+                if normalize_gradients==True:
+                    for param in self.parameters():
+                        param.grad.data.div_(param.grad.data.norm() + 1e-8)
+
                 optimizer.step()
 
                 # customization of training for the three processes of growing. persisting and regenerating
@@ -209,7 +213,9 @@ class CAModel(nn.Module):
             epoch_loss = np.mean(epoch_losses)
 
             # Stopping criteria
-            if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2): break
+            if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2):
+                print("Stopping early")
+                break
             if epoch_loss > 0.25 and i == 40: break
 
             wandb.log({"loss": epoch_loss})
