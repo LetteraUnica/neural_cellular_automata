@@ -113,6 +113,7 @@ class CAModel(nn.Module):
                  kind: str = "growing",
                  n_max_losses: int = 1,
                  normalize_gradients=False,
+                 tau=0,
                  **kwargs):
         """Trains the CA model
 
@@ -148,9 +149,13 @@ class CAModel(nn.Module):
                     regenerating: Trains a CA that grows into the target image
                                   and regenerates any damage that it receives
                 Defaults to "growing".
-            n_max_losses(int):
+            n_max_losses(int,optional):
                 number of datapoints with the biggest losses to replace.
                 Defaults to 1
+            tau(float,optional):
+                how much more important is the loss of a step relative to the other one,
+                for example L_n=(1+tau)L_n+1 if the two outputs are identical
+                Defaults to zero
         """
 
         self.train()
@@ -177,12 +182,12 @@ class CAModel(nn.Module):
 
                     # calculate the loss of the inputs and return the ones with the biggest loss
                     loss, idx_max_loss = criterion(inputs, n_max_losses)
-                    total_loss += loss
-                
+                    total_loss = total_loss*(1+tau) + loss
+
                 total_loss /= (evolution_iters[1] - evolution_iters[0])
 
                 # add current loss to the loss history
-                epoch_losses.append(total_loss.item())
+                epoch_losses.append(loss.item())
 
                 # look a definition of skip_update
                 if j % skip_update != 0:

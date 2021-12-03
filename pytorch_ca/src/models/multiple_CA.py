@@ -64,7 +64,7 @@ class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
-    def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5):
+    def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5, senescence=None):
         """Initializes the model
 
         Args:
@@ -78,6 +78,7 @@ class MultipleCA(CAModel):
                     for i in range(n_CAs)]
 
         self.alpha_channel = [*range(n_channels,n_channels+n_CAs)]
+        self.senescence = senescence
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -99,12 +100,16 @@ class MultipleCA(CAModel):
         update_mask = multiple_living_mask(x[:, self.n_channels:])
         #calculate the global mask
         pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
-
+            
         #apply the mask to the input tensor
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
 
         #set to zero every cell that is dead
         x = x * pre_life_mask.float()
+
+        #senescence mechanism
+        if self.senescence!=None:
+            x = x * (torch.randlike(pre_life_mask)>self.senescence)
 
         #create the updates tensor
         updates = torch.empty([self.n_CAs, *x.shape], device=self.device)

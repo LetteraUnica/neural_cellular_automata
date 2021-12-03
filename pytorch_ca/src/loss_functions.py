@@ -91,6 +91,16 @@ class MultipleCALoss(NCALoss):
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
     """
+    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
+                 l: float = 0., alpha_channels: Tuple[int] = [3],
+                 n_max_losses: int = 1, alpha:float=1.):
+        """Args:
+            The same as the NCALoss and 
+            alpha (optiona, float): multiplicative constant to regulate the importance of the original cell ratio
+        """
+
+        super().__init__(target, criterion,l, alpha_channels, n_max_losses)
+        self.alpha=alpha
 
     def __call__(self, x, n_max_losses=None):
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
@@ -99,7 +109,7 @@ class MultipleCALoss(NCALoss):
 
         loss, idx_max_loss = super().__call__(x, n_max_losses)
 
-        loss = loss + original_cell_ratio.sum()
+        loss = loss + self.alpha * original_cell_ratio.sum()
 
         return loss, idx_max_loss
 
