@@ -64,7 +64,7 @@ class MultipleCA(CAModel):
     """Given a list of CA rules, evolves the image pixels using multiple CA rules
     """
 
-    def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5):
+    def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5, average_updates=False):
         """Initializes the model
 
         Args:
@@ -78,6 +78,8 @@ class MultipleCA(CAModel):
                     for i in range(n_CAs)]
 
         self.alpha_channel = [*range(n_channels,n_channels+n_CAs)]
+
+        self.average_updates=average_updates
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
@@ -111,8 +113,11 @@ class MultipleCA(CAModel):
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
+        if self.average_updates==True:
+            update_mask=update_mask/update_mask.sum(dim=1)
+            update_mask[torch.isnan(update_mask)]=0
+        
         #The sum of all updates is the total update
-        #Maybe it's best to do the average of the non-zero update for each cell
         updates = torch.einsum("Abchw, bAhw -> bchw", updates, update_mask.float())
 
         x = x + updates
