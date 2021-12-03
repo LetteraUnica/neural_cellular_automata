@@ -75,12 +75,12 @@ def multiple_living_mask(alphas: torch.Tensor):
     return mask  # the mask has the same shape of alphas and the values inside ar bool
 
 
-def multiple_to_single(images: torch.Tensor, n_channels: int, alpha_channel: int) -> torch.Tensor:
+def multiple_to_single(images: torch.Tensor, n_channels: int) -> torch.Tensor:
     """
     maronn maronn
     """
     return torch.cat((images[:, :3],
-                      images[:, alpha_channel:alpha_channel+1],
+                      images[:, n_channels:].sum(dim=1, keepdim=True),
                       images[:, 3:n_channels]), dim=1)
 
 

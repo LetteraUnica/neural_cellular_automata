@@ -49,7 +49,7 @@ class CustomCA(NeuralCA):
         """
 
         # reshape x in such a way that is good for the NeuralCA class
-        x_new = multiple_to_single(x,self.n_channels-1,self.alpha_channel)
+        x_new = multiple_to_single(x,self.n_channels-1)
 
         # compute update increment
         dx = super().compute_dx(x_new,angle,step_size)
@@ -112,6 +112,7 @@ class MultipleCA(CAModel):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
         #The sum of all updates is the total update
+        #Maybe it's best to do the average of the non-zero update for each cell
         updates = torch.einsum("Abchw, bAhw -> bchw", updates, update_mask.float())
 
         x = x + updates
