@@ -1,3 +1,4 @@
+import random
 import torch
 from torch.utils.data import Dataset
 
@@ -23,7 +24,8 @@ class SamplePool(Dataset):
                  pool_size: int,
                  generator: Callable[[int], torch.Tensor],
                  transform: Callable[[torch.Tensor], torch.Tensor] = None,
-                 device: torch.device = "cpu") -> None:
+                 device: torch.device = "cpu",
+                 indexes_max_loss_size=32) -> None:
         """Initializes the sample pool with pool_size seed images
 
         Args:
@@ -36,6 +38,8 @@ class SamplePool(Dataset):
                 Defaults to "cpu".
             generator (Callable[[int,*args,**kwargs],torch.Tensor]=make_seed):
                 generates the new images
+            indexes_max_loss_size (int, optional): Maximum number of images to 
+                replace with seed states. Defaults to 32.
         """
 
         self.generator = generator
@@ -48,6 +52,10 @@ class SamplePool(Dataset):
         if transform is None:
             def transform(x): return x
         self.transform = transform
+
+        self.all_indexes = set(range(self.size))
+        self.indexes_max_loss = set()
+        self.indexes_max_loss_size = indexes_max_loss_size
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
@@ -90,7 +98,8 @@ class SamplePool(Dataset):
                 The extraxted images,
                 the corresponding indexes in the sample pool
         """
-        idx = np.random.choice(self.size, batch_size, False)
+        idx = random.sample(self.all_indexes -
+                            self.indexes_max_loss, batch_size)
         return self.transform(self.images[idx]).clone(), idx
 
     def replace(self, indexes: List[int]) -> None:
@@ -104,6 +113,15 @@ class SamplePool(Dataset):
             return
         self.images[indexes] = self.generator(len(indexes), self.device)
 
+    def update_indexes_max_loss(self, indexes: List[int], idx_max_loss: List[int]):
+        if idx_max_loss is not None:
+            idx_max_loss = [indexes[i] for i in idx_max_loss]
+            self.indexes_max_loss.update(idx_max_loss)
+
+        if len(self.indexes_max_loss) > self.indexes_max_loss_size:
+            self.replace(list(self.indexes_max_loss))
+            self.indexes_max_loss = set()
+
     def update(self, indexes: List[int],
                images: torch.Tensor,
                idx_max_loss: List[int] = None) -> None:
@@ -116,12 +134,9 @@ class SamplePool(Dataset):
                 maximum loss, these images will be replaced with seed states.
                 Default None, no image will be replaced by seed states
         """
-
         self.images[indexes] = images.detach().to(self.device)
 
-        if idx_max_loss is not None:
-            idx_max_loss = [indexes[i] for i in idx_max_loss]
-            self.replace(idx_max_loss)
+        self.update_indexes_max_loss(indexes, idx_max_loss)
 
     def reset(self):
         self.images = self.generator(self.size, self.device)
