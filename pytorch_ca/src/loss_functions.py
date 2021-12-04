@@ -21,7 +21,7 @@ class NCALoss:
     """
 
     def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                alpha_channels: Tuple[int] = [3], n_max_losses: int = 1):
+                alpha_channels: Tuple[int] = [3]):
         """Initializes the loss function by storing the target image and setting
             the criterion
 
@@ -31,27 +31,23 @@ class NCALoss:
                 Loss criteria, used to compute the distance between two images.
                 Defaults to torch.nn.MSELoss.
             l (float): Regularization factor, useful to penalize the perturbation
-            n_max_losses (int): The number of indexes with the max loss to return
 
         """
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
         self.alpha_channels = alpha_channels
-        self.n_max_losses=n_max_losses
 
-    def __call__(self, x: torch.Tensor, n_max_losses: int = None, *args) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, *args) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
             x (torch.Tensor): Images to compute the loss
-            n_max_losses (int): The number of indexes with the max loss to return
 
         Returns:
             Tuple(torch.Tensor, torch.Tensor): 
                 Average loss of all images in the batch, 
                 index of the image with maximum loss
         """
-        if n_max_losses==None: n_max_losses=self.n_max_losses
 
         alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
         predicted = torch.cat((x[:, :3], alpha), dim=1)
@@ -75,7 +71,7 @@ class Cell_ratio_loss:
 
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x, n_max_losses=None):
+    def __call__(self, x):
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells)
@@ -86,18 +82,17 @@ class Cell_ratio_loss:
 class CombinedLoss(NCALoss):
     """Combines two losses into one loss function
     """
-    def __init__(self, losses:List[nn.Module], combination_function:Callable, n_max_losses) -> torch.Tensor:
+    def __init__(self, losses:List[nn.Module], combination_function) -> torch.Tensor:
         """Args:
             Losses (List[nn.Module]): List of losses to combine
             combination_function (Callable): Function to combine the losses, it takes as input the
                 number of steps, and it outputs a vector of floats al long as the number of losses
-            n_max_losses (int): The number of indexes with the max loss to return
         """
         self.losses=losses
         self.f=combination_function            
 
-    def __call__(self, x, n_max_losses=None, n_steps=0):
-        losses = torch.stack([loss(x, n_max_losses=self.n_max_losses) for loss in self.losses])
+    def __call__(self, x, n_steps=0):
+        losses = torch.stack([loss(x) for loss in self.losses])
         return torch.dot(self.f(n_steps), losses)
 
 
@@ -109,22 +104,22 @@ class NCADistance(NCALoss):
         return nn.MSELoss()(p1, p2)
 
     def __init__(self, model1: nn.Module, model2: nn.Module, target: torch.Tensor,
-                 criterion=torch.nn.MSELoss, l: float = 0., alpha_channels: Tuple[int] = [3],
-                 n_max_losses : int = 1):
+                 criterion=torch.nn.MSELoss, l: float = 0., alpha_channels: Tuple[int] = [3]):
         """Extension of the NCALoss that penalizes the distance between two
         models using the parameter l
 
         """
         self.model1 = model1
         self.model2 = model2
-        super().__init__(target, criterion, l, alpha_channels, n_max_losses)
+        self.l = l
+        
+        super().__init__(target, criterion, alpha_channels)
 
-    def __call__(self, x: torch.Tensor, n_max_losses: int = None, *args) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, *args) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
             x (torch.Tensor): Images to compute the loss
-            n (int): The number of indexes with the max loss to return
 
         Returns:
             Tuple(torch.Tensor, torch.Tensor): 
@@ -132,7 +127,4 @@ class NCADistance(NCALoss):
                 index of the image with maximum loss
         """
 
-        loss, idx_max_loss = super().__call__(x, n_max_losses)
-
-        loss += self.l * self.model_distance(self.model1, self.model2)
-        return loss, idx_max_loss
+        return super().__call__(x) + self.l * self.model_distance(self.model1, self.model2)
