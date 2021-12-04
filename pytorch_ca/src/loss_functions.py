@@ -46,7 +46,7 @@ class NCALoss:
         self.perturbation = 0.
         self.N = 0
 
-    def __call__(self, x: torch.Tensor, n_max_losses: int = None) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, n_max_losses: int = None, *args) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
@@ -86,32 +86,45 @@ class NCALoss:
         self.N += 1
 
 
-class MultipleCALoss(NCALoss):
+class Cell_ratio_loss:
     """Custom loss function for the multiple CA, computes the
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
     """
-    def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 l: float = 0., alpha_channels: Tuple[int] = [3],
-                 n_max_losses: int = 1, alpha:float=1.):
+    def __init__(alpha_channels: Tuple[int] = [3]):
         """Args:
             The same as the NCALoss and 
             alpha (optiona, float): multiplicative constant to regulate the importance of the original cell ratio
         """
 
-        super().__init__(target, criterion,l, alpha_channels, n_max_losses)
-        self.alpha=alpha
+        self.alpha_channels = alpha_channels
 
     def __call__(self, x, n_max_losses=None):
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells)
+        
+        return original_cell_ratio.sum()
 
-        loss, idx_max_loss = super().__call__(x, n_max_losses)
 
-        loss = loss + self.alpha * original_cell_ratio.sum()
+class CombinedLoss(NCALoss):
+    """Combines two losses into one loss function
+    """
+    def __init__(self, losses:List[nn.Module], combination_function:Callable, n_max_losses) -> torch.Tensor:
+        """Args:
+            Losses (List[nn.Module]): List of losses to combine
+            combination_function (Callable): Function to combine the losses, it takes as input the
+                number of steps, and it outputs a vector of floats al long as the number of losses
+            n_max_losses (int): The number of indexes with the max loss to return
+        """
+        self.losses=losses
+        self.f=combination_function            
+        self.n_max_losses=n_max_losses
 
-        return loss, idx_max_loss
+    def __call__(self, x, n_max_losses=None, n_steps=0):
+        losses = torch.stack([loss(x, n_max_losses=self.n_max_losses) for loss in self.losses])
+        return torch.dot(self.f(n_steps), losses)
+
 
 
 class NCADistance(NCALoss):
@@ -131,7 +144,7 @@ class NCADistance(NCALoss):
         self.model2 = model2
         super().__init__(target, criterion, l, alpha_channels, n_max_losses)
 
-    def __call__(self, x: torch.Tensor, n_max_losses: int = None) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, n_max_losses: int = None, *args) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
