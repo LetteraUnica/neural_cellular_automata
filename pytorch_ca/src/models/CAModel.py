@@ -173,18 +173,11 @@ class CAModel(nn.Module):
                 self.update(inputs) #This is useful when you update the mask
 
                 # recursive forward-pass
-                for k in range(evolution_iters[0]):
+                for k in range(evolution_iters):
                     inputs = self.forward(inputs)
-
-                total_loss = torch.tensor([0.], device=self.device)
-                for k in range(evolution_iters[1] - evolution_iters[0]):
-                    inputs = self.forward(inputs)
-
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    loss, idx_max_loss = criterion(inputs, n_max_losses)
-                    total_loss = total_loss*(1+tau) + loss
-
-                total_loss /= (evolution_iters[1] - evolution_iters[0])
+                    losses = criterion(inputs, k)
+                    total_loss += torch.mean(losses)
 
                 # add current loss to the loss history
                 epoch_losses.append(loss.item())
@@ -214,6 +207,7 @@ class CAModel(nn.Module):
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
+                    idx_max_loss = n_largest_indexes(losses, n_max_losses)
                     pool.update(indexes, inputs, idx_max_loss)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:

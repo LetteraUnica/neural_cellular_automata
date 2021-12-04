@@ -21,7 +21,7 @@ class NCALoss:
     """
 
     def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                 l: float = 0., alpha_channels: Tuple[int] = [3], n_max_losses: int = 1):
+                alpha_channels: Tuple[int] = [3], n_max_losses: int = 1):
         """Initializes the loss function by storing the target image and setting
             the criterion
 
@@ -36,15 +36,8 @@ class NCALoss:
         """
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
-        self.l = l
         self.alpha_channels = alpha_channels
         self.n_max_losses=n_max_losses
-
-        self._reset_perturbation()
-
-    def _reset_perturbation(self):
-        self.perturbation = 0.
-        self.N = 0
 
     def __call__(self, x: torch.Tensor, n_max_losses: int = None, *args) -> Tuple[torch.Tensor, torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
@@ -64,26 +57,9 @@ class NCALoss:
         predicted = torch.cat((x[:, :3], alpha), dim=1)
 
         losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
-        idx_max_loss = n_largest_indexes(losses, n_max_losses)
-        loss = torch.mean(losses)
 
-        if self.N != 0:
-            loss += self.l*self.perturbation/self.N
-
-        self._reset_perturbation()
-
-        return loss, idx_max_loss
-
-    def add_perturbation(self, perturbation: torch.Tensor):
-        """Adds the perturbation to the loss, in order to penalize it,
-            The perturbation can be the output of the neural CA
-
-        Args:
-            perturbation (torch.Tensor): Perturbation to add to the loss.
-        """
-
-        self.perturbation += torch.mean(perturbation**2)
-        self.N += 1
+        return losses
+ 
 
 
 class Cell_ratio_loss:
@@ -104,7 +80,7 @@ class Cell_ratio_loss:
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells)
         
-        return original_cell_ratio.sum()
+        return original_cell_ratio
 
 
 class CombinedLoss(NCALoss):
@@ -119,7 +95,6 @@ class CombinedLoss(NCALoss):
         """
         self.losses=losses
         self.f=combination_function            
-        self.n_max_losses=n_max_losses
 
     def __call__(self, x, n_max_losses=None, n_steps=0):
         losses = torch.stack([loss(x, n_max_losses=self.n_max_losses) for loss in self.losses])
