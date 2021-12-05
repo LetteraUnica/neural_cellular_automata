@@ -109,7 +109,7 @@ class MultipleCALoss(NCALoss):
 
         loss, idx_max_loss = super().__call__(x, n_max_losses)
 
-        loss = loss + self.alpha * original_cell_ratio.sum()
+        loss = loss + self.alpha * original_cell_ratio.mean()
 
         return loss, idx_max_loss
 
