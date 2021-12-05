@@ -180,7 +180,8 @@ class CAModel(nn.Module):
                     losses = criterion(inputs, n_step, epoch)
                     loss=torch.mean(losses)
                     if n_step==criterion.log_step: #log the loss
-                        epoch_losses.append(loss.item())
+                        log_loss=criterion.log_loss(inputs)
+                        epoch_losses.append(log_loss)
                     total_loss += loss
 
 
