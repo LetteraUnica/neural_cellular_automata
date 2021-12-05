@@ -37,7 +37,7 @@ class NCALoss:
         self.criterion = criterion(reduction="none")
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x: torch.Tensor, *args) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
@@ -71,7 +71,7 @@ class Cell_ratio_loss:
 
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x):
+    def __call__(self, x:torch.Tensor)->Tuple[torch.Tensor]:
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells)
@@ -79,32 +79,14 @@ class Cell_ratio_loss:
         return original_cell_ratio
 
 
-class CombinedLoss:
-    """Combines two losses into one loss function
-    """
-    def __init__(self, losses:List[nn.Module], combination_function) -> torch.Tensor:
-        """Args:
-            Losses (List[nn.Module]): List of losses to combine
-            combination_function (Callable): Function to combine the losses, it takes as input the
-                number of steps, and it outputs a vector of floats al long as the number of losses
-        """
-        self.losses=losses
-        self.f=combination_function            
 
-    def __call__(self, x, n_steps=0):
-        losses = torch.stack([loss(x) for loss in self.losses]).float()
-        return torch.matmul(self.f(n_steps), losses) #This gives problem if some variables are not in cuda
-
-
-
-class NCADistance(NCALoss):
+class NCADistance():
     def model_distance(self, model1: nn.Module, model2: nn.Module):
         """Computes the distance between the parameters of two models"""
         p1, p2 = ruler.parameters_to_vector(model1), ruler.parameters_to_vector(model2)
         return nn.MSELoss()(p1, p2)
 
-    def __init__(self, model1: nn.Module, model2: nn.Module, target: torch.Tensor,
-                 criterion=torch.nn.MSELoss, l: float = 0., alpha_channels: Tuple[int] = [3]):
+    def __init__(self, model1: nn.Module, model2: nn.Module, l: float = 0.):
         """Extension of the NCALoss that penalizes the distance between two
         models using the parameter l
 
@@ -113,9 +95,8 @@ class NCADistance(NCALoss):
         self.model2 = model2
         self.l = l
 
-        super().__init__(target, criterion, alpha_channels)
 
-    def __call__(self, x: torch.Tensor, *args) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __call__(self, x: torch.Tensor, *args) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
@@ -127,4 +108,21 @@ class NCADistance(NCALoss):
                 index of the image with maximum loss
         """
 
-        return super().__call__(x) + self.l * self.model_distance(self.model1, self.model2)
+        return self.l * self.model_distance(self.model1, self.model2)
+
+
+class CombinedLoss:
+    """Combines several losses into one loss function that depends on the number of steps
+    """
+    def __init__(self, losses:List[nn.Module], combination_function):
+        """Args:
+            Losses (List[nn.Module]): List of losses to combine
+            combination_function (Callable): Function to combine the losses, it takes as input the
+                number of steps and the epoch, and it outputs a vector of floats al long as the number of losses
+        """
+        self.losses=losses
+        self.f=combination_function            
+
+    def __call__(self, x, n_steps=0, n_epoch=0) -> torch.Tensor:
+        losses = torch.stack([loss(x) for loss in self.losses]).float()
+        return torch.matmul(self.f(n_steps,n_epoch), losses) #This gives problem if some variables are not in cuda

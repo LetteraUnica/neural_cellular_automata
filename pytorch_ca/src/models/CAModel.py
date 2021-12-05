@@ -160,7 +160,7 @@ class CAModel(nn.Module):
 
         self.train()
 
-        for i in range(n_epochs):
+        for epoch in range(n_epochs):
             epoch_losses = []  # array that stores the loss history
 
             # take the data
@@ -177,12 +177,12 @@ class CAModel(nn.Module):
                 for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, n_step)
+                    losses = criterion(inputs, n_step, epoch)
                     loss=torch.mean(losses)
+                    if n_step==criterion.log_step: #log the loss
+                        epoch_losses.append(loss.item())
                     total_loss += loss
 
-                # add current loss to the loss history
-                epoch_losses.append(loss.item())
 
                 # look a definition of skip_update
                 if j % skip_update != 0:
@@ -228,11 +228,11 @@ class CAModel(nn.Module):
             if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2):
                 print("Stopping early")
                 break
-            if epoch_loss > 0.25 and i == 40: break
+            if epoch_loss > 0.25 and epoch == 40: break
 
             wandb.log({"loss": epoch_loss})
             self.losses.append(epoch_loss)
-            print(f"epoch: {i+1}\navg loss: {epoch_loss}")
+            print(f"epoch: {epoch+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
     def plot_losses(self, log_scale=True):
