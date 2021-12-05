@@ -79,7 +79,7 @@ class Cell_ratio_loss:
         return original_cell_ratio
 
 
-class CombinedLoss(NCALoss):
+class CombinedLoss:
     """Combines two losses into one loss function
     """
     def __init__(self, losses:List[nn.Module], combination_function) -> torch.Tensor:
@@ -93,7 +93,7 @@ class CombinedLoss(NCALoss):
 
     def __call__(self, x, n_steps=0):
         losses = torch.stack([loss(x) for loss in self.losses])
-        return torch.dot(self.f(n_steps), losses)
+        return torch.tensordot(self.f(n_steps), losses, dims=1) #This gives problem if some variables are not in cuda
 
 
 
@@ -112,7 +112,7 @@ class NCADistance(NCALoss):
         self.model1 = model1
         self.model2 = model2
         self.l = l
-        
+
         super().__init__(target, criterion, alpha_channels)
 
     def __call__(self, x: torch.Tensor, *args) -> Tuple[torch.Tensor, torch.Tensor]:
