@@ -174,10 +174,10 @@ class CAModel(nn.Module):
 
                 # recursive forward-pass
                 total_loss=0
-                for k in range(evolution_iters):
+                for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, k)
+                    losses = criterion(inputs, n_step)
                     loss=torch.mean(losses)
                     total_loss += loss
 
