@@ -160,7 +160,7 @@ class CAModel(nn.Module):
 
         self.train()
 
-        for i in range(n_epochs):
+        for epoch in range(n_epochs):
             epoch_losses = []  # array that stores the loss history
 
             # take the data
@@ -173,21 +173,16 @@ class CAModel(nn.Module):
                 self.update(inputs) #This is useful when you update the mask
 
                 # recursive forward-pass
-                for k in range(evolution_iters[0]):
+                total_loss=0
+                for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
-
-                total_loss = torch.tensor([0.], device=self.device)
-                for k in range(evolution_iters[1] - evolution_iters[0]):
-                    inputs = self.forward(inputs)
-
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    loss, idx_max_loss = criterion(inputs, n_max_losses)
-                    total_loss = total_loss*(1+tau) + loss
+                    losses = criterion(inputs, n_step, epoch)
+                    loss=torch.mean(losses)
+                    if n_step==criterion.log_step: #log the loss
+                        epoch_losses.append(loss.item())
+                    total_loss += loss
 
-                total_loss /= (evolution_iters[1] - evolution_iters[0])
-
-                # add current loss to the loss history
-                epoch_losses.append(loss.item())
 
                 # look a definition of skip_update
                 if j % skip_update != 0:
@@ -214,6 +209,7 @@ class CAModel(nn.Module):
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
+                    idx_max_loss = n_largest_indexes(losses, n_max_losses)
                     pool.update(indexes, inputs, idx_max_loss)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
@@ -232,11 +228,11 @@ class CAModel(nn.Module):
             if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2):
                 print("Stopping early")
                 break
-            if epoch_loss > 0.25 and i == 40: break
+            if epoch_loss > 0.25 and epoch == 40: break
 
             wandb.log({"loss": epoch_loss})
             self.losses.append(epoch_loss)
-            print(f"epoch: {i+1}\navg loss: {epoch_loss}")
+            print(f"epoch: {epoch+1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
     def plot_losses(self, log_scale=True):
