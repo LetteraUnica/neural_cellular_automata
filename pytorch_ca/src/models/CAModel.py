@@ -173,11 +173,13 @@ class CAModel(nn.Module):
                 self.update(inputs) #This is useful when you update the mask
 
                 # recursive forward-pass
+                total_loss=0
                 for k in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
                     losses = criterion(inputs, k)
-                    total_loss += torch.mean(losses)
+                    loss=torch.mean(losses)
+                    total_loss += loss
 
                 # add current loss to the loss history
                 epoch_losses.append(loss.item())

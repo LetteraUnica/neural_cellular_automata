@@ -92,8 +92,8 @@ class CombinedLoss:
         self.f=combination_function            
 
     def __call__(self, x, n_steps=0):
-        losses = torch.stack([loss(x) for loss in self.losses])
-        return torch.tensordot(self.f(n_steps), losses, dims=1) #This gives problem if some variables are not in cuda
+        losses = torch.stack([loss(x) for loss in self.losses]).float()
+        return torch.matmul(self.f(n_steps), losses) #This gives problem if some variables are not in cuda
 
 
 
