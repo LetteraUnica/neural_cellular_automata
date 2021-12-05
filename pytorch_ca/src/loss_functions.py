@@ -63,7 +63,7 @@ class Cell_ratio_loss:
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
     """
-    def __init__(alpha_channels: Tuple[int] = [3]):
+    def __init__(self,alpha_channels: Tuple[int] = [3]):
         """Args:
             The same as the NCALoss and 
             alpha (optiona, float): multiplicative constant to regulate the importance of the original cell ratio
@@ -74,7 +74,7 @@ class Cell_ratio_loss:
     def __call__(self, x:torch.Tensor)->Tuple[torch.Tensor]:
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
-        original_cell_ratio = original_cells / (original_cells+virus_cells)
+        original_cell_ratio = original_cells / (original_cells+virus_cells+1e-8)
         
         return original_cell_ratio
 
