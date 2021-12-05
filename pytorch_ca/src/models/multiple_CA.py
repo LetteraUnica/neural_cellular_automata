@@ -97,15 +97,15 @@ class MultipleCA(CAModel):
         # Currently applies only a global mask and all updates at once
 
         #calculate the mask of each channel
-        update_mask = multiple_living_mask(x[:, self.n_channels:])
+        update_mask = multiple_living_mask(x[:, self.n_channels:]).float()
         #calculate the global mask
         pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
             
         #apply the mask to the input tensor
-        x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask.float()
+        x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask
 
         #set to zero every cell that is dead
-        x = x * pre_life_mask.float()
+        x = x * pre_life_mask
 
         #senescence mechanism
         if self.senescence!=None:
@@ -116,11 +116,11 @@ class MultipleCA(CAModel):
         for i, CA in enumerate(self.CAs):
             updates[i] = CA.compute_dx(x, angle, step_size)
 
-        update_mask=update_mask/update_mask.sum(dim=1,keepdim=True)
+        update_mask=update_mask/(1e-8 + update_mask.sum(dim=1,keepdim=True))
         update_mask[torch.isnan(update_mask)]=0
         
         #The sum of all updates is the total update
-        updates = torch.einsum("Abchw, bAhw -> bchw", updates, update_mask.float())
+        updates = torch.einsum("Abchw, bAhw -> bchw", updates, update_mask)
 
         x = x + updates
 

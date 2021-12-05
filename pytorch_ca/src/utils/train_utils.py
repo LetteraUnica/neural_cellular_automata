@@ -72,7 +72,7 @@ def multiple_living_mask(alphas: torch.Tensor):
     # the CA evolves in the cells where it can expand and the ones where is already present
     mask = expanding | old
 
-    return mask  # the mask has the same shape of alphas and the values inside ar bool
+    return mask  # the mask has the same shape of alphas and the values inside are bool
 
 
 def multiple_to_single(images: torch.Tensor, n_channels: int) -> torch.Tensor:
