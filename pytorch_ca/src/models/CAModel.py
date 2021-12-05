@@ -11,6 +11,7 @@ import wandb
 
 from ..utils import *
 from ..sample_pool import *
+from .. loss_functions import *
 
 
 class CAModel(nn.Module):
@@ -113,7 +114,6 @@ class CAModel(nn.Module):
                  kind: str = "growing",
                  n_max_losses: int = 1,
                  normalize_gradients=False,
-                 tau=0,
                  **kwargs):
         """Trains the CA model
 
@@ -152,10 +152,6 @@ class CAModel(nn.Module):
             n_max_losses(int,optional):
                 number of datapoints with the biggest losses to replace.
                 Defaults to 1
-            tau(float,optional):
-                how much more important is the loss of a step relative to the other one,
-                for example L_n=(1+tau)L_n+1 if the two outputs are identical
-                Defaults to zero
         """
 
         self.train()
