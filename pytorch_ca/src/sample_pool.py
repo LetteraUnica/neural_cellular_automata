@@ -57,6 +57,8 @@ class SamplePool(Dataset):
         self.indexes_max_loss = set()
         self.indexes_max_loss_size = indexes_max_loss_size
 
+        self.evolutions_per_image = np.zeros(self.size)
+
     def __len__(self) -> int:
         """Returns the number of images in the pool
 
@@ -112,19 +114,25 @@ class SamplePool(Dataset):
             self.images[indexes] = self.generator(1, self.device)[0]
             return
         self.images[indexes] = self.generator(len(indexes), self.device)
+        self.evolutions_per_image[indexes] = 0
 
-    def update_indexes_max_loss(self, indexes: List[int], idx_max_loss: List[int]):
-        if idx_max_loss is not None:
-            idx_max_loss = [indexes[i] for i in idx_max_loss]
-            self.indexes_max_loss.update(idx_max_loss)
+    def resample_indexes(self, indexes: List[int], idx_to_replace: List[int]):
+        if idx_to_replace is not None:
+            idx_to_replace = [indexes[i] for i in idx_to_replace]
+            self.indexes_max_loss.update(idx_to_replace)
 
         if len(self.indexes_max_loss) > self.indexes_max_loss_size:
             self.replace(list(self.indexes_max_loss))
             self.indexes_max_loss = set()
+    
+    def update_evolution_iters(self, indexes: List[int], evolution_iters):
+        if evolution_iters is not None:
+            self.evolutions_per_image[indexes] += evolution_iters
 
     def update(self, indexes: List[int],
                images: torch.Tensor,
-               idx_max_loss: List[int] = None) -> None:
+               idx_to_replace: List[int] = None,
+               evolution_iters = None) -> None:
         """Updates the images in the pool with new images at the given indexes.
 
         Args:
@@ -136,7 +144,9 @@ class SamplePool(Dataset):
         """
         self.images[indexes] = images.detach().to(self.device)
 
-        self.update_indexes_max_loss(indexes, idx_max_loss)
+        self.resample_indexes(indexes, idx_to_replace)
+
+        self.update_evolution_iters(indexes, evolution_iters)
 
     def reset(self):
         self.images = self.generator(self.size, self.device)
