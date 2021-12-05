@@ -110,7 +110,7 @@ class CAModel(nn.Module):
                  scheduler: torch.optim.lr_scheduler._LRScheduler = None,
                  batch_size: int = 4,
                  skip_update: int = 2,
-                 evolution_iters: Tuple[int, int] = (40, 70),
+                 evolution_iters: int = 96,
                  kind: str = "growing",
                  n_max_losses: int = 1,
                  normalize_gradients=False,
@@ -207,7 +207,7 @@ class CAModel(nn.Module):
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
                     idx_max_loss = n_largest_indexes(log_loss, n_max_losses)
-                    pool.update(indexes, inputs, idx_max_loss)
+                    pool.update(indexes, inputs, idx_max_loss, evolution_iters)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
                         if np.random.uniform()<kwargs['reset_prob']:
