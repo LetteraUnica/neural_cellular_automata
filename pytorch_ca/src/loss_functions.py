@@ -58,7 +58,7 @@ class NCALoss:
  
 
 
-class Cell_ratio_loss:
+class CellRatioLoss:
     """Custom loss function for the multiple CA, computes the
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
@@ -118,7 +118,7 @@ class CombinedLoss:
         """Args:
             Losses (List[nn.Module]): List of losses to combine
             combination_function (Callable): Function to combine the losses, it takes as input the
-                number of steps and the epoch, and it outputs a vector of floats al long as the number of losses
+                number of steps and the epoch, and it outputs a vector of floats as long as the number of losses
         """
         self.losses=losses
         self.f=combination_function            
