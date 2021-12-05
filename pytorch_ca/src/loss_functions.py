@@ -128,4 +128,4 @@ class CombinedLoss:
         return torch.matmul(self.f(n_steps,n_epoch), losses) #This gives problem if some variables are not in cuda
 
     def log_loss(self,x:torch.Tensor)->float:
-        return torch.mean(self.losses[0](x)).item()
+        return self.losses[0](x)

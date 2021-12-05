@@ -181,7 +181,7 @@ class CAModel(nn.Module):
                     loss=torch.mean(losses)
                     if n_step==criterion.log_step: #log the loss
                         log_loss=criterion.log_loss(inputs)
-                        epoch_losses.append(log_loss)
+                        epoch_losses.append(torch.mean(log_loss).item())
                     total_loss += loss
 
 
@@ -210,7 +210,7 @@ class CAModel(nn.Module):
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    idx_max_loss = n_largest_indexes(losses, n_max_losses)
+                    idx_max_loss = n_largest_indexes(log_loss, n_max_losses)
                     pool.update(indexes, inputs, idx_max_loss)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
