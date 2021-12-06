@@ -4,7 +4,7 @@ import numpy as np
 
 class combination_function_generator:
 
-    def __init__(self, tau, img_interval , kill_interval, kill_multiplier, device="cpu", tau2=None, tau_kill=0, tau_decay=20,tau2_decay=None):
+    def __init__(self, tau, img_interval , kill_interval, kill_multiplier, device="cpu", tau2=None, tau_kill=0, tau_decay=5e-2,tau2_decay=None):
         self.img_interval=img_interval
         self.kill_interval=kill_interval
         self.kill_multiplier=kill_multiplier
@@ -12,9 +12,9 @@ class combination_function_generator:
         self.device=device
 
         self.tau=tau
-        if self.tau2==None:
+        if tau2==None:
             self.tau2=2*tau
-        if self.tau2_decay==None:
+        if tau2_decay==None:
             self.tau2_decay=tau_decay
         self.tau_decay=tau_decay
         self.tau_kill=tau_kill
@@ -31,8 +31,8 @@ class combination_function_generator_virus(combination_function_generator):
 
     def __call__(self, n_steps,n_epoch=0):  
         kill_multiplier=self.kill_multiplier*np.exp(-n_epoch*self.tau_kill)
-        tau=self.tau*np.exp(-n_epoch/self.tau_decay)
-        tau2=self.tau2*np.exp(-n_epoch/self.tau2_decay)
+        tau=self.tau*np.exp(-n_epoch*self.tau_decay)
+        tau2=self.tau2*np.exp(-n_epoch*self.tau2_decay)
 
         m1=self.exponential(n_steps-self.img_interval[1], tau, img_interval)
         m2=kill_multiplier*self.exponential(n_steps-self.kill_interval[1],tau2, img_interval)
@@ -43,7 +43,7 @@ class combination_function_generator_virus(combination_function_generator):
 class combination_function_generator_growing(combination_function_generator):
 
     def __call__(self, n_steps,n_epoch=0):
-        tau=self.tau*np.exp(-n_epoch/self.tau_decay)
+        tau=self.tau*np.exp(-n_epoch*self.tau_decay)
         m1=self.exponential(self.img_interval[1]-n_steps, tau, self.img_interval)
         
         m2=0
