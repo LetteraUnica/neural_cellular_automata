@@ -121,7 +121,8 @@ class CombinedLoss:
                 number of steps and the epoch, and it outputs a vector of floats as long as the number of losses
         """
         self.losses=losses
-        self.f=combination_function            
+        self.f=combination_function
+        self.log_step=self.f.img_interval[1]          
 
     def __call__(self, x, n_steps=0, n_epoch=0) -> torch.Tensor:
         losses = torch.stack([loss(x) for loss in self.losses]).float()
@@ -129,3 +130,5 @@ class CombinedLoss:
 
     def log_loss(self,x:torch.Tensor)->float:
         return self.losses[0](x)
+
+    
