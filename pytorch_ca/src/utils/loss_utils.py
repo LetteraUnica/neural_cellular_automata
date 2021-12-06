@@ -24,6 +24,12 @@ class combination_function_generator:
         if n_steps >= interval[0] and n_steps <= interval[1]:
             return np.exp(tau*x)
         return 0
+    
+    def sigmoid(self, x, tau, interval):
+        n_steps = x + interval[0]
+        if n_steps >= interval[0] and n_steps <= interval[1]:
+            return 1/(1+np.exp(-tau*x))
+        return 0
 
 
 
@@ -46,9 +52,6 @@ class combination_function_generator_growing(combination_function_generator):
         tau=self.tau*np.exp(-n_epoch*self.tau_decay)
         m1=self.exponential(self.img_interval[1]-n_steps, tau, self.img_interval)
         
-        m2=0
-        kill_multiplier=self.kill_multiplier*np.exp(-n_epoch*self.tau_kill)
-        if n_steps >= self.kill_interval[0] and n_steps<= self.kill_interval[1]:
-            m2=kill_multiplier
+        m2=self.sigmoid(n_steps-self.kill_interval[1]-n_epoch*self.tau_kill,self.tau, self.kill_interval)*self.kill_multiplier
         
         return torch.tensor([m1,m2],device=self.device).float()

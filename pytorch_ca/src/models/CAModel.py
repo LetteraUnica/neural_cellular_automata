@@ -222,7 +222,7 @@ class CAModel(nn.Module):
             epoch_loss = np.mean(epoch_losses)
 
             # Stopping criteria
-            if np.isnan(epoch_loss) or (epoch_loss > 5 and i > 2):
+            if np.isnan(epoch_loss) or (epoch_loss > 5 and epoch > 2):
                 print("Stopping early")
                 break
             if epoch_loss > 0.25 and epoch == 40: break
