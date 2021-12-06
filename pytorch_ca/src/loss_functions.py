@@ -114,7 +114,7 @@ class NCADistance():
 class CombinedLoss:
     """Combines several losses into one loss function that depends on the number of steps
     """
-    def __init__(self, losses:List[nn.Module], combination_function):
+    def __init__(self, losses:List[nn.Module], combination_function, log_step=60):
         """Args:
             Losses (List[nn.Module]): List of losses to combine
             combination_function (Callable): Function to combine the losses, it takes as input the
@@ -122,7 +122,7 @@ class CombinedLoss:
         """
         self.losses=losses
         self.f=combination_function
-        self.log_step=self.f.img_interval[1]          
+        self.log_step=log_step
 
     def __call__(self, x, n_steps=0, n_epoch=0) -> torch.Tensor:
         losses = torch.stack([loss(x) for loss in self.losses]).float()

@@ -222,10 +222,10 @@ class CAModel(nn.Module):
             epoch_loss = np.mean(epoch_losses)
 
             # Stopping criteria
-            if np.isnan(epoch_loss) or (epoch_loss > 5 and epoch > 2):
-                print("Stopping early")
-                break
-            if epoch_loss > 0.25 and epoch == 40: break
+            if np.isnan(epoch_loss):
+                raise Exception("Loss is NaN")
+            if epoch_loss > 5 and epoch > 2 or epoch_loss > 0.25 and epoch == 40:
+                raise Exception("Loss is too high")
 
             wandb.log({"loss": epoch_loss})
             self.losses.append(epoch_loss)
