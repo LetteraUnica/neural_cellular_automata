@@ -170,14 +170,13 @@ class CAModel(nn.Module):
 
                 # recursive forward-pass
                 total_loss=0
-                for n_step in range(evolution_iters):
+                a = randint(-10, 10)
+                for n_step in range(evolution_iters + a):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, n_step, epoch)
+                    losses = criterion(inputs, pool.evolutions_per_image[indexes] + n_step)
                     loss=torch.mean(losses)
-                    if n_step==criterion.log_step: #log the loss
-                        log_loss=criterion.log_loss(inputs)
-                        epoch_losses.append(torch.mean(log_loss).item())
+
                     total_loss += loss
 
 
@@ -186,7 +185,10 @@ class CAModel(nn.Module):
                     idx_max_loss = None
 
                 # backward-pass
+                total_loss /= (evolution_iters + a)
                 total_loss.backward()
+
+                epoch_losses.append(total_loss.detach().cpu().item())
 
                 # normalize gradients
                 with torch.no_grad():
@@ -206,8 +208,8 @@ class CAModel(nn.Module):
 
                 # if training is not for growing proccess then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    idx_max_loss = n_largest_indexes(log_loss, n_max_losses)
-                    pool.update(indexes, inputs, idx_max_loss, evolution_iters)
+                    #idx_max_loss = n_largest_indexes(total_loss, n_max_losses)
+                    pool.update(indexes, inputs, [1,2,3], evolution_iters)
                     #if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
                         if np.random.uniform()<kwargs['reset_prob']:

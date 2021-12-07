@@ -1,7 +1,8 @@
+from typing import Callable, Iterable
 import torch
-from torch import nn
-from typing import Tuple, List
+from abc import abstractmethod
 
+from src.utils.math.integrators import CachedDiscreteIntegrator
 from .utils import *
 
 
@@ -10,18 +11,35 @@ def n_largest_indexes(array: list, n: int = 1) -> list:
 
     url:https://stackoverflow.com/questions/16878715/how-to-find-the-index-of-n-largest-elements-in-a-list-or-np-array-python
     """
-    if n==0: return None
+    if n == 0:
+        return None
     return sorted(range(len(array)), key=lambda x: array[x])[-n:]
 
 
-class NCALoss:
+class BaseNCALoss(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+    @staticmethod
+    def get_weight(a: int, b: int) -> float:
+        return b - a
+
+    def get_weight_vectorized(self, a: Iterable[int], b: Iterable[int]) -> torch.Tensor:
+        return torch.tensor([self.get_weight(ai, bi) for (ai, bi) in zip(a, b)])
+
+    @abstractmethod
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int]) -> torch.Tensor:
+        pass
+
+
+class NCALoss(BaseNCALoss):
     """Custom loss function for the neural CA, computes the
         distance of the target image vs the predicted image and adds a
         penalization term
     """
 
     def __init__(self, target: torch.Tensor, criterion=torch.nn.MSELoss,
-                alpha_channels: Tuple[int] = [3]):
+                 alpha_channels=None):
         """Initializes the loss function by storing the target image and setting
             the criterion
 
@@ -30,23 +48,24 @@ class NCALoss:
             criterion (Loss function, optional): 
                 Loss criteria, used to compute the distance between two images.
                 Defaults to torch.nn.MSELoss.
-            l (float): Regularization factor, useful to penalize the perturbation
-
         """
+        super().__init__()
+        
+        if alpha_channels is None:
+            alpha_channels = [3]
         self.target = target.detach().clone()
         self.criterion = criterion(reduction="none")
         self.alpha_channels = alpha_channels
-
-    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor]:
+    
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int] = None) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
             x (torch.Tensor): Images to compute the loss
 
         Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
-                Average loss of all images in the batch, 
-                index of the image with maximum loss
+            torch.Tensor: 
+                Loss for each of the images in the batch
         """
 
         alpha = torch.sum(x[:, self.alpha_channels], dim=1).unsqueeze(1)
@@ -55,80 +74,103 @@ class NCALoss:
         losses = self.criterion(predicted, self.target).mean(dim=[1, 2, 3])
 
         return losses
- 
 
 
-class CellRatioLoss:
+class CellRatioLoss(BaseNCALoss):
     """Custom loss function for the multiple CA, computes the
         distance of the target image vs the predicted image, adds a
         penalization term and penalizes the number of original cells
     """
-    def __init__(self,alpha_channels: Tuple[int] = [3]):
-        """Args:
-            The same as the NCALoss and 
-            alpha (optiona, float): multiplicative constant to regulate the importance of the original cell ratio
-        """
 
+    def __init__(self, alpha_channels=None):
+        """Args: The same as the NCALoss and alpha_channels (optional, float): multiplicative constant to regulate
+        the importance of the original cell ratio
+        """
+        super().__init__()
+
+        if alpha_channels is None:
+            alpha_channels = [3]
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x:torch.Tensor)->Tuple[torch.Tensor]:
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int] = None) -> torch.Tensor:
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
-        original_cell_ratio = original_cells / (original_cells+virus_cells+1e-8)
-        
+        original_cell_ratio = original_cells / (original_cells + virus_cells + 1e-8)
+
         return original_cell_ratio
 
 
-
-class NCADistance():
-    def model_distance(self, model1: nn.Module, model2: nn.Module):
-        """Computes the distance between the parameters of two models"""
-        p1, p2 = ruler.parameters_to_vector(model1), ruler.parameters_to_vector(model2)
-        return nn.MSELoss()(p1, p2)
-
-    def __init__(self, model1: nn.Module, model2: nn.Module, l: float = 0.):
+class NCADistance(BaseNCALoss):
+    def __init__(self, model_1: nn.Module, model_2: nn.Module, penalization: float = 0.):
         """Extension of the NCALoss that penalizes the distance between two
-        models using the parameter l
-
+        models using the parameter "penalization"
         """
-        self.model1 = model1
-        self.model2 = model2
-        self.l = l
+        super().__init__()
 
+        self.model_1 = model_1
+        self.model_2 = model_2
+        self.penalization = penalization
 
-    def __call__(self, x: torch.Tensor, *args) -> torch.Tensor:
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int] = None) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
 
         Args:
             x (torch.Tensor): Images to compute the loss
 
         Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
-                Average loss of all images in the batch, 
+            Tuple(torch.Tensor, torch.Tensor):
+                Average loss of all images in the batch,
                 index of the image with maximum loss
         """
 
-        return self.l * self.model_distance(self.model1, self.model2)
+        return self.penalization * ruler.distance(self.model_1, self.model_2)
 
 
-class CombinedLoss:
-    """Combines several losses into one loss function that depends on the number of steps
-    """
-    def __init__(self, losses:List[nn.Module], combination_function, log_step=60):
-        """Args:
-            Losses (List[nn.Module]): List of losses to combine
-            combination_function (Callable): Function to combine the losses, it takes as input the
-                number of steps and the epoch, and it outputs a vector of floats as long as the number of losses
-        """
-        self.losses=losses
-        self.f=combination_function
-        self.log_step=log_step
+class WeightedLoss(BaseNCALoss):
+    """Weights the loss with a function of the number of steps and the epoch"""
 
-    def __call__(self, x, n_steps=0, n_epoch=0) -> torch.Tensor:
-        losses = torch.stack([loss(x) for loss in self.losses]).float()
-        return torch.matmul(self.f(n_steps,n_epoch), losses) #This gives problem if some variables are not in cuda
+    def __init__(self, loss_function: nn.Module, weight_function: Callable[[int], float]) -> None:
+        super().__init__()
 
-    def log_loss(self,x:torch.Tensor)->float:
-        return self.losses[0](x)
+        self.loss_function = loss_function
+        self.weight_function = weight_function
+        self.integrator = CachedDiscreteIntegrator(weight_function)
 
+    def get_weight(self, a: int, b: int) -> float:
+        return self.integrator.integrate(a, b)
     
+    def weight_function_vectorized(self, x):
+        try:
+            return torch.tensor([self.weight_function(xi) for xi in x])
+        except TypeError:
+            return self.weight_function(x)  
+
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int]) -> torch.Tensor:
+        return self.loss_function(x) * self.weight_function_vectorized(evolution_steps).to(x.device)
+
+
+class CombinedLoss(BaseNCALoss):
+    def __init__(self, loss_functions: Iterable[BaseNCALoss], weights: Iterable[float]):
+        super().__init__()
+
+        assert len(loss_functions) == len(weights)
+        assert True not in [weight < 0 for weight in weights]
+        
+        self.loss_functions = loss_functions
+        self.weights = [weight / sum(weights) for weight in weights]
+
+
+    def get_weight(self, a: int, b: int) -> float:
+        total_weight = 0
+        for loss, weight in zip(self.loss_functions, self.weights):
+            total_weight += weight * loss.get_weight(a, b)
+
+        return total_weight
+
+    def __call__(self, x: torch.Tensor, evolution_steps: Iterable[int]) -> torch.Tensor:
+        losses = self.weights[0] * self.loss_functions[0](x, evolution_steps)
+
+        for i in range(1, len(self.loss_functions)):
+            losses += self.weights[i] * self.loss_functions[i](x, evolution_steps)
+
+        return losses
