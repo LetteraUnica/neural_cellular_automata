@@ -4,9 +4,9 @@ from torch.utils.data import Dataset
 
 import numpy as np
 
-from .utils import *
+from ..utils import *
 
-from typing import Tuple, Callable
+from typing import Iterable, List, Tuple, Callable
 
 
 class SamplePool(Dataset):
@@ -57,7 +57,7 @@ class SamplePool(Dataset):
         self.indexes_max_loss = set()
         self.indexes_max_loss_size = indexes_max_loss_size
 
-        self.evolutions_per_image = np.zeros(self.size)
+        self.evolutions_per_image = np.zeros(self.size, dtype=int)
 
     def __len__(self) -> int:
         """Returns the number of images in the pool
@@ -153,3 +153,9 @@ class SamplePool(Dataset):
 
     def size(self):
         return self.size
+
+    def get_evolutions_per_image(self, indexes: Iterable[int]) -> np.ndarray:
+        return self.evolutions_per_image[indexes]
+
+    def get_evolutions(self) -> np.ndarray:
+        return self.evolutions_per_image.copy()

@@ -4,7 +4,7 @@ import torchvision.transforms as T
 
 import numpy as np
 
-from .utils import *
+from ..utils import *
 
 
 class ExponentialSampler:

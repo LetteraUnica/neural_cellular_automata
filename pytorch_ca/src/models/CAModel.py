@@ -1,17 +1,10 @@
 import torch
-from torch import nn
-
-import pylab as pl
-from random import randint
-from IPython.display import clear_output
-from typing import Callable, Tuple
-from abc import abstractmethod
-import numpy as np
 import wandb
+from IPython.display import clear_output
 
-from ..utils import *
+from ..loss_functions import *
+from ..utils.train import *
 from ..sample_pool import *
-from .. loss_functions import *
 
 
 class CAModel(nn.Module):
@@ -39,7 +32,7 @@ class CAModel(nn.Module):
         self.to(self.device)
 
     @abstractmethod
-    def forward():
+    def forward(self, x, angle=None, step_size=None) -> torch.Tensor:
         pass
 
     def evolve(self, x: torch.Tensor, iters: int, angle: float = 0.,
@@ -83,20 +76,20 @@ class CAModel(nn.Module):
         """
 
         self.eval()
-        evolution_losses = torch.zeros((evolution_iters), device="cpu")
+        evolution_losses = torch.zeros(evolution_iters, device="cpu")
         eval_samples = images.size()[0]
 
         n = 0
         with torch.no_grad():
             for i in range(0, eval_samples, batch_size):
-                inputs = images[i:i+batch_size].to(self.device)
+                inputs = images[i:i + batch_size].to(self.device)
                 for j in range(evolution_iters):
                     inputs = self.forward(inputs)
-                    loss, _ = criterion(inputs,n_max_losses=0)
+                    loss = criterion(inputs)
 
                     # Updates the average error
-                    evolution_losses[j] = (n*evolution_losses[j] +
-                                           batch_size*loss.cpu()) / (n+batch_size)
+                    evolution_losses[j] = (n * evolution_losses[j] +
+                                           batch_size * loss.cpu()) / (n + batch_size)
 
                 n += batch_size
 
@@ -104,16 +97,17 @@ class CAModel(nn.Module):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], Tuple[torch.Tensor, torch.Tensor]],
+                 criterion: BaseNCALoss,
                  pool: SamplePool,
                  n_epochs: int,
-                 scheduler: torch.optim.lr_scheduler._LRScheduler = None,
+                 scheduler: torch.optim.lr_scheduler = None,
                  batch_size: int = 4,
                  skip_update: int = 2,
                  evolution_iters: int = 96,
                  kind: str = "growing",
                  n_max_losses: int = 1,
                  normalize_gradients=False,
+                 stopping_criterion: StoppingCriteria = DefaultStopping(),
                  **kwargs):
         """Trains the CA model
 
@@ -149,9 +143,16 @@ class CAModel(nn.Module):
                     regenerating: Trains a CA that grows into the target image
                                   and regenerates any damage that it receives
                 Defaults to "growing".
+
             n_max_losses(int,optional):
                 number of datapoints with the biggest losses to replace.
                 Defaults to 1
+
+            normalize_gradients (bool, optional): Whether to normalize the gradient to norm 1 before applying it.
+                Defaults to False.
+
+            stopping_criterion (StoppingCriteria, optional): Stopping criterion to use,
+                must inherit from StoppingCriteria and implement the method stop that throws a RuntimeException
         """
 
         self.train()
@@ -166,36 +167,29 @@ class CAModel(nn.Module):
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
-                self.update(inputs) #This is useful when you update the mask
+                self.update(inputs)  # This is useful when you update the mask
 
                 # recursive forward-pass
-                total_loss=0
-                a = randint(-10, 10)
-                for n_step in range(evolution_iters + a):
+                total_losses = torch.zeros(inputs.size()[0], device=self.device)
+                evolutions_per_image = pool.get_evolutions_per_image(indexes)
+                for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, pool.evolutions_per_image[indexes] + n_step)
-                    loss=torch.mean(losses)
+                    losses = criterion(inputs, evolutions_per_image + n_step)
 
-                    total_loss += loss
-
-
-                # look a definition of skip_update
-                if j % skip_update != 0:
-                    idx_max_loss = None
+                    total_losses += losses
 
                 # backward-pass
-                total_loss /= (evolution_iters + a)
+                weights = criterion.get_weight_vectorized(evolutions_per_image, evolutions_per_image + evolution_iters)
+                total_loss = torch.mean(total_losses / weights.to(self.device))
                 total_loss.backward()
-
-                epoch_losses.append(total_loss.detach().cpu().item())
 
                 # normalize gradients
                 with torch.no_grad():
-                    if normalize_gradients==True:
+                    if normalize_gradients:
                         for param in self.parameters():
                             param.grad.data.div_(param.grad.data.norm() + 1e-8)
-                    
+
                 optimizer.step()
 
                 # customization of training for the three processes of growing. persisting and regenerating
@@ -206,32 +200,34 @@ class CAModel(nn.Module):
                     # damages the inputs by removing square portions
                     inputs = make_squares(inputs)
 
-                # if training is not for growing proccess then re-insert trained/damaged samples into the pool
+                # look at the definition of skip_update
+                if j % skip_update != 0:
+                    idx_max_loss = None
+
+                # if training is not for growing process then re-insert trained/damaged samples into the pool
                 if kind != "growing":
-                    #idx_max_loss = n_largest_indexes(total_loss, n_max_losses)
-                    pool.update(indexes, inputs, [1,2,3], evolution_iters)
-                    #if we have reset_prob in the kwargs then sometimes the pool resets
+                    idx_max_loss = n_largest_indexes(total_losses, n_max_losses)
+                    pool.update(indexes, inputs, idx_max_loss, evolution_iters)
+                    # if we have reset_prob in the kwargs then sometimes the pool resets
                     if 'reset_prob' in kwargs:
-                        if np.random.uniform()<kwargs['reset_prob']:
+                        if np.random.uniform() < kwargs['reset_prob']:
                             pool.reset()
-                          
+
+                epoch_losses.append(total_loss.detach().cpu().item())
 
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
-            
+
             # Log epoch losses
             epoch_loss = np.mean(epoch_losses)
 
             # Stopping criteria
-            if np.isnan(epoch_loss):
-                raise Exception("Loss is NaN")
-            if epoch_loss > 5 and epoch > 2 or epoch_loss > 0.25 and epoch == 40:
-                raise Exception("Loss is too high")
+            stopping_criterion.stop(epoch, epoch_loss)
 
             wandb.log({"loss": epoch_loss})
             self.losses.append(epoch_loss)
-            print(f"epoch: {epoch+1}\navg loss: {epoch_loss}")
+            print(f"epoch: {epoch + 1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
     def plot_losses(self, log_scale=True):
@@ -247,8 +243,8 @@ class CAModel(nn.Module):
         pl.ylabel("Loss")
         if log_scale:
             pl.yscale("log")
-            
+
         pl.show()
 
-    def update(self,x):
-        return 
+    def update(self, x):
+        return
