@@ -412,7 +412,7 @@
     $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
   </p>
   <p>
-    At the same time, when both alphas are below $0.1$, the cell evolves with the sum of both updates (<a href="#evolving_mask">Figure 8,9</a>).    
+    At the same time, when both alphas are below $0.1$, the cell evolves with the average of both updates (<a href="#evolving_mask">Figure 8,9</a>).    
   </p>
   <div class="l-middle" id="evolving_mask">
     <figure style='float:left; height: 50%; width: 50%;'>
@@ -433,49 +433,83 @@
   </div>  
 
 
-  <h3><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Results</h2>
-  <p>
-    The test we have made so far are unsuccesful, because if the cells that follow the Growing rule (red),
-    are not sorrounded by the adversarial cells (yellow) they tend to explode.
-  </p>
-  <figure class="l-body">
-    <div style="float:left; width:49%; height:49%;">
+  <h2><a class="marker" href="#section-3.2" id="section-3.2">3.2</a> Results</h2>
+  <figure class='l-body side'>
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/alphas_no.mp4" type="video/mp4">
-      Your browser does not support the video tag.
+        <source src="pytorch_ca/Presentation_videos/dying_firework.mp4" type="video/mp4">
+        Your browser does not support the video tag.
     </video>
     <figcaption>
-      Video 7: This is what happens when a old cell is not surrounded by the new cells
+      Growing rule that fucking dies
     </figcaption>
-    </div>
-    <div style="float:right; width:49%; height:49%;">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/alphas_yes.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <figcaption>
-      Video 8: This is what happens when a old cell is surrounded by the new cells
-    </figcaption>
-    </div>
   </figure>
   <p>
-    This doesn't make any sense! We would never imagine an organism to behave like this.
+    We have found that if the Growing CA evolves such that in the end the cells are all dead it is
+    possible to salvage it with some adversaral cells.
+    Otherwise, if the Growing CA degenerates it is really hard, or even impossible to make it immortal.
   </p>
   <p>
-    There are several theories that could explain such a thing in order of plausibility:
-    <ul>
-      <li>The Growing rule when it dies, instead of shrinking and disappearing, it grows until it fills all the available space.
-        One way to verify this would be to use a Growing rule that for $t\to\infty$ goes to zero</li>
-      <li>We didn't train enough or well enough, it might be that the adversarial cells will eventually learn to suppress the cells on the border</li>
-      <li>This model is just not feasible</li>
-    </ul>
-  </p>
-  <h3><a class="marker" href="#section-3.3" id="section-3.3">3.3</a> Conclusion</h2>
-
-  <p>
-    *Work in progress, we are trying to solve this problem* 
+    As you can see from the videos below it is possible to salvage the Growing rule with way
+    fewer new cells with respect to a fixed mask
   </p>
   
+  <figure class="l-body" style="display:flex">
+      <div style=" width:49%; height:49%;">
+      <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/alphas_no.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption style="width:90%">
+        Video 7: METTERE VIDEO GIUSTO
+      </figcaption>
+      </div>
+      <div style="width: 1%;"></div>
+      <div style=" width:49%; height:49%;">
+      <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/alphas_yes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption style="width:90%">
+        Video 8: METTERE VIDEO GIUSTO
+      </figcaption>
+      </div>
+  </figure>
+  <div class="l-body side" style="font-size: small; line-height: 120%;">
+    This section can be skipped if you are only interested in the results
+  </div>
+  <div class="body">
+  <details>
+    <summary><div style="position: relative; margin-top: -70px; margin-left: 20px;"><h3><a class="marker" href="#section-3.3" id="section-3.3">3.3</a> Training technique</h3></div></summary>
+    <p>
+      One of the problems we first encountered was that the the new cells never tried to kill the old ones.
+      This meant that if they were severely outnumbered they wouldn't be able to salvage the CA.
+    </p>
+    <p>
+      One way to try to solve this problem would be to make a loss function like so:
+      $$
+        L=L_\textrm{target} + \lambda\frac{N_\textrm{new}}{N_\textrm{tot}}
+      $$
+      Where $L_\textrm{target}$ is the distance to the target image, $N_\textrm{new}/N_\textrm{tot}$
+      is the fraction of new cells and $\lambda$ is a hyperparameter.
+    </p>
+    <p>
+      This however has the flaw that when we have just introduced the new cells the loss is bound to be high.
+      This means that the training algorithm will sacrifice some of the image quality in favor of having a higher speed of substiution of cells.
+    </p>
+    <p>
+      On the other hand, if we give the CA plenty of time before evaluating the loss, it might have 
+    </p>
+    <p>
+      To address this problem we made a custom loss that depended on the number of steps<dt-fn>This doesn't increase the computation cost per epoch by any measurable amout, and it decreases the total number of epochs</dt-fn>
+      $$
+      L=\int_{t_\textrm{start}}^{t_\textrm{end}}
+      \lambda_1(t)L_\textrm{target}(t)+
+      \lambda_2(t)\frac{N_\textrm{new}}{N_\textrm{tot}}(t) dt
+      $$
+      Where $\lambda_1$ and $\lambda_2$ are hyperparameters that depent on the time (or number of steps).
+    </p>
+  </details>
+  </div>
   
   
 
@@ -584,6 +618,23 @@
     We showed that the rule that the Growing has learned is very close to a persistent/regenerating one, could this
     mean that we need a very little change in the DNA to make a real organism immortal? 
   </p>
+
+
+  <h3><a class="marker" href="#section-5" id="section-5">5</a> Does any of this apply to Biology?</h2>
+    <p>
+      Shorth answer: Probably yes.
+    </p>
+    <p>
+      To be able to answer this we need to know what the differences are between our model and a real biological system.
+    </p>
+    <p>
+      First of all the cells in a organism are not in a grid, but it would be foolish to think that this model works only on a 2-D grid.
+    </p>
+    <p>
+      Secondly, and most important, the parameters that govern the update rule of the cells are the genes in the DNA.
+      This
+    </p>
+    
   
 </dt-article>
 
