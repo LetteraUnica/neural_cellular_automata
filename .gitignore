@@ -141,8 +141,10 @@ __pycache__
 .ipynb_checkpoints
 .DS_Store
 
-#keys
+# keys
 .ssh/
 
+# IntelliJ
+.idea
 
 connect_orfeo.sh
