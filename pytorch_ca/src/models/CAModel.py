@@ -178,7 +178,7 @@ class CAModel(nn.Module):
                     losses = criterion(inputs, evolutions_per_image + n_step)
 
                     total_losses += losses
-
+            
                 # backward-pass
                 weights = criterion.get_weight_vectorized(evolutions_per_image, evolutions_per_image + evolution_iters)
                 total_loss = torch.mean(total_losses / weights.to(self.device))
