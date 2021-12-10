@@ -424,7 +424,10 @@
       <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 8: The red cells evolve following $f_1$ while the yellow cells
-        follow $f_2$, the orange ones follow both
+        follow $f_2$, the orange ones follow both. Keep in mind that the cells do not interact
+        directly with each other, the only way a cell can manage to influence its neighbors is by
+        changing its internal cell state
+
       </figcaption>
     </div>
     <div style='float:right; height: 50%; width: 50%;'>
@@ -436,9 +439,6 @@
       </figcaption>
     </div> 
   </figure>
-  <p>
-    Keep in mind that the cells do not interact directly with each other, the only way a cell can manage to influence its neighbors is by changing its internal cell state
-  </p>  
 
 
 
@@ -472,7 +472,7 @@
         This means that the training algorithm will sacrifice some of the image quality in favor of having a higher speed of substiution of cells.
       </p>
       <p>
-        On the other hand, if we give the CA plenty of time before evaluating the loss, it might have 
+        On the other hand, if we give the CA plenty of time before evaluating the loss, it might destroy the CA at the start and than rebuild it in time before the evaluation (like in figure <a href="#switch">3</a>)
       </p>
       <p>
         To address this problem we made a custom loss that depended on the number of steps<dt-fn>This doesn't increase the computation cost per epoch by any measurable amout, and it decreases the total number of epochs</dt-fn>
@@ -494,8 +494,10 @@
         <div style="position:absolute; top:-10%; left: 5%">$\lambda_{1,2}$</div>
     
         </div>
-        <input type="range" min="0" max="200" step="1" value="0" id="EpochLoss">
-        <div id="displayEpochLoss">epoch=0</div>
+        <div style="margin-left: 40px;">
+          <input type="range" min="0" max="200" step="1" value="0" id="EpochLoss">
+          <div id="displayEpochLoss">epoch=0</div>
+        </div>
       </div>
     </details>
     </div>
