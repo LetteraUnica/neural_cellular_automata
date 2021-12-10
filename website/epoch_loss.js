@@ -9,14 +9,14 @@ displayEpoch.innerHTML="epoch = "+epoch;
 
 x_max=70;
 y_max=1.5;
-x_min=30;
+x_min=0;
 
 var tau = (epoch)=>{
     return 1/60*Math.exp(-epoch/80)
 }
 
 const curve = (tau=1/20,x_0=1) =>{
-    var out=[{x:x_min,y:0}];
+    var out=[];
     var detail=300;
     for (let i=x_min/x_max*detail;i<=detail;i++){
         x=(i*x_max)/detail;
