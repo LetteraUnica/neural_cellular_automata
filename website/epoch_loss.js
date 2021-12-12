@@ -15,8 +15,7 @@ var tau = (epoch)=>{
     return 1/60*Math.exp(-epoch/80)
 }
 
-const curve = (tau=1/20,x_0=1) =>{
-    var out=[];
+const curve = (tau=1/20,x_0=1,x_max=70,x_min=0,out=[]) =>{
     var detail=300;
     for (let i=x_min/x_max*detail;i<=detail;i++){
         x=(i*x_max)/detail;
@@ -110,14 +109,17 @@ const syncEpoch = function(){
 }
 syncEpoch();
 
-const onresize = function(){
+const onresize1 = function(){
     document_width = parseInt(d3.select(".l-body").style("width"));
     width = document_width - margin.left;
     g0.attr("width", document_width - margin.left);
-    syncEpoch();
+    g0.select("#curve").attr("d", line0);
+    g0.select("#curve2").attr("d", line0);
+    g0.select("#xaxis0")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x0));
     
 }
-onresize();
+onresize1();
 
 epoch_slider.addEventListener("input", syncEpoch);
-window.addEventListener("resize", onresize);

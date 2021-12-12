@@ -97,7 +97,7 @@ class CAModel(nn.Module):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: BaseNCALoss,
+                 criterion: Callable[[torch.Tensor], torch.Tensor],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler = None,
@@ -180,8 +180,9 @@ class CAModel(nn.Module):
                     total_losses += losses
             
                 # backward-pass
-                weights = criterion.get_weight_vectorized(evolutions_per_image, evolutions_per_image + evolution_iters)
-                total_loss = torch.mean(total_losses / weights.to(self.device))
+                #weights = criterion.get_weight_vectorized(evolutions_per_image, evolutions_per_image + evolution_iters)
+                #total_loss = torch.mean(total_losses / weights.to(self.device))
+                total_loss = torch.mean(total_losses)
                 total_loss.backward()
 
                 # normalize gradients

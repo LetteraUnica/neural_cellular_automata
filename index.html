@@ -50,8 +50,7 @@
     neural cellular automata, immortal
   </h2>
   <dt-byline></dt-byline>
-
-
+  
   <p>
     Most living organisms age and eventually die because of it, but a few don’t, and some of
     them are incredibly hard to kill, even if you cut their head off, it just regrows
@@ -501,7 +500,7 @@
         Where $\lambda_1$ and $\lambda_2$ are hyperparameters that depent on the time (or number of steps),
         and the loss is normalized such that <dt-fn>We do this because doublign the total loss is equivalent to doubling the learning rate</dt-fn>
         $$
-          \int_{t_\textrm{start}}^{t_\textrm{end}}|\lambda_1(t)+\lambda_2(t)| dt=1
+          \int_{t_\textrm{start}}^{t_\textrm{end}}\lambda_1(t)+\lambda_2(t)\,\, dt=1
         $$
       </p>
       <div class="body">
@@ -516,6 +515,19 @@
           <div id="displayEpochLoss">epoch=0</div>
         </div>
       </div>
+
+      <p>
+        We used this same technique to train a Growing CA that dies.
+      </p>
+
+      <div class="body">
+        <div style="position:relative; width:100%; height:100%;">
+          <div id="loss_graph_growing" style="width:100%; height:100%;"></div>
+          <div style="position:absolute; bottom:0%; right: 10%">$n_\textrm{steps}$</div>
+          <div style="position:absolute; top:-10%; left: 5%">$\lambda_{1,2}$</div>    
+        </div>
+      </div>
+      
     </details>
     </div>
 
@@ -758,3 +770,10 @@
 </script>
 
 <script src="website/epoch_loss.js"></script>
+<script src="website/epoch_loss_growing.js"></script>
+<script>
+window.addEventListener("resize", function(){
+    onresize1();
+    onresize2();
+  });
+</script>
