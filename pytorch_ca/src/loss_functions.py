@@ -34,7 +34,7 @@ class NCALoss:
         self.criterion = criterion(reduction="none")
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x: torch.Tensor) -> Tuple[torch.Tensor]:
+    def __call__(self, x: torch.Tensor, *args, **kwargs) -> Tuple[torch.Tensor]:
         """Returns the loss and the index of the image with maximum loss
         Args:
             x (torch.Tensor): Images to compute the loss
@@ -66,7 +66,7 @@ class CellRatioLoss:
 
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x:torch.Tensor)->Tuple[torch.Tensor]:
+    def __call__(self, x:torch.Tensor, *args, **kwargs)->Tuple[torch.Tensor]:
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
         original_cell_ratio = original_cells / (original_cells+virus_cells+1e-8)
@@ -90,7 +90,7 @@ class NCADistance():
         self.l = l
 
 
-    def __call__(self, x: torch.Tensor, *args) -> torch.Tensor:
+    def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
         Args:
             x (torch.Tensor): Images to compute the loss
@@ -118,9 +118,9 @@ class CombinedLoss:
 
         
 
-    def __call__(self, x, n_steps=0, n_epoch=0, initial_step=0) -> torch.Tensor:
+    def __call__(self, x, n_steps=0, n_epoch=0, evolutions_per_image=0, *args, **kwargs) -> torch.Tensor:
         losses = torch.stack([loss(x) for loss in self.losses]).float()
-        return torch.sum(self.f(n_steps,n_epoch)*losses,axis=0) #This gives problem if some variables are not in cuda
+        return torch.sum(self.f(n_steps,n_epoch,evolutions_per_image)*losses,axis=0) #This gives problem if some variables are not in cuda
 
     def log_loss(self,x:torch.Tensor)->float:
         return self.losses[0](x)

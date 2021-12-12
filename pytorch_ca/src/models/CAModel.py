@@ -175,8 +175,7 @@ class CAModel(nn.Module):
                 for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, evolutions_per_image + n_step)
-
+                    losses = criterion(inputs, n_step, n_epoch=epoch, evolutions_per_image=evolutions_per_image)
                     total_losses += losses
             
                 # backward-pass
@@ -209,15 +208,12 @@ class CAModel(nn.Module):
                 if kind != "growing":
                     idx_max_loss = n_largest_indexes(total_losses, n_max_losses)
                     pool.update(indexes, inputs, idx_max_loss, evolution_iters)
-                    # if we have reset_prob in the kwargs then sometimes the pool resets
-                    if 'reset_prob' in kwargs:
-                        if np.random.uniform() < kwargs['reset_prob']:
-                            pool.reset()
 
                 epoch_losses.append(total_loss.detach().cpu().item())
 
-            if 'reset_epoch' in kwargs:
-                if epoch % kwargs['reset_epoch']:
+            # if we have reset_prob in the kwargs then sometimes the pool resets
+            if kind!='growing' and 'reset_prob' in kwargs:
+                if np.random.uniform() < kwargs['reset_prob']:
                     pool.reset()
 
             # update the scheduler if there is one at all
