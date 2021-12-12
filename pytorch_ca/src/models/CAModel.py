@@ -216,6 +216,10 @@ class CAModel(nn.Module):
 
                 epoch_losses.append(total_loss.detach().cpu().item())
 
+            if 'reset_epoch' in kwargs:
+                if epoch % kwargs['reset_epoch']:
+                    pool.reset()
+
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()

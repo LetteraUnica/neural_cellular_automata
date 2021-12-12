@@ -149,9 +149,9 @@ class SamplePool(Dataset):
         self.update_evolution_iters(indexes, evolution_iters)
 
     def reset(self):
-        self.images = self.generator(self.size, self.device)
+        self.replace(list(range(self.get_size())))
 
-    def size(self):
+    def get_size(self):
         return self.size
 
     def get_evolutions_per_image(self, indexes: Iterable[int]) -> np.ndarray:

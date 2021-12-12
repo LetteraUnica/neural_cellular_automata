@@ -42,9 +42,12 @@ class NeuralCA(CAModel):
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
 
-        self.to(device)
+        # Set the parameters of the second layer to zero
+        for name, param in self.named_parameters():
+            if "2" in name:
+                param.data.zero_()
 
-        self.alpha_cannel=3
+        self.to(device)
 
     def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
         """Returns the perception vector of each cell in an image, or perception matrix
