@@ -478,10 +478,10 @@
       <p>
         One way to try to solve this problem would be to make a loss function like so:
         $$
-          L=L_\textrm{target} + \lambda\frac{N_\textrm{new}}{N_\textrm{tot}}
+          L=L_\textrm{target} + \lambda N_\textrm{old}
         $$
-        Where $L_\textrm{target}$ is the distance to the target image, $N_\textrm{new}/N_\textrm{tot}$
-        is the fraction of new cells and $\lambda$ is a hyperparameter.
+        Where $L_\textrm{target}$ is the distance to the target image, $N_\textrm{old}$
+        is number of old cells.
       </p>
       <p>
         This however has the flaw that when we have just introduced the new cells the loss is bound to be high.
@@ -495,7 +495,7 @@
         $$
         L=\int_{t_\textrm{start}}^{t_\textrm{end}}
         \lambda_1(t)L_\textrm{target}(t)+
-        \lambda_2(t)\frac{N_\textrm{new}}{N_\textrm{tot}}(t) dt
+        \lambda_2(t)N_\textrm{old}(t) dt
         $$
         Where $\lambda_1$ and $\lambda_2$ are hyperparameters that depent on the time (or number of steps),
         and the loss is normalized such that <dt-fn>We do this because doublign the total loss is equivalent to doubling the learning rate</dt-fn>
