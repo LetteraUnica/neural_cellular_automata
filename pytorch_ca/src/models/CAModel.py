@@ -1,3 +1,4 @@
+from typing import Any
 import torch
 import wandb
 from IPython.display import clear_output
@@ -97,7 +98,7 @@ class CAModel(nn.Module):
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
-                 criterion: Callable[[torch.Tensor], torch.Tensor],
+                 criterion: Callable[[torch.Tensor, Any], torch.Tensor],
                  pool: SamplePool,
                  n_epochs: int,
                  scheduler: torch.optim.lr_scheduler = None,
@@ -175,12 +176,14 @@ class CAModel(nn.Module):
                 for n_step in range(evolution_iters):
                     inputs = self.forward(inputs)
                     # calculate the loss of the inputs and return the ones with the biggest loss
-                    losses = criterion(inputs, n_step, n_epoch=epoch, evolutions_per_image=evolutions_per_image)
+                    params = {"start_iteration": evolutions_per_image,
+                              "current_iteration": evolutions_per_image + n_step,
+                              "end_iteration": evolutions_per_image + evolution_iters - 1,
+                              "n_epoch": epoch}
+                    losses = criterion(inputs, **params)
                     total_losses += losses
             
                 # backward-pass
-                #weights = criterion.get_weight_vectorized(evolutions_per_image, evolutions_per_image + evolution_iters)
-                #total_loss = torch.mean(total_losses / weights.to(self.device))
                 total_loss = torch.mean(total_losses)
                 total_loss.backward()
 
