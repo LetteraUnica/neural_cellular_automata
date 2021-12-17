@@ -1,4 +1,3 @@
-from scipy.stats import truncexpon
 import torch
 
 import torchvision.transforms as T
@@ -21,19 +20,7 @@ def RGBAtoFloat(images: torch.Tensor) -> torch.Tensor:
         torch.Tensor: Images in 0-1 range
     """
     return torch.clip(images.float() / 255, 0., 1.)
-
-
-def FloattoRGBA(images: torch.Tensor) -> torch.Tensor:
-    """Converts images from 0-1 range into 0-255 range
-
-    Args:
-        images (torch.Tensor): Images in 0-1 range
-
-    Returns:
-        torch.Tensor: Images in 0-255 range
-    """
-    return torch.clip((images * 255), 0, 255).type(torch.uint8)
-
+    
 
 def RGBAtoRGB(images: torch.Tensor, alpha_channel: int = 3) -> torch.Tensor:
     """Converts a 0-1 RGBA image into RGB
@@ -114,18 +101,6 @@ def two_channels(image: torch.Tensor, colors=torch.tensor([[1,0,0.1],[1,1,0.1]])
     new_image[:-1]=new_image[:-1]/new_image[-1]
     
     return RGBAtoRGB(new_image)
-
-def center_crop(images: torch.Tensor, size: int) -> torch.Tensor:
-    """Center crops a batch of images
-
-    Args:
-        images (torch.Tensor): images to center crop
-        size (int): side of the square to crop
-
-    Returns:
-        torch.Tensor: Center portion of the images
-    """
-    return T.CenterCrop(size)(images)
 
 
 def pad(images: torch.Tensor, padding: int, fill_value=0.) -> torch.Tensor:
