@@ -5,10 +5,6 @@ from .CAModel import *
 from .neural_CA import *
 
 
-def compute_random_mask(size: torch.Size, device: torch.device, probability: float = 0.6):
-    return torch.rand(size, device=device) < probability
-
-
 class VirusCA(CAModel):
     """Given two CA rules and a mask, evolves the image pixels using the old_CA
     rule if the mask is == 0 or using the new_CA rule if the mask is == 1.
@@ -51,6 +47,7 @@ class VirusCA(CAModel):
         self.initialized = True
 
     def update(self, x):
+        """Useful fo the train loop"""
         self.update_cell_mask(x)
 
     def set_cell_mask(self, mutation_mask: torch.Tensor):
