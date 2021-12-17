@@ -1,15 +1,9 @@
 import torch
-from torchvision.io import write_video
-import torchvision.transforms as T
-from typing import List
-import warnings
-from einops.layers.torch import Reduce
-from einops import rearrange
-
 
 from ..utils import *
 from .neural_CA import *
 from .CAModel import *
+
 
 class CustomCA(NeuralCA):
     def __init__(self, n_channels: int = 15,
@@ -54,7 +48,7 @@ class CustomCA(NeuralCA):
         # compute update increment
         dx = super().compute_dx(x_new,angle,step_size)
 
-        # reshape dx in shuch a wat that is good for the MultipleCA class
+        # reshape dx in such a way that is good for the MultipleCA class
         dx = single_to_multiple(dx, x.shape, self.n_channels-1, self.alpha_channel)
         
         return dx
