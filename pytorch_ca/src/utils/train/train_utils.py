@@ -2,8 +2,16 @@ import torch
 import torch.nn.functional as F
 from einops.layers.torch import Reduce
 
-
 from typing import List
+
+
+def n_largest_indexes(array: list, n: int = 1) -> list:
+    """returns the indexes of the n largest elements of the array
+    url:https://stackoverflow.com/questions/16878715/how-to-find-the-index-of-n-largest-elements-in-a-list-or-np-array-python
+    """
+    if n == 0:
+        return None
+    return sorted(range(len(array)), key=lambda x: array[x])[-n:]
 
 
 def wrap_edges(images: torch.Tensor) -> torch.Tensor:
