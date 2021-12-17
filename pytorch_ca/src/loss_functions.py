@@ -120,7 +120,7 @@ class CombinedLoss:
 
     def __call__(self, x, n_steps=0, n_epoch=0, evolutions_per_image=0, *args, **kwargs) -> torch.Tensor:
         losses = torch.stack([loss(x) for loss in self.losses]).float()
-        return torch.sum(self.f(n_steps,n_epoch,evolutions_per_image)*losses,axis=0) #This gives problem if some variables are not in cuda
+        return torch.matmul(self.f(n_steps,n_epoch,evolutions_per_image),losses) #This gives problem if some variables are not in cuda
 
     def log_loss(self,x:torch.Tensor)->float:
         return self.losses[0](x)
