@@ -1,6 +1,4 @@
 import torch
-from torchvision.io import write_video
-import torchvision.transforms as T
 
 from ..utils import *
 from .CAModel import *

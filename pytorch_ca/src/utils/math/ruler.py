@@ -25,10 +25,6 @@ def dot(x, y):
     return x @ y / x.numel()
 
 
-def l2_norm(x, y):
-    return dot(x, y)
-
-
 def norm(x):
     """L2 norm normalized by the number of elements"""
     return torch.sqrt(dot(x, x))
