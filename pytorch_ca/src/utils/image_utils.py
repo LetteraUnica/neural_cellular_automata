@@ -117,6 +117,13 @@ def pad(images: torch.Tensor, padding: int, fill_value=0.) -> torch.Tensor:
     return T.Pad(padding//2, fill=fill_value)(images)
 
 
+def state_to_image(x, mask_channels):
+    """Sums all the values of all mask channels into one, must be called before
+    calling imshow"""
+    alpha = x[:, mask_channels].sum(dim=1).unsqueeze(1)
+    return torch.cat((x[:, :3], alpha), dim=1)
+
+
 def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
     """Prints an image
 
