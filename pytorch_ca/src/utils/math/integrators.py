@@ -1,6 +1,4 @@
-from typing import Sequence
-
-from functools import cache
+from functools import lru_cache
 
 import numpy as np
 
@@ -13,7 +11,7 @@ class CachedSummer:
         self.sum_until = np.vectorize(self._sum_until)
         self.sum_between = np.vectorize(self._sum_between)
 
-    @cache
+    @lru_cache(maxsize=2**20)
     def _sum_until(self, n):
         """Integrates the function in [0, n]"""
         if n < 0:
