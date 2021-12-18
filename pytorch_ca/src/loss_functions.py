@@ -48,7 +48,7 @@ class CellRatioLoss:
     """Penalizes the number of original cells
     """
 
-    def __init__(self, alpha_channels=None):
+    def __init__(self, alpha_channels=None, penalization: float = 1.):
         """Args:
             The same as the NCALoss and 
             alpha (optional, float): multiplicative constant to regulate the importance of the original cell ratio
@@ -57,18 +57,18 @@ class CellRatioLoss:
         if alpha_channels is None:
             alpha_channels = [3]
         self.alpha_channels = alpha_channels
+        self.penalization = penalization
 
     def __call__(self, x: torch.Tensor, *args, **kwargs) -> Tuple[torch.Tensor]:
         original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
         virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
-        original_cell_ratio = original_cells / \
-            (original_cells + virus_cells + 1e-8)
+        original_cell_ratio = original_cells / (original_cells + virus_cells + 1e-8)
 
-        return original_cell_ratio
+        return self.penalization * original_cell_ratio
 
 
 class NCADistance:
-    def __init__(self, model1: nn.Module, model2: nn.Module, penalization: float = 0.):
+    def __init__(self, model1: nn.Module, model2: nn.Module, penalization: float = 1.):
         """Penalizes the distance between two models using the parameter penalization
         """
         self.model1 = model1
