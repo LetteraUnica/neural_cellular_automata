@@ -88,6 +88,58 @@ class NCADistance:
         return self.penalization * ruler.distance(self.model1, self.model2)
 
 
+class cLoss:
+    """
+    Combines several losses into one loss function that depends on the number of steps
+    Most of the work is done by the combination_function, so you need to choose
+    the combination_function carefully or use a combination_function generator
+    """
+    def __init__(self, 
+                losses_functions:Sequence[Callable[[torch.Tensor], torch.Tensor]],
+                combination_function: Callable[[int, *Any], torch.Tensor]):
+        """Args:
+            Losses (List[nn.Module]): List of losses to combine
+            combination_function (Callable): Function to combine the losses, it takes as input the
+                number of steps and the epoch, and it outputs a vector of floats as long as the number of losses
+        """
+        self.loss_functions = loss_functions
+        self.combination_function=combination_function
+        if type (combination_function)==list:
+            self.combination_function=combination_function_generator(combination_function)
+        
+    def __call__(self, x, n_steps=0, n_epoch=0, initial_step=0, *args, **kwargs) -> torch.Tensor:
+        losses = torch.stack([loss(x, *args, **kwargs) for loss in self.loss_functions])
+        weights=self.combination_function(n_steps,*args, **kwargs).to(x.device)
+
+        if losses.shape==weights.shape:
+            return torch.sum(weights*losses,axis=0,requires_grad=False)
+        return torch.matmul(weights,losses,requires_grad=False)
+
+
+class combination_function_generator:
+    def __init__(self,weight_functions: Sequence[Callable[[Any], float]]):
+        #Each one of them is a function f:R->R
+        self.weight_functions = [np.vectorize(weight_function) for weight_function in weight_functions]
+        #This are the indefinite integral of the functions above
+        self.integrals = [CachedSummer(weight_function) for weight_function in weight_functions]
+
+    def get_normalization(self, end_iteration, start_iteration=0, **kwargs) -> torch.Tensor:
+        """Returns the normalization constant for the loss function"""
+        #norm of each one of the functions
+        constants = [integral.sum_between(start_iteration, end_iteration) for integral in self.integrals]
+        return torch.from_numpy(np.array(constants)).sum(dim=0)
+
+    def __call__(self, n_steps, *args, **kwargs) -> torch.Tensor:
+        weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
+        weights = torch.from_numpy(weights).to(x.device)
+        #calculates the weights for each loss
+        weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
+        weights = torch.from_numpy(weights).to(x.device)
+        #normalizes the losses
+        normalization = self.get_normalization(**kwargs).to(x.device)
+
+        return weights / (normalization+1e-8)
+
 class CombinedLoss:
     def __init__(self,
                  loss_functions: Sequence[Callable[[torch.Tensor], torch.Tensor]],
@@ -106,14 +158,14 @@ class CombinedLoss:
         """Returns the normalization constant for the loss function"""
         #norm of each one of the functions
         constants = [integral.sum_between(start_iteration, end_iteration) for integral in self.integrals]
-        return torch.from_numpy(np.array(constants),requires_grad=False).sum(dim=0)
+        return torch.from_numpy(np.array(constants)).sum(dim=0)
 
     def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
         #calculates the losses for each input image x
         losses = torch.stack([loss(x, *args, **kwargs) for loss in self.loss_functions])
         #calculates the weights for each loss
         weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
-        weights = torch.from_numpy(weights,requires_grad=False).to(x.device)
+        weights = torch.from_numpy(weights).to(x.device)
         #normalizes the losses
         normalization = self.get_normalization(**kwargs).to(x.device)
 
