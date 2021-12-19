@@ -105,6 +105,7 @@ class cLoss:
         self.loss_functions = loss_functions
         self.combination_function=combination_function
         if type (combination_function)==list:
+            assert len(loss_functions) == len(weight_functions), 'Number of loss functions and weight functions must be the same'
             self.combination_function=combination_function_generator(combination_function)
         
     def __call__(self, x, n_steps=0, n_epoch=0, initial_step=0, *args, **kwargs) -> torch.Tensor:
@@ -146,7 +147,7 @@ class CombinedLoss:
                  weight_functions: Sequence[Callable[[Any], float]]):
         super().__init__()
 
-        assert len(loss_functions) == len(weight_functions)
+        assert len(loss_functions) == len(weight_functions), 'Number of loss functions and weight functions must be the same'
 
         self.loss_functions = loss_functions
         #Each one of them is a function f:R->R
