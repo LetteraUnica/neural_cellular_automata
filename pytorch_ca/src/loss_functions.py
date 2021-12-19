@@ -88,15 +88,15 @@ class NCADistance:
         return self.penalization * ruler.distance(self.model1, self.model2)
 
 
-class cLoss:
+class CombinedLoss:
     """
     Combines several losses into one loss function that depends on the number of steps
     Most of the work is done by the combination_function, so you need to choose
     the combination_function carefully or use a combination_function generator
     """
     def __init__(self, 
-                losses_functions:Sequence[Callable[[torch.Tensor], torch.Tensor]],
-                combination_function: Callable[[int, *Any], torch.Tensor]):
+                loss_functions:Sequence[Callable[[torch.Tensor], torch.Tensor]],
+                combination_function: Callable[[int, Any], torch.Tensor]):
         """Args:
             Losses (List[nn.Module]): List of losses to combine
             combination_function (Callable): Function to combine the losses, it takes as input the
@@ -109,12 +109,12 @@ class cLoss:
             self.combination_function=combination_function_generator(combination_function)
         
     def __call__(self, x, n_steps=0, *args, **kwargs) -> torch.Tensor:
-        losses = torch.stack([loss(x, *args, **kwargs) for loss in self.loss_functions])
+        losses = torch.stack([loss(x) for loss in self.loss_functions])
         weights=self.combination_function(n_steps,*args, **kwargs).to(x.device)
 
         if losses.shape==weights.shape:
-            return torch.sum(weights*losses,axis=0,requires_grad=False)
-        return torch.matmul(weights,losses,requires_grad=False)
+            return torch.sum(weights*losses,axis=0)
+        return torch.matmul(weights,losses)
 
 
 class combination_function_generator:
