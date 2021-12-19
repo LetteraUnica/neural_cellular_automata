@@ -108,7 +108,7 @@ class cLoss:
             assert len(loss_functions) == len(weight_functions), 'Number of loss functions and weight functions must be the same'
             self.combination_function=combination_function_generator(combination_function)
         
-    def __call__(self, x, n_steps=0, n_epoch=0, initial_step=0, *args, **kwargs) -> torch.Tensor:
+    def __call__(self, x, n_steps=0, *args, **kwargs) -> torch.Tensor:
         losses = torch.stack([loss(x, *args, **kwargs) for loss in self.loss_functions])
         weights=self.combination_function(n_steps,*args, **kwargs).to(x.device)
 
@@ -140,37 +140,3 @@ class combination_function_generator:
         normalization = self.get_normalization(**kwargs).to(x.device)
 
         return weights / (normalization+1e-8)
-
-class CombinedLoss:
-    def __init__(self,
-                 loss_functions: Sequence[Callable[[torch.Tensor], torch.Tensor]],
-                 weight_functions: Sequence[Callable[[Any], float]]):
-        super().__init__()
-
-        assert len(loss_functions) == len(weight_functions), 'Number of loss functions and weight functions must be the same'
-
-        self.loss_functions = loss_functions
-        #Each one of them is a function f:R->R
-        self.weight_functions = [np.vectorize(weight_function) for weight_function in weight_functions]
-        #This are the indefinite integral of the functions above
-        self.integrals = [CachedSummer(weight_function) for weight_function in weight_functions]
-
-    def get_normalization(self, end_iteration, start_iteration=0, **kwargs) -> torch.Tensor:
-        """Returns the normalization constant for the loss function"""
-        #norm of each one of the functions
-        constants = [integral.sum_between(start_iteration, end_iteration) for integral in self.integrals]
-        return torch.from_numpy(np.array(constants)).sum(dim=0)
-
-    def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
-        #calculates the losses for each input image x
-        losses = torch.stack([loss(x, *args, **kwargs) for loss in self.loss_functions])
-        #calculates the weights for each loss
-        weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
-        weights = torch.from_numpy(weights).to(x.device)
-        #normalizes the losses
-        normalization = self.get_normalization(**kwargs).to(x.device)
-
-        #this is the value that is returned
-        out = torch.sum(losses * weights, dim=0) / (normalization + 1e-8)
-        out.requires_grad = False
-        return out

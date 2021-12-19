@@ -122,7 +122,7 @@ class CAModel(nn.Module):
             n_epochs (int): Number of epochs to perform, _
                 this depends on the size of the sample pool
 
-            scheduler (torch.optim.lr_scheduler._LRScheduler, optional):
+            scheduler (torch.optim.lr_scheduler, optional):
                  Learning rate scheduler. Defaults to None.
 
             batch_size (int, optional): Batch size. Defaults to 4.
