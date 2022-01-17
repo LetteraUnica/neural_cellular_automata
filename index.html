@@ -438,7 +438,13 @@
       </figcaption>
     </div> 
   </figure>
-
+  <p>
+    Keep in mind that neither update rules can directly influence the neighboring cells directly, so the adversarial
+    is forced to rely on changing its internal state in such a way that the other cell's rule makes it kill itself
+    $$
+      f_{1,2}: \mathbb{R}^{9\times (n_\textrm{channels}-1)} \to \mathbb{R}^{n_\textrm{channels}-1}
+    $$
+  </p>
 
 
   
@@ -478,14 +484,14 @@
       <p>
         One way to try to solve this problem would be to make a loss function like so:
         $$
-          L=L_\textrm{target} + \lambda N_\textrm{old}
+          L=L_\textrm{target} + \lambda_1 N_\textrm{old}
         $$
         Where $L_\textrm{target}$ is the distance to the target image, $N_\textrm{old}$
         is number of old cells.
       </p>
       <p>
         This however has the flaw that when we have just introduced the new cells the loss is bound to be high.
-        This means that the training algorithm will sacrifice some of the image quality in favor of having a higher speed of substiution of cells.
+        This means that the training algorithm will sacrifice some of the image quality in favor of having a higher speed of substitution of cells.
       </p>
       <p>
         On the other hand, if we give the CA plenty of time before evaluating the loss, it might destroy the CA at the start and than rebuild it in time before the evaluation (like in figure <a href="#switch">3</a>)
@@ -516,6 +522,7 @@
           <div id="displayEpochLoss">epoch=0</div>
         </div>
       </div>
+      
 
       <p>
         We used this same technique to train a Growing CA that dies.
@@ -544,8 +551,8 @@
   </figure>
   <p>
     We have found that if the Growing CA evolves such that all its cells are dead at the end we can
-    salvage it with a way less percentage of initial adversaral cells, in the case of the butterfly only 5%,
-    instead we need a much higher number of adversaries if the CA degenerates and fills the whole space,
+    salvage it with a way less percentage of initial adversarial cells, in the case of the butterfly only 5% CAMBIARE,
+    instead we need a much higher number of adversaries if the CA degenerates and, fills the whole space,
     however this number is still way lower than in the case of the fixed mask (50% vs 80%).
   </p>
   <!-- INSERIRE VIDEO FARFALLA, SOSTITUIRE EVOLUZIONE DELLA CA MORENTE CON QUELLA CHE ESPLODE -->
