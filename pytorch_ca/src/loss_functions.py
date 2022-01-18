@@ -101,7 +101,7 @@ class CombinedLoss:
         self.loss_functions = loss_functions
         self.combination_function=combination_function
         if type (combination_function)==list:
-            assert len(loss_functions) == len(weight_functions), 'Number of loss functions and weight functions must be the same'
+            assert len(loss_functions) == len(combination_function), 'Number of loss functions and weight functions must be the same'
             self.combination_function=combination_function_generator(combination_function)
         
     def __call__(self, x, n_steps=0, *args, **kwargs) -> torch.Tensor:
@@ -127,12 +127,10 @@ class combination_function_generator:
         return torch.from_numpy(np.array(constants)).sum(dim=0)
 
     def __call__(self, n_steps, *args, **kwargs) -> torch.Tensor:
-        weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
-        weights = torch.from_numpy(weights).to(x.device)
         #calculates the weights for each loss
         weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
-        weights = torch.from_numpy(weights).to(x.device)
+        weights = torch.from_numpy(weights)
         #normalizes the losses
-        normalization = self.get_normalization(**kwargs).to(x.device)
+        normalization = self.get_normalization(**kwargs)
 
         return weights / (normalization+1e-8)
