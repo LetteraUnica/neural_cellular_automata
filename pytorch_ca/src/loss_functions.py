@@ -44,27 +44,23 @@ class NCALoss:
         return losses
 
 
-class CellRatioLoss:
-    """Penalizes the number of original cells
+class OldCellLoss:
+    """Custom loss function for the multiple CA, computes the
+        distance of the target image vs the predicted image, adds a
+        penalization term and penalizes the number of original cells
     """
-
-    def __init__(self, alpha_channels=None, penalization: float = 1.):
+    def __init__(self,alpha_channel: int = -2):
         """Args:
             The same as the NCALoss and 
-            alpha (optional, float): multiplicative constant to regulate the importance of the original cell ratio
+            alpha (optiona, float): multiplicative constant to regulate the importance of the original cell ratio
         """
 
-        if alpha_channels is None:
-            alpha_channels = [3]
-        self.alpha_channels = alpha_channels
-        self.penalization = penalization
+        self.alpha_channel = alpha_channel
 
-    def __call__(self, x: torch.Tensor, *args, **kwargs) -> Tuple[torch.Tensor]:
-        original_cells = x[:, self.alpha_channels[0]].sum(dim=[1, 2])
-        virus_cells = x[:, self.alpha_channels[1]].sum(dim=[1, 2])
-        original_cell_ratio = original_cells / (original_cells + virus_cells + 1e-8)
-
-        return self.penalization * original_cell_ratio
+    def __call__(self, x:torch.Tensor, *args, **kwargs)->Tuple[torch.Tensor]:
+        old_cells = x[:, self.alpha_channel].sum(dim=[1, 2])
+        
+        return old_cells
 
 
 class NCADistance:
