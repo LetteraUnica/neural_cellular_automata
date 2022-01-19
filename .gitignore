@@ -148,3 +148,4 @@ __pycache__
 .idea
 
 connect_orfeo.sh
+pytorch_ca/test.ipynb
