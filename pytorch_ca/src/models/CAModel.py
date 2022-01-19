@@ -184,7 +184,6 @@ class CAModel(nn.Module):
                     total_losses += losses
             
                 # backward-pass
-                total_losses=total_losses.sum(axis=1)
                 total_losses=total_losses[total_losses!=total_losses.max()]
                 total_loss = torch.mean(total_losses)
                 
