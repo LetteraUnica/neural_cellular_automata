@@ -64,12 +64,11 @@ class OldCellLoss:
 
 
 class NCADistance:
-    def __init__(self, model1: nn.Module, model2: nn.Module, penalization: float = 1.):
+    def __init__(self, model1: nn.Module, model2: nn.Module):
         """Penalizes the distance between two models using the parameter penalization
         """
         self.model1 = model1
         self.model2 = model2
-        self.penalization = penalization
 
     def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
@@ -81,7 +80,7 @@ class NCADistance:
                 index of the image with maximum loss
         """
 
-        return self.penalization * ruler.distance(self.model1, self.model2)
+        return ruler.distance(self.model1, self.model2).repeat(x.size()[0])
 
 
 class CombinedLoss:
@@ -104,9 +103,9 @@ class CombinedLoss:
             assert len(loss_functions) == len(combination_function), 'Number of loss functions and weight functions must be the same'
             self.combination_function=combination_function_generator(combination_function)
         
-    def __call__(self, x, n_steps=0, *args, **kwargs) -> torch.Tensor:
+    def __call__(self, x, *args, **kwargs) -> torch.Tensor:
         losses = torch.stack([loss(x) for loss in self.loss_functions])
-        weights=self.combination_function(n_steps,*args, **kwargs).to(x.device)
+        weights=self.combination_function(*args, **kwargs).to(x.device)
 
         if losses.shape==weights.shape:
             return torch.sum(weights*losses,axis=0)
@@ -120,13 +119,13 @@ class combination_function_generator:
         #This are the indefinite integral of the functions above
         self.integrals = [CachedSummer(weight_function) for weight_function in weight_functions]
 
-    def get_normalization(self, end_iteration, start_iteration=0, **kwargs) -> torch.Tensor:
+    def get_normalization(self, start_iteration, end_iteration, **kwargs) -> torch.Tensor:
         """Returns the normalization constant for the loss function"""
         #norm of each one of the functions
         constants = [integral.sum_between(start_iteration, end_iteration) for integral in self.integrals]
         return torch.from_numpy(np.array(constants)).sum(dim=0)
 
-    def __call__(self, n_steps, *args, **kwargs) -> torch.Tensor:
+    def __call__(self, *args, **kwargs) -> torch.Tensor:
         #calculates the weights for each loss
         weights = np.array([weight(*args, **kwargs) for weight in self.weight_functions])
         weights = torch.from_numpy(weights)
