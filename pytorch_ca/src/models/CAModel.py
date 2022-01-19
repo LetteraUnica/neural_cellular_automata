@@ -184,19 +184,17 @@ class CAModel(nn.Module):
                     total_losses += losses
             
                 # backward-pass
+                total_losses=total_losses.sum(axis=1)
+                total_losses=total_losses[total_losses!=total_losses.max()]
                 total_loss = torch.mean(total_losses)
+                
                 total_loss.backward()
-
-                # normalize gradients
-                with torch.no_grad():
-                    if normalize_gradients:
-                        for param in self.parameters():
-                            param.grad.data.div_(param.grad.data.norm() + 1e-8)
 
                 optimizer.step()
 
-                # customization of training for the three processes of growing. persisting and regenerating
 
+
+                # customization of training for the three processes of growing. persisting and regenerating
                 # if regenerating, then damage inputs
                 if kind == "regenerating" and j % kwargs["skip_damage"] == 0:
                     inputs = inputs.detach()
@@ -219,12 +217,17 @@ class CAModel(nn.Module):
                 if np.random.uniform() < kwargs['reset_prob']:
                     pool.reset()
 
+
+
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
 
             # Log epoch losses
             epoch_loss = np.mean(epoch_losses)
+
+            #in some epochs we do a checkpoint where some operations are performed
+            self.checkpoint(epoch)
 
             # Stopping criteria
             stopping_criterion.stop(epoch, epoch_loss)
@@ -233,6 +236,8 @@ class CAModel(nn.Module):
             self.losses.append(epoch_loss)
             print(f"epoch: {epoch + 1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
+
+            
 
     def plot_losses(self, log_scale=True):
         """Plots the training losses of the model
@@ -252,3 +257,6 @@ class CAModel(nn.Module):
 
     def update(self, x):
         return
+
+    def checkpoint(self,epoch):
+        return 
