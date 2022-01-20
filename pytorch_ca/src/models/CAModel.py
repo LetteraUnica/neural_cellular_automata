@@ -211,9 +211,6 @@ class CAModel(nn.Module):
             # Log epoch losses
             epoch_loss = np.mean(epoch_losses)
 
-            #in some epochs we do a checkpoint where some operations are performed
-            self.checkpoint(epoch)
-
             # Stopping criteria
             stopping_criterion.stop(epoch, epoch_loss)
 
