@@ -58,16 +58,15 @@ class CAModel(nn.Module):
 
     def test_CA(self,
                 criterion: Callable[[torch.Tensor], torch.Tensor],
-                images: torch.Tensor,
-                evolution_iters: int = 1000,
-                batch_size: int = 32) -> torch.Tensor:
+                pool: torch.Tensor,
+                evolution_iters: int = 1000) -> torch.Tensor:
         """Evaluates the model over the given images by evolving them
             and computing the loss against the target at each iteration.
             Returns the mean loss at each iteration
 
         Args:
             criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
-            images (torch.Tensor): Images to evolve
+            pool (SamplePool): Sample pool from which to extract the images
             evolution_iters (int, optional): Evolution steps. Defaults to 1000.
             batch_size (int, optional): Batch size. Defaults to 32.
 
@@ -77,16 +76,14 @@ class CAModel(nn.Module):
         """
 
         self.eval()
-        evolution_losses = torch.zeros(evolution_iters, device="cpu")
-        eval_samples = images.size()[0]
 
-        n = 0
         with torch.no_grad():
-            for i in range(0, eval_samples, batch_size):
-                inputs = images[i:i + batch_size].to(self.device)
-                total_losses,loss_per_step=self.loss_eval(inputs, evolution_iters, criterion, evolutions_per_image, epoch=0)
+            inputs=pool[:]
+            inputs = inputs.to(self.device)
+            evolutions_per_image = np.zeros(len(pool))
+            loss_per_step = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=True)
 
-        return evolution_losses
+        return loss_per_step
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -165,8 +162,8 @@ class CAModel(nn.Module):
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
                 total_losses=self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
 
-                # remove the worst performer, often times it degenerates and ruins everything
-                total_losses=total_losses[total_losses!=total_losses.max()]
+                # remove the worst performers, often times they degenerate and ruins everything
+                total_losses=total_losses[total_losses>5*total_losses.mean()]
             
                 # backward-pass
                 total_loss = torch.mean(total_losses)
@@ -240,7 +237,6 @@ class CAModel(nn.Module):
         if log_losses==True:
             return torch.stack(loss_per_step).cpu()
         return total_losses
-
 
 
 
