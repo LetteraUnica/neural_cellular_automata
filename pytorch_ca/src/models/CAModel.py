@@ -155,6 +155,9 @@ class CAModel(nn.Module):
 
             # take the data
             for j in range(pool.size // batch_size):
+                #in some epochs we do a checkpoint where some operations are performed
+                self.checkpoint(epoch)
+                
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
                 inputs = inputs.to(self.device)
