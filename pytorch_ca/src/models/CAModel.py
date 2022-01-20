@@ -159,7 +159,7 @@ class CAModel(nn.Module):
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
-                self.update(inputs)  # This is useful when you update the mask
+                self.update(inputs)  # This is useful when you update the fixed mask
 
                 # recursive forward-pass
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
@@ -233,12 +233,14 @@ class CAModel(nn.Module):
                         "log_losses": log_losses}
             losses = criterion(inputs, **params)
             if log_losses==True:
-                loss_per_step.append(losses)
-            total_losses += losses
+                loss_per_step.append(losses.mean(dim=-1))
+            else:
+                total_losses += losses
 
         if log_losses==True:
-            return total_losses, torch.stack(loss_per_step)
+            return torch.stack(loss_per_step).cpu()
         return total_losses
+
 
 
 
