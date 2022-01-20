@@ -58,16 +58,15 @@ class CAModel(nn.Module):
 
     def test_CA(self,
                 criterion: Callable[[torch.Tensor], torch.Tensor],
-                images: torch.Tensor,
-                evolution_iters: int = 1000,
-                batch_size: int = 32) -> torch.Tensor:
+                pool: torch.Tensor,
+                evolution_iters: int = 1000) -> torch.Tensor:
         """Evaluates the model over the given images by evolving them
             and computing the loss against the target at each iteration.
             Returns the mean loss at each iteration
 
         Args:
             criterion (Callable[[torch.Tensor], torch.Tensor]): Loss function
-            images (torch.Tensor): Images to evolve
+            pool (SamplePool): Sample pool from which to extract the images
             evolution_iters (int, optional): Evolution steps. Defaults to 1000.
             batch_size (int, optional): Batch size. Defaults to 32.
 
@@ -77,24 +76,18 @@ class CAModel(nn.Module):
         """
 
         self.eval()
-        evolution_losses = torch.zeros(evolution_iters, device="cpu")
-        eval_samples = images.size()[0]
 
-        n = 0
         with torch.no_grad():
-            for i in range(0, eval_samples, batch_size):
-                inputs = images[i:i + batch_size].to(self.device)
-                for j in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    loss = criterion(inputs)
+            inputs=pool[:]
+            inputs = inputs.to(self.device)
+            evolutions_per_image = np.zeros(len(pool))
+            loss_per_step = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=True)
 
-                    # Updates the average error
-                    evolution_losses[j] = (n * evolution_losses[j] +
-                                           batch_size * loss.cpu()) / (n + batch_size)
+            #here i remove the outliers
+            not_outliers=loss_per_step.mean(dim=[0,1])<loss_per_step.mean(dim=[0,1,2])*5
+            loss_per_step = loss_per_step[:,:,not_outliers]
 
-                n += batch_size
-
-        return evolution_losses
+        return loss_per_step.mean(dim=-1).cpu().numpy()
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -107,7 +100,6 @@ class CAModel(nn.Module):
                  evolution_iters: int = 96,
                  kind: str = "growing",
                  n_max_losses: int = 1,
-                 normalize_gradients=False,
                  stopping_criterion: StoppingCriteria = DefaultStopping(),
                  **kwargs):
         """Trains the CA model
@@ -163,40 +155,31 @@ class CAModel(nn.Module):
 
             # take the data
             for j in range(pool.size // batch_size):
+                #in some epochs we do a checkpoint where some operations are performed
+                self.checkpoint(epoch)
+                
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
                 inputs = inputs.to(self.device)
                 optimizer.zero_grad()  # reinitialize the gradient to zero
 
-                self.update(inputs)  # This is useful when you update the mask
+                self.update(inputs)  # This is useful when you update the fixed mask
 
                 # recursive forward-pass
-                total_losses = torch.zeros(inputs.size()[0], device=self.device)
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
-                for n_step in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    # calculate the loss of the inputs and return the ones with the biggest loss
-                    params = {"start_iteration": evolutions_per_image,
-                              "current_iteration": evolutions_per_image + n_step,
-                              "end_iteration": evolutions_per_image + evolution_iters - 1,
-                              "n_epoch": epoch}
-                    losses = criterion(inputs, **params)
-                    total_losses += losses
+                total_losses=self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
+
+                # remove the worst performers, often times they degenerate and ruins everything
+                total_losses=total_losses[total_losses<5*total_losses.mean()]
             
                 # backward-pass
                 total_loss = torch.mean(total_losses)
                 total_loss.backward()
-
-                # normalize gradients
-                with torch.no_grad():
-                    if normalize_gradients:
-                        for param in self.parameters():
-                            param.grad.data.div_(param.grad.data.norm() + 1e-8)
-
                 optimizer.step()
 
-                # customization of training for the three processes of growing. persisting and regenerating
 
+
+                # customization of training for the three processes of growing. persisting and regenerating
                 # if regenerating, then damage inputs
                 if kind == "regenerating" and j % kwargs["skip_damage"] == 0:
                     inputs = inputs.detach()
@@ -219,12 +202,17 @@ class CAModel(nn.Module):
                 if np.random.uniform() < kwargs['reset_prob']:
                     pool.reset()
 
+
+
             # update the scheduler if there is one at all
             if scheduler is not None:
                 scheduler.step()
 
             # Log epoch losses
             epoch_loss = np.mean(epoch_losses)
+
+            #in some epochs we do a checkpoint where some operations are performed
+            self.checkpoint(epoch)
 
             # Stopping criteria
             stopping_criterion.stop(epoch, epoch_loss)
@@ -234,21 +222,34 @@ class CAModel(nn.Module):
             print(f"epoch: {epoch + 1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
-    def plot_losses(self, log_scale=True):
-        """Plots the training losses of the model
 
-        Args:
-            log_scale (bool, optional): Whether to log scale the loss.
-            Defaults to True.
-        """
-        n = list(range(1, len(self.losses) + 1))
-        pl.plot(n, self.losses)
-        pl.xlabel("Epochs")
-        pl.ylabel("Loss")
-        if log_scale:
-            pl.yscale("log")
+    def loss_eval(self, inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=False):
+        total_losses = torch.zeros(inputs.size()[0], device=self.device)
+        loss_per_step=[]
 
-        pl.show()
+        for n_step in range(evolution_iters):
+            inputs = self.forward(inputs)
+            # calculate the loss of the inputs and return the ones with the biggest loss
+            params = {"start_iteration": evolutions_per_image,
+                        "current_iteration": evolutions_per_image + n_step,
+                        "end_iteration": evolutions_per_image + evolution_iters - 1,
+                        "n_epoch": epoch,
+                        "log_losses": log_losses}
+            losses = criterion(inputs, **params)
+            if log_losses==True:
+                loss_per_step.append(losses)
+            else:
+                total_losses += losses
 
+        if log_losses==True:
+            return torch.stack(loss_per_step)
+        return total_losses
+
+
+
+    #Theese functions are to be defined in the child classes    
     def update(self, x):
         return
+
+    def checkpoint(self,epoch):
+        return 

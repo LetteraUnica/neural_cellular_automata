@@ -107,6 +107,11 @@ class CombinedLoss:
         losses = torch.stack([loss(x) for loss in self.loss_functions])
         weights=self.combination_function(*args, **kwargs).to(x.device)
 
+        # in case you just want to log the loss for each type
+        if 'log_losses'in kwargs and kwargs['log_losses']==True:
+            return weights*losses
+            
+        # in case you just want to get the loss for the training step
         if losses.shape==weights.shape:
             return torch.sum(weights*losses,axis=0)
         return torch.matmul(weights,losses)
