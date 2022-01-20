@@ -85,9 +85,9 @@ class CAModel(nn.Module):
 
             #here i remove the outliers
             not_outliers=loss_per_step.mean(dim=[0,1])<loss_per_step.mean(dim=[0,1,2])*5
-            loss_per_step[:,:] = loss_per_step[:,:,not_outliers]
+            loss_per_step = loss_per_step[:,:,not_outliers]
 
-        return loss_per_step.avg(dim=-1).cpu().numpy()
+        return loss_per_step.mean(dim=-1).cpu().numpy()
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
