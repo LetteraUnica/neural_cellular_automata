@@ -83,7 +83,11 @@ class CAModel(nn.Module):
             evolutions_per_image = np.zeros(len(pool))
             loss_per_step = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=True)
 
-        return loss_per_step
+            #here i remove the outliers
+            not_outliers=loss_per_step.mean(dim=[0,1])<loss_per_step.mean(dim=[0,1,2])*5
+            loss_per_step[:,:] = loss_per_step[:,:,not_outliers]
+
+        return loss_per_step.avg(dim=-1).cpu().numpy()
 
     def train_CA(self,
                  optimizer: torch.optim.Optimizer,
@@ -163,7 +167,7 @@ class CAModel(nn.Module):
                 total_losses=self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
 
                 # remove the worst performers, often times they degenerate and ruins everything
-                total_losses=total_losses[total_losses>5*total_losses.mean()]
+                total_losses=total_losses[total_losses<5*total_losses.mean()]
             
                 # backward-pass
                 total_loss = torch.mean(total_losses)
@@ -230,12 +234,12 @@ class CAModel(nn.Module):
                         "log_losses": log_losses}
             losses = criterion(inputs, **params)
             if log_losses==True:
-                loss_per_step.append(losses.mean(dim=-1))
+                loss_per_step.append(losses)
             else:
                 total_losses += losses
 
         if log_losses==True:
-            return torch.stack(loss_per_step).cpu()
+            return torch.stack(loss_per_step)
         return total_losses
 
 
