@@ -251,11 +251,9 @@ class CAModel(nn.Module):
     def checkpoint(self,epoch):
         return 
 
-    def loss_eval(self, inputs, evolution_iters, criterion,evolutions_per_image=0,epoch=0,log_losses=False):
+    def loss_eval(self, inputs, evolution_iters, criterion,evolutions_per_image,epoch=0,log_losses=False):
         total_losses = torch.zeros(inputs.size()[0], device=self.device)
         loss_per_step=[]
-        if evolutions_per_image == 0:
-            evolutions_per_image=torch.zeros(inputs.size()[0], device=self.device)
 
         for n_step in range(evolution_iters):
             inputs = self.forward(inputs)
@@ -263,8 +261,9 @@ class CAModel(nn.Module):
             params = {"start_iteration": evolutions_per_image,
                         "current_iteration": evolutions_per_image + n_step,
                         "end_iteration": evolutions_per_image + evolution_iters - 1,
-                        "n_epoch": epoch}
-            losses = criterion(inputs,log_losses, **params)
+                        "n_epoch": epoch,
+                        "log_losses": log_losses}
+            losses = criterion(inputs, **params)
             if log_losses==True:
                 loss_per_step.append(losses)
             total_losses += losses
