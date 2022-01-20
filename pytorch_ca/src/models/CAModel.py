@@ -152,12 +152,12 @@ class CAModel(nn.Module):
 
         for epoch in range(n_epochs):
             epoch_losses = []  # array that stores the loss history
-
+    
+            #in some epochs we do a checkpoint where some operations are performed
+            self.checkpoint(epoch)
+    
             # take the data
-            for j in range(pool.size // batch_size):
-                #in some epochs we do a checkpoint where some operations are performed
-                self.checkpoint(epoch)
-                
+            for j in range(pool.size // batch_size):        
                 inputs, indexes = pool.sample(batch_size)  # sample the inputs
                 # put them in the current device
                 inputs = inputs.to(self.device)
@@ -201,8 +201,6 @@ class CAModel(nn.Module):
             if kind!='growing' and 'reset_prob' in kwargs:
                 if np.random.uniform() < kwargs['reset_prob']:
                     pool.reset()
-
-
 
             # update the scheduler if there is one at all
             if scheduler is not None:
