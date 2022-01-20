@@ -171,24 +171,15 @@ class CAModel(nn.Module):
                 self.update(inputs)  # This is useful when you update the mask
 
                 # recursive forward-pass
-                total_losses = torch.zeros(inputs.size()[0], device=self.device)
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
-                for n_step in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    # calculate the loss of the inputs and return the ones with the biggest loss
-                    params = {"start_iteration": evolutions_per_image,
-                              "current_iteration": evolutions_per_image + n_step,
-                              "end_iteration": evolutions_per_image + evolution_iters - 1,
-                              "n_epoch": epoch}
-                    losses = criterion(inputs, **params)
-                    total_losses += losses
+                total_losses=self.loss_eval(inputs, evolution_iters, criterion, evolutions_per_image,epoch)
+
+                #remove the worst performer, often times it degenerates and ruins everything
+                total_losses=total_losses[total_losses!=total_losses.max()]
             
                 # backward-pass
-                total_losses=total_losses[total_losses!=total_losses.max()]
                 total_loss = torch.mean(total_losses)
-                
                 total_loss.backward()
-
                 optimizer.step()
 
 
@@ -259,3 +250,27 @@ class CAModel(nn.Module):
 
     def checkpoint(self,epoch):
         return 
+
+    def loss_eval(self, inputs, evolution_iters, criterion,evolutions_per_image=0,epoch=0,log_losses=False):
+        total_losses = torch.zeros(inputs.size()[0], device=self.device)
+        loss_per_step=[]
+        if evolutions_per_image == 0:
+            evolutions_per_image=torch.zeros(inputs.size()[0], device=self.device)
+
+        for n_step in range(evolution_iters):
+            inputs = self.forward(inputs)
+            # calculate the loss of the inputs and return the ones with the biggest loss
+            params = {"start_iteration": evolutions_per_image,
+                        "current_iteration": evolutions_per_image + n_step,
+                        "end_iteration": evolutions_per_image + evolution_iters - 1,
+                        "n_epoch": epoch}
+            losses = criterion(inputs,log_losses, **params)
+            if log_losses==True:
+                loss_per_step.append(losses)
+            total_losses += losses
+
+        if log_losses==True:
+            return total_losses, loss_per_step
+        return total_losses
+
+        
