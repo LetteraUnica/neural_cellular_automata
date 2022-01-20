@@ -84,15 +84,7 @@ class CAModel(nn.Module):
         with torch.no_grad():
             for i in range(0, eval_samples, batch_size):
                 inputs = images[i:i + batch_size].to(self.device)
-                for j in range(evolution_iters):
-                    inputs = self.forward(inputs)
-                    loss = criterion(inputs)
-
-                    # Updates the average error
-                    evolution_losses[j] = (n * evolution_losses[j] +
-                                           batch_size * loss.cpu()) / (n + batch_size)
-
-                n += batch_size
+                total_losses,loss_per_step=self.loss_eval(inputs, evolution_iters, criterion, evolutions_per_image, epoch=0)
 
         return evolution_losses
 
@@ -107,7 +99,6 @@ class CAModel(nn.Module):
                  evolution_iters: int = 96,
                  kind: str = "growing",
                  n_max_losses: int = 1,
-                 normalize_gradients=False,
                  stopping_criterion: StoppingCriteria = DefaultStopping(),
                  **kwargs):
         """Trains the CA model
@@ -172,9 +163,9 @@ class CAModel(nn.Module):
 
                 # recursive forward-pass
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
-                total_losses=self.loss_eval(inputs, evolution_iters, criterion, evolutions_per_image,epoch)
+                total_losses=self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
 
-                #remove the worst performer, often times it degenerates and ruins everything
+                # remove the worst performer, often times it degenerates and ruins everything
                 total_losses=total_losses[total_losses!=total_losses.max()]
             
                 # backward-pass
@@ -227,31 +218,8 @@ class CAModel(nn.Module):
             print(f"epoch: {epoch + 1}\navg loss: {epoch_loss}")
             clear_output(wait=True)
 
-            
 
-    def plot_losses(self, log_scale=True):
-        """Plots the training losses of the model
-
-        Args:
-            log_scale (bool, optional): Whether to log scale the loss.
-            Defaults to True.
-        """
-        n = list(range(1, len(self.losses) + 1))
-        pl.plot(n, self.losses)
-        pl.xlabel("Epochs")
-        pl.ylabel("Loss")
-        if log_scale:
-            pl.yscale("log")
-
-        pl.show()
-
-    def update(self, x):
-        return
-
-    def checkpoint(self,epoch):
-        return 
-
-    def loss_eval(self, inputs, evolution_iters, criterion,evolutions_per_image,epoch=0,log_losses=False):
+    def loss_eval(self, inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=False):
         total_losses = torch.zeros(inputs.size()[0], device=self.device)
         loss_per_step=[]
 
@@ -269,7 +237,14 @@ class CAModel(nn.Module):
             total_losses += losses
 
         if log_losses==True:
-            return total_losses, loss_per_step
+            return total_losses, torch.stack(loss_per_step)
         return total_losses
 
-        
+
+
+    #Theese functions are to be defined in the child classes    
+    def update(self, x):
+        return
+
+    def checkpoint(self,epoch):
+        return 
