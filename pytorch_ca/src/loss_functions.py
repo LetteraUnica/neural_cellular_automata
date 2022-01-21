@@ -64,11 +64,12 @@ class OldCellLoss:
 
 
 class NCADistance:
-    def __init__(self, model1: nn.Module, model2: nn.Module):
+    def __init__(self, model1: nn.Module, model2: nn.Module, penalization: float = 1e-2):
         """Penalizes the distance between two models using the parameter penalization
         """
         self.model1 = model1
         self.model2 = model2
+        self.penalization = penalization
 
     def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
@@ -80,8 +81,8 @@ class NCADistance:
                 index of the image with maximum loss
         """
 
-        return ruler.distance(self.model1, self.model2).repeat(x.size()[0])
-
+        return self.penalization * ruler.distance(self.model1, self.model2)
+        
 
 class CombinedLoss:
     """
