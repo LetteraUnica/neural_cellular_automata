@@ -34,6 +34,22 @@ class ExponentialSampler:
             (self.max-self.min) / self.b + self.min
         return samples.astype(int)
 
+def apply_mask(images: torch.Tensor, virus_mask, original_channel: int, virus_channel: int) -> torch.Tensor:
+    """Applies the virus mask to the given images
+    Args:
+        images (torch.Tensor): Images to add the virus to.
+        virus_mask (torch.Tensor): Mask to apply
+        original_channel (int): Alpha channel of the original cells
+        virus_channel (int): Alpha channel of the virus cells
+
+
+    Returns:
+        torch.Tensor: Images with the virus added
+    """
+    images[:, virus_channel] = images[:, original_channel] * virus_mask.float()
+    images[:, original_channel] = images[:, original_channel] * (~virus_mask).float()
+
+    return images 
 
 def add_virus(images: torch.Tensor, original_channel: int,
               virus_channel: int, virus_rate: float = 0.1) -> torch.Tensor:
@@ -51,11 +67,9 @@ def add_virus(images: torch.Tensor, original_channel: int,
     """
     virus_mask = torch.rand_like(images[:, original_channel]) < virus_rate
 
-    images[:, virus_channel] = images[:, original_channel] * virus_mask.float()
-    images[:, original_channel] = images[:,
-                                         original_channel] * (~virus_mask).float()
+    return apply_mask(images, virus_mask, original_channel, virus_channel)
 
-    return images
+
 
 
 class VirusGenerator:

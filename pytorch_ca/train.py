@@ -3,103 +3,175 @@ from torchvision.io import read_image, ImageReadMode, write_video
 import torchvision.transforms as T
 from random import randint
 from IPython.display import clear_output
-import moviepy.editor as mvp
 import numpy as np
 import pylab as pl
 import wandb
 import av
+import moviepy.editor as mvp
+
 
 from src import *
 
+N_CHANNELS = 15        # Number of CA state channels
+TARGET_PADDING = 8     # Number of pixels used to pad the target image border
+TARGET_SIZE = 40       # Size of the target emoji
+CELL_FIRE_RATE = 0.5
 
 torch.backends.cudnn.benchmark = True # Speeds up things
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 config={
-    'gamma': 0.1,
-    'lr':2e-3,
-    'batch_size': 25,
-    'n_epochs':100,
-    'step_size':1,
-    'image':'butterfly',
-    'scheduler':'step',
-    'milestones':[50,100],
-    'weight_decay':0,
-    'starting_weights': None,
-    'evolution_iters':[64,96],
+    'percentage':0.5,
+    'gamma':1-1e-2,
+    'lr1':2e-3,
+    'lr2':2e-3,
+    'batch_size': 50,
+    'pool_size': 200,
+    'n_epochs':50,
+    'n_max_loss_ratio':8,
+    'step_size':52,
+    'evolution_iters':50,
     'target_size':40,
-    'target_padding':8,
-    'pool_size':1000,
-    'optimizer':'Adam',
+    'target_padding':16,
+    'tau':1/100,
+    'kind':'persist',
+    'image':'firework',
+    'start_appling_loss':100,
+    'start_appling_kill_loss':100,
+    'speed_appling_loss':2,
+    'speed_appling_kill_loss':2,
+    'kill_multiplier':1e-4,
+    'reset_prob':0,
+    'growing_file':'Pretrained_models/firework/Virus/firework_growing_64_96.pt',
+    'virus_file':None
     }
 
-N_CHANNELS = 16        # Number of CA state channels
-IMAGE_SIZE = 2*config['target_padding']+config['target_size']
-CELL_FIRE_RATE = 0.5
-N_ITERS = 50
+IMAGE_SIZE = config['target_padding']+config['target_size']
 
-growing=NeuralCA(N_CHANNELS,device)
-for p in growing.parameters():
-  print(p.shape)
-  if p.shape[0]==16:
-    p.data.fill_(0)
-if config['starting_weights'] != None:
-  growing.load_state_dict(torch.load(config['starting_weights'], map_location=device))
-  growing.to(device)
 
-#wandb.init(project='growing', entity="neural_ca", config=default_config, mode="disabled")
-wandb.init(project='growing', entity="neural_ca", config=config)
+#import the models
+model = MultipleCA(N_CHANNELS, n_CAs=2, device=device)
+
+vanishing='Pretrained_models/firework_vanishing.pt'
+growing='Pretrained_models/firework/Virus/firework_growing_64_96.pt'
+virus='Pretrained_models/firework/Virus/firework_virus_ckp_50%.pt'
+last='model.pt'
+
+if config['growing_file']!=None:
+  model.CAs[0].load_state_dict(torch.load(config['growing_file'], map_location=device))
+if config['virus_file']!=None:
+  model.CAs[1].load_state_dict(torch.load(config['virus_file'], map_location=device))
+
+for param in model.CAs[0].parameters():
+    param.requires_grad = False
+
+model.to(device)
+
+
+wandb.login(key='c1d1eea97dcd6cda86b8a1b8cf18600174e3a38c')
+#wandb.init(project='quick_virus', entity="neural_ca", config=default_config, mode="disabled")
+wandb.init(project='quick_virus', entity="neural_ca", config=config)
 config=wandb.config
 print(config)
-wandb.watch(growing, log_freq=32)
+#wandb.watch(model, log_freq=32)
+
+
+def prova():return [randint(70,90)]
+generator=VirusGenerator(N_CHANNELS,IMAGE_SIZE,2,model,config['percentage'],iter_func=prova)
+
+pool = SamplePool(config['pool_size'], generator,indexes_max_loss_size=8)
+
 
 # Imports the target emoji
 target = read_image("images/"+config['image']+".png", ImageReadMode.RGB_ALPHA).float()
 target = T.Resize((config['target_size'], config['target_size']))(target)
-target = pad(target,config['target_padding'])
 target = RGBAtoFloat(target)
 target = target.to(device)
 
-# Starting state
+class sigmoid:
+    def __init__(self,sigma,x_0):
+        self.sigma = sigma
+        self.x_0 = x_0
 
-def generator(n, device):
-    return make_seed(n, N_CHANNELS-1, IMAGE_SIZE, alpha_channel=3, device=device)
+    def sigmoid(self,x):
+        x=(x-self.x_0)/self.sigma
+        return 1/(1+np.exp(-x))
 
-pool = SamplePool(config['pool_size'], generator)
-#imshow(pool[0])
+    def __call__(self,current_iteration,start_iteration,end_iteration,*args,**kwargs):
+        return self.sigmoid(current_iteration)/(end_iteration-start_iteration)
 
-if config['optimizer']=='Adam':
-  optimizer = torch.optim.Adam(growing.parameters(), lr=config['lr'], weight_decay=config['weight_decay'])
-if config['optimizer']=='SGD':
-    optimizer = torch.optim.SGD(growing.parameters(), lr=config['lr'], momentum=config['momentum'], weight_decay=config['weight_decay'])
+def WeightFunction(current_iteration,start_iteration,end_iteration,*args,**kwargs):
+    image_weight=sigmoid(config['speed_appling_loss'],config['start_appling_loss'])
+    Nold_weight=sigmoid(config['speed_appling_kill_loss'],config['start_appling_kill_loss'])
 
-if config['scheduler']=='step':
-  scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=config['milestones'], gamma=config['gamma'])
-if config['scheduler']=='exponential':
-  scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=config['gamma'])
+    m1=image_weight(current_iteration,start_iteration,end_iteration)
+    m2=Nold_weight(current_iteration,start_iteration,end_iteration)*config['kill_multiplier']
 
-criterion = NCALoss(pad(target, config['target_padding']), torch.nn.MSELoss)
+    N=1+config['kill_multiplier']
+    return torch.tensor([m1/N,m2/N],device=device,requires_grad=False).float()
 
-growing.train_CA(
+
+#set up the training 
+params=model.CAs[1].parameters()
+optimizer = torch.optim.Adam(params, lr=config['lr1'])
+#scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer,config['lr1'],config['lr1']+config['lr2'],config['step_size'],gamma=config['gamma'], cycle_momentum=False)
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer,gamma=config['gamma'])
+
+
+image_loss = NCALoss(pad(target, config['target_padding']), alpha_channels=[15, 16])
+percentage_loss = OldCellLoss(alpha_channel=-2)
+
+
+criterion = CombinedLoss([image_loss, percentage_loss], WeightFunction)
+
+
+def checkpoint(epoch):
+    if epoch%10==0:
+      with torch.no_grad():
+          pool = SamplePool(20, generator)
+          evolution_iters=500
+          loss_per_step = model.test_CA(criterion,pool, evolution_iters)
+          pl.plot(loss_per_step[:,0]*evolution_iters,label='MSE loss')
+          pl.plot(loss_per_step[:,1]*evolution_iters,label='$N_{old}$ loss')
+          pl.xlabel('$n_{steps}$')
+          pl.ylabel('loss density')
+          pl.yscale('log')
+          pl.legend()
+          pl.savefig("epoch"+str(epoch)+".png")
+          pl.close()
+          model.CAs[1].save(f"epoch"+str(epoch)+".pt",overwrite=True)
+          wandb.log({"loss_graph":wandb.Image("epoch"+str(epoch)+".png")})
+          wandb.save("epoch"+str(epoch)+".pt")
+
+
+model.checkpoint=checkpoint
+
+
+#The actual training part
+model.train_CA(
     optimizer,
     criterion,
     pool,
-    batch_size=config['batch_size'],
-    n_epochs=config['n_epochs'],
     scheduler=scheduler,
     skip_update=1,
-    kind="growing",
-    evolution_iters=config['evolution_iters'],
-    normalize_gradients=True)
-
-converter=tensor_to_RGB(function="RGBA",CA=growing)
-n_steps=300
-seed=make_seed(1,N_CHANNELS-1,IMAGE_SIZE,n_CAs=1,alpha_channel=3,device=device)
-fname="RGBA.mp4"
-make_video(growing,n_steps,seed,converter=converter,fname=fname)
+    n_max_losses=config['batch_size'] // config['n_max_loss_ratio'],
+    skip_damage=2,
+    **config)
 
 
-growing.save(f"model.pt",overwrite=True)
+converter=[tensor_to_RGB(function="RGBA",CA=model),
+           tensor_to_RGB(function=[-2,-1],CA=model)]
+
+seed=make_seed(1,N_CHANNELS,IMAGE_SIZE,n_CAs=2,alpha_channel=-2,device=device)
+fname=["virus_50.mp4","virus_50_alpha.mp4"]
+video,init_state=make_video(model,60,seed,converter=converter)
+init_state=add_virus(init_state,-2,-1,config['percentage'])
+_=make_video(model,300,init_state,fname=fname,initial_video=video,converter=converter, regenerating=False)
+
+
+model.CAs[1].save(f"model.pt",overwrite=True)
+
 wandb.save('model.pt')
-wandb.log({'video' : wandb.Video('RGBA.mp4',fps=10,format='mp4')})
+for name in fname:
+  wandb.log({name : wandb.Video(name,fps=10,format='mp4')})

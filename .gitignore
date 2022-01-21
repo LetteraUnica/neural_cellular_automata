@@ -149,3 +149,4 @@ __pycache__
 
 connect_orfeo.sh
 pytorch_ca/test.ipynb
+pytorch_ca/train.py
