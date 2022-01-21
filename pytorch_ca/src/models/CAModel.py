@@ -80,7 +80,7 @@ class CAModel(nn.Module):
         with torch.no_grad():
             inputs=pool[:]
             inputs = inputs.to(self.device)
-            evolutions_per_image = np.zeros(len(pool))
+            evolutions_per_image = np.zeros(inputs.shape[0])
             loss_per_step = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=True)
 
             #here i remove the outliers
@@ -167,17 +167,14 @@ class CAModel(nn.Module):
 
                 # recursive forward-pass
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
-                total_losses=self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
+                inputs, total_losses = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
 
                 # remove the worst performers, often times they degenerate and ruins everything
-                total_losses=total_losses[total_losses<5*total_losses.mean()]
             
                 # backward-pass
-                total_loss = torch.mean(total_losses)
+                total_loss = torch.mean(total_losses[total_losses<5*total_losses.mean()])
                 total_loss.backward()
                 optimizer.step()
-
-
 
                 # customization of training for the three processes of growing. persisting and regenerating
                 # if regenerating, then damage inputs
@@ -220,7 +217,7 @@ class CAModel(nn.Module):
 
     def loss_eval(self, inputs, criterion, evolution_iters, evolutions_per_image,epoch=0,log_losses=False):
         total_losses = torch.zeros(inputs.size()[0], device=self.device)
-        loss_per_step=[]
+        loss_per_step = []
 
         for n_step in range(evolution_iters):
             inputs = self.forward(inputs)
@@ -235,16 +232,17 @@ class CAModel(nn.Module):
                 loss_per_step.append(losses)
             else:
                 total_losses += losses
-
+        
         if log_losses==True:
             return torch.stack(loss_per_step)
-        return total_losses
+        return inputs, total_losses + self.end_step_loss(inputs, **params)
 
-
-
-    #Theese functions are to be defined in the child classes    
+    #These functions are to be defined in the child classes    
     def update(self, x):
         return
 
-    def checkpoint(self,epoch):
+    def checkpoint(self, epoch):
         return 
+
+    def end_step_loss(self, x, **params):
+        return 0
