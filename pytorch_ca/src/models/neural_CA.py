@@ -97,9 +97,9 @@ class NeuralCA(CAModel):
         dx = self.layers(self.perceive(x, angle)) * step_size
 
         # get random-per-cell mask for stochastic update
-        update_mask = torch.rand(x[:, :1, :, :].size(), device=self.device) < self.fire_rate
+        update_mask = random_mask(x.size()[0], x.size()[-1], self.fire_rate).unsqueeze(1)
 
-        return dx*update_mask.float()
+        return dx*update_mask
 
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,

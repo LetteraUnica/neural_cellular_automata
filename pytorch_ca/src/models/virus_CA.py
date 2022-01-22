@@ -41,10 +41,11 @@ class VirusCA(CAModel):
         Args:
             x (torch.Tensor): Input images, only used to take the shape
         """
-        self.new_cells = (torch.rand_like(x[:, 0:1, :, :]) < self.mutation_probability).float()
+        self.new_cells = random_mask(x.size()[0], x.size()[-1], self.mutation_probability)
         self.old_cells = 1. - self.new_cells
 
         self.initialized = True
+
 
     def update(self, x):
         """Useful fo the train loop"""
