@@ -36,6 +36,8 @@ class NeuralCA(CAModel):
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
 
+        self.precompute_filters()
+
         # Set the parameters of the second layer to zero
         for name, param in self.named_parameters():
             if "2" in name:
@@ -43,7 +45,7 @@ class NeuralCA(CAModel):
 
         self.to(device)
 
-    def precompute_filters(self, angle: float):
+    def precompute_filters(self, angle: float = 0.):
         """Precomputes the convolution filters
 
         Args:
@@ -97,7 +99,7 @@ class NeuralCA(CAModel):
         dx = self.layers(self.perceive(x, angle)) * step_size
 
         # get random-per-cell mask for stochastic update
-        update_mask = random_mask(x.size()[0], x.size()[-1], self.fire_rate).unsqueeze(1)
+        update_mask = random_mask(x.size()[0], x.size()[-1], self.fire_rate, self.device).unsqueeze(1)
 
         return dx*update_mask
 

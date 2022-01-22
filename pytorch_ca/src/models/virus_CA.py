@@ -41,7 +41,7 @@ class VirusCA(CAModel):
         Args:
             x (torch.Tensor): Input images, only used to take the shape
         """
-        self.new_cells = random_mask(x.size()[0], x.size()[-1], self.mutation_probability)
+        self.new_cells = random_mask(x.size()[0], x.size()[-1], self.mutation_probability, self.device)
         self.old_cells = 1. - self.new_cells
 
         self.initialized = True
