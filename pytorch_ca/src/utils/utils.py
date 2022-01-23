@@ -1,3 +1,4 @@
+from typing import Sequence
 import torch
 
 from random import randint
@@ -52,10 +53,24 @@ def make_squares(images, target_size=None, side=side, constant_side=False):
     return images.clone()
 
 
-def checkered_mask(matrix_size):
-    grid = torch.zeros(matrix_size, matrix_size)
-    for i in range(matrix_size):
-        for j in range(matrix_size):
+def checkered_mask(mask_size: int, device="cpu") -> torch.Tensor:
+    mask = torch.zeros(mask_size, mask_size, device=device)
+    for i in range(mask_size):
+        for j in range(mask_size):
             if (i+j) % 2 == 0:
-                grid[i, j] = 1
-    return grid.unsqueeze(0).unsqueeze(0)
+                mask[i, j] = 1
+
+    return mask
+
+
+def square_mask(mask_size: int, center: Sequence[int], side: int, device="cpu") -> torch.Tensor:
+    left = center - side // 2
+    right = left + side
+
+    mask = torch.zeros((mask_size, mask_size), device=device)
+    mask[left[0]:right[0], left[1]:right[1]] = 1
+    
+    return mask
+
+def random_mask(n_images, mask_size, probability, device="cpu"):
+    return (torch.rand((n_images, mask_size, mask_size), device=device) < probability).float()

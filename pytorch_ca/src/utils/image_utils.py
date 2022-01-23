@@ -117,6 +117,14 @@ def pad(images: torch.Tensor, padding: int, fill_value=0.) -> torch.Tensor:
     return T.Pad(padding//2, fill=fill_value)(images)
 
 
+def erode(images: torch.Tensor, erosion_depth: int) -> torch.Tensor:
+    """Computes an erosion morphological operation on binary images
+    Works also on non-binary images however the result is undefined
+    """
+    kernel_size = 2*erosion_depth + 1
+    return -torch.nn.MaxPool2d(kernel_size=kernel_size, stride=1, padding=erosion_depth)(-images)
+
+
 def state_to_image(x, mask_channels):
     """Sums all the values of all mask channels into one, must be called before
     calling imshow"""
