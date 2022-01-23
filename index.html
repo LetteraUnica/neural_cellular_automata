@@ -260,7 +260,7 @@
   <figure class='l-middle' id="mask">
     <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
     <video loop="" autoplay="" playsinline="" muted="" style='height: 45%; width: 45%; object-fit: contain'>
-      <source src="pytorch_ca/Presentation_videos/switch40 99.7%.mp4" type="video/mp4">
+      <source src="pytorch_ca/Presentation_videos/switch40_99.7.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
@@ -611,15 +611,15 @@
 
   <h3> Results for changing Global Properties</h3>
   <figure class='l-page side' id="grafico_loss">
-    <img src="pytorch_ca/Presentation_images/lizard green->red.png" style='height: 100%; width: 100%; object-fit: contain'>
+    <img src="pytorch_ca/Presentation_images/lizard_green->red.png" style='height: 100%; width: 100%; object-fit: contain'>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-      Transoformation of the CA from green to red
+      Transformation of the CA from green to red
     </figcaption>
   </figure>
   <p>
-    This tecnique can be used to change other properties of the CA, such as the modification that had been tried in
-    <dt-cite key="randazzo2021adversarial"></dt-cite>. In that paper it was shown that to change some properties like the
-    color of the image a high concentration of adversarials was needed.
+    This tecnique can be used to change other properties of the CA, such as changing the color of the CA.
+    In <dt-cite key="randazzo2021adversarial"></dt-cite> it was show that a high concentration of (fixed) adversarial was needed
+    to turn the green lizard into a red one.
   </p>
   <p>
     With our tecnique we were able to change the color of the CA by switching 2% of the original cell to the new rule.
@@ -627,7 +627,7 @@
   <figure class="l-body" style="display:flex">
     <div style=" width:49%; height:49%;">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/green->red_2%_virus_RGBA.mp4" type="video/mp4">
+      <source src="pytorch_ca/Presentation_videos/green_to_red_2_virus_RGBA.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <figcaption style="width:90%">
@@ -637,16 +637,40 @@
     <div style="width: 1%;"></div>
     <div style=" width:49%; height:49%;">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/green->red_2%_virus_alpha.mp4" type="video/mp4">
+      <source src="pytorch_ca/Presentation_videos/green_to_red_2_virus_alpha.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <figcaption style="width:90%">
       Video 10: Alpha channel representation of the same CA
     </figcaption>
     </div>
-
   </figure>
 
+  <p>
+    It's also possible to train the adversarial archieve this just with a randomly placed starting seed
+  </p>
+
+  <figure class="l-body" style="display:flex">
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/single_cell_RGB.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 11: Evolution of a CA an added 3x3 seed
+    </figcaption>
+    </div>
+    <div style="width: 1%;"></div>
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/single_cell_alpha.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 12: Alpha channel representation of the same CA
+    </figcaption>
+    </div>
+  </figure>
 
   
 
@@ -697,6 +721,7 @@
     Where $L_\textrm{target}$ is the distance squared to the target image and $\lambda$ is a hyperparameter.
     We will call the new CA trained in this way Perturbation
   </p>
+
 
   <h3>Results</h2>
   
@@ -749,6 +774,34 @@
         Finally for the remaining 150 iterations we use only the regenerating cells.
       </figcaption>
   </figure>
+
+
+<!--
+  <div class="body">
+    <details>
+      <summary>
+        <div class="body" style="display: flex; width: 100%; margin-left: 20px; margin-top: -35px">
+        <div style="position: relative; margin-top:-px; width:60%">
+          <h2 style="margin-top: 0em; font-size: 40px;">Putting it all together</h2>
+        </div>
+        <div style="font-size: small; line-height: 120%; width:40%">
+          In this section we merge the tecniques from the previous sections, if you don't want to read just know that it works
+        </div>
+        </div>
+      </summary>
+      <p>
+        quando facc rep frat so pericolos
+      </p>
+    </details>
+  </div>
+
+-->
+
+
+
+
+
+
 
   <h2 style="font-size: 40px;">Conclusion</h2>
   <p>
