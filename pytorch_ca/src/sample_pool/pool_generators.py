@@ -69,7 +69,30 @@ def add_virus(images: torch.Tensor, original_channel: int,
 
     return apply_mask(images, virus_mask, original_channel, virus_channel)
 
+#WIP
+def add_virus_cell(images: torch.Tensor, original_channel: int,
+              virus_channel: int, cell_size: int = 1, n_tries: int=100) -> torch.Tensor:
+    """Adds a blob of virus to the given images
 
+    Args:
+        images (torch.Tensor): Images to add the virus to.
+        original_channel (int): Alpha channel of the original cells
+        virus_channel (int): Alpha channel of the virus cells
+        virus_rate (float, optional): Size of the blob of cells to add
+            Defaults to 1
+
+    Returns:
+        torch.Tensor: Images with the virus added
+    """
+    alive_mask = get_living_mask(images, original_channel)
+
+    dead_mask = ~alive_mask
+    neighbors = F.max_pool2d(dead_mask, 3, stride=cell_size) > 0.1
+    torch.max(neighbors, dim=1)[0].unsqueeze(1)
+    
+    #for i in range(n_tries):
+        
+    return apply_mask(images, virus_mask, original_channel, virus_channel)   
 
 
 class VirusGenerator:
