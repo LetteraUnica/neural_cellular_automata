@@ -27,12 +27,18 @@ var column = row.selectAll(".square")
             if ((d.click)%6 == i ) { return colors[0][i]; }    //white
         }
     })
-    .on('mouseover', function(d) {
+    .on('mouseover', function(d) { //d is the data of the square pointed with the mouse
         d3.selectAll(".square").style("fill",function (x){
+            color_selected=d.click%6
+            all_colors=x.click%6
+            if (color_selected==0) {
+                for (var i=0;i<6;i++){
+                    if (all_colors==i) {return colors[0][i];}
+                }
+            }    
             for (var i=0; i<6;i++){
-                if (d.click==0) { return colors[0][i]; }
-                if ((d.click)%6 == i  && d.click!=x.click) { return colors[1][i]; } 
-                if ((d.click)%6 == i  && d.click==x.click) {return colors[0][i];}   //white
+                if (color_selected == i && color_selected!=all_colors) { return colors[1][i]; }
+                if ((color_selected == i && color_selected==all_colors)) { return colors[0][i]; }
             }
         })
     });
@@ -42,3 +48,17 @@ var column = row.selectAll(".square")
 function color_scheme(d){
     
 }
+
+
+
+/*
+.on('mouseover', function(d) {
+        d3.selectAll(".square").style("fill",function (x){
+            for (var i=0; i<6;i++){
+                if (d.click==0) { return colors[0][i]; }
+                if ((d.click)%6 == i  && d.click!=x.click) { return colors[1][i]; } 
+                if ((d.click)%6 == i  && d.click==x.click) {return colors[0][i];}   //white
+            }
+        })
+    });
+*/
