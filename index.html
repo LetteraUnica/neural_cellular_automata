@@ -307,6 +307,8 @@
       while only the ones with more than 95% of cells substituted survive until the end
     </figcaption>
   </figure>
+
+  <h3>Effectiveness</h3>
   <p>
     One of the problems is that the effectiveness of Mask decreases as you increase the number of steps
     and decrease the percentage of switched cells,
@@ -396,7 +398,7 @@
 
 
   <dt-byline></dt-byline>
-  <h1>Realistic simulation of adversarials</h1>
+  <h1 id="realistic simulation of adversarials">Realistic simulation of adversarials</h1>
   <p>
     One of the limitations of using a fixed mask is that it can’t model what happens when a kind of cell
     overtakes the other. This is important because having the new cells overtake the old ones would be both more biologically plausible
@@ -419,7 +421,7 @@
   <p>
     To make this work we first have to ask ourselves how do we model the evolution of the mask? 
   </p>
-  <h3>The Model</h3>
+  <h3 id="model realistic simulation of adversarials">The Model</h3>
   <p>
     For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
   </p>
@@ -776,26 +778,20 @@
   </figure>
 
 
-<!--
-  <div class="body">
-    <details>
-      <summary>
-        <div class="body" style="display: flex; width: 100%; margin-left: 20px; margin-top: -35px">
-        <div style="position: relative; margin-top:-px; width:60%">
-          <h2 style="margin-top: 0em; font-size: 40px;">Putting it all together</h2>
-        </div>
-        <div style="font-size: small; line-height: 120%; width:40%">
-          In this section we merge the tecniques from the previous sections, if you don't want to read just know that it works
-        </div>
-        </div>
-      </summary>
-      <p>
-        quando facc rep frat so pericolos
-      </p>
-    </details>
-  </div>
-
--->
+  <h3>Putting it all together</h3>
+    <p>
+      In order to train the adversarial that the weights as close as possible as the original CA we need to
+      add use the following Loss
+    </p>
+    <p>
+    $$
+    L = L_\textrm{target} +\lambda_1 N_\textrm{old} + \lambda_2 |\Delta w|^2
+    $$
+    </p>
+    <p>
+      And the propagation foward is the same as the one described in the section about the <a href="#model realistic simulation of adversarials">realistic simulation of adversarials</a>
+    </p>
+    <p>INSERIRE RISULTATI</p>
 
 
 
@@ -803,6 +799,8 @@
 
 
 
+
+  <dt-byline></dt-byline>
   <h2 style="font-size: 40px;">Conclusion</h2>
   <p>
     We showed that it is possible to program adversarial cells to take over the old cells in order to modify global properties of the CA.
@@ -853,6 +851,7 @@
   </ul>
 </dt-appendix>
 
+<!--Bibliography-->
 <script type="text/bibliography">
   @article{mordvintsev2020growing,
     author = {Mordvintsev, Alexander and Randazzo, Ettore and Niklasson, Eyvind and Levin, Michael},
@@ -893,9 +892,9 @@
     doi = {10.1242/dev.073759},
     url = {https://doi.org/10.1242/dev.073759},
     eprint = {https://journals.biologists.com/dev/article-pdf/139/2/313/1160014/313.pdf}
-}
-
+  }
 </script>
+
 
 <script src="website/epoch_loss.js"></script>
 <script src="website/epoch_loss_growing.js"></script>
