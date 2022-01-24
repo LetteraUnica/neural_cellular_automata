@@ -168,12 +168,9 @@ class CAModel(nn.Module):
                 # recursive forward-pass
                 evolutions_per_image = pool.get_evolutions_per_image(indexes)
                 inputs, total_losses = self.loss_eval(inputs, criterion, evolution_iters, evolutions_per_image, epoch)
-                
-                # remove the worst performers, often times they degenerate and ruins everything
-                total_losses[total_losses<5*total_losses.mean()]            
 
-                # backward-pass
-                total_loss = torch.mean(total_losses) 
+                # We remove the worst performers, often times they degenerate and ruins everything
+                total_loss = torch.mean(total_losses[total_losses<5*total_losses.mean()])
                 total_loss.backward()
                 optimizer.step()
 
