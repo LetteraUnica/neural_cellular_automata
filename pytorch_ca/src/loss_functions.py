@@ -57,7 +57,7 @@ class OldCellLoss:
 
         self.alpha_channel = alpha_channel
 
-    def __call__(self, x:torch.Tensor, *args, **kwargs)->Tuple[torch.Tensor]:
+    def __call__(self, x:torch.Tensor, *args, **kwargs)-> torch.Tensor:
         old_cells = x[:, self.alpha_channel].sum(dim=[1, 2])
         
         return old_cells
