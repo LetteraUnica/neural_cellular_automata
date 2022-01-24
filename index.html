@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <script src="website/template.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-68SGYK1XFT"></script>
 <script>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
-<script>
+<script async>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
           // customised options
@@ -74,7 +74,7 @@
   </p>
   <figure class="l-body">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/grow_persist_regen.mp4" type="video/mp4" id="unstable">
+      <source src="pytorch_ca/Presentation_videos/firework_grow_persist_regen.mp4" type="video/mp4" id="unstable">
       Your browser does not support the video tag.
     </video>
     <div style="position:relative; height:30px; display:flex">
@@ -201,8 +201,11 @@
     The answer is yes. <a href="#switch">Video  3</a> shows you what happens.
   </p>
   <figure class="l-middle side" id="switch">
-    <img src="pytorch_ca/switch_visuals/switch60.gif" style='height: 100%; width: 100%; object-fit: contain'>
-    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/switch_visuals/switch60.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
       Video 3: The rule switches at the 60th step, you can clearly see when the switch happens
     </figcaption>
   </figure>
@@ -256,7 +259,10 @@
   </p>
   <figure class='l-middle' id="mask">
     <img src="pytorch_ca/Presentation_images/mask_switch.png" style='height: 45%; width: 45%; object-fit: contain'>
-    <img src="pytorch_ca/Presentation_videos/switch40-99.7_.gif" style='height: 45%; width: 45%; object-fit: contain'>
+    <video loop="" autoplay="" playsinline="" muted="" style='height: 45%; width: 45%; object-fit: contain'>
+      <source src="pytorch_ca/Presentation_videos/switch40_99.7.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
       Video 4: On the left we plotted the cell mask, where the yellow cells evolve according to $f_2$ and the blue ones to $f_1$,
       while on the right you can see the evolution video.
@@ -301,6 +307,8 @@
       while only the ones with more than 95% of cells substituted survive until the end
     </figcaption>
   </figure>
+
+  <h3>Effectiveness</h3>
   <p>
     One of the problems is that the effectiveness of Mask decreases as you increase the number of steps
     and decrease the percentage of switched cells,
@@ -330,43 +338,56 @@
       </figcaption>
   </figure>
 
-  <h3>Robustness</h3>
 
-  <p>
-    After training Mask we noticed that it got some nice properties without training for them:
-    <ul>
-        <li>
-            The density of new cells does not need to be uniform, it just needs to locally equal or higher than the minimum percentage,
-			in fact, if the percentage of cells increases Mask would only benefit from it
-        </li>
-        <li>
-            The density of new cells can change multiple times during the evolution, and,
-            as long as the density remains higher than the minimum percentage, the CA will persist
-        </li>
-        <li>
-            If we train Mask to switch 80% of the cells, then use it in a case where we switch only 70% of cells,
-            it performs in a similar way to a Mask that was trained explicitly for 70% of adversarial cells<dt-fn>Da spiegare qua</dt-fn>
-        </li> 
-    </ul>
-  </p>
-	<p>
-    <a href="#mask_80_100_chekered">Video 6</a> illustrates these points, it seems that Mask has learned rule that works well for a wide range of cell densities,
-    furthermore it manages to communicate effectively with regions with different concentration of cells
-  </p>
+  <div class="body">
+    <details>
+      <summary>
+        <div class="body" style="display: flex; width: 100%; margin-left: 20px; margin-top: -35px">
+        <div style="position: relative; margin-top:-px; width:60%">
+          <h3 style="margin-top: 0em;">Robustness</h3>
+        </div>
+        <div style="font-size: small; line-height: 120%; width:40%">
+          This section can be skipped
+        </div>
+        </div>
+      </summary>
 
-  <figure class='l-body' id="mask_80_100_chekered">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-        <source src="pytorch_ca/Presentation_videos/mask_80_100_chekered.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Video 6: The rule switches two times: the first at the 40th step with 70% of cells on the left side, and 100% of cells on the right side,
-        the second at the 120th step with a checkered pattern which maintains the minimum density of cells higher than 70%.
-        This Switch was trained to switch always 80% of the cells.
-      </figcaption>
-  </figure>
-
-
+      <p>
+        After training Mask we noticed that it got some nice properties without training for them:
+        <ul>
+            <li>
+                The density of new cells does not need to be uniform, it just needs to locally equal or higher than the minimum percentage,
+          in fact, if the percentage of cells increases Mask would only benefit from it
+            </li>
+            <li>
+                The density of new cells can change multiple times during the evolution, and,
+                as long as the density remains higher than the minimum percentage, the CA will persist
+            </li>
+            <li>
+                If we train Mask to switch 80% of the cells, then use it in a case where we switch only 70% of cells,
+                it performs in a similar way to a Mask that was trained explicitly for 70% of adversarial cells<dt-fn>Da spiegare qua</dt-fn>
+            </li> 
+        </ul>
+      </p>
+      <p>
+        <a href="#mask_80_100_chekered">Video 6</a> illustrates these points, it seems that Mask has learned rule that works well for a wide range of cell densities,
+        furthermore it manages to communicate effectively with regions with different concentration of cells
+      </p>
+      <div class="body">
+        <figure id="mask_80_100_chekered">
+          <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+              <source src="pytorch_ca/Presentation_videos/mask_80_100_chekered.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+            <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+              Video 6: The rule switches two times: the first at the 40th step with 70% of cells on the left side, and 100% of cells on the right side,
+              the second at the 120th step with a checkered pattern which maintains the minimum density of cells higher than 70%.
+              This Switch was trained to switch always 80% of the cells.
+            </figcaption>
+        </figure>
+        </div>
+    </details>
+  </div>
 
 
 
@@ -377,7 +398,7 @@
 
 
   <dt-byline></dt-byline>
-  <h1>Realistic simulation of adversarials</h1>
+  <h1 id="realistic simulation of adversarials">Realistic simulation of adversarials</h1>
   <p>
     One of the limitations of using a fixed mask is that it can’t model what happens when a kind of cell
     overtakes the other. This is important because having the new cells overtake the old ones would be both more biologically plausible
@@ -400,7 +421,7 @@
   <p>
     To make this work we first have to ask ourselves how do we model the evolution of the mask? 
   </p>
-  <h3>The Model</h3>
+  <h3 id="model realistic simulation of adversarials">The Model</h3>
   <p>
     For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
   </p>
@@ -420,7 +441,9 @@
   </p>
   <figure class="l-middle" id="evolving_mask" style="display: flex;">
     <div style='height: 50%; width: 50%;'>
-      <img src="pytorch_ca/Presentation_images/evolving_mask.png" style='height: 100%; width: 100%; object-fit: contain'>
+      <div id="grid" style='height: 308px; width: 100%; object-fit: contain'></div>
+      <script src="grid_value.js" type="text/javascript"></script>
+      <script src="grid.js" type="text/javascript"></script>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 8: The red cells evolve following $f_1$ while the yellow cells
         follow $f_2$, the orange ones follow both. Keep in mind that the cells do not interact
@@ -430,7 +453,7 @@
       </figcaption>
     </div>
     <div style='float:right; height: 50%; width: 50%;'>
-      <img src="pytorch_ca/images/Canali.svg" style='height: 100%; width: 100%; object-fit: contain'>
+      <img src="pytorch_ca/images/Canali.svg" style='height: 300px; width: 100%; object-fit: contain'>
       <figcaption style="margin-top: 20px; margin-bottom: 25px; width: 100%" >
         Figure 9: The vector on the left represents the old represetation of the CA state, and the one
         on the right is the new representation. This new representation of the cells has an additional
@@ -539,7 +562,8 @@
     </details>
     </div>
 
-  <h3> Results</h3>
+    
+  <h3> Results for Expanding the lifespan</h3>
   <figure class='l-body side'>
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
         <source src="pytorch_ca/Presentation_videos/dying_firework.mp4" type="video/mp4">
@@ -587,9 +611,70 @@
     </div>
 
   </figure>
+
+
+  <h3> Results for changing Global Properties</h3>
+  <figure class='l-page side' id="grafico_loss">
+    <img src="pytorch_ca/Presentation_images/lizard_green->red.png" style='height: 100%; width: 100%; object-fit: contain'>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Transformation of the CA from green to red
+    </figcaption>
+  </figure>
   <p>
-    This tecnique could be used to change other properties of the CA, such as the modification that had been tried in <dt-cite key="randazzo2021adversarial"></dt-cite>
+    This tecnique can be used to change other properties of the CA, such as changing the color of the CA.
+    In <dt-cite key="randazzo2021adversarial"></dt-cite> it was show that a high concentration of (fixed) adversarial was needed
+    to turn the green lizard into a red one.
   </p>
+  <p>
+    With our tecnique we were able to change the color of the CA by switching 2% of the original cell to the new rule.
+  </p>
+  <figure class="l-body" style="display:flex">
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/green_to_red_2_virus_RGBA.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 9: Evolution of a CA with 2.5% of cells substituted
+    </figcaption>
+    </div>
+    <div style="width: 1%;"></div>
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/green_to_red_2_virus_alpha.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 10: Alpha channel representation of the same CA
+    </figcaption>
+    </div>
+  </figure>
+
+  <p>
+    It's also possible to train the adversarial archieve this just with a randomly placed starting seed
+  </p>
+
+  <figure class="l-body" style="display:flex">
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/single_cell_RGB.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 11: Evolution of a CA an added 3x3 seed
+    </figcaption>
+    </div>
+    <div style="width: 1%;"></div>
+    <div style=" width:49%; height:49%;">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/single_cell_alpha.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="width:90%">
+      Video 12: Alpha channel representation of the same CA
+    </figcaption>
+    </div>
+  </figure>
 
   
 
@@ -641,10 +726,14 @@
     We will call the new CA trained in this way Perturbation
   </p>
 
+
   <h3>Results</h2>
   
     <figure class="l-middle side" id="perturbation">
-        <img src="pytorch_ca/Presentation_videos/perturbation_l_10.gif" style='height: 100%; width: 100%; object-fit: contain' >
+      <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+        <source src="pytorch_ca/Presentation_videos/perturbation_l=10.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
         <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
           Video 9: Perturbation CA trained with $\lambda=0.01$
         </figcaption>
@@ -677,10 +766,9 @@
     Finally we noticed that we can also use Perturbation as a Mask, however it needs a high percentage of cells to work well (99%+).
 		Video <a href="#regen_near_grow">10</a> shows all the above points in action
   </p>
-
   <figure class="l-body" id="regen_near_grow">
       <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-        <source src="pytorch_ca/Presentation_videos/regen_near_grow_evolution.mp4" type="video/mp4" id="regen_near_grow">
+        <source src="pytorch_ca/Presentation_videos/perturbation_chekered.mp4" type="video/mp4" id="regen_near_grow">
         Your browser does not support the video tag.
       </video>
       <figcaption>
@@ -691,12 +779,35 @@
       </figcaption>
   </figure>
 
+
+  <h3>Putting it all together</h3>
+    <p>
+      In order to train the adversarial that the weights as close as possible as the original CA we need to
+      add use the following Loss
+    </p>
+    <p>
+    $$
+    L = L_\textrm{target} +\lambda_1 N_\textrm{old} + \lambda_2 |\Delta w|^2
+    $$
+    </p>
+    <p>
+      And the propagation foward is the same as the one described in the section about the <a href="#model realistic simulation of adversarials">realistic simulation of adversarials</a>
+    </p>
+    <p>INSERIRE RISULTATI</p>
+
+
+
+
+
+
+
+
+  <dt-byline></dt-byline>
   <h2 style="font-size: 40px;">Conclusion</h2>
   <p>
     We showed that it is possible to program adversarial cells to take over the old cells in order to modify global properties of the CA.
     We also showed that the Persist rule is also close to the Growing rule, this might mean that only a small modification to the DNA should do the trick.
   </p>
-
 
 <!--
 
@@ -742,6 +853,7 @@
   </ul>
 </dt-appendix>
 
+<!--Bibliography-->
 <script type="text/bibliography">
   @article{mordvintsev2020growing,
     author = {Mordvintsev, Alexander and Randazzo, Ettore and Niklasson, Eyvind and Levin, Michael},
@@ -782,9 +894,9 @@
     doi = {10.1242/dev.073759},
     url = {https://doi.org/10.1242/dev.073759},
     eprint = {https://journals.biologists.com/dev/article-pdf/139/2/313/1160014/313.pdf}
-}
-
+  }
 </script>
+
 
 <script src="website/epoch_loss.js"></script>
 <script src="website/epoch_loss_growing.js"></script>

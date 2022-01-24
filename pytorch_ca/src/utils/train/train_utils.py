@@ -41,7 +41,7 @@ def get_living_mask(images: torch.Tensor, channels: List[int]) -> torch.Tensor:
     alpha = images[:, channels, :, :]
 
     neighbors = F.max_pool2d(wrap_edges(alpha), 3, stride=1) > 0.1
-    return torch.max(neighbors, keepdim=True)[0]
+    return torch.max(neighbors, dim=1, keepdim=True)[0]
 
 
 def multiple_living_mask(alphas: torch.Tensor):

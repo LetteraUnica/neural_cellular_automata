@@ -46,6 +46,7 @@ class VirusCA(CAModel):
 
         self.initialized = True
 
+
     def update(self, x):
         """Useful fo the train loop"""
         self.update_cell_mask(x)

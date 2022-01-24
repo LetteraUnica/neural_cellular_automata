@@ -59,21 +59,25 @@ class MultipleCA(CAModel):
     """
 
     def __init__(self, n_channels=15, n_CAs=2, device=None, fire_rate=0.5, senescence=None):
-        """Initializes the model
-
-        Args:
-
-        """
         super().__init__(n_channels,device,fire_rate)
 
         # cellular automatae rules
         self.n_CAs = n_CAs
-        self.CAs = [CustomCA(n_channels, n_channels+i, device, fire_rate)
-                    for i in range(n_CAs)]
+        self.alpha_channels = list(range(n_channels,n_channels+n_CAs))
+        self.CAs = [CustomCA(n_channels, alpha_channel, device, fire_rate)
+                    for alpha_channel in self.alpha_channels]
 
-        self.alpha_channel = [*range(n_channels,n_channels+n_CAs)]
+        
         self.senescence = senescence
 
+    def get_CA_by_channel(self, alpha_channel):
+        try:
+            index = self.alpha_channels.index(alpha_channel)
+        except ValueError: 
+            return None
+        
+        return self.CAs[index]
+    
     def forward(self, x: torch.Tensor,
                 angle: float = 0.,
                 step_size: float = 1.) -> torch.Tensor:
@@ -93,7 +97,7 @@ class MultipleCA(CAModel):
         #calculate the mask of each channel
         update_mask = multiple_living_mask(x[:, self.n_channels:]).float()
         #calculate the global mask
-        pre_life_mask = update_mask.max(dim=1)[0].unsqueeze(1)
+        pre_life_mask = update_mask.max(dim=1, keepdim=True)[0]
             
         #apply the mask to the input tensor
         x[:, self.n_channels:] = x[:, self.n_channels:] * update_mask

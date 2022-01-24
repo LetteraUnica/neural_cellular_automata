@@ -36,6 +36,8 @@ class NeuralCA(CAModel):
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
 
+        self.precompute_filters()
+
         # Set the parameters of the second layer to zero
         for name, param in self.named_parameters():
             if "2" in name:
@@ -43,18 +45,12 @@ class NeuralCA(CAModel):
 
         self.to(device)
 
-    def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
-        """Returns the perception vector of each cell in an image, or perception matrix
+    def precompute_filters(self, angle: float = 0.):
+        """Precomputes the convolution filters
 
         Args:
-            images (torch.Tensor): Images to compute the perception matrix
-            angle (float, optional): Angle of the Sobel filters. Defaults to 0.
-
-        Returns:
-            torch.Tensor: Perception matrix
+            angle (float): angle of the sobelx and y filters
         """
-
-        # Filters
         identity = torch.tensor([[0., 0., 0.],
                                  [0., 1., 0.],
                                  [0., 0., 0.]])
@@ -72,10 +68,20 @@ class NeuralCA(CAModel):
         all_filters = torch.stack((identity, dx, dy))
         all_filters_batch = all_filters.repeat(
             self.n_channels, 1, 1).unsqueeze(1)
-        all_filters_batch = all_filters_batch.to(self.device)
+        self.all_filters_batch = all_filters_batch.to(self.device)
 
+    def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
+        """Returns the perception vector of each cell in an image, or perception matrix
+
+        Args:
+            images (torch.Tensor): Images to compute the perception matrix
+            angle (float, optional): Angle of the Sobel filters. Defaults to 0.
+
+        Returns:
+            torch.Tensor: Perception matrix
+        """
         # Depthwise convolution over input images
-        return F.conv2d(wrap_edges(images), all_filters_batch, groups=self.n_channels)
+        return F.conv2d(wrap_edges(images), self.all_filters_batch, groups=self.n_channels)
 
     def compute_dx(self, x: torch.Tensor, angle: float = 0.,
                    step_size: float = 1.) -> torch.Tensor:
@@ -110,11 +116,11 @@ class NeuralCA(CAModel):
         Returns:
             torch.Tensor: Next CA state
         """
-        pre_life_mask = get_living_mask(x,3)
+        pre_life_mask = get_living_mask(x, 3)
 
         x = x + self.compute_dx(x, angle, step_size)
 
-        post_life_mask = get_living_mask(x,3)
+        post_life_mask = get_living_mask(x, 3)
 
         # get alive mask
         life_mask = pre_life_mask & post_life_mask
