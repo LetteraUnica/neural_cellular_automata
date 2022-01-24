@@ -1,6 +1,6 @@
 # Expanding lifespan of Cellular Automatae
 
-###### Authors: *Cavuoti Lorenzo*, *Sacco Francesco*
+###### Contributors: *Cavuoti Lorenzo*, *Sacco Francesco*
 ## Introduction
 We studied and implemented a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
