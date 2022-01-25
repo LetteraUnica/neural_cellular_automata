@@ -72,7 +72,7 @@ class MultipleCA(CAModel):
 
     def get_CA_by_channel(self, alpha_channel):
         try:
-            index = self.alpha_channels.index(alpha_channel)
+            index = self.alpha_channel.index(alpha_channel)
         except ValueError: 
             return None
         
