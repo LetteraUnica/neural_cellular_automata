@@ -50,9 +50,77 @@
     neural cellular automata, immortal
   </h2>
   <dt-byline></dt-byline>
-  <p>testo provak afu af aje aia</p>
-  <div id="grid"></div>
-  <script  src="grid_value.js" type="text/javascript"></script>
-  <script  src="grid.js" type="text/javascript"></script>
-  <p>testo prova</p>
-</dt-article>
+  <h1 id="realistic simulation of adversarials">Realistic simulation of adversarials</h1>
+  <p>
+    One of the limitations of using a fixed mask is that it can’t model what happens when a kind of cell
+    overtakes the other. This is important because having the new cells overtake the old ones would be both more biologically plausible
+    <dt-fn>because in biological organisms cells die and are replaced by new ones</dt-fn> and could
+    reduce the minimum percentage of initial cells that need to be switched.
+    In an ideal case, we would only substitute a small percentage of cells, then these would gradually overtake the entire organism,
+    making it immortal (<a href="#illutration_replacement">Figure 7</a>).
+    <dt-fn>
+      The minimum percentage required depends from the speed of the aging process, if it's slow
+      you can start with fewer cells since they will have plenty of time to overtake the old ones
+    </dt-fn>
+  </p>
+  <figure class="l-body" id="illutration_replacement">
+    <img src="pytorch_ca/images/Evoluzione.png" style='height: 100%; width: 100%; object-fit: contain'>
+    <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+      Figure 7: The idea is that the new cells learn to overtake the old one and than make the organism immortal,
+      so you need to inject fewer cells in the new organism
+    </figcaption>
+  </figure>
+  <p>
+    To make this work we first have to ask ourselves how do we model the evolution of the mask? 
+  </p>
+  <h3 id="model realistic simulation of adversarials">The Model</h3>
+  <figure class="l-middle side" id="evolving_mask">
+    <img src="pytorch_ca/images/Canali.svg" style='height: 300px; width: 100%; object-fit: contain'>
+      <figcaption style="margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Figure 9: The vector on the left represents the old represetation of the CA state, and the one
+        on the right is the new representation. This new representation of the cells has an additional
+        $\alpha$ channel and to make the code simpler the alpha channels are now the last two components 
+      </figcaption>
+  </figure>
+  <p>
+    For simplicity we are going to restrict ourself in the case where we are going to have 2 rules ($f_1$ and $f_2$). 
+  </p>
+  <p>
+    Before, a cell state was represented by a state vector having the first 4 components representing
+    the RGBA of the pixel and the remaining were hidden channels that helped the CA pass
+    information between its cells. If the $\alpha$ channel (transparency) is >0.1 it means
+    that the cell is alive, otherwise it’s dead
+  </p> 
+  <p>
+    If we are going to have two different types of cells we are going to need two alpha channels.
+    Since a cell cannot be of both kinds at the same time we choose that if $\alpha_1$ is $>0.1$, then
+    $\alpha_2$ must be 0, and the cell update follows $f_1$ and vice versa.
+  </p>
+  <p>
+    At the same time, when both alphas are below $0.1$, the cell evolves with the average of both updates (<a href="#evolving_mask">Figure 8,9</a>).    
+  </p>
+  <figure class="l-middle" id="evolving_mask" style="display: flex;">
+    <div style='height: 50%; width: 50%;' id="grid_container">
+      <div id="grid" style='position: relative; z-index: 1; height: 308px; width: 100%; object-fit: contain'></div>
+      <div id="frame" style="position:absolute; width: 1000px; height: 1000px; margin-left: -300px; margin-top:-600px;"></div>
+      <script src="grid_value.js" type="text/javascript"></script>
+      <script src="grid.js" type="text/javascript"></script>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+        Figure 8: The red cells evolve following $f_1$ while the yellow cells
+        follow $f_2$, the orange ones follow both. Keep in mind that the cells do not interact
+        directly with each other, the only way a cell can manage to influence its neighbors is by
+        changing its internal cell state
+
+      </figcaption>
+    </div>
+    <div style='float:right; height: 50%; width: 50%;'>
+      <p>Qui scrivo il testo blablabla</p>
+    </div> 
+  </figure>
+  <p>
+    Keep in mind that neither update rules can directly influence the neighboring cells directly, so the adversarial
+    is forced to rely on changing its internal state in such a way that the other cell's rule makes it kill itself
+    $$
+      f_{1,2}: \mathbb{R}^{9\times (n_\textrm{channels}-1)} \to \mathbb{R}^{n_\textrm{channels}-1}
+    $$
+  </p>
