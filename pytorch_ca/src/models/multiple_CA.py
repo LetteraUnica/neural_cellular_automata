@@ -63,9 +63,9 @@ class MultipleCA(CAModel):
 
         # cellular automatae rules
         self.n_CAs = n_CAs
-        self.alpha_channels = list(range(n_channels,n_channels+n_CAs))
-        self.CAs = [CustomCA(n_channels, alpha_channel, device, fire_rate)
-                    for alpha_channel in self.alpha_channels]
+        self.alpha_channel = list(range(n_channels,n_channels+n_CAs))
+        self.CAs = [CustomCA(n_channels, a_channel, device, fire_rate)
+                    for a_channel in self.alpha_channel]
 
         
         self.senescence = senescence
