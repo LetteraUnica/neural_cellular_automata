@@ -1,15 +1,20 @@
-//var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"]];
-var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],["#fff","#fdea7d","#fd8a8a","#fef6b1","#fdb2b1","#fdab7f"]];
+var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],   //base colors
+            ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"],   //dimemd colors colors
+            ["#fff","#fde411","#fd4949","#fde411","#fd4949","#fd8b1f"]];  //bright colors
+//var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],["#fff","#fdea7d","#fd8a8a","#fef6b1","#fdb2b1","#fdab7f"]];
 
 // I like to log the data to the console for quick debugging
 
+var image_width=parseInt(document.getElementById("grid_container").clientWidth)
 
+
+console.log(image_width)
 function gridData() {
 	var data = new Array();
 	var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
 	var ypos = 1;
-	var width = 13;
-	var height = 13;
+	var width = Math.round(image_width/31);
+	var height = width;
 	var click = 0;
 	
 	// iterate for rows	
@@ -85,7 +90,7 @@ var column = row.selectAll(".square")
                 }
             }    
             for (var i=0; i<6; i++){
-                if (x.click==d.click) {return colors[0][color_selected];}
+                if (x.click==d.click) {return colors[2][color_selected];}
                 if (x.click==i) {return colors[1][i];}
             }
         })
