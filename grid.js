@@ -40,19 +40,38 @@ function gridData() {
 	return data;
 }
 
+hightlight = function(id){
+    for (var i = 0; i < 6; i++) {
+        var color="grey";
+        if (i==id){color="black";}
+        document.getElementById(text_ids[i]).style.color=color;   
+    }
+    d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
+        if (id==0) {
+            for (var i=0;i<6;i++){
+                if (x.click==i) {
+                    return colors[0][i];
+                }
+            }
+        }
+        if (x.click==id) {return colors[2][id];}
+        for (var i=0; i<6; i++){                
+            if (x.click==i) {
+                return colors[1][i];
+            }
+        }
+    })
+}
+
+
 var gridData = gridData();
 console.log(gridData);
 
 var article = document.getElementById("frame")
     .addEventListener('mouseover',function(){
-        d3.selectAll(".square").style("fill",function (x){
-            hightlight(0);
-            for (var i=1;i<6;i++){
-                anti_hightlight(i);
-            }
-            return colors[0][x.click];
-        })
+        hightlight(0);
     })
+
 
 
 
@@ -85,29 +104,4 @@ var column = row.selectAll(".square")
     })
     .on('mouseover', function(d) { //d is the data of the square pointed with the mouse
         hightlight(d.click);
-        d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
-            if (d.click==0) {
-                for (var i=0;i<6;i++){
-                    if (x.click==i) {
-                        if (text_ids[i]!="white"){anti_hightlight(i);}
-                        return colors[0][i];
-                    }
-                }
-            }
-            if (x.click==d.click) {return colors[2][d.click];}
-            anti_hightlight(x.click);
-            for (var i=0; i<6; i++){                
-                if (x.click==i) {
-                    return colors[1][i];
-                }
-            }
-        })
     });
-
-hightlight = function(id){
-    document.getElementById(text_ids[id]).style.color="black";   
-}
-anti_hightlight = function(id){
-    document.getElementById(text_ids[id]).style.color="grey";   
-}
-
