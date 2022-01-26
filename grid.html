@@ -105,16 +105,27 @@
       <div id="frame" style="position:absolute; width: 1000px; height: 1000px; margin-left: -300px; margin-top:-600px;"></div>
       <script src="grid_value.js" type="text/javascript"></script>
       <script src="grid.js" type="text/javascript"></script>
-      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure 8: The red cells evolve following $f_1$ while the yellow cells
-        follow $f_2$, the orange ones follow both. Keep in mind that the cells do not interact
-        directly with each other, the only way a cell can manage to influence its neighbors is by
-        changing its internal cell state
-
-      </figcaption>
     </div>
-    <div style='float:right; height: 50%; width: 50%;'>
-      <p>Qui scrivo il testo blablabla</p>
+    <div style='float:right; height: 50%; width: 50%; position: relative; color: grey;  font-size: 13px;  line-height: 1.5em; font-family: sans-serif; margin-top: 0.5em;'>
+      <p id="white" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        Figure 8: The color of the cells in the image on the left represets the kind of cell.
+        Different kind of cell have different rules of evolution
+      </p>
+      <p id="red" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        The red cells have $\alpha_1>0.1$ and $\alpha_2=0$, and follow the rule $f_1$. They represent the cells that are alive and of kind 1.
+      </p>
+      <p id="yellow" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        The yellow cells have $\alpha_2>0.1$ and $\alpha_1=0$, and follow the rule $f_2$. They represent the cells that are alive and of kind 2.
+      </p>
+      <p id="light_red" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        The light red cells have $\alpha_1 \le 0.1$ and $\alpha_2=0$. They occupy the cells that are neighboring to the red cells, but do not neighbor the yellow cells. They follow $f_1$
+      </p>
+      <p id="light_yellow"style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        The light yellow cells have $\alpha_2 \le 0.1$ and $\alpha_1=0$. They occupy the cells that are neighboring to the yellow cells, but do not neighbor the red cells. They follow $f_2$
+      </p>
+      <p id="orange" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        The light orange cells have $\alpha_1 \le 0.1$ and $\alpha_2 \le 0.1$. They occupy the cells that are neighboring to both red and yellow cells. They follow the average of both rules
+      </p>
     </div> 
   </figure>
   <p>
