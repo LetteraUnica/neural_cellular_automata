@@ -1,15 +1,19 @@
-//var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"]];
-var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],["#fff","#fdea7d","#fdb2b1","#fef6b1","#fdb2b1","#fdab7f"]];
+var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],   //base colors
+            ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"],   //dimemd colors colors
+            ["#fff","#fde411","#fd4949","#fde411","#fd4949","#fd8b1f"]];  //bright colors
 
-// I like to log the data to the console for quick debugging
+var text_ids=["white","yellow","red","light_yellow","light_red","orange"];
+
+var image_width=parseInt(document.getElementById("grid_container").clientWidth)
 
 
+console.log(image_width)
 function gridData() {
 	var data = new Array();
 	var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
 	var ypos = 1;
-	var width = 13;
-	var height = 13;
+	var width = Math.round(image_width/31);
+	var height = width;
 	var click = 0;
 	
 	// iterate for rows	
@@ -36,8 +40,40 @@ function gridData() {
 	return data;
 }
 
+
+//this hightlights the everything associated to a certain id
+hightlight = function(id){
+    for (var i = 0; i < 6; i++) {
+        var color="grey";
+        if (i==id){color="black";}
+        document.getElementById(text_ids[i]).style.color=color;   
+    }
+    d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
+        if (id==0) {
+            for (var i=0;i<6;i++){
+                if (x.click==i) {
+                    return colors[0][i];
+                }
+            }
+        }
+        if (x.click==id) {return colors[2][id];}
+        for (var i=0; i<6; i++){                
+            if (x.click==i) {
+                return colors[1][i];
+            }
+        }
+    })
+}
+
+
 var gridData = gridData();
 console.log(gridData);
+
+var article = document.getElementById("frame")
+    .addEventListener('mouseover',function(){
+        hightlight(0);
+    })
+
 
 var grid = d3.select("#grid")
 	.append("svg")
@@ -48,6 +84,8 @@ var row = grid.selectAll(".row")
 	.data(gridData)
 	.enter().append("g")
 	.attr("class", "row");
+
+
 	
 var column = row.selectAll(".square")
 	.data(function(d) { return d; })
@@ -57,29 +95,31 @@ var column = row.selectAll(".square")
 	.attr("y", function(d) { return d.y; })
 	.attr("width", function(d) { return d.width; })
 	.attr("height", function(d) { return d.height; })
+    //.style("stroke", "#222")
 	.style("fill", function(d) {
         for (var i=0; i<6;i++){
             if ((d.click)%6 == i ) { return colors[0][i]; }    //white
         }
     })
     .on('mouseover', function(d) { //d is the data of the square pointed with the mouse
-        d3.selectAll(".square").style("fill",function (x){
-            color_selected=d.click
-            all_colors=x.click  //x is the data of all the squares
-            if (d.click==0) {
-                for (var i=0;i<6;i++){
-                    if (x.click==i) {return colors[0][i];}
-                }
-            }    
-            for (var i=0; i<6; i++){
-                if (x.click==d.click) {return colors[0][color_selected];}
-                if (x.click==i) {return colors[1][i];}
-            }
-        })
+        hightlight(d.click);
     });
 
 
-	
-function color_scheme(d){
-    
-}
+
+let caption = new Array(6);
+
+
+
+test = document.getElementById("red")
+    .on('mouseover',console.log("test"));
+
+
+
+/*for (var i=0;i<6;i++){
+    caption[i]=document.getElementById(text_ids[i])
+    .on('mouseover', function(){
+        console.log(this.id);
+        hightlight(i);
+    });
+}*/
