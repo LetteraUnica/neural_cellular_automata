@@ -125,12 +125,21 @@
       \end{cases}
     $$
   </p>
+  <figure class="l-middle side" id="boom">
+    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
+      <source src="pytorch_ca/Presentation_videos/rswitch40.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption>
+      Video 2: Evolution when we use a $f_1 = $Growing CA for the first 40 steps then
+      switch to a $f_2 = $Regenerating CA for the next iterations
+    </figcaption>
+  </figure>
   <p>
     Where $f_1$ is a growing rule and $f_2$ is a rule that we trained to make the organism Regenerating
     <dt-fn>$n$ in this case should be considered a parameter, that is, if we change $n$ we don't need to change $f_2$,
         so the switch could happen at any iteration</dt-fn>
   </p>
-
   <p>
     To make a parallel with a biological system, this is equivalent to asking:
     Is it possible to make an organism immortal if we have the ability to change its DNA in every single cell
@@ -146,39 +155,56 @@
     Since we had already trained a Regenerating CA we tried to substitute it directly into $f_2$, the result
     however was a complete failure (<a href="#boom">Video 2</a>) where the switch happens at $n=40$
   </p>
-  <figure class="l-middle side" id="boom">
+
+
+
+
+  <div class="body" style="margin-top: 70px;">
+    <details>
+      <summary>
+        <div class="body" style="display: flex; width: 100%; margin-left: 20px; margin-top: -35px">
+          <div style="position: relative; margin-top:-px; width:60%">
+            <h3 style="margin-top: 0em;">Why does it happen?</h3>
+          </div>
+          <div style="font-size: small; line-height: 120%; width:40%">
+            This section can be skipped if you are only interested in the results
+          </div>
+        </div>
+      </summary>
+      <p>
+        This outcome at first sight might be surprising, because as can be seen in the first video the visible
+        RGBA channels of the cell evolve in a similar fashion in both the growing and regenerating CA. However, the hidden
+        channels, which are the ones used by the cells to transfer information between them, are
+        in general completely different, which makes the two CAs incompatible.
+      </p>
+      <p>
+        We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
+        the target state (<a href="#80%">Figure 1</a>).  
+        We can notice that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
+        while the CA on the right uses the same hidden state to represent a sort of distance from the center.
+      </p>
+
+      <figure id="80%">
+        <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
+        <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
+          <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
+            Figure 1: Encodings of the 6th channel after 300 iterations of two independently trained Regenerating CAs.
+          </figcaption>
+      </figure>
+    </details>
+  </div>
+  <h3>How to fix it</h3>
+  <figure class="l-middle side" id="switch" style="margin-top: -40px;">
     <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/rswitch40.mp4" type="video/mp4">
+      <source src="pytorch_ca/Presentation_videos/switch_visuals/switch60.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <figcaption>
-      Video 2: Evolution when we use a $f_1 = $Growing CA for the first 40 steps then
-      switch to a $f_2 = $Regenerating CA for the next iterations
+      Video 3: The rule switches at the 60th step, you can clearly see when the switch happens
     </figcaption>
   </figure>
   <p>
-    This outcome at first sight might be surprising, because as can be seen in the first video the visible
-    RGBA channels of the cell evolve in a similar fashion in both the growing and regenerating CA. However, the hidden
-    channels, which are the ones used by the cells to transfer information between them, are
-    in general completely different, which makes the two CAs incompatible.
-  </p>
-  <p>
-    We can show this behaviour empirically by visualizing the hidden states of two CAs after they reached
-    the target state (<a href="#80%">Figure 1</a>).  
-    We can notice that the CA on the left uses this hidden state to encode something similar to a $x$ coordinate,
-    while the CA on the right uses the same hidden state to represent a sort of distance from the center.
-  </p>
-
-  <figure class='l-body' id="80%">
-    <img src="pytorch_ca/Presentation_images/regenerating2_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
-    <img src="pytorch_ca/Presentation_images/regenerating_channel_6.png" style='height: 50%; width: 49%; object-fit: contain'>
-      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 100%" >
-        Figure 1: Encodings of the 6th channel after 300 iterations of two independently trained Regenerating CAs.
-      </figcaption>
-    </figure>
-
-  <p>
-    This means that to make the model work as intended we must train $f_2$ with the goal of making the organism
+    To to make the model work as intended we must train $f_2$ with the goal of making the organism
     regenerating, we will call the trained $f_2$ rule Switch.
     The only difference between training a Regenerating CA and Switch is the training pool (<a href="#pool">Figure 2</a>): instead
     of starting with a single dot on the canvas, the pool is initialized by having each element be the output
@@ -200,32 +226,36 @@
     So, does it work if we train Switch with this method?
     The answer is yes. <a href="#switch">Video  3</a> shows you what happens.
   </p>
-  <figure class="l-middle side" id="switch">
-    <video loop="" autoplay="" playsinline="" muted="" width="100%" height="100%">
-      <source src="pytorch_ca/Presentation_videos/switch_visuals/switch60.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <figcaption>
-      Video 3: The rule switches at the 60th step, you can clearly see when the switch happens
-    </figcaption>
-  </figure>
-  <h3>Some considerations</h3>
-  <p>
-    As already explained above, different CA rules will use different encodings to store the informations of
-    the organisms, so here are some other things that you can’t do:
-    <ul>
-      <li>
-        You can’t use a Switch CA for a Growing one which has not been trained for
-        <dt-fn>The Switch rule is tailor-made to be able to understand the specific encoding of the Growing rule</dt-fn>
-      </li>
-      <li>You cannot just swap the Growing rule with another Regenerating (or Persist) rule
-        <dt-fn>For the same reason of the one above and because the regenerating (and the persist) are trained with different starting points </dt-fn>
-      </li>
-      <li>You cannot salvage a Growing rule that has decayed
-        <dt-fn>We are not trying to resuscitate the dead, and so we didn’t train for it</dt-fn>
-      </li>
-    </ul>
-  </p>
+  <div class="body" style="margin-top: 70px;">
+    <details>
+      <summary>
+        <div class="body" style="display: flex; width: 100%; margin-left: 20px; margin-top: -35px">
+        <div style="position: relative; margin-top:-px; width:60%">
+          <h3 style="margin-top: 0em;">Some considerations</h3>
+        </div>
+        <div style="font-size: small; line-height: 120%; width:40%">
+          This section can be skipped
+        </div>
+        </div>
+      </summary>
+      <p>
+        As already explained above, different CA rules will use different encodings to store the informations of
+        the organisms, so here are some other things that you can’t do:
+        <ul>
+          <li>
+            You can’t use a Switch CA for a Growing one which has not been trained for
+            <dt-fn>The Switch rule is tailor-made to be able to understand the specific encoding of the Growing rule</dt-fn>
+          </li>
+          <li>You cannot just swap the Growing rule with another Regenerating (or Persist) rule
+            <dt-fn>For the same reason of the one above and because the regenerating (and the persist) are trained with different starting points </dt-fn>
+          </li>
+          <li>You cannot salvage a Growing rule that has decayed
+            <dt-fn>We are not trying to resuscitate the dead, and so we didn’t train for it</dt-fn>
+          </li>
+        </ul>
+      </p>
+    </details>
+  </div>
 
 
 

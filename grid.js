@@ -40,6 +40,8 @@ function gridData() {
 	return data;
 }
 
+
+//this hightlights the everything associated to a certain id
 hightlight = function(id){
     for (var i = 0; i < 6; i++) {
         var color="grey";
@@ -73,9 +75,6 @@ var article = document.getElementById("frame")
     })
 
 
-
-
-
 var grid = d3.select("#grid")
 	.append("svg")
 	.attr("width","100%")
@@ -105,3 +104,22 @@ var column = row.selectAll(".square")
     .on('mouseover', function(d) { //d is the data of the square pointed with the mouse
         hightlight(d.click);
     });
+
+
+
+let caption = new Array(6);
+
+
+
+test = document.getElementById("red")
+    .on('mouseover',console.log("test"));
+
+
+
+/*for (var i=0;i<6;i++){
+    caption[i]=document.getElementById(text_ids[i])
+    .on('mouseover', function(){
+        console.log(this.id);
+        hightlight(i);
+    });
+}*/
