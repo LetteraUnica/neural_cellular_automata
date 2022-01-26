@@ -110,16 +110,9 @@ var column = row.selectAll(".square")
 let caption = new Array(6);
 
 
-
-test = document.getElementById("red")
-    .on('mouseover',console.log("test"));
-
-
-
-/*for (var i=0;i<6;i++){
+for (var i=0;i<6;i++){
     caption[i]=document.getElementById(text_ids[i])
-    .on('mouseover', function(){
-        console.log(this.id);
-        hightlight(i);
-    });
-}*/
+    caption[i].onmouseover=function(){
+        hightlight(text_ids.indexOf(this.id));
+    };
+}
