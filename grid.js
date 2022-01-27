@@ -43,31 +43,29 @@ function gridData() {
 
 //this hightlights the everything associated to a certain id
 hightlight = function(id){
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) { //this for is for the caption
         var color="grey";
-        if (i==id){color="black";}
-        document.getElementById(text_ids[i]).style.color=color;   
+        var fontWeight="normal";
+        if (i==id){
+            color="black";
+            fontWeight="bold";
+        }
+        var style=document.getElementById(text_ids[i]).style
+        style.color=color;   
+        style.fontWeight=fontWeight;
     }
     d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
-        if (id==0) {
-            for (var i=0;i<6;i++){
-                if (x.click==i) {
-                    return colors[0][i];
-                }
-            }
+        if (id==0) { //this is when you highlight all the squares
+            return colors[0][x.click];
         }
-        if (x.click==id) {return colors[2][id];}
-        for (var i=0; i<6; i++){                
-            if (x.click==i) {
-                return colors[1][i];
-            }
-        }
+        if (x.click==id) {return colors[2][id];} //this is when you highlight a specific square
+        return colors[1][x.click];              //this to dimm all the other squares
+        
     })
 }
 
 
 var gridData = gridData();
-console.log(gridData);
 
 var article = document.getElementById("frame")
     .addEventListener('mouseover',function(){
