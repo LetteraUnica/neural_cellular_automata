@@ -480,27 +480,47 @@
   <figure class="l-middle" id="evolving_mask" style="display: flex;">
     <div style='height: 50%; width: 50%;' id="grid_container">
       <div id="grid" style='position: relative; z-index: 1; height: 308px; width: 100%; object-fit: contain'></div>
+      <figcaption id="white">
+        Figure 8: The color of the cells in the image on the left represents the kind of cell.
+        Different kinds will have different evolution rules. Pass the mouse over the cells to see further details
+      </figcaption>
+      <figcaption id="red" style="display: none;">
+        The red cells have $\alpha_1>0.1$ and $\alpha_2=0$, and follow the rule $f_1$. They represent the cells that are alive and of kind 1.
+      </figcaption>
+
+      <figcaption id="yellow" style="display: none;">
+        The yellow cells have $\alpha_2>0.1$ and $\alpha_1=0$, and follow the rule $f_2$. They represent the cells that are alive and of kind 2.
+      </figcaption>
+
+      <figcaption id="light_red" style="display: none;">
+        The light red cells have $\alpha_1 \le 0.1$ and $\alpha_2=0$. They occupy the cells that are neighboring to the red cells, but do not neighbor the yellow cells. They follow $f_1$
+      </figcaption>
+
+      <figcaption id="light_yellow" style="display: none;">
+        The light yellow cells have $\alpha_2 \le 0.1$ and $\alpha_1=0$. They occupy the cells that are neighboring to the yellow cells, but do not neighbor the red cells. They follow $f_2$
+      </figcaption>
+
+      <figcaption id="orange" style="display: none;">
+        The light orange cells have $\alpha_1 \le 0.1$ and $\alpha_2 \le 0.1$. They occupy the cells that are neighboring to both red and yellow cells but are not alive in either. They follow the average of both rules
+      </figcaption>
+
       <div id="frame" style="position:absolute; width: 2000px; height: 1000px; margin-left: -300px; margin-top:-600px;"></div>
     </div>
     <div style='float:right; height: 50%; width: 50%; position: relative; color: grey;  font-size: 13px;  line-height: 1.5em; font-family: sans-serif; margin-top: 0.5em;'>
-      <p id="white" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        Figure 8: The color of the cells in the image on the left represents the kind of cell.
-        Different kinds will have different evolution rules
+      <p id="explanation 1" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        A cell can be alive in only one channel, you can’t have a live cell that behaves like both, this means that no cell must have both $\alpha_\textrm s$ greater than $0.1$. This is because if we interpret the two cells as having different DNA, then they must have different rules and there is no in-between
       </p>
-      <p id="red" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        The red cells have $\alpha_1>0.1$ and $\alpha_2=0$, and follow the rule $f_1$. They represent the cells that are alive and of kind 1.
+      <p id="explanation 2" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        We impose that new cells can only grow near mature ones of the same type, example: cells of type 2 can only grow near cells of type 2      </p>
+      <p id="explanation 3" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        Unless the space is already occupied by another cell
       </p>
-      <p id="yellow" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        The yellow cells have $\alpha_2>0.1$ and $\alpha_1=0$, and follow the rule $f_2$. They represent the cells that are alive and of kind 2.
+      <p id="explanation 4" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        If we do the same reasoning for the red cells we get this
       </p>
-      <p id="light_red" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        The light red cells have $\alpha_1 \le 0.1$ and $\alpha_2=0$. They occupy the cells that are neighboring to the red cells, but do not neighbor the yellow cells. They follow $f_1$
-      </p>
-      <p id="light_yellow"style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        The light yellow cells have $\alpha_2 \le 0.1$ and $\alpha_1=0$. They occupy the cells that are neighboring to the yellow cells, but do not neighbor the red cells. They follow $f_2$
-      </p>
-      <p id="orange" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
-        The light orange cells have $\alpha_1 \le 0.1$ and $\alpha_2 \le 0.1$. They occupy the cells that are neighboring to both red and yellow cells. They follow the average of both rules
+      <p id="explanation 5" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
+        If you look closely there are some orange squares, they are a combination of light yellow and light red, this means that these squares neighbors both the kind of live cells, but are not alive.
+        These orange squares have both $\alpha$ channels below 0.1 and they follow the average of both rules
       </p>
     </div> 
   </figure>
@@ -940,8 +960,8 @@
   }
 </script>
 
-
 <script src="grid_value.js" type="text/javascript"></script>
+<script src="grid_yellow_value.js" type="text/javascript"></script>
 <script src="grid.js" type="text/javascript"></script>
 <script src="website/epoch_loss.js"></script>
 <script src="website/epoch_loss_growing.js"></script>
