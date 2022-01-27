@@ -118,16 +118,14 @@ console.log(gridYellowValue);
 explanation_hightlight = function(id){
     d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
         for(var i=0;i<5;i++){
-            var grid= gridValue;
             var color="grey";
-            if (id==i) {
-                color="black";
-                grid=gridYellowValue;
-            }
+            if (id==i) {color="black";}
             document.getElementById(explanation_ids[i]).style.color=color;
         }
+        var grid= gridValue;
+        if (id==1){grid=gridYellowValue;}
         var click = grid[x.row][x.column].click%6;
-        return explanation_colors[id][click];              //this to dimm all the other squares
+        return explanation_colors[id][click];             
         
     })
 }
