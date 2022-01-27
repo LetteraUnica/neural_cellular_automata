@@ -1,25 +1,33 @@
 //source
 
-function gridData() {
+var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],   //base colors
+            ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"],   //dimemd colors colors
+            ["#fff","#fde411","#fd4949","#fde411","#fd4949","#fd8b1f"]];  //bright colors
+
+var image_width=parseInt(document.getElementById("grid_container").clientWidth)
+
+
+console.log(image_width)
+function gridData(gridFile) {
 	var data = new Array();
 	var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
 	var ypos = 1;
-	var width = 15;
-	var height = 15;
+	var width = Math.round(image_width/31);
+	var height = width;
 	var click = 0;
 	
 	// iterate for rows	
-	for (var row = 0; row < 22; row++) {
+	for (var row = 0; row < 21; row++) {
 		data.push( new Array() );
 		
 		// iterate for cells/columns inside rows
-		for (var column = 0; column < 31; column++) {
+		for (var column = 0; column < 30; column++) {
 			data[row].push({
 				x: xpos,
 				y: ypos,
 				width: width,
 				height: height,
-				click: click
+				click: gridFile[row][column].click
 			})
 			// increment the x position. I.e. move it over by 50 (width variable)
 			xpos += width;
@@ -32,7 +40,7 @@ function gridData() {
 	return data;
 }
 
-var gridData = gridData();	
+var gridData = gridData(girdValue);	
 // I like to log the data to the console for quick debugging
 console.log(gridData);
 
@@ -55,7 +63,11 @@ var column = row.selectAll(".square")
 	.attr("width", function(d) { return d.width; })
 	.attr("height", function(d) { return d.height; })
 	.style("fill", "#fff")
-	.style("stroke", "#222")
+	.style("fill", function(d) {
+        for (var i=0; i<6;i++){
+            if ((d.click)%6 == i ) { return colors[0][i]; }    //white
+        }
+    })
 	.on('click', function(d) {
        d.click ++;
        if ((d.click)%6 == 0 ) { d3.select(this).style("fill","#fff"); } 
