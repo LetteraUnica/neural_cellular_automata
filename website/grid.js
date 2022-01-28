@@ -8,7 +8,6 @@ var explanation_colors=[["#fff","#fde411","#fd4949","#fff","#fff","#fff"],
                         colors[0],
                         ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fd8b1f"]];
 
-var explanation_ids=["explanation 1","explanation 2","explanation 3","explanation 4","explanation 5"];
 
 var text_ids=["white","yellow","red","light_yellow","light_red","orange"];
 
@@ -74,10 +73,6 @@ hightlight = function(id){
 
 var gridData = gridData(gridValue);
 
-var article = document.getElementById("frame")
-    .addEventListener('mouseover',function(){
-        hightlight(0);
-    })
 
 
 var grid = d3.select("#grid")
@@ -115,6 +110,9 @@ var column = row.selectAll(".square")
 
 console.log(gridYellowValue);
 
+var explanation_ids=["explanation 1","explanation 2","explanation 3","explanation 4","explanation 5"];
+
+
 explanation_hightlight = function(id){
     d3.selectAll(".square").style("fill",function (x){//x is the data of all the squares
         for(var i=0;i<5;i++){
@@ -125,17 +123,26 @@ explanation_hightlight = function(id){
         var grid= gridValue;
         if (id==1){grid=gridYellowValue;}
         var click = grid[x.row][x.column].click%6;
+        if (click==-1){return colors[0][click];}
         return explanation_colors[id][click];             
         
     })
 }
 
 
-
 let explanation = new Array(6);
-for (var i=0;i<5;i++){
+for (var i=0;i<5;i++){ //this is for the explanation on the right
     explanation[i]=document.getElementById(explanation_ids[i])
     explanation[i].onmouseover=function(){
         explanation_hightlight(explanation_ids.indexOf(this.id));
     };
 }
+
+
+
+//this is for resetting to default when the mouse is far from the image
+var article = document.getElementById("frame")
+    .addEventListener('mouseover',function(){
+        hightlight(0);
+        explanation_hightlight(-1);
+    })

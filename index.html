@@ -1,7 +1,6 @@
 <!doctype html>
 <meta charset="utf-8">
 <script src="website/template.js"></script>
-<script src="https://d3js.org/d3.v4.js"></script>
 <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-68SGYK1XFT"></script>
@@ -505,7 +504,7 @@
       </figcaption>
 
       <div id="frame" style="position:absolute; width: 2000px; height: 1000px; margin-left: -300px; margin-top:-600px;"></div>
-    </div>
+    </div id="explanation">
     <div style='float:right; height: 50%; width: 50%; position: relative; color: grey;  font-size: 13px;  line-height: 1.5em; font-family: sans-serif; margin-top: 0.5em;'>
       <p id="explanation 1" style="font-family: inherit; margin-top: inherit; margin-bottom: inherit;">
         A cell can be alive in only one channel, you can’t have a live cell that behaves like both, this means that no cell must have both $\alpha_\textrm s$ greater than $0.1$. This is because if we interpret the two cells as having different DNA, then they must have different rules and there is no in-between
@@ -960,9 +959,10 @@
   }
 </script>
 
-<script src="grid_value.js" type="text/javascript"></script>
-<script src="grid_yellow_value.js" type="text/javascript"></script>
-<script src="grid.js" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="website/grid_value.js" type="text/javascript"></script>
+<script src="website/grid_yellow_value.js" type="text/javascript"></script>
+<script src="website/grid.js" type="text/javascript"></script>
 <script src="website/epoch_loss.js"></script>
 <script src="website/epoch_loss_growing.js"></script>
 <script>
