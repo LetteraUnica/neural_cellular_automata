@@ -51,6 +51,7 @@ class CAModel(nn.Module):
         """
         self.eval()
         with torch.no_grad():
+            x = x.to(self.device)
             for i in range(iters):
                 x = self.forward(x, angle=angle, step_size=step_size)
 
