@@ -1,0 +1,2156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2000mm"
+   height="700mm"
+   viewBox="0 0 2000 700"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (1:1.1+202109281949+c3084ef5ed)"
+   sodipodi:docname="forward_pass.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     width="2000mm"
+     inkscape:zoom="0.13291485"
+     inkscape:cx="1922.2834"
+     inkscape:cy="1719.1458"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g264">
+    <inkscape:grid
+       type="xygrid"
+       id="grid515"
+       spacingx="0.52916667"
+       spacingy="0.52916667"
+       color="#7979c5"
+       opacity="0.1254902"
+       empcolor="#8787b7"
+       empopacity="0.25098039" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="441.41309"
+       y="1294.3624"
+       width="207.16325"
+       height="253.19939"
+       id="rect95981" />
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5" />
+    </marker>
+    <rect
+       x="441.41309"
+       y="1294.3624"
+       width="207.16325"
+       height="253.19939"
+       id="rect95981-3" />
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-1-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-9-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-1-9-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-9-6-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-1-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-9-67" />
+    </marker>
+    <rect
+       x="441.41309"
+       y="1294.3624"
+       width="207.16325"
+       height="253.19939"
+       id="rect95981-2" />
+    <marker
+       style="overflow:visible"
+       id="marker36732"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path36730" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker36722"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path36720" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker36712"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path36710" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutS"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path33870" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36694"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path36692" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36666"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path36664" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36656"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path36654" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path33867" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker36558"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path36556" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path33749" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path33755" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker36532"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path36530" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path33737" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path33743" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleInS"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleInS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.2)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path33861" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DiamondL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DiamondL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         id="path33801" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path33722" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-59" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-3-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-6-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-8-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-0-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-2-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-4-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <g
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="g264"
+       transform="matrix(0.26458333,0,0,0.26458333,-83.934004,137.71241)">
+      <g
+         transform="matrix(1.2,0,0,1.2,858.48048,-161.41229)"
+         id="g60"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <g
+   id="g26">
+            <g
+   transform="translate(-97.0267,-142.611)"
+   id="g8">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ff4f4f"
+   id="rect2" />
+
+                <g
+   transform="translate(-7.22778,132.974)"
+   id="g6">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text4">R</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,134.127)"
+   id="g16">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#5c5cf6"
+   id="rect10" />
+
+                <g
+   transform="translate(-7.22778,136.837)"
+   id="g14">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text12">B</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,-4.24165)"
+   id="g24">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#58d038"
+   id="rect18" />
+
+                <g
+   transform="translate(-13.5059,134.825)"
+   id="g22">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text20">G</text>
+
+                </g>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(-95.8051,964.342)"
+   id="g30">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect28" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,272.496)"
+   id="g34">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect32" />
+
+        </g>
+
+        <g
+   transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
+   id="g38">
+            <text
+   x="732.88501"
+   y="716.54999"
+   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text36">α</text>
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,410.865)"
+   id="g42">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect40" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,549.235)"
+   id="g46">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect44" />
+
+        </g>
+
+        <g
+   transform="translate(-110.14,11.7025)"
+   id="g58">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle48" />
+
+            <g
+   transform="translate(0,78.8069)"
+   id="g52">
+                <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle50" />
+
+            </g>
+
+            <g
+   transform="translate(0,157.614)"
+   id="g56">
+                <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle54" />
+
+            </g>
+
+        </g>
+
+    </g>
+      <g
+         transform="matrix(1.2,0,0,1.2,-43.251798,-211.41229)"
+         id="g124"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <g
+   id="g86">
+            <g
+   transform="translate(-97.0267,-142.611)"
+   id="g68">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ff4f4f"
+   id="rect62" />
+
+                <g
+   transform="translate(-7.22778,132.974)"
+   id="g66">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text64">R</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,134.127)"
+   id="g76">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#5c5cf6"
+   id="rect70" />
+
+                <g
+   transform="translate(-7.22778,136.837)"
+   id="g74">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text72">B</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,-4.24165)"
+   id="g84">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#58d038"
+   id="rect78" />
+
+                <g
+   transform="translate(-13.5059,134.825)"
+   id="g82">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text80">G</text>
+
+                </g>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(-95.8051,964.342)"
+   id="g90">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect88" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,272.496)"
+   id="g94">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect92" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,687.604)"
+   id="g98">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect96" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,825.973)"
+   id="g102">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect100" />
+
+        </g>
+
+        <g
+   id="g112">
+            <g
+   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
+   id="g106">
+                <text
+   x="732.88501"
+   y="716.54999"
+   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text104">α</text>
+
+            </g>
+
+            <g
+   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+   id="g110">
+                <text
+   x="1637.49"
+   y="714.13098"
+   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text108">1</text>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(0,143.285)"
+   id="g122">
+            <g
+   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
+   id="g116">
+                <text
+   x="732.88501"
+   y="716.54999"
+   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text114">α</text>
+
+            </g>
+
+            <g
+   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+   id="g120">
+                <text
+   x="1637.49"
+   y="714.13098"
+   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text118">2</text>
+
+            </g>
+
+        </g>
+
+    </g>
+      <g
+         transform="matrix(1.2,0,0,1.2,-174.97221,-485.17487)"
+         id="g136"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle126" />
+
+        <g
+   transform="translate(0,78.8069)"
+   id="g130">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle128" />
+
+        </g>
+
+        <g
+   transform="translate(0,157.614)"
+   id="g134">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle132" />
+
+        </g>
+
+    </g>
+      <g
+         transform="matrix(-1.300397,0,0,-0.64300396,1075.3943,1757.6438)"
+         id="g144"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <path
+   d="m 166.087,395.633 c -27.151,0.161 -47.981,30.631 -45.41,118.233 0.682,23.237 1.231,43.136 0.674,59.812 -1.542,46.194 -11.568,67.663 -50.75,66.869 0,0 52.151,-9.075 52.868,59.992 0.717,69.067 -24.304,182.88 43.982,179.663"
+   style="fill:none;stroke:#5d5d5d;stroke-width:19.59px"
+   id="path142" />
+
+    </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#656565;fill-opacity:1;stroke:none;stroke-width:12;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+         x="1024.439"
+         y="1396.6334"
+         id="text38357"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan38355"
+           x="1024.439"
+           y="1396.6334"
+           style="stroke-width:12">+</tspan></text>
+      <g
+         transform="translate(252.74127,50.737226)"
+         id="g124-4"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+      <path
+         style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
+         d="m 1197.2309,1339.5122 c 223.0108,-112.3769 96.8494,-582.13931 300,-660.00003"
+         id="path33522-7-9-4"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+         x="538.36823"
+         y="1424.7983"
+         id="text12100"><tspan
+           sodipodi:role="line"
+           x="538.36823"
+           y="1424.7983"
+           id="tspan22164"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1" /></text>
+      <text
+         xml:space="preserve"
+         id="text95979"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981);fill:#000000;fill-opacity:1;stroke:none" />
+      <g
+         transform="matrix(-2.3329216,0,0,-2.9285528,4481.9375,2405.3879)"
+         id="g144-0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+      <path
+         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.00787423;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0)"
+         d="m 1767.2309,729.51214 c 200,-200 100,-550 400,-600"
+         id="path33522-7-9-4-92"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.00787423;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7)"
+         d="m 1767.2309,879.51214 c 200,149.99996 50,549.99996 350,599.99996"
+         id="path33522-7-9-4-92-9"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+         d="m 3425.2309,1529.5121 c 250,10e-5 100,-699.99996 400,-699.99996"
+         id="path33522-7-9-4-92-5"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+         d="m 3425.2309,179.51214 c 250,1e-4 100,650 400,650"
+         id="path33522-7-9-4-92-5-7"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#656565;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+         x="3858.4072"
+         y="875.50745"
+         id="text38357-3"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan38355-2"
+           x="3858.4072"
+           y="875.50745"
+           style="stroke-width:12">+</tspan></text>
+      <g
+         transform="matrix(1.2,0,0,1.2,3700.8861,-219.09347)"
+         id="g124-1"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <g
+           id="g86-0">
+          <g
+             transform="translate(-97.0267,-142.611)"
+             id="g68-76">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#ff4f4f"
+               id="rect62-0" />
+            <g
+               transform="translate(-7.22778,132.974)"
+               id="g66-1">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text64-0">R</text>
+            </g>
+          </g>
+          <g
+             transform="translate(-97.0267,134.127)"
+             id="g76-2">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#5c5cf6"
+               id="rect70-5" />
+            <g
+               transform="translate(-7.22778,136.837)"
+               id="g74-1">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text72-9">B</text>
+            </g>
+          </g>
+          <g
+             transform="translate(-97.0267,-4.24165)"
+             id="g84-7">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#58d038"
+               id="rect78-1" />
+            <g
+               transform="translate(-13.5059,134.825)"
+               id="g82-31">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text80-2">G</text>
+            </g>
+          </g>
+        </g>
+        <g
+           transform="translate(-95.8051,964.342)"
+           id="g90-0">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#646464"
+             id="rect88-6" />
+        </g>
+        <g
+           transform="translate(-97.0267,272.496)"
+           id="g94-8">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ebebeb"
+             id="rect92-74" />
+        </g>
+        <g
+           transform="translate(-97.0267,687.604)"
+           id="g98-9">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ebebeb"
+             id="rect96-2" />
+        </g>
+        <g
+           transform="translate(-97.0267,825.973)"
+           id="g102-4">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#646464"
+             id="rect100-45" />
+        </g>
+        <g
+           id="g112-9">
+          <g
+             transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
+             id="g106-12">
+            <text
+               x="732.88501"
+               y="716.54999"
+               style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text104-8">α</text>
+          </g>
+          <g
+             transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+             id="g110-9">
+            <text
+               x="1637.49"
+               y="714.13098"
+               style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text108-6">1</text>
+          </g>
+        </g>
+        <g
+           transform="translate(0,143.285)"
+           id="g122-0">
+          <g
+             transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
+             id="g116-6">
+            <text
+               x="732.88501"
+               y="716.54999"
+               style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text114-4">α</text>
+          </g>
+          <g
+             transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+             id="g120-0">
+            <text
+               x="1637.49"
+               y="714.13098"
+               style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text118-9">2</text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(1.2,0,0,1.2,3565.1657,-542.85605)"
+         id="g136-4"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle126-5" />
+        <g
+           transform="translate(0,78.8069)"
+           id="g130-46">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle128-6" />
+        </g>
+        <g
+           transform="translate(0,157.614)"
+           id="g134-3">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle132-9" />
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="520.76501"
+       y="183.91034"
+       id="text3478"><tspan
+         sodipodi:role="line"
+         id="tspan3476"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="520.76501"
+         y="183.91034">f1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="507.80557"
+       y="546.1535"
+       id="text5198"><tspan
+         sodipodi:role="line"
+         id="tspan5196"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="507.80557"
+         y="546.1535">f2</tspan></text>
+    <g
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="g198173"
+       transform="matrix(0.26458333,0,0,0.26458333,520.51446,40.848744)">
+      <g
+         transform="matrix(0.66351768,0,0,0.66351768,241.87115,-21.759697)"
+         id="g60-3"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <g
+   id="g26-7">
+            <g
+   transform="translate(-97.0267,-142.611)"
+   id="g8-0">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ff4f4f"
+   id="rect2-0" />
+
+                <g
+   transform="translate(-7.22778,132.974)"
+   id="g6-3">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text4-4">R</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,134.127)"
+   id="g16-9">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#5c5cf6"
+   id="rect10-2" />
+
+                <g
+   transform="translate(-7.22778,136.837)"
+   id="g14-7">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text12-4">B</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,-4.24165)"
+   id="g24-2">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#58d038"
+   id="rect18-5" />
+
+                <g
+   transform="translate(-13.5059,134.825)"
+   id="g22-2">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text20-4">G</text>
+
+                </g>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(-95.8051,964.342)"
+   id="g30-4">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect28-3" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,272.496)"
+   id="g34-8">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect32-6" />
+
+        </g>
+
+        <g
+   transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
+   id="g38-0">
+            <text
+   x="732.88501"
+   y="716.54999"
+   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text36-8">α</text>
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,410.865)"
+   id="g42-9">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect40-2" />
+
+        </g>
+
+        <g
+   transform="translate(-97.0267,549.235)"
+   id="g46-2">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect44-3" />
+
+        </g>
+
+        <g
+   transform="translate(-110.14,11.7025)"
+   id="g58-1">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle48-8" />
+
+            <g
+   transform="translate(0,78.8069)"
+   id="g52-3">
+                <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle50-4" />
+
+            </g>
+
+            <g
+   transform="translate(0,157.614)"
+   id="g56-2">
+                <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle54-2" />
+
+            </g>
+
+        </g>
+
+    </g>
+      <g
+         transform="matrix(0.66351768,0,0,0.66351768,644.97031,-21.759697)"
+         id="g124-45"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <g
+   id="g86-1"
+   transform="translate(-93.33335)">
+            <g
+   transform="translate(-97.0267,-142.611)"
+   id="g68-7">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ff4f4f"
+   id="rect62-5" />
+
+                <g
+   transform="translate(-7.22778,132.974)"
+   id="g66-7">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text64-1">R</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,134.127)"
+   id="g76-6">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#5c5cf6"
+   id="rect70-9" />
+
+                <g
+   transform="translate(-7.22778,136.837)"
+   id="g74-8">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text72-1">B</text>
+
+                </g>
+
+            </g>
+
+            <g
+   transform="translate(-97.0267,-4.24165)"
+   id="g84-3">
+                <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#58d038"
+   id="rect78-3" />
+
+                <g
+   transform="translate(-13.5059,134.825)"
+   id="g82-3">
+                    <text
+   x="729.93701"
+   y="296.96701"
+   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text80-7">G</text>
+
+                </g>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(-189.13861,964.342)"
+   id="g90-9">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect88-8" />
+
+        </g>
+
+        <g
+   transform="translate(-190.36021,272.496)"
+   id="g94-6">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect92-7" />
+
+        </g>
+
+        <g
+   transform="translate(-190.36021,687.604)"
+   id="g98-0">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#ebebeb"
+   id="rect96-4" />
+
+        </g>
+
+        <g
+   transform="translate(-190.36021,825.973)"
+   id="g102-8">
+            <rect
+   x="697.31403"
+   y="341.23401"
+   width="115.338"
+   height="115.338"
+   style="fill:#646464"
+   id="rect100-4" />
+
+        </g>
+
+        <g
+   id="g112-8"
+   transform="translate(-99.787712)">
+            <g
+   transform="matrix(3.16781,0,0,3.16781,-1703.7286,-1013.087)"
+   id="g106-1">
+                <text
+   x="732.88501"
+   y="716.54999"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+   id="text104-6">α</text>
+
+            </g>
+
+            <g
+   transform="matrix(1.67737,0,0,1.67737,-2052.2226,68.285508)"
+   id="g110-8">
+                <text
+   x="1637.49"
+   y="714.13098"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.644px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+   id="text108-5">1</text>
+
+            </g>
+
+        </g>
+
+        <g
+   transform="translate(-88.725829,152.29858)"
+   id="g122-2">
+            <g
+   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
+   id="g116-1">
+                <text
+   x="732.88501"
+   y="716.54999"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+   id="text114-9">0</text>
+
+            </g>
+
+            <g
+   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+   id="g120-9">
+                <text
+   x="1637.49"
+   y="714.13098"
+   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+   id="text118-6" />
+
+            </g>
+
+        </g>
+
+    </g>
+      <g
+         transform="matrix(0.66351768,0,0,0.66351768,510.20966,-200.77819)"
+         id="g136-0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle126-6" />
+
+        <g
+   transform="translate(0,78.8069)"
+   id="g130-4">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle128-9" />
+
+        </g>
+
+        <g
+   transform="translate(0,157.614)"
+   id="g134-9">
+            <circle
+   cx="770.07098"
+   cy="1063.98"
+   r="26.115999"
+   style="fill:#ebebeb"
+   id="circle132-0" />
+
+        </g>
+
+    </g>
+      <g
+         transform="translate(252.74127,50.737226)"
+         id="g124-4-8"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+      <path
+         style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:12.2519;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8)"
+         d="m 746.70128,445.61106 c 120,120 40,240 180,300"
+         id="path33522-7-9-4-9"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,241.99004,1315.5114)"
+         id="g60-3-4"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <g
+           id="g26-7-1">
+          <g
+             transform="translate(-97.0267,-142.611)"
+             id="g8-0-6">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#ff4f4f"
+               id="rect2-0-5" />
+            <g
+               transform="translate(-7.22778,132.974)"
+               id="g6-3-7">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text4-4-8">R</text>
+            </g>
+          </g>
+          <g
+             transform="translate(-97.0267,134.127)"
+             id="g16-9-5">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#5c5cf6"
+               id="rect10-2-9" />
+            <g
+               transform="translate(-7.22778,136.837)"
+               id="g14-7-2">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text12-4-7">B</text>
+            </g>
+          </g>
+          <g
+             transform="translate(-97.0267,-4.24165)"
+             id="g24-2-3">
+            <rect
+               x="697.31403"
+               y="341.23401"
+               width="115.338"
+               height="115.338"
+               style="fill:#58d038"
+               id="rect18-5-6" />
+            <g
+               transform="translate(-13.5059,134.825)"
+               id="g22-2-4">
+              <text
+                 x="729.93701"
+                 y="296.96701"
+                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+                 id="text20-4-7">G</text>
+            </g>
+          </g>
+        </g>
+        <g
+           transform="translate(-95.8051,964.342)"
+           id="g30-4-9">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ebebeb"
+             id="rect28-3-7" />
+        </g>
+        <g
+           transform="translate(-97.0267,272.496)"
+           id="g34-8-2">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#646464"
+             id="rect32-6-2" />
+        </g>
+        <g
+           transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
+           id="g38-0-1">
+          <text
+             x="732.88501"
+             y="716.54999"
+             style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+             id="text36-8-6">α</text>
+        </g>
+        <g
+           transform="translate(-97.0267,410.865)"
+           id="g42-9-3">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ebebeb"
+             id="rect40-2-0" />
+        </g>
+        <g
+           transform="translate(-97.0267,549.235)"
+           id="g46-2-2">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ebebeb"
+             id="rect44-3-1" />
+        </g>
+        <g
+           transform="translate(-110.14,11.7025)"
+           id="g58-1-5">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle48-8-6" />
+          <g
+             transform="translate(0,78.8069)"
+             id="g52-3-5">
+            <circle
+               cx="770.07098"
+               cy="1063.98"
+               r="26.115999"
+               style="fill:#ebebeb"
+               id="circle50-4-0" />
+          </g>
+          <g
+             transform="translate(0,157.614)"
+             id="g56-2-0">
+            <circle
+               cx="770.07098"
+               cy="1063.98"
+               r="26.115999"
+               style="fill:#ebebeb"
+               id="circle54-2-3" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,510.33924,1136.4857)"
+         id="g136-0-4"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle126-6-6" />
+        <g
+           transform="translate(0,78.8069)"
+           id="g130-4-6">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle128-9-0" />
+        </g>
+        <g
+           transform="translate(0,157.614)"
+           id="g134-9-2">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle132-0-5" />
+        </g>
+      </g>
+      <path
+         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:12.2523;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8-7)"
+         d="m 746.70128,1795.6111 c 91.22669,133.8309 -0.13787,299.2341 190,410"
+         id="path33522-7-9-4-9-8"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         id="g86-1-9"
+         transform="matrix(0.66354422,0,0,0.66354422,583.17454,1315.5114)"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <g
+           transform="translate(-97.0267,-142.611)"
+           id="g68-7-5">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ff4f4f"
+             id="rect62-5-0" />
+          <g
+             transform="translate(-7.22778,132.974)"
+             id="g66-7-6">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text64-1-0">R</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,134.127)"
+           id="g76-6-8">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#5c5cf6"
+             id="rect70-9-3" />
+          <g
+             transform="translate(-7.22778,136.837)"
+             id="g74-8-7">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text72-1-8">B</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,-4.24165)"
+           id="g84-3-2">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#58d038"
+             id="rect78-3-1" />
+          <g
+             transform="translate(-13.5059,134.825)"
+             id="g82-3-0">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+               id="text80-7-5">G</text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,519.60354,1955.3949)"
+         id="g90-9-8"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464"
+           id="rect88-8-5" />
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1496.3246)"
+         id="g94-6-5"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb"
+           id="rect92-7-0" />
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1771.767)"
+         id="g98-0-7"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb"
+           id="rect96-4-3" />
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1863.581)"
+         id="g102-8-8"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464"
+           id="rect100-4-2" />
+      </g>
+      <g
+         transform="matrix(0.66354422,0,0,0.66354422,463.11284,1418.2813)"
+         id="g122-2-3"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <g
+           transform="matrix(3.16781,0,0,3.16781,-1519.9931,-1156.8054)"
+           id="g116-1-0">
+          <text
+             x="732.88501"
+             y="716.54999"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+             id="text114-9-7">0</text>
+        </g>
+        <g
+           transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
+           id="g120-9-7">
+          <text
+             x="1637.49"
+             y="714.13098"
+             style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+             id="text118-6-7" />
+        </g>
+      </g>
+      <g
+         transform="matrix(2.101982,0,0,2.101982,-551.60742,643.28334)"
+         id="g106-1-6"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <text
+           x="733.70001"
+           y="759.74493"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text104-6-9">α</text>
+      </g>
+      <g
+         transform="matrix(1.1130092,0,0,1.1130092,-781.13552,1453.33)"
+         id="g110-8-1"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <text
+           x="1637.49"
+           y="714.13098"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.644px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text108-5-1">2</text>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+         x="538.36823"
+         y="1424.7983"
+         id="text12100-3"><tspan
+           sodipodi:role="line"
+           x="538.36823"
+           y="1424.7983"
+           id="tspan22164-1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1" /></text>
+      <text
+         xml:space="preserve"
+         id="text95979-4"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981-2);fill:#000000;fill-opacity:1;stroke:none" />
+    </g>
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4)"
+       d="m 579.43748,171.97916 c 66.14583,0 0,0 79.37499,0"
+       id="path33522-7-9-4-92-6"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9)"
+       d="m 980.54534,357.1875 c 66.14506,0 0,0 79.37426,0"
+       id="path33522-7-9-4-92-6-2"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-5)"
+       d="m 582.08333,529.16666 h 76.20006"
+       id="path33522-7-9-4-92-8"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>
