@@ -7,7 +7,7 @@
    viewBox="0 0 2000 700"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (1:1.1+202109281949+c3084ef5ed)"
+   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
    sodipodi:docname="forward_pass.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -19,25 +19,25 @@
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="true"
      width="2000mm"
-     inkscape:zoom="0.13291485"
-     inkscape:cx="1922.2834"
-     inkscape:cy="1719.1458"
+     inkscape:zoom="0.1767767"
+     inkscape:cx="2259.9132"
+     inkscape:cy="1145.513"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g264">
+     inkscape:current-layer="layer1">
     <inkscape:grid
        type="xygrid"
        id="grid515"
-       spacingx="0.52916667"
-       spacingy="0.52916667"
+       spacingx="1.3229167"
+       spacingy="1.3229167"
        color="#7979c5"
        opacity="0.1254902"
        empcolor="#8787b7"
@@ -45,6 +45,24 @@
   </sodipodi:namedview>
   <defs
      id="defs2">
+    <rect
+       x="4160"
+       y="1000"
+       width="440"
+       height="680"
+       id="rect78235" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 350 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="2000 : 350 : 1"
+       inkscape:persp3d-origin="1000 : 233.33333 : 1"
+       id="perspective59737" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect224243"
+       is_visible="true"
+       lpeversion="1" />
     <rect
        x="441.41309"
        y="1294.3624"
@@ -595,1562 +613,2171 @@
          d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36730-6-0-5-6-5-5" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-0-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-8-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-0-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-8-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-0-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-4-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-59" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-6" />
+    </marker>
   </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Arrows"
+     style="display:inline">
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4)"
+       d="m 875.24151,363.80209 h 79.90435"
+       id="path33522-7-9-4-92-6-2-0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-2)"
+       d="m 1005.4167,363.80209 88.6354,-0.26457"
+       id="path33522-7-9-4-92-6-2-4"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4-2)"
+       d="m 723.90615,541.14275 72.4897,7e-5"
+       id="path33522-7-9-4-92-6-2-0-8"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4-2-9)"
+       d="m 723.90615,185.2083 72.4897,4e-5"
+       id="path33522-7-9-4-92-6-2-0-8-4"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-0)"
+       d="M 854.60416,525.19793 V 394.22918"
+       id="path33522-7-9-4-92-9-0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-0-1)"
+       d="M 854.60416,202.40625 V 336.02084"
+       id="path33522-7-9-4-92-9-0-8"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="display:inline;fill:none;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
+       d="M 141.55209,552.97918 V 674.68752 H 984.25002 V 392.90626"
+       id="path224545"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline">
     <g
-       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="g264"
-       transform="matrix(0.26458333,0,0,0.26458333,-83.934004,137.71241)">
-      <g
-         transform="matrix(1.2,0,0,1.2,858.48048,-161.41229)"
-         id="g60"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <g
-   id="g26">
-            <g
-   transform="translate(-97.0267,-142.611)"
-   id="g8">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ff4f4f"
-   id="rect2" />
-
-                <g
-   transform="translate(-7.22778,132.974)"
-   id="g6">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text4">R</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,134.127)"
-   id="g16">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#5c5cf6"
-   id="rect10" />
-
-                <g
-   transform="translate(-7.22778,136.837)"
-   id="g14">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text12">B</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,-4.24165)"
-   id="g24">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#58d038"
-   id="rect18" />
-
-                <g
-   transform="translate(-13.5059,134.825)"
-   id="g22">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text20">G</text>
-
-                </g>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(-95.8051,964.342)"
-   id="g30">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect28" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,272.496)"
-   id="g34">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect32" />
-
-        </g>
-
-        <g
-   transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
-   id="g38">
-            <text
-   x="732.88501"
-   y="716.54999"
-   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text36">α</text>
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,410.865)"
-   id="g42">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect40" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,549.235)"
-   id="g46">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect44" />
-
-        </g>
-
-        <g
-   transform="translate(-110.14,11.7025)"
-   id="g58">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle48" />
-
-            <g
-   transform="translate(0,78.8069)"
-   id="g52">
-                <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle50" />
-
-            </g>
-
-            <g
-   transform="translate(0,157.614)"
-   id="g56">
-                <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle54" />
-
-            </g>
-
-        </g>
-
-    </g>
-      <g
-         transform="matrix(1.2,0,0,1.2,-43.251798,-211.41229)"
-         id="g124"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <g
-   id="g86">
-            <g
-   transform="translate(-97.0267,-142.611)"
-   id="g68">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ff4f4f"
-   id="rect62" />
-
-                <g
-   transform="translate(-7.22778,132.974)"
-   id="g66">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text64">R</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,134.127)"
-   id="g76">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#5c5cf6"
-   id="rect70" />
-
-                <g
-   transform="translate(-7.22778,136.837)"
-   id="g74">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text72">B</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,-4.24165)"
-   id="g84">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#58d038"
-   id="rect78" />
-
-                <g
-   transform="translate(-13.5059,134.825)"
-   id="g82">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text80">G</text>
-
-                </g>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(-95.8051,964.342)"
-   id="g90">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect88" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,272.496)"
-   id="g94">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect92" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,687.604)"
-   id="g98">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect96" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,825.973)"
-   id="g102">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect100" />
-
-        </g>
-
-        <g
-   id="g112">
-            <g
-   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
-   id="g106">
-                <text
-   x="732.88501"
-   y="716.54999"
-   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text104">α</text>
-
-            </g>
-
-            <g
-   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-   id="g110">
-                <text
-   x="1637.49"
-   y="714.13098"
-   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text108">1</text>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(0,143.285)"
-   id="g122">
-            <g
-   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
-   id="g116">
-                <text
-   x="732.88501"
-   y="716.54999"
-   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text114">α</text>
-
-            </g>
-
-            <g
-   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-   id="g120">
-                <text
-   x="1637.49"
-   y="714.13098"
-   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text118">2</text>
-
-            </g>
-
-        </g>
-
-    </g>
-      <g
-         transform="matrix(1.2,0,0,1.2,-174.97221,-485.17487)"
-         id="g136"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle126" />
-
-        <g
-   transform="translate(0,78.8069)"
-   id="g130">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle128" />
-
-        </g>
-
-        <g
-   transform="translate(0,157.614)"
-   id="g134">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle132" />
-
-        </g>
-
-    </g>
-      <g
-         transform="matrix(-1.300397,0,0,-0.64300396,1075.3943,1757.6438)"
-         id="g144"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <path
-   d="m 166.087,395.633 c -27.151,0.161 -47.981,30.631 -45.41,118.233 0.682,23.237 1.231,43.136 0.674,59.812 -1.542,46.194 -11.568,67.663 -50.75,66.869 0,0 52.151,-9.075 52.868,59.992 0.717,69.067 -24.304,182.88 43.982,179.663"
-   style="fill:none;stroke:#5d5d5d;stroke-width:19.59px"
-   id="path142" />
-
-    </g>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#656565;fill-opacity:1;stroke:none;stroke-width:12;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
-         x="1024.439"
-         y="1396.6334"
-         id="text38357"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"><tspan
-           sodipodi:role="line"
-           id="tspan38355"
-           x="1024.439"
-           y="1396.6334"
-           style="stroke-width:12">+</tspan></text>
-      <g
-         transform="translate(252.74127,50.737226)"
-         id="g124-4"
-         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+       transform="matrix(-0.34406337,0,0,-0.17012813,241.86318,608.04728)"
+       id="g144"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke:#999999;stroke-width:14.46640971;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.24999973;stroke-dasharray:none;stroke-opacity:1">
       <path
-         style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
-         d="m 1197.2309,1339.5122 c 223.0108,-112.3769 96.8494,-582.13931 300,-660.00003"
-         id="path33522-7-9-4"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-         x="538.36823"
-         y="1424.7983"
-         id="text12100"><tspan
-           sodipodi:role="line"
-           x="538.36823"
-           y="1424.7983"
-           id="tspan22164"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1" /></text>
-      <text
-         xml:space="preserve"
-         id="text95979"
-         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981);fill:#000000;fill-opacity:1;stroke:none" />
-      <g
-         transform="matrix(-2.3329216,0,0,-2.9285528,4481.9375,2405.3879)"
-         id="g144-0"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"
-         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
-      <path
-         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.00787423;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0)"
-         d="m 1767.2309,729.51214 c 200,-200 100,-550 400,-600"
-         id="path33522-7-9-4-92"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.00787423;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7)"
-         d="m 1767.2309,879.51214 c 200,149.99996 50,549.99996 350,599.99996"
-         id="path33522-7-9-4-92-9"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
-         d="m 3425.2309,1529.5121 c 250,10e-5 100,-699.99996 400,-699.99996"
-         id="path33522-7-9-4-92-5"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:17.0079;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
-         d="m 3425.2309,179.51214 c 250,1e-4 100,650 400,650"
-         id="path33522-7-9-4-92-5-7"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#656565;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
-         x="3858.4072"
-         y="875.50745"
-         id="text38357-3"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"><tspan
-           sodipodi:role="line"
-           id="tspan38355-2"
-           x="3858.4072"
-           y="875.50745"
-           style="stroke-width:12">+</tspan></text>
-      <g
-         transform="matrix(1.2,0,0,1.2,3700.8861,-219.09347)"
-         id="g124-1"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <g
-           id="g86-0">
-          <g
-             transform="translate(-97.0267,-142.611)"
-             id="g68-76">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#ff4f4f"
-               id="rect62-0" />
-            <g
-               transform="translate(-7.22778,132.974)"
-               id="g66-1">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text64-0">R</text>
-            </g>
-          </g>
-          <g
-             transform="translate(-97.0267,134.127)"
-             id="g76-2">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#5c5cf6"
-               id="rect70-5" />
-            <g
-               transform="translate(-7.22778,136.837)"
-               id="g74-1">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text72-9">B</text>
-            </g>
-          </g>
-          <g
-             transform="translate(-97.0267,-4.24165)"
-             id="g84-7">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#58d038"
-               id="rect78-1" />
-            <g
-               transform="translate(-13.5059,134.825)"
-               id="g82-31">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text80-2">G</text>
-            </g>
-          </g>
-        </g>
-        <g
-           transform="translate(-95.8051,964.342)"
-           id="g90-0">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#646464"
-             id="rect88-6" />
-        </g>
-        <g
-           transform="translate(-97.0267,272.496)"
-           id="g94-8">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#ebebeb"
-             id="rect92-74" />
-        </g>
-        <g
-           transform="translate(-97.0267,687.604)"
-           id="g98-9">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#ebebeb"
-             id="rect96-2" />
-        </g>
-        <g
-           transform="translate(-97.0267,825.973)"
-           id="g102-4">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#646464"
-             id="rect100-45" />
-        </g>
-        <g
-           id="g112-9">
-          <g
-             transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
-             id="g106-12">
-            <text
-               x="732.88501"
-               y="716.54999"
-               style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text104-8">α</text>
-          </g>
-          <g
-             transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-             id="g110-9">
-            <text
-               x="1637.49"
-               y="714.13098"
-               style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text108-6">1</text>
-          </g>
-        </g>
-        <g
-           transform="translate(0,143.285)"
-           id="g122-0">
-          <g
-             transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
-             id="g116-6">
-            <text
-               x="732.88501"
-               y="716.54999"
-               style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text114-4">α</text>
-          </g>
-          <g
-             transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-             id="g120-0">
-            <text
-               x="1637.49"
-               y="714.13098"
-               style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text118-9">2</text>
-          </g>
-        </g>
-      </g>
-      <g
-         transform="matrix(1.2,0,0,1.2,3565.1657,-542.85605)"
-         id="g136-4"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <circle
-           cx="770.07098"
-           cy="1063.98"
-           r="26.115999"
-           style="fill:#ebebeb"
-           id="circle126-5" />
-        <g
-           transform="translate(0,78.8069)"
-           id="g130-46">
-          <circle
-             cx="770.07098"
-             cy="1063.98"
-             r="26.115999"
-             style="fill:#ebebeb"
-             id="circle128-6" />
-        </g>
-        <g
-           transform="translate(0,157.614)"
-           id="g134-3">
-          <circle
-             cx="770.07098"
-             cy="1063.98"
-             r="26.115999"
-             style="fill:#ebebeb"
-             id="circle132-9" />
-        </g>
-      </g>
+         d="m 166.08702,395.633 c -27.151,0.161 -47.981,30.631 -45.41,118.233 0.682,23.237 1.231,43.136 0.674,59.812 -1.542,46.194 -11.568,67.663 -50.750012,66.869 0,0 52.151012,-9.075 52.868012,59.992 0.717,69.067 -24.304012,182.88 43.982,179.663"
+         style="fill:none;stroke:#999999;stroke-width:14.46640971;stroke-miterlimit:0.24999973;stroke-dasharray:none;stroke-opacity:1"
+         id="path142" />
     </g>
     <text
        xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="520.76501"
-       y="183.91034"
-       id="text3478"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#595959;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+       x="220.35233"
+       y="513.11639"
+       id="text38357"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
-         id="tspan3476"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
-         x="520.76501"
-         y="183.91034">f1</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="507.80557"
-       y="546.1535"
-       id="text5198"><tspan
-         sodipodi:role="line"
-         id="tspan5196"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
-         x="507.80557"
-         y="546.1535">f2</tspan></text>
+         id="tspan38355"
+         x="220.35233"
+         y="513.11639"
+         style="fill:#595959;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
     <g
-       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="g198173"
-       transform="matrix(0.26458333,0,0,0.26458333,520.51446,40.848744)">
+       transform="matrix(0.26458333,0,0,0.26458333,-17.062877,151.13663)"
+       id="g124-4"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="58.509254"
+       y="514.69031"
+       id="text12100"><tspan
+         sodipodi:role="line"
+         x="58.509254"
+         y="514.69031"
+         id="tspan22164"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1;stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       id="text95979"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981);clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       transform="matrix(0.26458333,0,0,0.26458333,-83.934004,137.71241)" />
+    <g
+       transform="matrix(-0.61725217,0,0,-0.77484625,1101.9119,774.13795)"
+       id="g144-0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <g
+       transform="matrix(0.3175,0,0,0.3175,143.88926,87.798302)"
+       id="g60"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
       <g
-         transform="matrix(0.66351768,0,0,0.66351768,241.87115,-21.759697)"
-         id="g60-3"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <g
-   id="g26-7">
-            <g
-   transform="translate(-97.0267,-142.611)"
-   id="g8-0">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ff4f4f"
-   id="rect2-0" />
-
-                <g
-   transform="translate(-7.22778,132.974)"
-   id="g6-3">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text4-4">R</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,134.127)"
-   id="g16-9">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#5c5cf6"
-   id="rect10-2" />
-
-                <g
-   transform="translate(-7.22778,136.837)"
-   id="g14-7">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text12-4">B</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,-4.24165)"
-   id="g24-2">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#58d038"
-   id="rect18-5" />
-
-                <g
-   transform="translate(-13.5059,134.825)"
-   id="g22-2">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text20-4">G</text>
-
-                </g>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(-95.8051,964.342)"
-   id="g30-4">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect28-3" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,272.496)"
-   id="g34-8">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect32-6" />
-
-        </g>
-
-        <g
-   transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
-   id="g38-0">
-            <text
-   x="732.88501"
-   y="716.54999"
-   style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text36-8">α</text>
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,410.865)"
-   id="g42-9">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect40-2" />
-
-        </g>
-
-        <g
-   transform="translate(-97.0267,549.235)"
-   id="g46-2">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect44-3" />
-
-        </g>
-
-        <g
-   transform="translate(-110.14,11.7025)"
-   id="g58-1">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle48-8" />
-
-            <g
-   transform="translate(0,78.8069)"
-   id="g52-3">
-                <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle50-4" />
-
-            </g>
-
-            <g
-   transform="translate(0,157.614)"
-   id="g56-2">
-                <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle54-2" />
-
-            </g>
-
-        </g>
-
-    </g>
-      <g
-         transform="matrix(0.66351768,0,0,0.66351768,644.97031,-21.759697)"
-         id="g124-45"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <g
-   id="g86-1"
-   transform="translate(-93.33335)">
-            <g
-   transform="translate(-97.0267,-142.611)"
-   id="g68-7">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ff4f4f"
-   id="rect62-5" />
-
-                <g
-   transform="translate(-7.22778,132.974)"
-   id="g66-7">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text64-1">R</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,134.127)"
-   id="g76-6">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#5c5cf6"
-   id="rect70-9" />
-
-                <g
-   transform="translate(-7.22778,136.837)"
-   id="g74-8">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text72-1">B</text>
-
-                </g>
-
-            </g>
-
-            <g
-   transform="translate(-97.0267,-4.24165)"
-   id="g84-3">
-                <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#58d038"
-   id="rect78-3" />
-
-                <g
-   transform="translate(-13.5059,134.825)"
-   id="g82-3">
-                    <text
-   x="729.93701"
-   y="296.96701"
-   style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text80-7">G</text>
-
-                </g>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(-189.13861,964.342)"
-   id="g90-9">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect88-8" />
-
-        </g>
-
-        <g
-   transform="translate(-190.36021,272.496)"
-   id="g94-6">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect92-7" />
-
-        </g>
-
-        <g
-   transform="translate(-190.36021,687.604)"
-   id="g98-0">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#ebebeb"
-   id="rect96-4" />
-
-        </g>
-
-        <g
-   transform="translate(-190.36021,825.973)"
-   id="g102-8">
-            <rect
-   x="697.31403"
-   y="341.23401"
-   width="115.338"
-   height="115.338"
-   style="fill:#646464"
-   id="rect100-4" />
-
-        </g>
-
-        <g
-   id="g112-8"
-   transform="translate(-99.787712)">
-            <g
-   transform="matrix(3.16781,0,0,3.16781,-1703.7286,-1013.087)"
-   id="g106-1">
-                <text
-   x="732.88501"
-   y="716.54999"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-   id="text104-6">α</text>
-
-            </g>
-
-            <g
-   transform="matrix(1.67737,0,0,1.67737,-2052.2226,68.285508)"
-   id="g110-8">
-                <text
-   x="1637.49"
-   y="714.13098"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.644px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-   id="text108-5">1</text>
-
-            </g>
-
-        </g>
-
-        <g
-   transform="translate(-88.725829,152.29858)"
-   id="g122-2">
-            <g
-   transform="matrix(3.16781,0,0,3.16781,-1705.88,-1017.39)"
-   id="g116-1">
-                <text
-   x="732.88501"
-   y="716.54999"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-   id="text114-9">0</text>
-
-            </g>
-
-            <g
-   transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-   id="g120-9">
-                <text
-   x="1637.49"
-   y="714.13098"
-   style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-   id="text118-6" />
-
-            </g>
-
-        </g>
-
-    </g>
-      <g
-         transform="matrix(0.66351768,0,0,0.66351768,510.20966,-200.77819)"
-         id="g136-0"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
-        <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle126-6" />
-
-        <g
-   transform="translate(0,78.8069)"
-   id="g130-4">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle128-9" />
-
-        </g>
-
-        <g
-   transform="translate(0,157.614)"
-   id="g134-9">
-            <circle
-   cx="770.07098"
-   cy="1063.98"
-   r="26.115999"
-   style="fill:#ebebeb"
-   id="circle132-0" />
-
-        </g>
-
-    </g>
-      <g
-         transform="translate(252.74127,50.737226)"
-         id="g124-4-8"
-         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
-      <path
-         style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:12.2519;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8)"
-         d="m 746.70128,445.61106 c 120,120 40,240 180,300"
-         id="path33522-7-9-4-9"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <g
-         transform="matrix(0.66354422,0,0,0.66354422,241.99004,1315.5114)"
-         id="g60-3-4"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <g
-           id="g26-7-1">
-          <g
-             transform="translate(-97.0267,-142.611)"
-             id="g8-0-6">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#ff4f4f"
-               id="rect2-0-5" />
-            <g
-               transform="translate(-7.22778,132.974)"
-               id="g6-3-7">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text4-4-8">R</text>
-            </g>
-          </g>
-          <g
-             transform="translate(-97.0267,134.127)"
-             id="g16-9-5">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#5c5cf6"
-               id="rect10-2-9" />
-            <g
-               transform="translate(-7.22778,136.837)"
-               id="g14-7-2">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text12-4-7">B</text>
-            </g>
-          </g>
-          <g
-             transform="translate(-97.0267,-4.24165)"
-             id="g24-2-3">
-            <rect
-               x="697.31403"
-               y="341.23401"
-               width="115.338"
-               height="115.338"
-               style="fill:#58d038"
-               id="rect18-5-6" />
-            <g
-               transform="translate(-13.5059,134.825)"
-               id="g22-2-4">
-              <text
-                 x="729.93701"
-                 y="296.96701"
-                 style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-                 id="text20-4-7">G</text>
-            </g>
-          </g>
-        </g>
-        <g
-           transform="translate(-95.8051,964.342)"
-           id="g30-4-9">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#ebebeb"
-             id="rect28-3-7" />
-        </g>
-        <g
-           transform="translate(-97.0267,272.496)"
-           id="g34-8-2">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#646464"
-             id="rect32-6-2" />
-        </g>
-        <g
-           transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
-           id="g38-0-1">
-          <text
-             x="732.88501"
-             y="716.54999"
-             style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-             id="text36-8-6">α</text>
-        </g>
-        <g
-           transform="translate(-97.0267,410.865)"
-           id="g42-9-3">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#ebebeb"
-             id="rect40-2-0" />
-        </g>
-        <g
-           transform="translate(-97.0267,549.235)"
-           id="g46-2-2">
-          <rect
-             x="697.31403"
-             y="341.23401"
-             width="115.338"
-             height="115.338"
-             style="fill:#ebebeb"
-             id="rect44-3-1" />
-        </g>
-        <g
-           transform="translate(-110.14,11.7025)"
-           id="g58-1-5">
-          <circle
-             cx="770.07098"
-             cy="1063.98"
-             r="26.115999"
-             style="fill:#ebebeb"
-             id="circle48-8-6" />
-          <g
-             transform="translate(0,78.8069)"
-             id="g52-3-5">
-            <circle
-               cx="770.07098"
-               cy="1063.98"
-               r="26.115999"
-               style="fill:#ebebeb"
-               id="circle50-4-0" />
-          </g>
-          <g
-             transform="translate(0,157.614)"
-             id="g56-2-0">
-            <circle
-               cx="770.07098"
-               cy="1063.98"
-               r="26.115999"
-               style="fill:#ebebeb"
-               id="circle54-2-3" />
-          </g>
-        </g>
-      </g>
-      <g
-         transform="matrix(0.66354422,0,0,0.66354422,510.33924,1136.4857)"
-         id="g136-0-4"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <circle
-           cx="770.07098"
-           cy="1063.98"
-           r="26.115999"
-           style="fill:#ebebeb"
-           id="circle126-6-6" />
-        <g
-           transform="translate(0,78.8069)"
-           id="g130-4-6">
-          <circle
-             cx="770.07098"
-             cy="1063.98"
-             r="26.115999"
-             style="fill:#ebebeb"
-             id="circle128-9-0" />
-        </g>
-        <g
-           transform="translate(0,157.614)"
-           id="g134-9-2">
-          <circle
-             cx="770.07098"
-             cy="1063.98"
-             r="26.115999"
-             style="fill:#ebebeb"
-             id="circle132-0-5" />
-        </g>
-      </g>
-      <path
-         style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:12.2523;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8-7)"
-         d="m 746.70128,1795.6111 c 91.22669,133.8309 -0.13787,299.2341 190,410"
-         id="path33522-7-9-4-9-8"
-         sodipodi:nodetypes="cc"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <g
-         id="g86-1-9"
-         transform="matrix(0.66354422,0,0,0.66354422,583.17454,1315.5114)"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+         id="g26">
         <g
            transform="translate(-97.0267,-142.611)"
-           id="g68-7-5">
+           id="g8">
           <rect
              x="697.31403"
              y="341.23401"
              width="115.338"
              height="115.338"
              style="fill:#ff4f4f"
-             id="rect62-5-0" />
+             id="rect2" />
           <g
              transform="translate(-7.22778,132.974)"
-             id="g66-7-6">
+             id="g6">
             <text
                x="729.93701"
                y="296.96701"
                style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text64-1-0">R</text>
+               id="text4">R</text>
           </g>
         </g>
         <g
            transform="translate(-97.0267,134.127)"
-           id="g76-6-8">
+           id="g16">
           <rect
              x="697.31403"
              y="341.23401"
              width="115.338"
              height="115.338"
              style="fill:#5c5cf6"
-             id="rect70-9-3" />
+             id="rect10" />
           <g
              transform="translate(-7.22778,136.837)"
-             id="g74-8-7">
+             id="g14">
             <text
                x="729.93701"
                y="296.96701"
                style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text72-1-8">B</text>
+               id="text12">B</text>
           </g>
         </g>
         <g
            transform="translate(-97.0267,-4.24165)"
-           id="g84-3-2">
+           id="g24">
           <rect
              x="697.31403"
              y="341.23401"
              width="115.338"
              height="115.338"
              style="fill:#58d038"
-             id="rect78-3-1" />
+             id="rect18" />
           <g
              transform="translate(-13.5059,134.825)"
-             id="g82-3-0">
+             id="g22">
             <text
                x="729.93701"
                y="296.96701"
                style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-               id="text80-7-5">G</text>
+               id="text20">G</text>
           </g>
         </g>
       </g>
       <g
-         transform="matrix(0.66354422,0,0,0.66354422,519.60354,1955.3949)"
-         id="g90-9-8"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <rect
-           x="697.31403"
-           y="341.23401"
-           width="115.338"
-           height="115.338"
-           style="fill:#646464"
-           id="rect88-8-5" />
-      </g>
-      <g
-         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1496.3246)"
-         id="g94-6-5"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+         transform="translate(-95.8051,964.342)"
+         id="g30">
         <rect
            x="697.31403"
            y="341.23401"
            width="115.338"
            height="115.338"
            style="fill:#ebebeb"
-           id="rect92-7-0" />
+           id="rect28" />
       </g>
       <g
-         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1771.767)"
-         id="g98-0-7"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <rect
-           x="697.31403"
-           y="341.23401"
-           width="115.338"
-           height="115.338"
-           style="fill:#ebebeb"
-           id="rect96-4-3" />
-      </g>
-      <g
-         transform="matrix(0.66354422,0,0,0.66354422,518.79294,1863.581)"
-         id="g102-8-8"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+         transform="translate(-97.0267,272.496)"
+         id="g34">
         <rect
            x="697.31403"
            y="341.23401"
            width="115.338"
            height="115.338"
            style="fill:#646464"
-           id="rect100-4-2" />
+           id="rect32" />
       </g>
       <g
-         transform="matrix(0.66354422,0,0,0.66354422,463.11284,1418.2813)"
-         id="g122-2-3"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
-        <g
-           transform="matrix(3.16781,0,0,3.16781,-1519.9931,-1156.8054)"
-           id="g116-1-0">
-          <text
-             x="732.88501"
-             y="716.54999"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-             id="text114-9-7">0</text>
-        </g>
-        <g
-           transform="matrix(1.67737,0,0,1.67737,-2062.98,63.9826)"
-           id="g120-9-7">
-          <text
-             x="1637.49"
-             y="714.13098"
-             style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
-             id="text118-6-7" />
-        </g>
-      </g>
-      <g
-         transform="matrix(2.101982,0,0,2.101982,-551.60742,643.28334)"
-         id="g106-1-6"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+         transform="matrix(3.16781,0,0,3.16781,-1697.96,-1562.97)"
+         id="g38">
         <text
-           x="733.70001"
-           y="759.74493"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-           id="text104-6-9">α</text>
+           x="732.88501"
+           y="716.54999"
+           style="font-size:38px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+           id="text36">α</text>
       </g>
       <g
-         transform="matrix(1.1130092,0,0,1.1130092,-781.13552,1453.33)"
-         id="g110-8-1"
+         transform="translate(-97.0267,410.865)"
+         id="g42">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb"
+           id="rect40" />
+      </g>
+      <g
+         transform="translate(-97.0267,549.235)"
+         id="g46">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb"
+           id="rect44" />
+      </g>
+      <g
+         transform="translate(-110.14,11.7025)"
+         id="g58">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle48" />
+        <g
+           transform="translate(0,78.8069)"
+           id="g52">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle50" />
+        </g>
+        <g
+           transform="translate(0,157.614)"
+           id="g56">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb"
+             id="circle54" />
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#676767;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="293.14987"
+       y="134.60973"
+       id="text103754-0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan103752-2"
+         x="293.14987"
+         y="134.60973"
+         style="fill:#676767;fill-opacity:1;stroke-width:0.264583">Perception</tspan></text>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,631.91982,33.473806)"
+       id="g22-2-8"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,632.34387,180.09578)"
+       id="g102-8"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <g
+       transform="matrix(0.2944719,0,0,0.2944719,284.55507,74.019005)"
+       id="g120-9"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+      <text
+         x="1637.49"
+         y="714.13098"
+         style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+         id="text118-6" />
+    </g>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,587.38559,54.272968)"
+       id="g124-4-8"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <g
+       id="g26-7"
+       transform="matrix(0.17555572,0,0,0.17555572,507.77996,35.091491)"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="600.28735"
+         y="198.62302"
+         width="115.338"
+         height="115.338"
+         style="fill:#ff4f4f"
+         id="rect2-0" />
+      <g
+         transform="matrix(0.84428318,0,0,0.84428318,-11.218875,34.46021)"
+         id="g6-3">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4"><tspan
+             sodipodi:role="line"
+             id="tspan179146"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+             x="729.93701"
+             y="296.96701">δR</tspan></text>
+      </g>
+      <rect
+         x="600.28735"
+         y="475.36102"
+         width="115.338"
+         height="115.338"
+         style="fill:#5c5cf6"
+         id="rect10-2" />
+      <rect
+         x="600.28735"
+         y="336.99237"
+         width="115.338"
+         height="115.338"
+         style="fill:#58d038"
+         id="rect18-5" />
+      <g
+         transform="translate(-110.5326,130.58335)"
+         id="g22-2" />
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,490.96083,204.38725)"
+       id="g30-4"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="697.31403"
+         y="341.23401"
+         width="115.338"
+         height="115.338"
+         style="fill:#ebebeb"
+         id="rect28-3" />
+    </g>
+    <rect
+       x="613.16333"
+       y="142.8353"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;fill:#646464;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect32-6"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,505.62332,65.449415)"
+       id="g6-3-9"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-6"><tspan
+           sodipodi:role="line"
+           id="tspan18304-2"
+           x="729.93701"
+           y="296.96701">δG</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,506.16422,89.452746)"
+       id="g6-3-1"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-7"><tspan
+           sodipodi:role="line"
+           id="tspan18304-8"
+           x="729.93701"
+           y="296.96701">δB</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,506.19143,113.44772)"
+       id="g6-3-5"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-74"><tspan
+           sodipodi:role="line"
+           id="tspan31955"
+           x="729.93701"
+           y="296.96701">δα</tspan></text>
+    </g>
+    <rect
+       x="613.16333"
+       y="167.12677"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect40-2"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       x="613.16333"
+       y="191.41841"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect44-3"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,488.44425,37.145932)"
+       id="g58-1"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         cx="770.07098"
+         cy="1063.98"
+         r="26.115999"
+         style="fill:#ebebeb"
+         id="circle48-8" />
+      <g
+         transform="translate(0,78.8069)"
+         id="g52-3">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle50-4" />
+      </g>
+      <g
+         transform="translate(0,157.614)"
+         id="g56-2">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle54-2" />
+      </g>
+    </g>
+    <g
+       id="g112-8"
+       transform="matrix(0.17555572,0,0,0.17555572,596.91498,35.091491)"
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         transform="matrix(1.67737,0,0,1.67737,-2474.2159,-127.63994)"
+         id="g110-8-5"
          style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
         <text
            x="1637.49"
            y="714.13098"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.644px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-           id="text108-5-1">2</text>
+           id="text108-5-9">1</text>
       </g>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-         x="538.36823"
-         y="1424.7983"
-         id="text12100-3"><tspan
-           sodipodi:role="line"
-           x="538.36823"
-           y="1424.7983"
-           id="tspan22164-1"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1" /></text>
-      <text
-         xml:space="preserve"
-         id="text95979-4"
-         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981-2);fill:#000000;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       id="g95832"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="translate(7.9345703e-5)">
+      <rect
+         x="700.08673"
+         y="67.543335"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;display:inline;fill:#ff4f4f;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect2-0-4"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         transform="matrix(0.14821874,0,0,0.14821874,592.73376,38.723616)"
+         id="g6-3-51"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-0"><tspan
+             sodipodi:role="line"
+             id="tspan179146-3"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+             x="729.93701"
+             y="296.96701">δR</tspan></text>
+      </g>
+      <rect
+         x="700.08673"
+         y="116.12629"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;display:inline;fill:#5c5cf6;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect10-2-7"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <rect
+         x="700.08673"
+         y="91.834869"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;display:inline;fill:#58d038;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect18-5-8"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <rect
+         x="700.08673"
+         y="239.08316"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;display:inline;fill:#646464;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect32-6-6"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         transform="matrix(0.14821874,0,0,0.14821874,592.54666,63.031853)"
+         id="g6-3-9-0"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-6-4"><tspan
+             sodipodi:role="line"
+             id="tspan18304-2-6"
+             x="729.93701"
+             y="296.96701">δG</tspan></text>
+      </g>
+      <g
+         transform="matrix(0.14821874,0,0,0.14821874,593.08756,87.035183)"
+         id="g6-3-1-7"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-7-6"><tspan
+             sodipodi:role="line"
+             id="tspan18304-8-0"
+             x="729.93701"
+             y="296.96701">δB</tspan></text>
+      </g>
+      <g
+         transform="matrix(0.14821874,0,0,0.14821874,593.11477,209.69553)"
+         id="g6-3-5-9"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-74-7"><tspan
+             sodipodi:role="line"
+             id="tspan31955-5"
+             x="729.93701"
+             y="296.96701">δα</tspan></text>
+      </g>
+      <rect
+         x="700.08673"
+         y="262.60507"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;fill:#646464;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect88-8"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <rect
+         x="700.08673"
+         y="141.14763"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect92-7"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <rect
+         x="700.08673"
+         y="214.02222"
+         width="20.248245"
+         height="20.248245"
+         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="rect96-4"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         transform="matrix(0.55612717,0,0,0.55612717,295.91653,-118.46799)"
+         id="g116-1"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <text
+           x="732.88501"
+           y="716.54999"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text114-9">0</text>
+      </g>
+      <circle
+         cx="710.21082"
+         cy="172.82628"
+         r="4.5848131"
+         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         id="circle126-6"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         transform="matrix(0.17555572,0,0,0.17555572,575.02094,-0.12653331)"
+         id="g130-4"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle128-9" />
+      </g>
+      <g
+         transform="matrix(0.17555572,0,0,0.17555572,575.02094,13.708502)"
+         id="g134-9"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle132-0" />
+      </g>
     </g>
     <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4)"
-       d="m 579.43748,171.97916 c 66.14583,0 0,0 79.37499,0"
+       style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8)"
+       d="m 641.3496,158.75 c 31.75,31.75 11.11266,68.79167 48.15433,84.66667"
+       id="path33522-7-9-4-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="662.9577"
+       y="417.82663"
+       id="text12100-3"><tspan
+         sodipodi:role="line"
+         x="662.9577"
+         y="417.82663"
+         id="tspan22164-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#1e1e1e;fill-opacity:1;stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       id="text95979-4"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981-2);clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       transform="matrix(0.26458333,0,0,0.26458333,520.51446,40.848744)" />
+    <g
+       id="g155778"
+       transform="translate(-79.461599,-3.8098506)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       style="fill:#676767;fill-opacity:1">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#676767;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         x="2914.8689"
+         y="-287.99896"
+         id="text103754-0-0"
+         transform="matrix(0.26458333,0,0,0.26458333,-83.934004,137.71241)"><tspan
+           sodipodi:role="line"
+           id="tspan132726"
+           x="2914.8689"
+           y="-287.99896">δS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#676767;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="714.71655"
+         y="65.549271"
+         id="text149018"><tspan
+           sodipodi:role="line"
+           id="tspan149016"
+           style="fill:#676767;fill-opacity:1;stroke-width:0.264583"
+           x="714.71655"
+           y="65.549271">1</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="608.07611"
+       y="410.21448"
+       id="text103754-0-0-8"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan132726-3"
+         x="608.07611"
+         y="410.21448"
+         style="fill:#666666;fill-opacity:1;stroke-width:0.264583">δS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#666666;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="635.50092"
+       y="414.25107"
+       id="text149018-0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         style="fill:#666666;fill-opacity:1;stroke-width:0.264583"
+         x="635.50092"
+         y="414.25107"
+         id="tspan156533">2</tspan></text>
+    <g
+       id="g84021"
+       transform="translate(-0.84335518,6.3382008)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#585858;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="496.85287"
+         y="538.74506"
+         id="text5198"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan5196"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#585858;fill-opacity:1;stroke-width:0.264583"
+           x="496.85287"
+           y="538.74506">f</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#5a5a5a;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="510.88898"
+         y="545.03583"
+         id="text149018-0-8"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#5a5a5a;fill-opacity:1;stroke-width:0.264583"
+           x="510.88898"
+           y="545.03583"
+           id="tspan156533-9">2</tspan></text>
+    </g>
+    <g
+       id="g83905"
+       transform="translate(-0.89984119)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         xml:space="preserve"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#585858;fill-opacity:1;stroke:none;stroke-width:0.265;stroke-miterlimit:0;stroke-dasharray:none"
+         x="497.25378"
+         y="184.8764"
+         id="text3478"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan3476"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#585858;fill-opacity:1;stroke-width:0.265;stroke-miterlimit:0;stroke-dasharray:none"
+           x="497.25378"
+           y="184.8764">f</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#5a5a5a;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="509.97827"
+         y="191.02295"
+         id="text149018-0-8-0"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan168894"
+           x="509.97827"
+           y="191.02295">1</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,668.9615,208.09882)"
+       id="g22-2-8-3"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0" />
+    <g
+       transform="matrix(0.2944719,0,0,0.2944719,321.59675,248.64402)"
+       id="g120-9-4"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+      <text
+         x="1637.49"
+         y="714.13098"
+         style="font-size:22.644px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff"
+         id="text118-6-3" />
+    </g>
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8-7)"
+       d="m 639.76208,515.93746 c 24.13706,35.40942 -2.153,79.17235 48.15433,108.47916"
+       id="path33522-7-9-4-9-8"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g26-7-1"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       transform="matrix(0.17555572,0,0,0.17555572,508.4492,387.46642)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         transform="translate(-97.0267,-142.611)"
+         id="g8-0-2">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ff4f4f"
+           id="rect2-0-0" />
+        <g
+           transform="matrix(0.84428318,0,0,0.84428318,81.470119,174.9818)"
+           id="g6-3-7">
+          <text
+             x="729.93701"
+             y="296.96701"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+             id="text4-4-3"><tspan
+               sodipodi:role="line"
+               id="tspan179146-1"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+               x="729.93701"
+               y="296.96701">δR</tspan></text>
+        </g>
+      </g>
+      <g
+         transform="translate(-97.0267,134.127)"
+         id="g16-9-1">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#5c5cf6"
+           id="rect10-2-9" />
+      </g>
+      <g
+         transform="translate(-97.0267,-4.24165)"
+         id="g24-2-0">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#58d038"
+           id="rect18-5-5" />
+        <g
+           transform="translate(-13.5059,134.825)"
+           id="g22-2-6" />
+      </g>
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,491.63007,556.76217)"
+       id="g30-4-7"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="697.31403"
+         y="341.23401"
+         width="115.338"
+         height="115.338"
+         style="fill:#ebebeb"
+         id="rect28-3-7" />
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,491.41561,435.30465)"
+       id="g34-8-4"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="697.31403"
+         y="341.23401"
+         width="115.338"
+         height="115.338"
+         style="fill:#646464"
+         id="rect32-6-0" />
+    </g>
+    <g
+       transform="matrix(0.57894737,0,0,0.57894737,193.88256,100.49377)"
+       id="g38-0-6"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         transform="matrix(0.25601419,0,0,0.25601419,539.12366,548.11644)"
+         id="g6-3-9-4"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-6-7"><tspan
+             sodipodi:role="line"
+             id="tspan18304-2-4"
+             x="729.93701"
+             y="296.96701">δG</tspan></text>
+      </g>
+      <g
+         transform="matrix(0.25601419,0,0,0.25601419,539.74085,589.57674)"
+         id="g6-3-1-8"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-7-5"><tspan
+             sodipodi:role="line"
+             id="tspan18304-8-8"
+             x="729.93701"
+             y="296.96701">δB</tspan></text>
+      </g>
+      <g
+         transform="matrix(0.25601419,0,0,0.25601419,540.94962,631.0226)"
+         id="g6-3-5-2"
+         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+        <text
+           x="729.93701"
+           y="296.96701"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+           id="text4-4-74-6"><tspan
+             sodipodi:role="line"
+             id="tspan31955-0"
+             x="729.93701"
+             y="296.96701">δα</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,491.41561,459.59612)"
+       id="g42-9-6"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="697.31403"
+         y="341.23401"
+         width="115.338"
+         height="115.338"
+         style="fill:#ebebeb"
+         id="rect40-2-6" />
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,491.41561,483.88777)"
+       id="g46-2-4"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="697.31403"
+         y="341.23401"
+         width="115.338"
+         height="115.338"
+         style="fill:#ebebeb"
+         id="rect44-3-6" />
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,489.11349,389.52086)"
+       id="g58-1-2"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         cx="770.07098"
+         cy="1063.98"
+         r="26.115999"
+         style="fill:#ebebeb"
+         id="circle48-8-8" />
+      <g
+         transform="translate(0,78.8069)"
+         id="g52-3-9">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle50-4-6" />
+      </g>
+      <g
+         transform="translate(0,157.614)"
+         id="g56-2-0">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb"
+           id="circle54-2-7" />
+      </g>
+    </g>
+    <rect
+       x="698.49908"
+       y="421.84604"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#ff4f4f;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect2-0-4-7"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,591.14623,393.02636)"
+       id="g6-3-51-8"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-0-5"><tspan
+           sodipodi:role="line"
+           id="tspan179146-3-3"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="729.93701"
+           y="296.96701">δR</tspan></text>
+    </g>
+    <rect
+       x="698.49908"
+       y="470.42899"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#5c5cf6;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect10-2-7-3"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       x="698.49908"
+       y="446.13757"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#58d038;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect18-5-8-8"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       x="698.49908"
+       y="593.38586"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#646464;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect32-6-6-7"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,590.95913,417.3346)"
+       id="g6-3-9-0-9"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-6-4-3"><tspan
+           sodipodi:role="line"
+           id="tspan18304-2-6-7"
+           x="729.93701"
+           y="296.96701">δG</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,591.50003,441.33793)"
+       id="g6-3-1-7-8"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-7-6-7"><tspan
+           sodipodi:role="line"
+           id="tspan18304-8-0-4"
+           x="729.93701"
+           y="296.96701">δB</tspan></text>
+    </g>
+    <rect
+       x="698.49908"
+       y="616.90784"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#646464;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect88-8-9"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       x="698.49908"
+       y="495.45029"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect92-7-8"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       x="698.49908"
+       y="568.32489"
+       width="20.248245"
+       height="20.248245"
+       style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="rect96-4-8"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.55612717,0,0,0.55612717,294.32898,212.70972)"
+       id="g116-1-5"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="732.88501"
+         y="716.54999"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text114-9-8">0</text>
+    </g>
+    <circle
+       cx="708.62317"
+       cy="527.12897"
+       r="4.5848131"
+       style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       id="circle126-6-7"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,573.43341,354.17621)"
+       id="g130-4-1"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         cx="770.07098"
+         cy="1063.98"
+         r="26.115999"
+         style="fill:#ebebeb"
+         id="circle128-9-3" />
+    </g>
+    <g
+       transform="matrix(0.17555572,0,0,0.17555572,573.43341,368.01125)"
+       id="g134-9-8"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <circle
+         cx="770.07098"
+         cy="1063.98"
+         r="26.115999"
+         style="fill:#ebebeb"
+         id="circle132-0-0" />
+    </g>
+    <g
+       transform="matrix(0.14821874,0,0,0.14821874,591.52724,588.08813)"
+       id="g6-3-5-9-1-9"
+       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         x="729.93701"
+         y="296.96701"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:94.011px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+         id="text4-4-74-7-9-7"><tspan
+           sodipodi:role="line"
+           id="tspan31955-5-0-9"
+           x="729.93701"
+           y="296.96701">δα</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#676767;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="105.66022"
+       y="122.05463"
+       id="text103754"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan103752"
+         x="105.66022"
+         y="122.05463"
+         style="fill:#676767;fill-opacity:1;stroke-width:0.264583">Step N</tspan></text>
+    <rect
+       style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656565;stroke-width:3.5;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+       id="rect212860-1"
+       width="63.500004"
+       height="412.75"
+       x="111.28267"
+       y="138.5248"
+       rx="0"
+       ry="0.37499943"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#676767;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="1080.2335"
+       y="122.06028"
+       id="text103754-9"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan103752-4"
+         x="1080.2335"
+         y="122.06028"
+         style="fill:#676767;fill-opacity:1;stroke-width:0.264583">Step N+1</tspan></text>
+    <rect
+       style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656565;stroke-width:3.5;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+       id="rect212860-1-1"
+       width="63.500004"
+       height="412.75"
+       x="1102.5637"
+       y="138.52481"
+       rx="0"
+       ry="0.37499943"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#595959;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+       x="964.74115"
+       y="378.13504"
+       id="text38357-3-3"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan38355-2-0"
+         x="964.74115"
+         y="378.13504"
+         style="fill:#595959;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
+    <g
+       id="g4389"
+       transform="translate(-13.229191,2.1166667)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656568;stroke-width:3;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+         id="rect212860-1-7"
+         width="42.333321"
+         height="42.33334"
+         x="846.66669"
+         y="341.3125"
+         rx="0"
+         ry="0.37499943"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#595959;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+         x="848.32446"
+         y="377.07672"
+         id="text38357-3-3-6"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan38355-2-0-0"
+           x="848.32446"
+           y="377.07672"
+           style="fill:#595959;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
+    </g>
+    <rect
+       style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656568;stroke-width:3;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+       id="rect212860-1-7-9"
+       width="42.333321"
+       height="42.33334"
+       x="963.08331"
+       y="342.37082"
+       rx="0"
+       ry="0.37499943"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g4368"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.198437;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+         x="813.30792"
+         y="547.005"
+         id="text77792-2-2-0"
+         transform="rotate(0.05502665)"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan55189-4"
+           x="813.30792"
+           y="547.005">masking</tspan></text>
+      <rect
+         style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656568;stroke-width:3;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+         id="rect212860-0-9-2"
+         width="100.54169"
+         height="31.750084"
+         x="804.33331"
+         y="526.52081"
+         rx="0.37499943"
+         ry="0.37499943"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text78233"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect78235);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#1a1a1a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.198437;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="812.9649"
+       y="189.81761"
+       id="text77792-2-2-0-6"
+       transform="rotate(0.05502665)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan55189-4-2"
+         x="812.9649"
+         y="189.81761">masking</tspan></text>
+    <rect
+       style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#656568;stroke-width:3;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1"
+       id="rect212860-0-9-2-5"
+       width="100.54169"
+       height="31.750084"
+       x="804.33331"
+       y="169.33327"
+       rx="0.37499943"
+       ry="0.37499943"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g82832"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         id="g86-1"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none"
+         transform="matrix(0.3175,0,0,0.3175,925.21905,87.798304)">
+        <g
+           transform="translate(-97.0267,-142.611)"
+           id="g68-1"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ff4f4f;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect62-7" />
+          <g
+             transform="translate(-7.22778,132.974)"
+             id="g66-0"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text64-4">R</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,134.127)"
+           id="g76-0"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#5c5cf6;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect70-85" />
+          <g
+             transform="translate(-7.22778,136.837)"
+             id="g74-1"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text72-66">B</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,-4.24165)"
+           id="g84-2"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#58d038;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect78-1" />
+          <g
+             transform="translate(-13.5059,134.825)"
+             id="g82-9"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text80-64">G</text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.8014,393.97689)"
+         id="g90-8"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect88-0" />
+      </g>
+      <g
+         id="g82706-1"
+         transform="translate(1.0525781,45.177474)"
+         style="display:inline">
+        <g
+           id="g82790">
+          <g
+             transform="matrix(0.14821874,0,0,0.14821874,1016.4481,441.20595)"
+             id="g6-3-5-9-8-0"
+             style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+             inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+             inkscape:export-xdpi="96"
+             inkscape:export-ydpi="96">
+            <text
+               x="694.40845"
+               y="296.35446"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:261.813px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+               id="text4-4-74-7-9-8"><tspan
+                 sodipodi:role="line"
+                 id="tspan31955-5-3-5"
+                 x="694.40845"
+                 y="296.35446">α</tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="1141.9467"
+             y="489.82675"
+             id="text48409-0"><tspan
+               sodipodi:role="line"
+               id="tspan82783"
+               x="1141.9467"
+               y="489.82675">2</tspan></text>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,174.31578)"
+         id="g94-8"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect92-1" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,306.11257)"
+         id="g98-0"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect96-2" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,350.04473)"
+         id="g102-2"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect100-9" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,889.8173,6.3694496)"
+         id="g136-1"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="circle126-70" />
+        <g
+           transform="translate(0,78.8069)"
+           id="g130-6"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="circle128-0" />
+        </g>
+        <g
+           transform="translate(0,157.614)"
+           id="g134-85"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="circle132-3" />
+        </g>
+      </g>
+      <g
+         id="g82706"
+         transform="translate(0.65437286,1.2453131)">
+        <g
+           transform="matrix(0.14821874,0,0,0.14821874,1016.4481,441.20595)"
+           id="g6-3-5-9-8"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96">
+          <text
+             x="694.40845"
+             y="296.35446"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:261.813px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+             id="text4-4-74-7-9"><tspan
+               sodipodi:role="line"
+               id="tspan31955-5-3"
+               x="694.40845"
+               y="296.35446">α</tspan></text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="1141.9467"
+           y="489.82675"
+           id="text48409"><tspan
+             sodipodi:role="line"
+             id="tspan48407"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+             x="1141.9467"
+             y="489.82675">1</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g82832-6"
+       style="display:inline"
+       transform="translate(-991.28041,-1.0101349e-5)"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         id="g86-1-2"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none"
+         transform="matrix(0.3175,0,0,0.3175,925.21905,87.798304)">
+        <g
+           transform="translate(-97.0267,-142.611)"
+           id="g68-1-5"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#ff4f4f;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect62-7-8" />
+          <g
+             transform="translate(-7.22778,132.974)"
+             id="g66-0-6"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text64-4-2">R</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,134.127)"
+           id="g76-0-8"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#5c5cf6;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect70-85-4" />
+          <g
+             transform="translate(-7.22778,136.837)"
+             id="g74-1-7"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text72-66-2">B</text>
+          </g>
+        </g>
+        <g
+           transform="translate(-97.0267,-4.24165)"
+           id="g84-2-4"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <rect
+             x="697.31403"
+             y="341.23401"
+             width="115.338"
+             height="115.338"
+             style="fill:#58d038;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="rect78-1-0" />
+          <g
+             transform="translate(-13.5059,134.825)"
+             id="g82-9-6"
+             style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+            <text
+               x="729.93701"
+               y="296.96701"
+               style="font-size:94.011px;font-family:ArialMT, Arial, sans-serif;fill:#ffffff;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+               id="text80-64-2">G</text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.8014,393.97689)"
+         id="g90-8-9"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect88-0-9" />
+      </g>
+      <g
+         id="g82706-1-0"
+         transform="translate(1.0525781,45.177474)"
+         style="display:inline">
+        <g
+           id="g82790-8">
+          <g
+             transform="matrix(0.14821874,0,0,0.14821874,1016.4481,441.20595)"
+             id="g6-3-5-9-8-0-1"
+             style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+             inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+             inkscape:export-xdpi="96"
+             inkscape:export-ydpi="96">
+            <text
+               x="694.40845"
+               y="296.35446"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:261.813px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+               id="text4-4-74-7-9-8-3"><tspan
+                 sodipodi:role="line"
+                 id="tspan31955-5-3-5-1"
+                 x="694.40845"
+                 y="296.35446">α</tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="1141.9467"
+             y="489.82675"
+             id="text48409-0-1"><tspan
+               sodipodi:role="line"
+               id="tspan82783-0"
+               x="1141.9467"
+               y="489.82675">2</tspan></text>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,174.31578)"
+         id="g94-8-3"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect92-1-4" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,306.11257)"
+         id="g98-0-0"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect96-2-3" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,894.41353,350.04473)"
+         id="g102-2-9"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <rect
+           x="697.31403"
+           y="341.23401"
+           width="115.338"
+           height="115.338"
+           style="fill:#646464;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="rect100-9-1" />
+      </g>
+      <g
+         transform="matrix(0.3175,0,0,0.3175,889.8173,6.3694496)"
+         id="g136-1-9"
+         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:11.0236;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none">
+        <circle
+           cx="770.07098"
+           cy="1063.98"
+           r="26.115999"
+           style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+           id="circle126-70-6" />
+        <g
+           transform="translate(0,78.8069)"
+           id="g130-6-9"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="circle128-0-3" />
+        </g>
+        <g
+           transform="translate(0,157.614)"
+           id="g134-85-3"
+           style="stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none">
+          <circle
+             cx="770.07098"
+             cy="1063.98"
+             r="26.115999"
+             style="fill:#ebebeb;stroke-width:11.0236;stroke-miterlimit:0;stroke-dasharray:none"
+             id="circle132-3-8" />
+        </g>
+      </g>
+      <g
+         id="g82706-0"
+         transform="translate(0.65437286,1.2453131)">
+        <g
+           transform="matrix(0.14821874,0,0,0.14821874,1016.4481,441.20595)"
+           id="g6-3-5-9-8-5"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96">
+          <text
+             x="694.40845"
+             y="296.35446"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:261.813px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+             id="text4-4-74-7-9-6"><tspan
+               sodipodi:role="line"
+               id="tspan31955-5-3-6"
+               x="694.40845"
+               y="296.35446">α</tspan></text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="1141.9467"
+           y="489.82675"
+           id="text48409-4"><tspan
+             sodipodi:role="line"
+             id="tspan48407-0"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.1111px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+             x="1141.9467"
+             y="489.82675">1</tspan></text>
+      </g>
+    </g>
+    <path
+       style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.24999973;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
+       d="M 260.11696,497.41668 C 311.44595,483.66311 265.14387,332.10439 319.64821,317.5"
+       id="path33522-7-9-4"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.24999973;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7)"
+       d="M 383.64583,366.1833 C 436.5625,405.87079 396.875,511.70412 476.25,524.93329"
+       id="path33522-7-9-4-92-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4)"
+       d="m 533.42997,169.75134 h 56.62092"
        id="path33522-7-9-4-92-6"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9)"
-       d="m 980.54534,357.1875 c 66.14506,0 0,0 79.37426,0"
-       id="path33522-7-9-4-92-6-2"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#656565;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-5)"
-       d="m 582.08333,529.16666 h 76.20006"
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.33333299;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-5)"
+       d="m 534.44412,529.50107 h 56.62092"
        id="path33522-7-9-4-92-8"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/images/g60.png"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.24999973;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-4)"
+       d="M 383.64583,333.90418 C 436.5625,294.21669 396.875,188.38336 476.25,175.15419"
+       id="path33522-7-9-4-92-9-2"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="text"
+     style="display:inline" />
 </svg>
