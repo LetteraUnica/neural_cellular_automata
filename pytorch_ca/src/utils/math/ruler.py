@@ -3,7 +3,7 @@ import torch
 
 def parameters_to_vector(model: torch.nn.Module):
     """Given a torch model returns a torch tensor with all its parameters"""
-    return torch.cat([p.data.view(-1) for p in model.parameters()], dim=0)
+    return torch.cat([p.ravel() for p in model.parameters()], dim=0)
 
 
 def convert(models):
