@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1000mm"
+   height="1000mm"
+   viewBox="0 0 1000 1000"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="asd.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.44661667"
+     inkscape:cx="1740.8665"
+     inkscape:cy="846.36339"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g69177">
+    <inkscape:grid
+       type="xygrid"
+       id="grid824"
+       color="#8181bd"
+       opacity="0.1254902"
+       empcolor="#8585b9"
+       empopacity="0.25098039"
+       spacingx="1.0583333"
+       spacingy="1.0583333" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g12386"
+       style="fill:#ecceba;fill-opacity:1;stroke-width:10;stroke-miterlimit:2;stroke-dasharray:none">
+      <g
+         id="g30184"
+         transform="translate(204.04167,-26.125012)"
+         inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-7"
+           width="40"
+           height="40"
+           x="166.375"
+           y="155.79166" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9"
+           width="40"
+           height="40"
+           x="125.37499"
+           y="278.79166" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93"
+           width="40"
+           height="40"
+           x="166.37498"
+           y="319.79169" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5"
+           width="40"
+           height="40"
+           x="166.37498"
+           y="278.79166" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5-3"
+           width="40"
+           height="40"
+           x="166.37498"
+           y="196.79167" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-0"
+           width="40"
+           height="40"
+           x="207.37498"
+           y="278.79166" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-7-2"
+           width="40"
+           height="40"
+           x="207.37498"
+           y="237.79167" />
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-8-0"
+           width="40"
+           height="40"
+           x="207.37498"
+           y="196.79167" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-2-7"
+           width="40"
+           height="40"
+           x="207.375"
+           y="155.79166" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-9-4"
+           width="40"
+           height="40"
+           x="248.375"
+           y="155.79166" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-2"
+           width="40"
+           height="40"
+           x="207.37498"
+           y="319.79169" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-9"
+           width="40"
+           height="40"
+           x="248.37498"
+           y="-359.79169"
+           transform="scale(1,-1)" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5-6"
+           width="40"
+           height="40"
+           x="248.37498"
+           y="278.79166" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-5-3"
+           width="40"
+           height="40"
+           x="248.37498"
+           y="237.79167" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5-3-1"
+           width="40"
+           height="40"
+           x="248.37498"
+           y="196.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-6"
+           width="40"
+           height="40"
+           x="125.37498"
+           y="155.79166" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-9-1-0"
+           width="40"
+           height="40"
+           x="84.374985"
+           y="155.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063"
+           width="40"
+           height="40"
+           x="125.37499"
+           y="319.79169" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-7"
+           width="40"
+           height="40"
+           x="125.37499"
+           y="237.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-8"
+           width="40"
+           height="40"
+           x="125.37499"
+           y="196.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-5"
+           width="40"
+           height="40"
+           x="166.37498"
+           y="237.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-9-1"
+           width="40"
+           height="40"
+           x="84.374985"
+           y="319.79169" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5-6-9"
+           width="40"
+           height="40"
+           x="84.374985"
+           y="278.79166" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-5-3-0"
+           width="40"
+           height="40"
+           x="84.374985"
+           y="237.79167" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-9-5-3-1-5"
+           width="40"
+           height="40"
+           x="84.374985"
+           y="196.79167" />
+      </g>
+      <g
+         id="g69177">
+        <rect
+           style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-6"
+           width="40"
+           height="40"
+           x="524.62085"
+           y="211.66664"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           style="fill:#d8d8d8;fill-opacity:1;stroke:#b2b2b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-9-47"
+           width="40"
+           height="40"
+           x="524.62085"
+           y="278.9791"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+           id="rect18063-93-5-4"
+           width="40"
+           height="40"
+           x="524.62085"
+           y="144.3542"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.64583"
+           x="578.16254"
+           y="170.75932"
+           id="text32195"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan32193"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#666666;stroke-width:2.64583"
+             x="578.16254"
+             y="170.75932">Mature</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#666666;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-miterlimit:2;stroke-dasharray:none"
+           x="578.90326"
+           y="236.39331"
+           id="text32195-7"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan64583"
+             x="578.90326"
+             y="236.39331">Growing</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#666666;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-miterlimit:2;stroke-dasharray:none"
+           x="578.16254"
+           y="303.38745"
+           id="text32195-3"
+           inkscape:export-filename="C:\Users\loryc\Desktop\neural_cellular_automata\pytorch_ca\Presentation_images\asd.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan67235"
+             x="578.16254"
+             y="303.38745">Empty</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
