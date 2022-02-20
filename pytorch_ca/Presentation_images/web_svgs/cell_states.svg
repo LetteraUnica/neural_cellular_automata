@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="360.07mm" height="207.03mm" version="1.1" viewBox="0 0 360.07 207.03" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-287.4 -128.16)">
+  <rect x="287.4" y="128.2" width="165.14" height="206.99" fill="#deaa87" stroke-miterlimit="2" stroke-width="0"/>
+ </g>
+ <g stroke-miterlimit="2">
+  <rect x="124.01" y="1.5038" width="81" height="204" fill="#b3b3b3" stroke-width="0"/>
+  <rect x="124.01" y="1.5038" width="40" height="40" fill="#e6e6e6" stroke="#b2b2b2"/>
+  <path d="m165.01 1.5038h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m164.51 0v42.003h42.003v-42.003zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+ </g>
+ <g fill="#e6e6e6" stroke-miterlimit="2">
+  <g stroke="#b2b2b2">
+   <rect x="124.01" y="165.5" width="40" height="40"/>
+   <rect transform="scale(1,-1)" x="165.01" y="-205.5" width="40" height="40"/>
+   <rect x="165.01" y="124.5" width="40" height="40"/>
+   <rect x="165.01" y="83.504" width="40" height="40"/>
+  </g>
+  <path d="m165.01 42.504h40v40h-40z" color="#000000" style="-inkscape-stroke:none"/>
+ </g>
+ <g stroke-miterlimit="2">
+  <path d="m164.51 42.003v41h41v-41zm1 1h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+  <path d="m165.01 42.504h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m164.51 41v42.003h42.003v-42.003zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+  <path d="m165.01 83.504h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m164.51 82v42.003h42.003v-42.003zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+  <path d="m165.01 124.5h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m164.51 123v42.003h42.003v-42.003zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+ </g>
+ <g fill="#deaa87" stroke="#deaa87" stroke-miterlimit="2">
+  <rect x="42.012" y="1.5038" width="40" height="40"/>
+  <rect x=".84589" y="1.3377" width="40" height="40"/>
+  <rect x="42.012" y="165.5" width="40" height="40"/>
+  <rect x="42.012" y="83.504" width="40" height="40"/>
+  <rect x="42.012" y="42.504" width="40" height="40"/>
+  <rect x="83.012" y="83.504" width="40" height="40"/>
+  <rect x="1.012" y="165.5" width="40" height="40"/>
+  <rect x="1.012" y="124.5" width="40" height="40"/>
+  <rect x="1.012" y="83.504" width="40" height="40"/>
+  <rect x="1.012" y="42.504" width="40" height="40"/>
+ </g>
+ <g fill="#ffe8ce" stroke="#deaa87" stroke-miterlimit="2">
+  <rect x="83.012" y="1.5038" width="40" height="40"/>
+  <rect x="42.012" y="124.5" width="40" height="40"/>
+  <rect x="83.012" y="165.5" width="40" height="40"/>
+  <rect x="83.012" y="124.5" width="40" height="40"/>
+  <rect x="83.012" y="42.504" width="40" height="40"/>
+  <rect x="124.01" y="124.5" width="40" height="40"/>
+ </g>
+ <g stroke-miterlimit="2">
+  <rect x="124.01" y="83.504" width="40" height="40" fill="#ffe7cc" stroke="#deaa87"/>
+  <rect x="124.01" y="42.504" width="40" height="40" fill="#ffe8ce" stroke="#deaa87"/>
+  <path d="m165.01 165.5h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m164.51 164v43.005h42.003v-43.005zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+  <path d="m124.01 1.5038h40v40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m123.51 0v42.003h41.006v-42.003zm1 2.0031h39v39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+  <path d="m124.01 205.5h40v-40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
+  <path d="m123.51 207.01v-42.003h41.006v42.003zm1-2.0031h39v-39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
+ </g>
+ <g stroke-miterlimit="2">
+  <rect x="237.22" y="16.108" width="40" height="40" fill="#deaa87" stroke="#deaa87" stroke-width="2"/>
+  <text x="290.75784" y="42.16061" fill="#666666" font-family="sans-serif" font-size="16.933px" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.75784" y="42.16061" fill="#666666" font-family="sans-serif" font-size="16.933px" stroke-miterlimit="2" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Mature</tspan></text>
+  <text x="291.49857" y="108.09227" fill="#666666" font-family="sans-serif" font-size="16.933px" stroke-width="2.6458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="291.49857" y="108.09227">Growing</tspan></text>
+  <rect x="237.22" y="83.421" width="40" height="40" fill="#ffe8ce" stroke="#deaa87" stroke-width="2"/>
+  <rect x="237.22" y="150.73" width="40" height="40" fill="#e6e6e6" stroke="#b2b2b2" stroke-width="2"/>
+  <text x="290.75784" y="175.1443" fill="#666666" font-family="sans-serif" font-size="16.933px" stroke-width="2.6458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.75784" y="175.1443">Empty</tspan></text>
+ </g>
+</svg>

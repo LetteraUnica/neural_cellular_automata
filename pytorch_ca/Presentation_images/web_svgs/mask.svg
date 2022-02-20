@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="364" height="247" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-14 -14)">
+  <g fill="#ffd42a">
+   <rect class="square" x="248" y="14" width="78" height="78" stroke-width="6" column="19" row="2"/>
+   <rect class="square" x="261" y="27" width="13" height="13" column="20" row="2"/>
+   <rect class="square" x="274" y="27" width="13" height="13" column="21" row="2"/>
+   <rect class="square" x="287" y="27" width="13" height="13" column="22" row="2"/>
+   <rect class="square" x="300" y="27" width="13" height="13" column="23" row="2"/>
+   <rect class="square" x="222" y="40" width="156" height="78" stroke-width="8.4853" column="17" row="3"/>
+   <rect class="square" x="235" y="40" width="13" height="13" column="18" row="3"/>
+   <rect class="square" x="248" y="14" width="78" height="39" stroke-width="4.2426" column="19" row="3"/>
+   <rect class="square" x="261" y="40" width="13" height="13" column="20" row="3"/>
+   <rect class="square" x="274" y="40" width="13" height="13" column="21" row="3"/>
+   <rect class="square" x="287" y="40" width="13" height="13" column="22" row="3"/>
+   <rect class="square" x="300" y="40" width="13" height="13" column="23" row="3"/>
+   <rect class="square" x="313" y="40" width="13" height="13" column="24" row="3"/>
+   <rect class="square" x="222" y="53" width="13" height="13" column="17" row="4"/>
+   <rect class="square" x="235" y="53" width="13" height="13" column="18" row="4"/>
+   <rect class="square" x="248" y="53" width="13" height="13" column="19" row="4"/>
+   <rect class="square" x="261" y="53" width="13" height="13" column="20" row="4"/>
+   <rect class="square" x="274" y="53" width="13" height="13" column="21" row="4"/>
+   <rect class="square" x="287" y="53" width="13" height="13" column="22" row="4"/>
+   <rect class="square" x="300" y="53" width="13" height="13" column="23" row="4"/>
+   <rect class="square" x="313" y="53" width="13" height="13" column="24" row="4"/>
+   <rect class="square" x="222" y="53" width="156" height="78" stroke-width="8.4853" column="25" row="4"/>
+   <rect class="square" x="339" y="53" width="13" height="13" column="26" row="4"/>
+   <rect class="square" x="352" y="53" width="13" height="13" column="27" row="4"/>
+   <rect class="square" x="222" y="66" width="13" height="13" column="17" row="5"/>
+   <rect class="square" x="235" y="66" width="13" height="13" column="18" row="5"/>
+   <rect class="square" x="248" y="66" width="13" height="13" column="19" row="5"/>
+   <rect class="square" x="261" y="66" width="13" height="13" column="20" row="5"/>
+   <rect class="square" x="274" y="66" width="13" height="13" column="21" row="5"/>
+   <rect class="square" x="287" y="66" width="13" height="13" column="22" row="5"/>
+   <rect class="square" x="300" y="66" width="13" height="13" column="23" row="5"/>
+   <rect class="square" x="313" y="66" width="13" height="13" column="24" row="5"/>
+   <rect class="square" x="326" y="66" width="13" height="13" column="25" row="5"/>
+   <rect class="square" x="339" y="66" width="13" height="13" column="26" row="5"/>
+   <rect class="square" x="352" y="66" width="13" height="13" column="27" row="5"/>
+   <rect class="square" x="209" y="79" width="13" height="13" column="16" row="6"/>
+   <rect class="square" x="222" y="79" width="13" height="13" column="17" row="6"/>
+   <rect class="square" x="235" y="79" width="13" height="13" column="18" row="6"/>
+   <rect class="square" x="248" y="79" width="13" height="13" column="19" row="6"/>
+   <rect class="square" x="261" y="79" width="13" height="13" column="20" row="6"/>
+   <rect class="square" x="274" y="79" width="13" height="13" column="21" row="6"/>
+   <rect class="square" x="287" y="79" width="13" height="13" column="22" row="6"/>
+   <rect class="square" x="300" y="79" width="13" height="13" column="23" row="6"/>
+   <rect class="square" x="313" y="79" width="13" height="13" column="24" row="6"/>
+   <rect class="square" x="326" y="79" width="13" height="13" column="25" row="6"/>
+   <rect class="square" x="339" y="79" width="13" height="13" column="26" row="6"/>
+   <rect class="square" x="352" y="79" width="13" height="13" column="27" row="6"/>
+   <rect class="square" x="196" y="92" width="13" height="13" column="15" row="7"/>
+   <rect class="square" x="209" y="92" width="13" height="13" column="16" row="7"/>
+   <rect class="square" x="222" y="92" width="13" height="13" column="17" row="7"/>
+   <rect class="square" x="222" y="105" width="13" height="13" column="17" row="8"/>
+   <rect class="square" x="235" y="92" width="13" height="13" column="18" row="7"/>
+   <rect class="square" x="248" y="92" width="13" height="13" column="19" row="7"/>
+   <rect class="square" x="261" y="92" width="13" height="13" column="20" row="7"/>
+   <rect class="square" x="274" y="92" width="13" height="13" column="21" row="7"/>
+   <rect class="square" x="287" y="92" width="13" height="13" column="22" row="7"/>
+   <rect class="square" x="300" y="92" width="13" height="13" column="23" row="7"/>
+   <rect class="square" x="313" y="92" width="13" height="13" column="24" row="7"/>
+   <rect class="square" x="326" y="92" width="13" height="13" column="25" row="7"/>
+   <rect class="square" x="339" y="92" width="13" height="13" column="26" row="7"/>
+   <rect class="square" x="352" y="92" width="13" height="13" column="27" row="7"/>
+   <rect class="square" x="183" y="105" width="182" height="78" stroke-width="9.1652" column="14" row="8"/>
+   <rect class="square" x="196" y="105" width="13" height="13" column="15" row="8"/>
+   <rect class="square" x="209" y="53" width="91" height="65" stroke-width="5.9161" column="16" row="8"/>
+   <rect class="square" x="235" y="105" width="13" height="13" column="18" row="8"/>
+   <rect class="square" x="248" y="105" width="13" height="13" column="19" row="8"/>
+   <rect class="square" x="261" y="105" width="13" height="13" column="20" row="8"/>
+   <rect class="square" x="274" y="105" width="13" height="13" column="21" row="8"/>
+   <rect class="square" x="287" y="105" width="13" height="13" column="22" row="8"/>
+   <rect class="square" x="300" y="105" width="13" height="13" column="23" row="8"/>
+   <rect class="square" x="313" y="105" width="13" height="13" column="24" row="8"/>
+   <rect class="square" x="326" y="105" width="13" height="13" column="25" row="8"/>
+   <rect class="square" x="339" y="105" width="13" height="13" column="26" row="8"/>
+   <rect class="square" x="352" y="105" width="13" height="13" column="27" row="8"/>
+   <rect class="square" x="174.45" y="118" width="21.553" height="13" stroke-width="1.2876" column="14" row="9"/>
+   <rect class="square" x="196" y="118" width="13" height="13" column="15" row="9"/>
+   <rect class="square" x="209" y="118" width="13" height="13" column="16" row="9"/>
+   <rect class="square" x="222" y="118" width="13" height="13" column="17" row="9"/>
+   <rect class="square" x="235" y="118" width="13" height="13" column="18" row="9"/>
+   <rect class="square" x="248" y="118" width="13" height="13" column="19" row="9"/>
+   <rect class="square" x="261" y="118" width="13" height="13" column="20" row="9"/>
+   <rect class="square" x="274" y="118" width="13" height="13" column="21" row="9"/>
+   <rect class="square" x="287" y="118" width="13" height="13" column="22" row="9"/>
+   <rect class="square" x="300" y="118" width="13" height="13" column="23" row="9"/>
+   <rect class="square" x="313" y="118" width="13" height="13" column="24" row="9"/>
+   <rect class="square" x="326" y="118" width="13" height="13" column="25" row="9"/>
+   <rect class="square" x="339" y="118" width="13" height="13" column="26" row="9"/>
+   <rect class="square" x="352" y="118" width="13" height="13" column="27" row="9"/>
+   <rect class="square" x="178.11" y="131" width="17.887" height="20.187" stroke-width="1.4618" column="14" row="10"/>
+   <rect class="square" x="196" y="131" width="13" height="13" column="15" row="10"/>
+   <rect class="square" x="222" y="131" width="13" height="13" column="17" row="10"/>
+   <rect class="square" x="235" y="131" width="13" height="13" column="18" row="10"/>
+   <rect class="square" x="248" y="131" width="13" height="13" column="19" row="10"/>
+   <rect class="square" x="261" y="131" width="13" height="13" column="20" row="10"/>
+   <rect class="square" x="274" y="131" width="13" height="13" column="21" row="10"/>
+   <rect class="square" x="287" y="131" width="13" height="13" column="22" row="10"/>
+   <rect class="square" x="300" y="131" width="13" height="13" column="23" row="10"/>
+   <rect class="square" x="313" y="131" width="13" height="13" column="24" row="10"/>
+   <rect class="square" x="326" y="131" width="13" height="13" column="25" row="10"/>
+   <rect class="square" x="339" y="131" width="13" height="13" column="26" row="10"/>
+   <rect class="square" x="352" y="131" width="13" height="13" column="27" row="10"/>
+   <rect class="square" x="222" y="144" width="13" height="13" column="17" row="11"/>
+   <rect class="square" x="235" y="144" width="13" height="13" column="18" row="11"/>
+   <rect class="square" x="248" y="144" width="13" height="13" column="19" row="11"/>
+   <rect class="square" x="261" y="144" width="13" height="13" column="20" row="11"/>
+   <rect class="square" x="274" y="144" width="13" height="13" column="21" row="11"/>
+   <rect class="square" x="287" y="144" width="13" height="13" column="22" row="11"/>
+   <rect class="square" x="300" y="144" width="13" height="13" column="23" row="11"/>
+   <rect class="square" x="313" y="144" width="13" height="13" column="24" row="11"/>
+   <rect class="square" x="326" y="144" width="13" height="13" column="25" row="11"/>
+   <rect class="square" x="339" y="144" width="13" height="13" column="26" row="11"/>
+   <rect class="square" x="235" y="157" width="13" height="13" column="18" row="12"/>
+   <rect class="square" x="248" y="157" width="13" height="13" column="19" row="12"/>
+   <rect class="square" x="261" y="157" width="13" height="13" column="20" row="12"/>
+   <rect class="square" x="274" y="157" width="13" height="13" column="21" row="12"/>
+   <rect class="square" x="287" y="157" width="13" height="13" column="22" row="12"/>
+   <rect class="square" x="300" y="157" width="13" height="13" column="23" row="12"/>
+   <rect class="square" x="313" y="157" width="13" height="13" column="24" row="12"/>
+   <rect class="square" x="326" y="157" width="13" height="13" column="25" row="12"/>
+   <rect class="square" x="339" y="157" width="13" height="13" column="26" row="12"/>
+   <rect class="square" x="235" y="170" width="117" height="39" stroke-width="5.1962" column="18" row="13"/>
+   <rect class="square" x="248" y="170" width="13" height="13" column="19" row="13"/>
+   <rect class="square" x="261" y="170" width="13" height="13" column="20" row="13"/>
+   <rect class="square" x="274" y="170" width="13" height="13" column="21" row="13"/>
+   <rect class="square" x="287" y="170" width="13" height="13" column="22" row="13"/>
+   <rect class="square" x="300" y="170" width="13" height="13" column="23" row="13"/>
+   <rect class="square" x="313" y="170" width="13" height="13" column="24" row="13"/>
+   <rect class="square" x="326" y="170" width="13" height="13" column="25" row="13"/>
+   <rect class="square" x="235" y="183" width="13" height="17.472" stroke-width="1.1593" column="18" row="14"/>
+   <rect class="square" x="248" y="183" width="52" height="39" stroke-width="3.4641" column="19" row="14"/>
+   <rect class="square" x="261" y="183" width="13" height="13" column="20" row="14"/>
+   <rect class="square" x="274" y="183" width="13" height="13" column="21" row="14"/>
+   <rect class="square" x="287" y="183" width="13" height="13" column="22" row="14"/>
+   <rect class="square" x="300" y="183" width="13" height="13" column="23" row="14"/>
+   <rect class="square" x="313" y="183" width="13" height="13" column="24" row="14"/>
+   <rect class="square" x="326" y="183" width="13" height="13" column="25" row="14"/>
+   <rect class="square" x="261" y="196" width="13" height="13" column="20" row="15"/>
+   <rect class="square" x="274" y="196" width="13" height="13" column="21" row="15"/>
+   <rect class="square" x="209" y="131" width="13" height="13" column="16" row="10"/>
+  </g>
+ </g>
+ <g transform="translate(-14 -14)">
+  <g fill="#f55">
+   <rect class="square" x="131" y="27" width="65" height="78" stroke-width="5.4772" column="10" row="2"/>
+   <rect class="square" x="144" y="27" width="13" height="13" column="11" row="2"/>
+   <rect class="square" x="157" y="27" width="13" height="13" column="12" row="2"/>
+   <rect class="square" x="170" y="27" width="13" height="13" column="13" row="2"/>
+   <rect class="square" x="183" y="27" width="13" height="13" column="14" row="2"/>
+   <rect class="square" x="92" y="40" width="13" height="13" column="7" row="3"/>
+   <rect class="square" x="105" y="40" width="13" height="13" column="8" row="3"/>
+   <rect class="square" x="118" y="40" width="13" height="13" column="9" row="3"/>
+   <rect class="square" x="79" y="40" width="65" height="221" stroke-width="9.2195" column="10" row="3"/>
+   <rect class="square" x="144" y="40" width="13" height="13" column="11" row="3"/>
+   <rect class="square" x="157" y="40" width="13" height="13" column="12" row="3"/>
+   <rect class="square" x="170" y="40" width="13" height="13" column="13" row="3"/>
+   <rect class="square" x="183" y="40" width="26" height="52" stroke-width="2.8284" column="14" row="3"/>
+   <rect class="square" x="196" y="40" width="13" height="13" column="15" row="3"/>
+   <rect class="square" x="79" y="53" width="13" height="13" column="6" row="4"/>
+   <rect class="square" x="92" y="53" width="13" height="13" column="7" row="4"/>
+   <rect class="square" x="105" y="53" width="13" height="13" column="8" row="4"/>
+   <rect class="square" x="118" y="53" width="13" height="13" column="9" row="4"/>
+   <rect class="square" x="131" y="53" width="13" height="13" column="10" row="4"/>
+   <rect class="square" x="144" y="53" width="13" height="13" column="11" row="4"/>
+   <rect class="square" x="157" y="53" width="13" height="13" column="12" row="4"/>
+   <rect class="square" x="170" y="53" width="13" height="13" column="13" row="4"/>
+   <rect class="square" x="183" y="53" width="13" height="13" column="14" row="4"/>
+   <rect class="square" x="196" y="53" width="26" height="26" stroke-width="2" column="15" row="4"/>
+   <rect class="square" x="209" y="53" width="13" height="13" column="16" row="4"/>
+   <rect class="square" x="66" y="66" width="13" height="13" column="5" row="5"/>
+   <rect class="square" x="53" y="66" width="39" height="156" stroke-width="6" column="6" row="5"/>
+   <rect class="square" x="92" y="66" width="13" height="13" column="7" row="5"/>
+   <rect class="square" x="105" y="66" width="13" height="13" column="8" row="5"/>
+   <rect class="square" x="118" y="66" width="13" height="13" column="9" row="5"/>
+   <rect class="square" x="131" y="66" width="13" height="13" column="10" row="5"/>
+   <rect class="square" x="144" y="66" width="13" height="13" column="11" row="5"/>
+   <rect class="square" x="157" y="66" width="13" height="13" column="12" row="5"/>
+   <rect class="square" x="170" y="66" width="13" height="13" column="13" row="5"/>
+   <rect class="square" x="183" y="66" width="13" height="13" column="14" row="5"/>
+   <rect class="square" x="196" y="66" width="13" height="13" column="15" row="5"/>
+   <rect class="square" x="209" y="66" width="13" height="13" column="16" row="5"/>
+   <rect class="square" x="66" y="79" width="13" height="13" column="5" row="6"/>
+   <rect class="square" x="79" y="79" width="13" height="13" column="6" row="6"/>
+   <rect class="square" x="92" y="79" width="13" height="13" column="7" row="6"/>
+   <rect class="square" x="105" y="79" width="13" height="13" column="8" row="6"/>
+   <rect class="square" x="118" y="79" width="13" height="13" column="9" row="6"/>
+   <rect class="square" x="131" y="79" width="13" height="13" column="10" row="6"/>
+   <rect class="square" x="144" y="79" width="13" height="13" column="11" row="6"/>
+   <rect class="square" x="157" y="79" width="13" height="13" column="12" row="6"/>
+   <rect class="square" x="170" y="79" width="13" height="13" column="13" row="6"/>
+   <rect class="square" x="183" y="79" width="13" height="13" column="14" row="6"/>
+   <rect class="square" x="196" y="79" width="13" height="13" column="15" row="6"/>
+   <rect class="square" x="53" y="92" width="13" height="13" column="4" row="7"/>
+   <rect class="square" x="66" y="92" width="13" height="13" column="5" row="7"/>
+   <rect class="square" x="79" y="92" width="13" height="13" column="6" row="7"/>
+   <rect class="square" x="92" y="92" width="13" height="13" column="7" row="7"/>
+   <rect class="square" x="105" y="92" width="13" height="13" column="8" row="7"/>
+   <rect class="square" x="118" y="92" width="13" height="13" column="9" row="7"/>
+   <rect class="square" x="131" y="92" width="39" height="169" stroke-width="6.245" column="10" row="7"/>
+   <rect class="square" x="144" y="92" width="13" height="13" column="11" row="7"/>
+   <rect class="square" x="157" y="92" width="26" height="26" stroke-width="2" column="12" row="7"/>
+   <rect class="square" x="170" y="92" width="13" height="13" column="13" row="7"/>
+   <rect class="square" x="183" y="92" width="13" height="13" column="14" row="7"/>
+   <rect class="square" x="40" y="105" width="13" height="13" column="3" row="8"/>
+   <rect class="square" x="27" y="105" width="39" height="78" stroke-width="4.2426" column="4" row="8"/>
+   <rect class="square" x="66" y="105" width="13" height="13" column="5" row="8"/>
+   <rect class="square" x="79" y="105" width="13" height="13" column="6" row="8"/>
+   <rect class="square" x="92" y="105" width="13" height="13" column="7" row="8"/>
+   <rect class="square" x="105" y="105" width="13" height="13" column="8" row="8"/>
+   <rect class="square" x="118" y="105" width="13" height="13" column="9" row="8"/>
+   <rect class="square" x="131" y="105" width="13" height="13" column="10" row="8"/>
+   <rect class="square" x="144" y="105" width="13" height="13" column="11" row="8"/>
+   <rect class="square" x="157" y="105" width="26" height="52" stroke-width="2.8284" column="12" row="8"/>
+   <rect class="square" x="170" y="105" width="13" height="13" column="13" row="8"/>
+   <rect class="square" x="27" y="118" width="13" height="13" column="2" row="9"/>
+   <rect class="square" x="40" y="118" width="13" height="13" column="3" row="9"/>
+   <rect class="square" x="53" y="118" width="13" height="13" column="4" row="9"/>
+   <rect class="square" x="66" y="118" width="13" height="13" column="5" row="9"/>
+   <rect class="square" x="79" y="118" width="13" height="13" column="6" row="9"/>
+   <rect class="square" x="92" y="118" width="13" height="13" column="7" row="9"/>
+   <rect class="square" x="105" y="118" width="13" height="13" column="8" row="9"/>
+   <rect class="square" x="118" y="118" width="13" height="13" column="9" row="9"/>
+   <rect class="square" x="131" y="118" width="13" height="13" column="10" row="9"/>
+   <rect class="square" x="144" y="118" width="13" height="13" column="11" row="9"/>
+   <rect class="square" x="157" y="118" width="13" height="13" column="12" row="9"/>
+   <rect class="square" x="27" y="131" width="13" height="13" column="2" row="10"/>
+   <rect class="square" x="40" y="131" width="13" height="13" column="3" row="10"/>
+   <rect class="square" x="53" y="131" width="13" height="13" column="4" row="10"/>
+   <rect class="square" x="66" y="131" width="13" height="13" column="5" row="10"/>
+   <rect class="square" x="79" y="131" width="13" height="13" column="6" row="10"/>
+   <rect class="square" x="92" y="131" width="13" height="13" column="7" row="10"/>
+   <rect class="square" x="105" y="131" width="13" height="13" column="8" row="10"/>
+   <rect class="square" x="118" y="131" width="13" height="13" column="9" row="10"/>
+   <rect class="square" x="131" y="131" width="13" height="13" column="10" row="10"/>
+   <rect class="square" x="144" y="131" width="13" height="13" column="11" row="10"/>
+   <rect class="square" x="157" y="131" width="13" height="13" column="12" row="10"/>
+   <rect class="square" x="27" y="144" width="13" height="13" column="2" row="11"/>
+   <rect class="square" x="40" y="144" width="13" height="13" column="3" row="11"/>
+   <rect class="square" x="53" y="144" width="13" height="13" column="4" row="11"/>
+   <rect class="square" x="66" y="144" width="13" height="13" column="5" row="11"/>
+   <rect class="square" x="79" y="144" width="13" height="13" column="6" row="11"/>
+   <rect class="square" x="92" y="144" width="13" height="13" column="7" row="11"/>
+   <rect class="square" x="105" y="144" width="13" height="13" column="8" row="11"/>
+   <rect class="square" x="118" y="144" width="13" height="13" column="9" row="11"/>
+   <rect class="square" x="131" y="144" width="13" height="13" column="10" row="11"/>
+   <rect class="square" x="144" y="144" width="13" height="13" column="11" row="11"/>
+   <rect class="square" x="157" y="144" width="13" height="13" column="12" row="11"/>
+   <rect class="square" x="157" y="144" width="52" height="26" stroke-width="2.8284" column="13" row="11"/>
+   <rect class="square" x="196" y="144" width="13" height="13" column="15" row="11"/>
+   <rect class="square" x="209" y="144" width="13" height="13" column="16" row="11"/>
+   <rect class="square" x="27" y="157" width="13" height="13" column="2" row="12"/>
+   <rect class="square" x="40" y="157" width="13" height="13" column="3" row="12"/>
+   <rect class="square" x="53" y="157" width="13" height="13" column="4" row="12"/>
+   <rect class="square" x="66" y="157" width="13" height="13" column="5" row="12"/>
+   <rect class="square" x="79" y="157" width="13" height="13" column="6" row="12"/>
+   <rect class="square" x="92" y="157" width="13" height="13" column="7" row="12"/>
+   <rect class="square" x="105" y="157" width="13" height="13" column="8" row="12"/>
+   <rect class="square" x="118" y="157" width="13" height="13" column="9" row="12"/>
+   <rect class="square" x="131" y="157" width="13" height="13" column="10" row="12"/>
+   <rect class="square" x="144" y="157" width="13" height="13" column="11" row="12"/>
+   <rect class="square" x="157" y="157" width="65" height="104" stroke-width="6.3246" column="12" row="12"/>
+   <rect class="square" x="170" y="157" width="13" height="13" column="13" row="12"/>
+   <rect class="square" x="183" y="157" width="13" height="13" column="14" row="12"/>
+   <rect class="square" x="196" y="157" width="13" height="13" column="15" row="12"/>
+   <rect class="square" x="196" y="144" width="26" height="26" stroke-width="2" column="16" row="12"/>
+   <rect class="square" x="222" y="157" width="13" height="13" column="17" row="12"/>
+   <rect class="square" x="40" y="170" width="13" height="13" column="3" row="13"/>
+   <rect class="square" x="53" y="170" width="13" height="13" column="4" row="13"/>
+   <rect class="square" x="66" y="170" width="13" height="13" column="5" row="13"/>
+   <rect class="square" x="79" y="170" width="13" height="13" column="6" row="13"/>
+   <rect class="square" x="92" y="170" width="13" height="13" column="7" row="13"/>
+   <rect class="square" x="105" y="170" width="13" height="13" column="8" row="13"/>
+   <rect class="square" x="118" y="170" width="13" height="13" column="9" row="13"/>
+   <rect class="square" x="131" y="170" width="13" height="13" column="10" row="13"/>
+   <rect class="square" x="144" y="170" width="13" height="13" column="11" row="13"/>
+   <rect class="square" x="157" y="170" width="13" height="13" column="12" row="13"/>
+   <rect class="square" x="170" y="170" width="13" height="13" column="13" row="13"/>
+   <rect class="square" x="183" y="170" width="13" height="13" column="14" row="13"/>
+   <rect class="square" x="196" y="170" width="13" height="13" column="15" row="13"/>
+   <rect class="square" x="209" y="170" width="26" height="78" stroke-width="3.4641" column="16" row="13"/>
+   <rect class="square" x="209" y="157" width="26" height="26" stroke-width="2" column="17" row="13"/>
+   <rect class="square" x="53" y="183" width="13" height="13" column="4" row="14"/>
+   <rect class="square" x="66" y="183" width="13" height="13" column="5" row="14"/>
+   <rect class="square" x="79" y="183" width="13" height="13" column="6" row="14"/>
+   <rect class="square" x="92" y="183" width="13" height="13" column="7" row="14"/>
+   <rect class="square" x="105" y="183" width="13" height="13" column="8" row="14"/>
+   <rect class="square" x="118" y="183" width="13" height="13" column="9" row="14"/>
+   <rect class="square" x="131" y="183" width="13" height="13" column="10" row="14"/>
+   <rect class="square" x="144" y="183" width="13" height="13" column="11" row="14"/>
+   <rect class="square" x="157" y="183" width="13" height="13" column="12" row="14"/>
+   <rect class="square" x="170" y="183" width="13" height="13" column="13" row="14"/>
+   <rect class="square" x="183" y="183" width="13" height="13" column="14" row="14"/>
+   <rect class="square" x="196" y="183" width="13" height="13" column="15" row="14"/>
+   <rect class="square" x="209" y="183" width="13" height="13" column="16" row="14"/>
+   <rect class="square" x="222" y="183" width="13" height="13" column="17" row="14"/>
+   <rect class="square" x="66" y="196" width="13" height="13" column="5" row="15"/>
+   <rect class="square" x="79" y="196" width="13" height="13" column="6" row="15"/>
+   <rect class="square" x="92" y="196" width="13" height="13" column="7" row="15"/>
+   <rect class="square" x="105" y="196" width="13" height="13" column="8" row="15"/>
+   <rect class="square" x="118" y="196" width="13" height="13" column="9" row="15"/>
+   <rect class="square" x="131" y="196" width="13" height="13" column="10" row="15"/>
+   <rect class="square" x="144" y="196" width="13" height="13" column="11" row="15"/>
+   <rect class="square" x="157" y="196" width="13" height="13" column="12" row="15"/>
+   <rect class="square" x="170" y="196" width="13" height="13" column="13" row="15"/>
+   <rect class="square" x="183" y="196" width="13" height="13" column="14" row="15"/>
+   <rect class="square" x="196" y="196" width="13" height="13" column="15" row="15"/>
+   <rect class="square" x="209" y="196" width="13" height="13" column="16" row="15"/>
+   <rect class="square" x="222" y="196" width="18.997" height="13" stroke-width="1.2088" column="17" row="15"/>
+   <rect class="square" x="66" y="209" width="13" height="13" column="5" row="16"/>
+   <rect class="square" x="53" y="209" width="39" height="39" stroke-width="3" column="6" row="16"/>
+   <rect class="square" x="92" y="209" width="13" height="13" column="7" row="16"/>
+   <rect class="square" x="105" y="209" width="13" height="13" column="8" row="16"/>
+   <rect class="square" x="118" y="209" width="13" height="13" column="9" row="16"/>
+   <rect class="square" x="131" y="209" width="13" height="13" column="10" row="16"/>
+   <rect class="square" x="144" y="209" width="13" height="13" column="11" row="16"/>
+   <rect class="square" x="157" y="209" width="13" height="13" column="12" row="16"/>
+   <rect class="square" x="170" y="209" width="13" height="13" column="13" row="16"/>
+   <rect class="square" x="183" y="209" width="13" height="13" column="14" row="16"/>
+   <rect class="square" x="196" y="209" width="13" height="13" column="15" row="16"/>
+   <rect class="square" x="209" y="209" width="13" height="13" column="16" row="16"/>
+   <rect class="square" x="222" y="209" width="13" height="13" column="17" row="16"/>
+   <rect class="square" x="66" y="222" width="13" height="13" column="5" row="17"/>
+   <rect class="square" x="79" y="222" width="13" height="13" column="6" row="17"/>
+   <rect class="square" x="92" y="222" width="13" height="13" column="7" row="17"/>
+   <rect class="square" x="105" y="222" width="13" height="13" column="8" row="17"/>
+   <rect class="square" x="118" y="222" width="13" height="13" column="9" row="17"/>
+   <rect class="square" x="131" y="222" width="13" height="13" column="10" row="17"/>
+   <rect class="square" x="144" y="222" width="13" height="13" column="11" row="17"/>
+   <rect class="square" x="157" y="222" width="13" height="13" column="12" row="17"/>
+   <rect class="square" x="170" y="222" width="13" height="13" column="13" row="17"/>
+   <rect class="square" x="183" y="222" width="13" height="13" column="14" row="17"/>
+   <rect class="square" x="196" y="222" width="13" height="13" column="15" row="17"/>
+   <rect class="square" x="209" y="222" width="13" height="13" column="16" row="17"/>
+   <rect class="square" x="79" y="235" width="13" height="13" column="6" row="18"/>
+   <rect class="square" x="92" y="235" width="13" height="13" column="7" row="18"/>
+   <rect class="square" x="105" y="235" width="13" height="13" column="8" row="18"/>
+   <rect class="square" x="118" y="235" width="13" height="13" column="9" row="18"/>
+   <rect class="square" x="131" y="235" width="13" height="13" column="10" row="18"/>
+   <rect class="square" x="144" y="235" width="13" height="13" column="11" row="18"/>
+   <rect class="square" x="157" y="235" width="13" height="13" column="12" row="18"/>
+   <rect class="square" x="170" y="235" width="13" height="13" column="13" row="18"/>
+   <rect class="square" x="183" y="235" width="13" height="13" column="14" row="18"/>
+   <rect class="square" x="196" y="235" width="13" height="13" column="15" row="18"/>
+  </g>
+ </g>
+ <g transform="translate(-14 -14)">
+  <g fill="#faa">
+   <rect class="square" x="79" y="27" width="52" height="13" stroke-width="2" column="6" row="2"/>
+   <rect class="square" x="53" y="53" width="26" height="13" stroke-width="1.4142" column="4" row="4"/>
+   <rect class="square" x="53" y="66" width="13" height="13" column="4" row="5"/>
+   <rect class="square" x="40" y="79" width="26" height="13" stroke-width="1.4142" column="3" row="6"/>
+   <rect class="square" x="27" y="92" width="26" height="13" stroke-width="1.4142" column="2" row="7"/>
+   <rect class="square" x="14" y="118" width="13" height="13" column="1" row="9"/>
+   <rect class="square" x="14" y="131" width="13" height="13" column="1" row="10"/>
+   <rect class="square" x="14" y="144" width="13" height="13" column="1" row="11"/>
+   <rect class="square" x="14" y="157" width="13" height="13" column="1" row="12"/>
+   <g stroke-width="1.4142">
+    <rect class="square" x="14" y="170" width="26" height="13" column="2" row="13"/>
+    <rect class="square" x="27" y="183" width="26" height="13" column="3" row="14"/>
+    <rect class="square" x="40" y="196" width="26" height="13" column="4" row="15"/>
+   </g>
+   <rect class="square" x="53" y="209" width="13" height="13" column="4" row="16"/>
+   <rect class="square" x="53" y="222" width="13" height="13" column="4" row="17"/>
+   <g stroke-width="1.4142">
+    <rect class="square" x="222" y="222" width="13" height="26" column="17" row="17"/>
+    <rect class="square" x="53" y="235" width="26" height="13" column="5" row="18"/>
+    <rect class="square" x="209" y="235" width="13" height="26" column="16" row="18"/>
+   </g>
+   <rect class="square" x="79" y="248" width="13" height="13" column="6" row="19"/>
+   <rect class="square" x="92" y="248" width="13" height="13" column="7" row="19"/>
+   <rect class="square" x="105" y="248" width="13" height="13" column="8" row="19"/>
+   <rect class="square" x="118" y="248" width="13" height="13" column="9" row="19"/>
+   <rect class="square" x="131" y="248" width="13" height="13" column="10" row="19"/>
+   <rect class="square" x="144" y="248" width="13" height="13" column="11" row="19"/>
+   <rect class="square" x="157" y="248" width="13" height="13" column="12" row="19"/>
+   <rect class="square" x="170" y="248" width="13" height="13" column="13" row="19"/>
+   <rect class="square" x="183" y="248" width="13" height="13" column="14" row="19"/>
+   <rect class="square" x="196" y="248" width="13" height="13" column="15" row="19"/>
+   <rect class="square" x="118" y="14" width="91" height="13" stroke-width="2.6458" column="9" row="1"/>
+   <rect class="square" x="131" y="14" width="13" height="13" column="10" row="1"/>
+   <rect class="square" x="144" y="14" width="13" height="13" column="11" row="1"/>
+   <rect class="square" x="157" y="14" width="13" height="13" column="12" row="1"/>
+   <rect class="square" x="170" y="14" width="13" height="13" column="13" row="1"/>
+   <rect class="square" x="183" y="14" width="26" height="13" stroke-width="1.4142" column="14" row="1"/>
+   <rect class="square" x="196" y="14" width="13" height="26" stroke-width="1.4142" column="15" row="1"/>
+   <rect class="square" x="92" y="27" width="13" height="13" column="7" row="2"/>
+   <rect class="square" x="105" y="27" width="13" height="13" column="8" row="2"/>
+   <g stroke-width="1.4142">
+    <rect class="square" x="118" y="14" width="13" height="26" column="9" row="2"/>
+    <rect class="square" x="196" y="27" width="26" height="13" column="15" row="2"/>
+    <rect class="square" x="79" y="27" width="13" height="26" column="6" row="3"/>
+    <rect class="square" x="66" y="40" width="13" height="26" column="5" row="4"/>
+   </g>
+   <rect class="square" x="53" y="53" width="13" height="39" stroke-width="1.732" column="4" row="6"/>
+   <rect class="square" x="40" y="79" width="13" height="26" stroke-width="1.4142" column="3" row="7"/>
+   <rect class="square" x="27" y="92" width="13" height="26" stroke-width="1.4142" column="2" row="8"/>
+   <rect class="square" x="14" y="105" width="13" height="78" stroke-width="2.4495" column="1" row="13"/>
+   <g stroke-width="1.4142">
+    <rect class="square" x="27" y="170" width="13" height="26" column="2" row="14"/>
+    <rect class="square" x="40" y="183" width="13" height="26" column="3" row="15"/>
+    <rect class="square" x="222" y="222" width="26" height="13" column="18" row="17"/>
+   </g>
+   <rect class="square" x="53" y="196" width="13" height="52" stroke-width="2" column="4" row="18"/>
+   <rect class="square" x="209" y="235" width="26" height="13" stroke-width="1.4142" column="17" row="18"/>
+   <rect class="square" x="66" y="235" width="13" height="26" stroke-width="1.4142" column="5" row="19"/>
+   <rect class="square" x="66" y="248" width="156" height="13" stroke-width="3.4641" column="16" row="19"/>
+   <rect class="square" x="66" y="40" width="26" height="13" stroke-width="1.4142" column="5" row="3"/>
+   <rect class="square" x="235" y="196" width="13" height="39" stroke-width="1.732" column="18" row="16"/>
+   <rect class="square" x="14" y="105" width="26" height="13" stroke-width="1.4142" column="1" row="8"/>
+  </g>
+ </g>
+ <g transform="translate(-14 -14)">
+  <g fill="#fea">
+   <rect class="square" x="235" y="14" width="13" height="26" stroke-width="1.4142" column="18" row="1"/>
+   <rect class="square" x="248" y="14" width="13" height="13" column="19" row="1"/>
+   <rect class="square" x="261" y="14" width="13" height="13" column="20" row="1"/>
+   <rect class="square" x="274" y="14" width="13" height="13" column="21" row="1"/>
+   <rect class="square" x="287" y="14" width="13" height="13" column="22" row="1"/>
+   <rect class="square" x="300" y="14" width="13" height="13" column="23" row="1"/>
+   <rect class="square" x="235" y="14" width="91" height="13" stroke-width="2.6458" column="24" row="1"/>
+   <rect class="square" x="215.2" y="27" width="32.8" height="13" stroke-width="1.5884" column="17" row="2"/>
+   <rect class="square" x="235" y="27" width="13" height="13" column="18" row="2"/>
+   <g stroke-width="1.4142">
+    <rect class="square" x="313" y="14" width="13" height="26" column="24" row="2"/>
+    <rect class="square" x="313" y="27" width="26" height="13" column="25" row="2"/>
+    <rect class="square" x="326" y="27" width="13" height="26" column="25" row="3"/>
+   </g>
+   <rect class="square" x="339" y="40" width="13" height="13" column="26" row="3"/>
+   <rect class="square" x="352" y="40" width="13" height="13" column="27" row="3"/>
+   <rect class="square" x="326" y="40" width="52" height="13" stroke-width="2" column="28" row="3"/>
+   <rect class="square" x="365" y="53" width="13" height="13" column="28" row="4"/>
+   <rect class="square" x="365" y="66" width="13" height="13" column="28" row="5"/>
+   <rect class="square" x="365" y="79" width="13" height="13" column="28" row="6"/>
+   <rect class="square" x="365" y="92" width="13" height="13" column="28" row="7"/>
+   <rect class="square" x="365" y="105" width="13" height="13" column="28" row="8"/>
+   <rect class="square" x="365" y="118" width="13" height="13" column="28" row="9"/>
+   <rect class="square" x="365" y="131" width="13" height="13" column="28" row="10"/>
+   <rect class="square" x="352" y="144" width="26" height="13" stroke-width="1.4142" column="27" row="11"/>
+   <rect class="square" x="365" y="40" width="13" height="117" stroke-width="3" column="28" row="11"/>
+   <rect class="square" x="352" y="157" width="13" height="13" column="27" row="12"/>
+   <rect class="square" x="339" y="170" width="26" height="13" stroke-width="1.4142" column="26" row="13"/>
+   <rect class="square" x="352" y="144" width="13" height="39" stroke-width="1.732" column="27" row="13"/>
+   <rect class="square" x="339" y="183" width="13" height="13" column="26" row="14"/>
+   <rect class="square" x="248" y="196" width="13" height="26" stroke-width="1.4142" column="19" row="15"/>
+   <rect class="square" x="287" y="196" width="65" height="13" stroke-width="2.2361" column="22" row="15"/>
+   <rect class="square" x="300" y="196" width="13" height="13" column="23" row="15"/>
+   <rect class="square" x="313" y="196" width="13" height="13" column="24" row="15"/>
+   <rect class="square" x="326" y="196" width="13" height="13" column="25" row="15"/>
+   <rect class="square" x="339" y="170" width="13" height="39" stroke-width="1.732" column="26" row="15"/>
+   <rect class="square" x="248" y="209" width="52" height="13" stroke-width="2" column="19" row="16"/>
+   <rect class="square" x="261" y="209" width="13" height="13" column="20" row="16"/>
+   <rect class="square" x="274" y="209" width="13" height="13" column="21" row="16"/>
+   <rect class="square" x="287" y="196" width="13" height="26" stroke-width="1.4142" column="22" row="16"/>
+  </g>
+ </g>
+ <g transform="translate(-14 -14)">
+  <g fill="#ff7f2a">
+   <rect class="square" x="170" y="118" width="13" height="26" stroke-width="1.4142" column="13" row="9"/>
+   <rect class="square" x="209" y="27" width="13" height="26" stroke-width="1.4142" column="16" row="2"/>
+   <rect class="square" x="209" y="40" width="13" height="13" column="16" row="3"/>
+   <rect class="square" x="183" y="144" width="13" height="13" column="14" row="11"/>
+   <rect class="square" x="235" y="196" width="13" height="13" column="18" row="15"/>
+   <rect class="square" x="170" y="131" width="13" height="13" column="13" row="10"/>
+  </g>
+ </g>
+</svg>

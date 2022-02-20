@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="1079.8mm" height="635.24mm" version="1.1" viewBox="0 0 1079.8 635.24" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="marker36732-3-3-2" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-8" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-8-7" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-7" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-4" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-5" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-4-9-4" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-4-9-2" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-4-9-4-2" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-4-9-4-2-9" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-7-0" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-7-0-1" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker36732-3-3-2-0-7-49" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g transform="translate(-107.15 -40.946)" fill="none" stroke="#b2b2b2" stroke-miterlimit=".33333" stroke-width="3">
+  <g clip-rule="evenodd" stroke-linejoin="round">
+   <path d="m866.77 363.8h87.281" marker-end="url(#marker36732-3-3-2-0-4-9-4)"/>
+   <path d="m1005.4 363.8 88.635-0.26457" marker-end="url(#marker36732-3-3-2-0-4-9-2)"/>
+   <path d="m714.38 542.01 72.49 7e-5" marker-end="url(#marker36732-3-3-2-0-4-9-4-2)"/>
+   <path d="m714.38 187.71 72.49 4e-5" marker-end="url(#marker36732-3-3-2-0-4-9-4-2-9)"/>
+   <path d="m846.14 526.05v-131.82" marker-end="url(#marker36732-3-3-2-0-7-0)"/>
+   <path d="m846.14 203.26v132.76" marker-end="url(#marker36732-3-3-2-0-7-0-1)"/>
+  </g>
+  <path d="m141.55 552.98v121.71h842.7v-281.78" marker-end="url(#marker36732-3-3-2)"/>
+ </g>
+ <g transform="translate(-107.15 -40.946)">
+  <g clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <rect x="334.33" y="149.6" width="36.62" height="36.62" fill="#ff5757" stroke-width=".3175"/>
+   <text x="342.3891" y="177.76578" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="29.848px" stroke-width=".3175">R</text>
+   <rect x="334.33" y="237.47" width="36.62" height="36.62" fill="#5757ff" stroke-width=".3175"/>
+   <text x="342.3891" y="266.85672" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="29.848px" stroke-width=".3175">B</text>
+   <rect x="334.33" y="193.53" width="36.62" height="36.62" fill="#55d400" stroke-width=".3175"/>
+   <text x="340.39578" y="222.28581" fill="#ffffff" font-family="sans-serif" font-size="29.848px" stroke-width=".3175" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">G</text>
+   <rect x="334.33" y="501.06" width="36.62" height="36.62" fill="#e6e6e6" stroke-width=".3175"/>
+   <rect x="334.33" y="281.4" width="36.62" height="36.62" fill="#808080" stroke-width=".3175"/>
+   <text x="341.33621" y="310.98715" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="38.22px" stroke-width="1.0058">α</text>
+   <g fill="#e6e6e6">
+    <rect x="334.33" y="325.33" width="36.62" height="36.62" stroke-width=".3175"/>
+    <rect x="334.33" y="369.26" width="36.62" height="36.62" stroke-width=".3175"/>
+    <g transform="matrix(.3174 0 0 .3174 169.71 113.85)">
+     <circle cx="576.32" cy="989.96" r="26.124" stroke-width="1.0003"/>
+     <g transform="matrix(1.0003 0 0 1.0003 -194 4.4792)">
+      <circle cx="770.07" cy="1064" r="26.116" fill="#e6e6e6"/>
+     </g>
+     <g transform="matrix(1.0003 0 0 1.0003 -194 83.311)">
+      <circle cx="770.07" cy="1064" r="26.116" fill="#e6e6e6"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g clip-rule="evenodd" fill-rule="evenodd">
+   <g transform="matrix(-.34406 0 0 -.17013 241.82 608.05)" stroke="#b2b2b2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit=".25" stroke-width="12.4">
+    <path d="m166.09 395.63c-27.151 0.161-47.981 30.631-45.41 118.23 0.682 23.237 1.231 43.136 0.674 59.812-1.542 46.194-11.568 67.663-50.75 66.869 0 0 52.151-9.075 52.868 59.992s-24.304 182.88 43.982 179.66" fill="none" stroke="#b2b2b2" stroke-miterlimit=".25" stroke-width="12.4"/>
+   </g>
+   <g font-family="sans-serif">
+    <text x="220.51311" y="513.11639" fill="#666666" font-size="46.567px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width="3.4925" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;paint-order:stroke fill markers" xml:space="preserve"><tspan x="220.51311" y="513.11639" fill="#666666" stroke-width="3.4925">+</tspan></text>
+    <text x="58.509254" y="514.69031" fill="#000000" font-size="10.583px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width=".26458" style="line-height:1.25" xml:space="preserve"><tspan x="58.509254" y="514.69031" fill="#1e1e1e" font-family="sans-serif" font-size="14.111px" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"/></text>
+    <text transform="matrix(.26458 0 0 .26458 -83.934 137.71)" fill="#000000" font-size="40px" style="line-height:1.25;shape-inside:url(#rect95981);white-space:pre" xml:space="preserve"/>
+    <text x="292.80151" y="134.60973" fill="#4d4d4d" font-size="22.578px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="292.80151" y="134.60973" fill="#4d4d4d" stroke-width=".26458">Perception</tspan></text>
+   </g>
+   <g transform="matrix(.29447 0 0 .29447 284.56 74.019)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+    <text x="1637.49" y="714.13098" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="22.644px"/>
+   </g>
+  </g>
+  <g transform="translate(10.723 1.4943e-5)" clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <rect x="593.59" y="422.34" width="20.248" height="20.248" fill="#ff5757" stroke-width=".17556"/>
+   <text x="594.4223" y="437.53217" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="594.4223" y="437.53217" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">δR</tspan></text>
+   <rect x="593.59" y="470.92" width="20.248" height="20.248" fill="#5757ff" stroke-width=".17556"/>
+   <rect x="593.59" y="446.63" width="20.248" height="20.248" fill="#55d400" stroke-width=".17556"/>
+   <g transform="matrix(.17556 0 0 .17556 471.38 556.76)">
+    <rect x="697.31" y="341.23" width="115.34" height="115.34" fill="#ebebeb"/>
+   </g>
+   <rect x="593.58" y="495.21" width="20.248" height="20.248" fill="#808080" stroke-width=".17556"/>
+   <g transform="matrix(.14822 0 0 .14822 486.04 417.82)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δG</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 486.59 441.83)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δB</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 486.61 465.82)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δα</tspan></text>
+   </g>
+   <rect x="593.58" y="519.5" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <rect x="593.58" y="543.79" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <g transform="matrix(.17556 0 0 .17556 468.87 389.73)">
+    <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    <g transform="translate(0 78.807)">
+     <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    </g>
+    <g transform="translate(0 157.61)">
+     <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    </g>
+   </g>
+  </g>
+  <g clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <rect x="690.56" y="67.543" width="20.248" height="20.248" fill="#ff5757" stroke-width=".17556"/>
+   <g transform="matrix(.14822 0 0 .14822 583.21 38.724)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">δR</tspan></text>
+   </g>
+   <g stroke-width=".17556">
+    <rect x="690.56" y="116.13" width="20.248" height="20.248" fill="#5757ff"/>
+    <rect x="690.56" y="91.835" width="20.248" height="20.248" fill="#55d400"/>
+    <rect x="690.56" y="239.08" width="20.248" height="20.248" fill="#808080"/>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 583.02 63.032)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δG</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 583.56 87.035)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δB</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 583.59 210.26)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δα</tspan></text>
+   </g>
+   <g stroke-width=".17556">
+    <rect x="690.56" y="262.61" width="20.248" height="20.248" fill="#808080"/>
+    <rect x="690.56" y="141.15" width="20.248" height="20.248" fill="#ebebeb"/>
+    <rect x="690.56" y="214.02" width="20.248" height="20.248" fill="#ebebeb"/>
+   </g>
+   <g transform="matrix(.55613 0 0 .55613 286.39 -118.07)">
+    <text x="732.88501" y="716.54999" fill="#ffffff" font-family="sans-serif" font-size="38px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">0</text>
+   </g>
+  </g>
+  <g transform="translate(-9.525 1.0478)" clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <circle cx="710.21" cy="172.83" r="4.5848" fill="#ebebeb" stroke-width=".17556"/>
+   <g transform="matrix(.17556 0 0 .17556 575.02 -.12653)">
+    <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+   </g>
+   <g transform="matrix(.17556 0 0 .17556 575.02 13.709)">
+    <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+   </g>
+  </g>
+  <g clip-rule="evenodd">
+   <path d="m630.98 158.75c29.038 7.7808 16.797 79.806 46.168 87.676" fill="none" marker-end="url(#marker36732-3-3-2-8)" stroke="#b2b2b2" stroke-linejoin="round" stroke-miterlimit="0" stroke-width="2.5"/>
+   <text x="662.9577" y="417.82663" fill="#000000" fill-rule="evenodd" font-family="sans-serif" font-size="10.583px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width=".26458" style="line-height:1.25" xml:space="preserve"><tspan x="662.9577" y="417.82663" fill="#1e1e1e" font-family="sans-serif" font-size="14.111px" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"/></text>
+   <text transform="matrix(.26458 0 0 .26458 520.51 40.849)" fill="#000000" fill-rule="evenodd" font-family="sans-serif" font-size="40px" style="line-height:1.25;shape-inside:url(#rect95981-2);white-space:pre" xml:space="preserve"/>
+  </g>
+  <g transform="translate(10.723 -352.37)" clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <rect x="593.59" y="422.34" width="20.248" height="20.248" fill="#ff5757" stroke-width=".17556"/>
+   <text x="594.4223" y="437.53217" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="594.4223" y="437.53217" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">δR</tspan></text>
+   <rect x="593.59" y="470.92" width="20.248" height="20.248" fill="#5757ff" stroke-width=".17556"/>
+   <rect x="593.59" y="446.63" width="20.248" height="20.248" fill="#55d400" stroke-width=".17556"/>
+   <g transform="matrix(.17556 0 0 .17556 471.38 556.76)">
+    <rect x="697.31" y="341.23" width="115.34" height="115.34" fill="#ebebeb"/>
+   </g>
+   <rect x="593.58" y="495.21" width="20.248" height="20.248" fill="#808080" stroke-width=".17556"/>
+   <g transform="matrix(.14822 0 0 .14822 486.04 417.82)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δG</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 486.59 441.83)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δB</tspan></text>
+   </g>
+   <g transform="matrix(.14822 0 0 .14822 486.61 465.82)">
+    <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="729.93701" y="296.96701">δα</tspan></text>
+   </g>
+   <rect x="593.58" y="519.5" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <rect x="593.58" y="543.79" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <g transform="matrix(.17556 0 0 .17556 468.87 389.73)">
+    <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    <g transform="translate(0 78.807)">
+     <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    </g>
+    <g transform="translate(0 157.61)">
+     <circle cx="770.07" cy="1064" r="26.116" fill="#ebebeb"/>
+    </g>
+   </g>
+  </g>
+  <g>
+   <g transform="translate(-91.439 -3.8099)" fill="#4d4d4d">
+    <text transform="matrix(.26458 0 0 .26458 -83.934 137.71)" x="2914.8689" y="-287.99896" clip-rule="evenodd" fill="#4d4d4d" fill-rule="evenodd" font-family="sans-serif" font-size="85.333px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="2914.8689" y="-287.99896">δS<tspan baseline-shift="sub" fill="#4d4d4d" font-size="65%">1</tspan></tspan></text>
+   </g>
+   <text x="595.90997" y="410.21448" clip-rule="evenodd" fill="#4d4d4d" fill-rule="evenodd" font-family="sans-serif" font-size="22.578px" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="595.90997" y="410.21448" fill="#4d4d4d" stroke-width=".26458">δS<tspan baseline-shift="sub" fill="#4d4d4d" font-size="65%">2</tspan></tspan></text>
+   <text x="483.77487" y="547.67053" fill="#666666" font-family="sans-serif" font-size="42.333px" font-style="italic" stroke-miterlimit="0" stroke-width="1.2" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="483.77487" y="547.67053" fill="#666666" font-family="sans-serif" font-size="42.333px" font-style="italic" stroke-miterlimit="0" stroke-width="1.2" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">f<tspan baseline-shift="sub" font-size="65%">2</tspan></tspan></text>
+  </g>
+  <g transform="matrix(1.2 0 0 1.2 -110.62 -34.479)" fill="#666">
+   <text x="496.35394" y="184.8764" fill="#666666" font-family="sans-serif" font-size="35.278px" font-style="italic" stroke-miterlimit="0" stroke-width=".265" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="496.35394" y="184.8764" fill="#666666" font-family="sans-serif" font-size="35.278px" font-style="italic" stroke-miterlimit="0" stroke-width=".265" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">f<tspan baseline-shift="sub" font-size="65%">1</tspan></tspan></text>
+  </g>
+  <g clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <g transform="matrix(.29447 0 0 .29447 321.6 248.64)">
+    <text x="1637.49" y="714.13098" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="22.644px"/>
+   </g>
+   <rect x="688.97" y="421.85" width="20.248" height="20.248" fill="#ff5757" stroke-width=".17556"/>
+   <text x="689.81134" y="437.04239" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="689.81134" y="437.04239" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">δR</tspan></text>
+   <g stroke-width=".17556">
+    <rect x="688.97" y="470.43" width="20.248" height="20.248" fill="#5757ff"/>
+    <rect x="688.97" y="446.14" width="20.248" height="20.248" fill="#55d400"/>
+    <rect x="688.97" y="593.39" width="20.248" height="20.248" fill="#808080"/>
+   </g>
+   <text x="689.62427" y="461.35062" fill="#ffffff" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="689.62427" y="461.35062" stroke-width=".14822">δG</tspan></text>
+   <text x="690.16516" y="485.35397" fill="#ffffff" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="690.16516" y="485.35397" stroke-width=".14822">δB</tspan></text>
+   <rect x="688.97" y="616.91" width="20.248" height="20.248" fill="#808080" stroke-width=".17556"/>
+   <text x="690.19189" y="632.10419" fill="#ffffff" font-family="sans-serif" font-size="13.934px" stroke-width=".14822" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="690.19189" y="632.10419" stroke-width=".14822">δα</tspan></text>
+   <rect x="688.97" y="495.45" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <rect x="688.97" y="568.33" width="20.248" height="20.248" fill="#ebebeb" stroke-width=".17556"/>
+   <text x="692.38055" y="611.2027" fill="#ffffff" font-family="sans-serif" font-size="21.133px" stroke-width=".55613" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">0</text>
+  </g>
+  <g clip-rule="evenodd" fill="#ebebeb" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0" stroke-width=".17556">
+   <circle cx="699.1" cy="528.18" r="4.5848"/>
+   <circle cx="699.1" cy="542.01" r="4.5848"/>
+   <circle cx="699.1" cy="555.85" r="4.5848"/>
+  </g>
+  <path d="m631.83 509.92c33.553 8.9905 9.1416 105.07 43.339 114.23" clip-rule="evenodd" fill="none" marker-end="url(#marker36732-3-3-2-8-7)" stroke="#b2b2b2" stroke-linejoin="round" stroke-miterlimit="0" stroke-width="2.5"/>
+  <g stroke-linecap="round" stroke-miterlimit="0">
+   <text x="105.66022" y="122.05463" clip-rule="evenodd" fill="#4d4d4d" fill-rule="evenodd" font-family="sans-serif" font-size="22.578px" stroke-linejoin="round" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="105.66022" y="122.05463" fill="#4d4d4d" stroke-width=".26458">Step N</tspan></text>
+   <rect x="111.28" y="138.52" width="63.5" height="412.75" rx="0" ry=".375" fill-opacity="0" stroke="#b2b2b2" stroke-width="3"/>
+   <text x="1080.2335" y="122.06028" clip-rule="evenodd" fill="#4d4d4d" fill-rule="evenodd" font-family="sans-serif" font-size="22.578px" stroke-linejoin="round" stroke-width=".26458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="1080.2335" y="122.06028" fill="#4d4d4d" stroke-width=".26458">Step N+1</tspan></text>
+  </g>
+  <g stroke-linecap="round" stroke-miterlimit="0">
+   <rect x="1102.6" y="138.52" width="63.5" height="412.75" rx="0" ry=".375" fill-opacity="0" stroke="#b2b2b2" stroke-width="3"/>
+   <text x="964.74115" y="378.13504" clip-rule="evenodd" fill="#666666" fill-rule="evenodd" font-family="sans-serif" font-size="46.567px" stroke-linejoin="round" stroke-width="3.4925" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;paint-order:stroke fill markers" xml:space="preserve"><tspan x="964.74115" y="378.13504" fill="#666666" stroke-width="3.4925">+</tspan></text>
+   <rect x="824.97" y="343.43" width="42.333" height="42.333" rx="0" ry=".375" fill="none" stroke="#7e7e81" stroke-width="2"/>
+   <text x="826.62848" y="379.19339" clip-rule="evenodd" fill="#666666" fill-rule="evenodd" font-family="sans-serif" font-size="46.567px" stroke-linejoin="round" stroke-width="2.8" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25;paint-order:stroke fill markers" xml:space="preserve"><tspan x="826.62848" y="379.19339" fill="#666666" stroke-miterlimit="0" stroke-width="2.8">+</tspan></text>
+   <rect x="963.08" y="342.37" width="42.333" height="42.333" rx="0" ry=".375" fill-opacity="0" stroke="#7e7e81" stroke-width="2"/>
+  </g>
+  <g transform="translate(0 -.38404)" stroke-linecap="round" stroke-miterlimit="0">
+   <text transform="rotate(.055027)" x="804.84113" y="547.01282" clip-rule="evenodd" fill="#1a1a1a" fill-rule="evenodd" font-family="sans-serif" font-size="19.756px" stroke-linejoin="round" stroke-width=".19844" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="804.84113" y="547.01282">masking</tspan></text>
+   <rect x="795.87" y="526.52" width="100.54" height="31.75" rx=".375" ry=".375" fill-opacity="0" stroke="#808080" stroke-width="2"/>
+  </g>
+  <text transform="scale(.26458)" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25;shape-inside:url(#rect78235);white-space:pre" xml:space="preserve"/>
+  <g transform="translate(0 2.5007)" stroke-linecap="round" stroke-miterlimit="0">
+   <text transform="rotate(.055027)" x="804.49811" y="189.82567" clip-rule="evenodd" fill="#1a1a1a" fill-rule="evenodd" font-family="sans-serif" font-size="19.756px" stroke-linejoin="round" stroke-width=".19844" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="804.49811" y="189.82567">masking</tspan></text>
+   <rect x="795.87" y="169.33" width="100.54" height="31.75" rx=".375" ry=".375" fill-opacity="0" stroke="#808080" stroke-width="2"/>
+  </g>
+  <g clip-rule="evenodd" fill="none" stroke="#b2b2b2" stroke-linejoin="round" stroke-width="3">
+   <g stroke-miterlimit=".25">
+    <path d="m260.77 497.42c29.545-7.9167 30.027-49.037 30.904-90.263s-0.88476-81.746 28.627-89.653" marker-end="url(#marker36732-3-3-2)"/>
+    <path d="m382.1 366.71c34.105 9.1384 41.487 43.079 41.487 79.375 0 35.105 6.265 73.505 41.487 79.375" marker-end="url(#marker36732-3-3-2-0-7)"/>
+    <path d="m382.1 330.12c34.105-9.1384 41.487-43.079 41.487-79.375 0-35.105 6.265-73.505 41.487-79.375" marker-end="url(#marker36732-3-3-2-0-7-49)"/>
+   </g>
+   <path d="m527.65 169.75h56.621" marker-end="url(#marker36732-3-3-2-0-4)" stroke-miterlimit=".33333"/>
+   <path d="m527.65 529.5h56.621" marker-end="url(#marker36732-3-3-2-0-5)" stroke-miterlimit=".33333"/>
+  </g>
+  <g transform="matrix(1.1996 0 0 1.1996 -965.68 -91.196)" clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="112.63" width="115.37" height="115.37" fill="#ff5757" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 653.81 -95.699)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="94.011px">R</text>
+    </g>
+   </g>
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="389.45" width="115.37" height="115.37" fill="#5757ff" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 653.81 184.99)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="94.011px">B</text>
+    </g>
+   </g>
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="251.04" width="115.37" height="115.37" fill="#55d400" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 647.53 44.566)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">G</text>
+    </g>
+   </g>
+   <rect x="1735.3" y="494.75" width="30.526" height="30.526" fill="#808080" stroke-width="2.9176"/>
+   <g fill="#e6e6e6">
+    <rect x="1735.3" y="311.64" width="30.526" height="30.526" stroke-width="2.9176"/>
+    <rect x="1735.3" y="421.51" width="30.526" height="30.526" stroke-width="2.9176"/>
+    <g transform="matrix(.26458 0 0 .26458 1375.8 170.03)" stroke-width="11.027">
+     <circle cx="1416.3" cy="721.71" r="26.124"/>
+     <circle cx="1416.3" cy="800.54" r="26.124"/>
+     <circle cx="1416.3" cy="879.37" r="26.124"/>
+    </g>
+   </g>
+   <rect x="1735.3" y="458.13" width="30.526" height="30.526" fill="#808080" stroke-width="2.9176"/>
+   <g fill="#ffffff" font-family="ArialMT, Arial, sans-serif">
+    <text x="1737.7462" y="481.46298" font-size="32.348px" stroke-width=".12356" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="1737.7462" y="481.46298" stroke-width=".12356">α</tspan></text>
+    <text x="1755.4958" y="485.37701" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="1755.4958" y="485.37701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">1</tspan></text>
+    <text x="1737.7556" y="518.08466" font-size="32.348px" stroke-width=".12356" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="1737.7556" y="518.08466" stroke-width=".12356">α</tspan></text>
+    <text x="1755.5052" y="521.99872" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="1755.5052" y="521.99872" font-family="ArialMT, Arial, sans-serif" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">2</tspan></text>
+   </g>
+  </g>
+  <g transform="matrix(1.1996 0 0 1.1996 -1957 -91.196)" clip-rule="evenodd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="0">
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="112.63" width="115.37" height="115.37" fill="#ff5757" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 653.81 -95.699)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="94.011px">R</text>
+    </g>
+   </g>
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="389.45" width="115.37" height="115.37" fill="#5757ff" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 653.81 184.99)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="94.011px">B</text>
+    </g>
+   </g>
+   <g transform="matrix(.26458 0 0 .26458 1375.8 171.98)">
+    <rect x="1358.6" y="251.04" width="115.37" height="115.37" fill="#55d400" stroke-width="1.0003"/>
+    <g transform="matrix(1.0003 0 0 1.0003 647.53 44.566)">
+     <text x="729.93701" y="296.96701" fill="#ffffff" font-family="sans-serif" font-size="94.011px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">G</text>
+    </g>
+   </g>
+   <rect x="1735.3" y="494.75" width="30.526" height="30.526" fill="#808080" stroke-width="2.9176"/>
+   <g fill="#e6e6e6">
+    <rect x="1735.3" y="311.64" width="30.526" height="30.526" stroke-width="2.9176"/>
+    <rect x="1735.3" y="421.51" width="30.526" height="30.526" stroke-width="2.9176"/>
+    <g transform="matrix(.26458 0 0 .26458 1375.8 170.03)" stroke-width="11.027">
+     <circle cx="1416.3" cy="721.71" r="26.124"/>
+     <circle cx="1416.3" cy="800.54" r="26.124"/>
+     <circle cx="1416.3" cy="879.37" r="26.124"/>
+    </g>
+   </g>
+   <rect x="1735.3" y="458.13" width="30.526" height="30.526" fill="#808080" stroke-width="2.9176"/>
+   <g fill="#ffffff" font-family="ArialMT, Arial, sans-serif">
+    <text x="1737.7462" y="481.46298" font-size="32.348px" stroke-width=".12356" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="1737.7462" y="481.46298" stroke-width=".12356">α</tspan></text>
+    <text x="1755.4958" y="485.37701" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="1755.4958" y="485.37701" fill="#ffffff" font-family="ArialMT, Arial, sans-serif" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">1</tspan></text>
+    <text x="1737.7556" y="518.08466" font-size="32.348px" stroke-width=".12356" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan x="1737.7556" y="518.08466" stroke-width=".12356">α</tspan></text>
+    <text x="1755.5052" y="521.99872" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="1755.5052" y="521.99872" font-family="ArialMT, Arial, sans-serif" font-size="15.996px" stroke-width=".22056" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">2</tspan></text>
+   </g>
+  </g>
+  <text transform="scale(.26458)" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25;shape-inside:url(#rect162450);white-space:pre" xml:space="preserve"/>
+ </g>
+</svg>
