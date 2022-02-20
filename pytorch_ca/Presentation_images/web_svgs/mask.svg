@@ -142,8 +142,6 @@
    <rect class="square" x="274" y="196" width="13" height="13" column="21" row="15"/>
    <rect class="square" x="209" y="131" width="13" height="13" column="16" row="10"/>
   </g>
- </g>
- <g transform="translate(-14 -14)">
   <g fill="#f55">
    <rect class="square" x="131" y="27" width="65" height="78" stroke-width="5.4772" column="10" row="2"/>
    <rect class="square" x="144" y="27" width="13" height="13" column="11" row="2"/>
@@ -345,8 +343,8 @@
    <rect class="square" x="183" y="235" width="13" height="13" column="14" row="18"/>
    <rect class="square" x="196" y="235" width="13" height="13" column="15" row="18"/>
   </g>
- </g>
- <g transform="translate(-14 -14)">
+  <text x="97.774605" y="134.21306" fill="#000000" font-family="'TeX Gyre Chorus'" font-size="33px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="97.774605" y="134.21306" font-family="'TeX Gyre Chorus'" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan font-size="53.333px">f</tspan><tspan baseline-shift="sub" font-family="'TeX Gyre Pagella'" font-size="32px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">1</tspan></tspan></text>
+  <text x="274.60706" y="134.21306" fill="#000000" font-family="'TeX Gyre Chorus'" font-size="33px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="274.60706" y="134.21306" font-family="'TeX Gyre Chorus'" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"><tspan font-size="53.333px">f</tspan><tspan baseline-shift="sub" font-family="'TeX Gyre Pagella'" font-size="32px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">2</tspan></tspan></text>
   <g fill="#faa">
    <rect class="square" x="79" y="27" width="52" height="13" stroke-width="2" column="6" row="2"/>
    <rect class="square" x="53" y="53" width="26" height="13" stroke-width="1.4142" column="4" row="4"/>
@@ -406,13 +404,13 @@
    <rect class="square" x="53" y="196" width="13" height="52" stroke-width="2" column="4" row="18"/>
    <rect class="square" x="209" y="235" width="26" height="13" stroke-width="1.4142" column="17" row="18"/>
    <rect class="square" x="66" y="235" width="13" height="26" stroke-width="1.4142" column="5" row="19"/>
-   <rect class="square" x="66" y="248" width="156" height="13" stroke-width="3.4641" column="16" row="19"/>
+  </g>
+  <rect class="square" x="66" y="248" width="156" height="13" fill="#ffa8a8" stroke-miterlimit="0" stroke-width="3.464" column="16" row="19"/>
+  <g fill="#faa">
    <rect class="square" x="66" y="40" width="26" height="13" stroke-width="1.4142" column="5" row="3"/>
    <rect class="square" x="235" y="196" width="13" height="39" stroke-width="1.732" column="18" row="16"/>
    <rect class="square" x="14" y="105" width="26" height="13" stroke-width="1.4142" column="1" row="8"/>
   </g>
- </g>
- <g transform="translate(-14 -14)">
   <g fill="#fea">
    <rect class="square" x="235" y="14" width="13" height="26" stroke-width="1.4142" column="18" row="1"/>
    <rect class="square" x="248" y="14" width="13" height="13" column="19" row="1"/>
@@ -455,8 +453,6 @@
    <rect class="square" x="274" y="209" width="13" height="13" column="21" row="16"/>
    <rect class="square" x="287" y="196" width="13" height="26" stroke-width="1.4142" column="22" row="16"/>
   </g>
- </g>
- <g transform="translate(-14 -14)">
   <g fill="#ff7f2a">
    <rect class="square" x="170" y="118" width="13" height="26" stroke-width="1.4142" column="13" row="9"/>
    <rect class="square" x="209" y="27" width="13" height="26" stroke-width="1.4142" column="16" row="2"/>

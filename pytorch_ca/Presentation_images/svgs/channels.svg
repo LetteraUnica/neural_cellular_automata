@@ -7,7 +7,7 @@
    xml:space="preserve"
    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;"
    id="svg160"
-   sodipodi:docname="canali.svg"
+   sodipodi:docname="channels.svg"
    inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -35,7 +35,7 @@
    inkscape:window-x="72"
    inkscape:window-y="27"
    inkscape:window-maximized="1"
-   inkscape:current-layer="g32754" />
+   inkscape:current-layer="svg160" />
     
     
     
@@ -236,7 +236,7 @@
    height="115.37444"
    fill="#646464"
    id="rect16888"
-   style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:1.00032;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;fill:#808080;fill-opacity:1" /><text
+   style="clip-rule:evenodd;fill-rule:evenodd;stroke-width:1.00032;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;fill:#666666;fill-opacity:1" /><text
    x="540.71722"
    y="621.08875"
    fill="#ffffff"
@@ -338,7 +338,7 @@
    stroke-miterlimit="0"
    stroke-width="11.0271"
    id="rect16982"
-   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;fill:#808080" /><rect
+   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;fill:#666666" /><rect
    x="1358.5714"
    y="527.86572"
    width="115.3744"
@@ -390,7 +390,7 @@
    stroke-miterlimit="0"
    stroke-width="11.0271"
    id="rect17006"
-   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;fill:#808080" /><text
+   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;fill:#666666" /><text
    x="1367.8596"
    y="1169.7025"
    fill="#ffffff"

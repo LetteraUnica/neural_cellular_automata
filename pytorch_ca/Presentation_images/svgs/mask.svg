@@ -20,16 +20,20 @@
      inkscape:pageshadow="0"
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="1.688"
-     inkscape:cx="201.71801"
-     inkscape:cy="149.58531"
+     showgrid="true"
+     inkscape:zoom="1.1935962"
+     inkscape:cx="59.065199"
+     inkscape:cy="204.84314"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="layer6" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="background" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
@@ -47,7 +51,7 @@
          height="78"
          fill="#fde411"
          id="rect164"
-         style="fill:#ffd42a;stroke-width:6;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:6" />
       <rect
          class="square"
          row="2"
@@ -102,7 +106,7 @@
          height="78"
          fill="#fde411"
          id="rect222"
-         style="fill:#ffd42a;stroke-width:8.48528;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:8.48528" />
       <rect
          class="square"
          row="3"
@@ -124,7 +128,7 @@
          height="39"
          fill="#fde411"
          id="rect226"
-         style="fill:#ffd42a;stroke-width:4.24264;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:4.24264" />
       <rect
          class="square"
          row="3"
@@ -278,7 +282,7 @@
          height="78"
          fill="#fde411"
          id="rect300"
-         style="fill:#ffd42a;stroke-width:8.48528;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:8.48528" />
       <rect
          class="square"
          row="4"
@@ -718,7 +722,7 @@
          height="78"
          fill="#fde411"
          id="rect526"
-         style="fill:#ffd42a;stroke-width:9.16515;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:9.16515" />
       <rect
          class="square"
          row="8"
@@ -740,7 +744,7 @@
          height="65"
          fill="#fde411"
          id="rect530"
-         style="fill:#ffd42a;stroke-width:5.91608;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:5.91608" />
       <rect
          class="square"
          row="8"
@@ -861,7 +865,7 @@
          height="13"
          fill="#fde411"
          id="rect588"
-         style="fill:#ffd42a;stroke-width:1.2876;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:1.2876" />
       <rect
          class="square"
          row="9"
@@ -1015,7 +1019,7 @@
          height="20.187414"
          fill="#fde411"
          id="rect650"
-         style="fill:#ffd42a;stroke-width:1.46175;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:1.46175" />
       <rect
          class="square"
          row="10"
@@ -1367,7 +1371,7 @@
          height="39"
          fill="#fde411"
          id="rect844"
-         style="fill:#ffd42a;stroke-width:5.19615;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:5.19615" />
       <rect
          class="square"
          row="13"
@@ -1455,7 +1459,7 @@
          height="17.472395"
          fill="#fde411"
          id="rect906"
-         style="fill:#ffd42a;stroke-width:1.15932;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:1.15932" />
       <rect
          class="square"
          row="14"
@@ -1466,7 +1470,7 @@
          height="39"
          fill="#fde411"
          id="rect908"
-         style="fill:#ffd42a;stroke-width:3.4641;fill-opacity:1" />
+         style="fill:#ffd42a;fill-opacity:1;stroke-width:3.4641" />
       <rect
          class="square"
          row="14"
@@ -3765,609 +3769,635 @@
          id="rect1148"
          style="fill:#ff5555" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;line-height:1.25;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+       x="97.774605"
+       y="134.21306"
+       id="text3732"><tspan
+         sodipodi:role="line"
+         id="tspan3730"
+         x="97.774605"
+         y="134.21306"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+           style="font-size:53.3333px"
+           id="tspan135037">f</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:sub"
+           id="tspan46324">1</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33px;line-height:1.25;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+       x="274.60706"
+       y="134.21306"
+       id="text3732-6"><tspan
+         sodipodi:role="line"
+         id="tspan3730-9"
+         x="274.60706"
+         y="134.21306"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+           style="font-size:53.3333px"
+           id="tspan143601">f</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;baseline-shift:sub"
+           id="tspan60171">2</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="pink">
-    <g
-       id="g9076"
-       style="fill:#ffaaaa">
-      <rect
-         class="square"
-         row="2"
-         column="6"
-         x="79"
-         y="27"
-         width="52"
-         height="13"
-         fill="#fd9695"
-         id="rect138"
-         style="stroke-width:2;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="4"
-         column="4"
-         x="53"
-         y="53"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect258"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="5"
-         column="4"
-         x="53"
-         y="66"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect320"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="6"
-         column="3"
-         x="40"
-         y="79"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect380"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="7"
-         column="2"
-         x="27"
-         y="92"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect440"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="9"
-         column="1"
-         x="14"
-         y="118"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect562"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="10"
-         column="1"
-         x="14"
-         y="131"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect624"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="11"
-         column="1"
-         x="14"
-         y="144"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect686"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="12"
-         column="1"
-         x="14"
-         y="157"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect748"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="13"
-         column="2"
-         x="14"
-         y="170"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect812"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="14"
-         column="3"
-         x="27"
-         y="183"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect876"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="15"
-         column="4"
-         x="40"
-         y="196"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect940"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="16"
-         column="4"
-         x="53"
-         y="209"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1002"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="17"
-         column="4"
-         x="53"
-         y="222"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1064"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="17"
-         column="17"
-         x="222"
-         y="222"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect1090"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="18"
-         column="5"
-         x="53"
-         y="235"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect1128"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="18"
-         column="16"
-         x="209"
-         y="235"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect1150"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="6"
-         x="79"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1192"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="7"
-         x="92"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1194"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="8"
-         x="105"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1196"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="9"
-         x="118"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1198"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="10"
-         x="131"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1200"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="11"
-         x="144"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1202"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="12"
-         x="157"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1204"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="13"
-         x="170"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1206"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="14"
-         x="183"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1208"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="15"
-         x="196"
-         y="248"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect1210"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="9"
-         x="118"
-         y="14"
-         width="91"
-         height="13"
-         fill="#fd9695"
-         id="rect82"
-         style="stroke-width:2.64575;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="10"
-         x="131"
-         y="14"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect84"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="11"
-         x="144"
-         y="14"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect86"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="12"
-         x="157"
-         y="14"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect88"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="13"
-         x="170"
-         y="14"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect90"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="14"
-         x="183"
-         y="14"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect92"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="1"
-         column="15"
-         x="196"
-         y="14"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect94"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="2"
-         column="7"
-         x="92"
-         y="27"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect140"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="2"
-         column="8"
-         x="105"
-         y="27"
-         width="13"
-         height="13"
-         fill="#fd9695"
-         id="rect142"
-         style="fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="2"
-         column="9"
-         x="118"
-         y="14"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect144"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="2"
-         column="15"
-         x="196"
-         y="27"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect156"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="3"
-         column="6"
-         x="79"
-         y="27"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect200"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="4"
-         column="5"
-         x="66"
-         y="40"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect260"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="6"
-         column="4"
-         x="53"
-         y="53"
-         width="13"
-         height="39"
-         fill="#fd9695"
-         id="rect382"
-         style="stroke-width:1.73205;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="7"
-         column="3"
-         x="40"
-         y="79"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect442"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="8"
-         column="2"
-         x="27"
-         y="92"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect502"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="13"
-         column="1"
-         x="13.999999"
-         y="105"
-         width="13"
-         height="78"
-         fill="#fd9695"
-         id="rect810"
-         style="stroke-width:2.44949;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="14"
-         column="2"
-         x="27"
-         y="170"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect874"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="15"
-         column="3"
-         x="40"
-         y="183"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect938"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="17"
-         column="18"
-         x="222"
-         y="222"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect1092"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="18"
-         column="4"
-         x="53"
-         y="196"
-         width="13"
-         height="52"
-         fill="#fd9695"
-         id="rect1126"
-         style="stroke-width:2;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="18"
-         column="17"
-         x="209"
-         y="235"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect1152"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="5"
-         x="66"
-         y="235"
-         width="13"
-         height="26"
-         fill="#fd9695"
-         id="rect1190"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="19"
-         column="16"
-         x="66"
-         y="248"
-         width="156"
-         height="13"
-         fill="#fd9695"
-         id="rect1212"
-         style="stroke-width:3.4641;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="3"
-         column="5"
-         x="66"
-         y="40"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect198"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="16"
-         column="18"
-         x="235"
-         y="196"
-         width="13"
-         height="39"
-         fill="#fd9695"
-         id="rect1030"
-         style="stroke-width:1.73205;fill:#ffaaaa" />
-      <rect
-         class="square"
-         row="8"
-         column="1"
-         x="14"
-         y="105"
-         width="26"
-         height="13"
-         fill="#fd9695"
-         id="rect500"
-         style="stroke-width:1.41421;fill:#ffaaaa" />
-    </g>
+    <rect
+       class="square"
+       row="2"
+       column="6"
+       x="79"
+       y="27"
+       width="52"
+       height="13"
+       fill="#fd9695"
+       id="rect138"
+       style="fill:#ffaaaa;stroke-width:2" />
+    <rect
+       class="square"
+       row="4"
+       column="4"
+       x="53"
+       y="53"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect258"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="5"
+       column="4"
+       x="53"
+       y="66"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect320"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="6"
+       column="3"
+       x="40"
+       y="79"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect380"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="7"
+       column="2"
+       x="27"
+       y="92"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect440"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="9"
+       column="1"
+       x="14"
+       y="118"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect562"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="10"
+       column="1"
+       x="14"
+       y="131"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect624"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="11"
+       column="1"
+       x="14"
+       y="144"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect686"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="12"
+       column="1"
+       x="14"
+       y="157"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect748"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="13"
+       column="2"
+       x="14"
+       y="170"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect812"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="14"
+       column="3"
+       x="27"
+       y="183"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect876"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="15"
+       column="4"
+       x="40"
+       y="196"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect940"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="16"
+       column="4"
+       x="53"
+       y="209"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1002"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="17"
+       column="4"
+       x="53"
+       y="222"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1064"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="17"
+       column="17"
+       x="222"
+       y="222"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect1090"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="18"
+       column="5"
+       x="53"
+       y="235"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect1128"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="18"
+       column="16"
+       x="209"
+       y="235"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect1150"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="19"
+       column="6"
+       x="79"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1192"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="7"
+       x="92"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1194"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="8"
+       x="105"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1196"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="9"
+       x="118"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1198"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="10"
+       x="131"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1200"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="11"
+       x="144"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1202"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="12"
+       x="157"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1204"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="13"
+       x="170"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1206"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="14"
+       x="183"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1208"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="19"
+       column="15"
+       x="196"
+       y="248"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect1210"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="1"
+       column="9"
+       x="118"
+       y="14"
+       width="91"
+       height="13"
+       fill="#fd9695"
+       id="rect82"
+       style="fill:#ffaaaa;stroke-width:2.64575" />
+    <rect
+       class="square"
+       row="1"
+       column="10"
+       x="131"
+       y="14"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect84"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="1"
+       column="11"
+       x="144"
+       y="14"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect86"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="1"
+       column="12"
+       x="157"
+       y="14"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect88"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="1"
+       column="13"
+       x="170"
+       y="14"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect90"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="1"
+       column="14"
+       x="183"
+       y="14"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect92"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="1"
+       column="15"
+       x="196"
+       y="14"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect94"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="2"
+       column="7"
+       x="92"
+       y="27"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect140"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="2"
+       column="8"
+       x="105"
+       y="27"
+       width="13"
+       height="13"
+       fill="#fd9695"
+       id="rect142"
+       style="fill:#ffaaaa" />
+    <rect
+       class="square"
+       row="2"
+       column="9"
+       x="118"
+       y="14"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect144"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="2"
+       column="15"
+       x="196"
+       y="27"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect156"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="3"
+       column="6"
+       x="79"
+       y="27"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect200"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="4"
+       column="5"
+       x="66"
+       y="40"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect260"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="6"
+       column="4"
+       x="53"
+       y="53"
+       width="13"
+       height="39"
+       fill="#fd9695"
+       id="rect382"
+       style="fill:#ffaaaa;stroke-width:1.73205" />
+    <rect
+       class="square"
+       row="7"
+       column="3"
+       x="40"
+       y="79"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect442"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="8"
+       column="2"
+       x="27"
+       y="92"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect502"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="13"
+       column="1"
+       x="13.999999"
+       y="105"
+       width="13"
+       height="78"
+       fill="#fd9695"
+       id="rect810"
+       style="fill:#ffaaaa;stroke-width:2.44949" />
+    <rect
+       class="square"
+       row="14"
+       column="2"
+       x="27"
+       y="170"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect874"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="15"
+       column="3"
+       x="40"
+       y="183"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect938"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="17"
+       column="18"
+       x="222"
+       y="222"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect1092"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="18"
+       column="4"
+       x="53"
+       y="196"
+       width="13"
+       height="52"
+       fill="#fd9695"
+       id="rect1126"
+       style="fill:#ffaaaa;stroke-width:2" />
+    <rect
+       class="square"
+       row="18"
+       column="17"
+       x="209"
+       y="235"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect1152"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="19"
+       column="5"
+       x="66"
+       y="235"
+       width="13"
+       height="26"
+       fill="#fd9695"
+       id="rect1190"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="19"
+       column="16"
+       x="66"
+       y="248"
+       width="156"
+       height="13"
+       fill="#fd9695"
+       id="rect1212"
+       style="fill:#ffa8a8;fill-opacity:1;stroke-width:3.464;stroke-miterlimit:0;stroke-dasharray:none" />
+    <rect
+       class="square"
+       row="3"
+       column="5"
+       x="66"
+       y="40"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect198"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
+    <rect
+       class="square"
+       row="16"
+       column="18"
+       x="235"
+       y="196"
+       width="13"
+       height="39"
+       fill="#fd9695"
+       id="rect1030"
+       style="fill:#ffaaaa;stroke-width:1.73205" />
+    <rect
+       class="square"
+       row="8"
+       column="1"
+       x="14"
+       y="105"
+       width="26"
+       height="13"
+       fill="#fd9695"
+       id="rect500"
+       style="fill:#ffaaaa;stroke-width:1.41421" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -4386,7 +4416,7 @@
          height="26"
          fill="#fef495"
          id="rect100"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="1"
@@ -4452,7 +4482,7 @@
          height="13"
          fill="#fef495"
          id="rect112"
-         style="stroke-width:2.64575;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:2.64575" />
       <rect
          class="square"
          row="2"
@@ -4463,7 +4493,7 @@
          height="13"
          fill="#fef495"
          id="rect160"
-         style="stroke-width:1.58841;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.58841" />
       <rect
          class="square"
          row="2"
@@ -4485,7 +4515,7 @@
          height="26"
          fill="#fef495"
          id="rect174"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="2"
@@ -4496,7 +4526,7 @@
          height="13"
          fill="#fef495"
          id="rect176"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="3"
@@ -4507,7 +4537,7 @@
          height="26"
          fill="#fef495"
          id="rect238"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="3"
@@ -4540,7 +4570,7 @@
          height="13"
          fill="#fef495"
          id="rect244"
-         style="stroke-width:2;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:2" />
       <rect
          class="square"
          row="4"
@@ -4628,7 +4658,7 @@
          height="13"
          fill="#fef495"
          id="rect738"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="11"
@@ -4639,7 +4669,7 @@
          height="117"
          fill="#fef495"
          id="rect740"
-         style="stroke-width:3;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:3" />
       <rect
          class="square"
          row="12"
@@ -4661,7 +4691,7 @@
          height="13"
          fill="#fef495"
          id="rect860"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="13"
@@ -4672,7 +4702,7 @@
          height="39"
          fill="#fef495"
          id="rect862"
-         style="stroke-width:1.73205;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.73205" />
       <rect
          class="square"
          row="14"
@@ -4694,7 +4724,7 @@
          height="26"
          fill="#fef495"
          id="rect970"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
       <rect
          class="square"
          row="15"
@@ -4705,7 +4735,7 @@
          height="13"
          fill="#fef495"
          id="rect976"
-         style="stroke-width:2.23607;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:2.23607" />
       <rect
          class="square"
          row="15"
@@ -4749,7 +4779,7 @@
          height="39"
          fill="#fef495"
          id="rect984"
-         style="stroke-width:1.73205;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.73205" />
       <rect
          class="square"
          row="16"
@@ -4760,7 +4790,7 @@
          height="13"
          fill="#fef495"
          id="rect1032"
-         style="stroke-width:2;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:2" />
       <rect
          class="square"
          row="16"
@@ -4793,7 +4823,7 @@
          height="26"
          fill="#fef495"
          id="rect1038"
-         style="stroke-width:1.41421;fill:#ffeeaa;fill-opacity:1" />
+         style="fill:#ffeeaa;fill-opacity:1;stroke-width:1.41421" />
     </g>
   </g>
   <g
@@ -4814,7 +4844,7 @@
          height="26"
          fill="#fd8b1f"
          id="rect586"
-         style="display:inline;stroke-width:1.41421;fill:#ff7f2a" />
+         style="display:inline;fill:#ff7f2a;stroke-width:1.41421" />
       <rect
          class="square"
          row="2"
@@ -4825,7 +4855,7 @@
          height="26"
          fill="#fd8b1f"
          id="rect158"
-         style="display:inline;stroke-width:1.41421;fill:#ff7f2a" />
+         style="display:inline;fill:#ff7f2a;stroke-width:1.41421" />
       <rect
          class="square"
          row="3"

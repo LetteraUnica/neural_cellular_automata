@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="275mm" height="50mm" version="1.1" viewBox="0 0 275 50" xmlns="http://www.w3.org/2000/svg">
+ <g stroke-opacity="0">
+  <rect width="50" height="50" fill="#f55"/>
+  <g transform="translate(-200,-125)" fill="#ffd42a">
+   <rect x="200" y="125" width="5" height="5"/>
+   <rect x="210" y="155" width="5" height="5"/>
+   <rect x="240" y="160" width="5" height="5"/>
+   <rect x="235" y="140" width="5" height="5"/>
+  </g>
+ </g>
+ <g stroke-opacity="0">
+  <rect x="75" width="50" height="50" fill="#f55"/>
+  <g transform="translate(-200,-125)" fill="#ffd42a">
+   <rect x="275" y="125" width="10" height="10"/>
+   <rect x="285" y="155" width="10" height="10"/>
+   <rect x="315" y="155" width="5" height="10"/>
+   <rect x="310" y="135" width="5" height="10"/>
+   <rect x="275" y="130" width="5" height="10"/>
+   <rect x="280" y="130" width="10" height="5"/>
+   <rect x="305" y="140" width="10" height="5"/>
+   <rect x="315" y="160" width="5" height="10"/>
+   <rect x="305" y="140" width="10" height="10"/>
+   <rect x="310" y="140" width="10" height="5"/>
+   <rect x="310" y="160" width="10" height="5"/>
+   <rect x="290" y="160" width="5" height="10"/>
+  </g>
+ </g>
+ <g stroke-opacity="0">
+  <rect x="150" width="50" height="50" fill="#f55"/>
+  <g transform="translate(-200,-125)" fill="#ffd42a">
+   <rect x="350" y="125" width="20" height="10"/>
+   <rect x="360" y="150" width="15" height="15"/>
+   <rect x="390" y="155" width="5" height="10"/>
+   <rect x="385" y="135" width="5" height="10"/>
+   <rect x="350" y="130" width="10" height="15"/>
+   <rect x="355" y="130" width="15" height="10"/>
+   <rect x="380" y="140" width="10" height="5"/>
+   <rect x="390" y="160" width="10" height="15"/>
+   <rect x="375" y="140" width="15" height="15"/>
+   <rect x="385" y="130" width="15" height="20"/>
+   <rect x="385" y="150" width="10" height="15"/>
+   <rect x="360" y="160" width="15" height="15"/>
+   <rect x="355" y="150" width="10" height="20"/>
+   <rect x="390" y="155" width="10" height="10"/>
+   <rect x="385" y="160" width="10" height="10"/>
+   <rect x="380" y="145" width="15" height="10"/>
+  </g>
+  <rect x="195" width="5" height="10" fill="#f55"/>
+ </g>
+ <g fill="#ffd42a" stroke-opacity="0">
+  <rect x="180" y="25" width="10" height="20"/>
+  <rect x="185" y="40" width="10" height="10"/>
+  <rect x="180" y="10" width="10" height="10"/>
+  <rect x="170" y="25" width="15" height="5"/>
+ </g>
+ <rect x="225" width="50" height="50" fill="#ffd42a" stroke-opacity="0"/>
+ <g fill="#666">
+  <g transform="matrix(.8606 0 0 1.3058 7.0366 -10.825)">
+   <path d="m69.176 26.707-13.443 0.20117 0.02148 1.3984 13.441-0.19922z" color="#000000" style="-inkscape-stroke:none"/>
+   <g fill="#666" fill-rule="evenodd">
+    <path d="m72.416 27.359-4.8017 2.872-0.08358-5.5994z" color="#000000" stroke-width=".56pt" style="-inkscape-stroke:none"/>
+    <path d="m67.148 23.99 0.10352 6.8926 5.9102-3.5352-0.56445-0.31445zm0.76562 1.2812 3.7578 2.0977-3.6934 2.209z" color="#000000" style="-inkscape-stroke:none"/>
+   </g>
+  </g>
+  <g transform="matrix(.8606 0 0 1.3058 82.037 -10.825)">
+   <path d="m69.176 26.707-13.443 0.20117 0.02148 1.3984 13.441-0.19922z" color="#000000" style="-inkscape-stroke:none"/>
+   <g fill="#666" fill-rule="evenodd">
+    <path d="m72.416 27.359-4.8017 2.872-0.08358-5.5994z" color="#000000" stroke-width=".56pt" style="-inkscape-stroke:none"/>
+    <path d="m67.148 23.99 0.10352 6.8926 5.9102-3.5352-0.56445-0.31445zm0.76562 1.2812 3.7578 2.0977-3.6934 2.209z" color="#000000" style="-inkscape-stroke:none"/>
+   </g>
+  </g>
+  <g transform="matrix(.8606 0 0 1.3058 157.04 -10.825)">
+   <path d="m69.176 26.707-13.443 0.20117 0.02148 1.3984 13.441-0.19922z" color="#000000" style="-inkscape-stroke:none"/>
+   <g fill="#666" fill-rule="evenodd">
+    <path d="m72.416 27.359-4.8017 2.872-0.08358-5.5994z" color="#000000" stroke-width=".56pt" style="-inkscape-stroke:none"/>
+    <path d="m67.148 23.99 0.10352 6.8926 5.9102-3.5352-0.56445-0.31445zm0.76562 1.2812 3.7578 2.0977-3.6934 2.209z" color="#000000" style="-inkscape-stroke:none"/>
+   </g>
+  </g>
+ </g>
+</svg>
