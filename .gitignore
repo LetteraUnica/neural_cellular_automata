@@ -131,6 +131,8 @@ dmypy.json
 
 #personal tests
 test.ipynb
+pytorch_ca/test.ipynb
+pytorch_ca/train.py
 
 # Wandb logs
 *.swp
@@ -147,6 +149,7 @@ __pycache__
 # IntelliJ
 .idea
 
+#vscode
+.vscode
+#orfeo scripts
 connect_orfeo.sh
-pytorch_ca/test.ipynb
-pytorch_ca/train.py
