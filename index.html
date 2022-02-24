@@ -11,7 +11,7 @@
 
   gtag('config', 'G-68SGYK1XFT');
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+<link async rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
 <script async>
@@ -563,7 +563,7 @@
         </div>
       </summary>
       <p>
-        One of the problems we first encountered was that the the new cells never tried to kill the old ones.
+        One of the problems we first encountered was that the new cells never tried to kill the old ones.
         This meant that if they were severely outnumbered they wouldn't be able to salvage the CA.
       </p>
       <p>
@@ -588,7 +588,7 @@
         \lambda_1(t)L_\textrm{target}(t)+
         \lambda_2(t)N_\textrm{old}(t) dt
         $$
-        Where $\lambda_1$ and $\lambda_2$ are hyperparameters that depent on the time (or equivalently number of steps),
+        Where $\lambda_1$ and $\lambda_2$ are hyperparameters that depend on the time (or equivalently number of steps),
         and the loss is normalized such that <dt-fn>We do this because doublign the total loss is equivalent to doubling the learning rate</dt-fn>
         $$
           \int_{t_\textrm{start}}^{t_\textrm{end}}\lambda_1(t)+\lambda_2(t)\,\, dt=1
