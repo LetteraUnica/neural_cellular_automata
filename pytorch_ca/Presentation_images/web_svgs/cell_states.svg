@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="360.07mm" height="207.03mm" version="1.1" viewBox="0 0 360.07 207.03" xmlns="http://www.w3.org/2000/svg">
+<svg width="371.5mm" height="207.03mm" version="1.1" viewBox="0 0 371.5 207.03" xmlns="http://www.w3.org/2000/svg">
  <g transform="translate(-287.4 -128.16)"></g>
  <g transform="translate(-287.4 -128.16)" stroke-miterlimit="2">
   <g>
@@ -55,14 +55,14 @@
   <path d="m411.42 333.67h40v-40h-40z" color="#000000" fill="#e6e6e6" style="-inkscape-stroke:none"/>
   <path d="m410.92 335.17v-42.003h41.006v42.003zm1-2.0031h39v-39h-39z" color="#000000" fill="#b2b2b2" style="-inkscape-stroke:none"/>
  </g>
- <g transform="translate(-287.4 -128.16)" stroke-miterlimit="2" stroke-width="2">
-  <rect x="524.62" y="144.27" width="40" height="40" fill="#deaa87" stroke="#deaa87"/>
-  <rect x="524.62" y="211.58" width="40" height="40" fill="#ffe8ce" stroke="#deaa87"/>
-  <rect x="524.62" y="278.9" width="40" height="40" fill="#e6e6e6" stroke="#b2b2b2"/>
+ <g stroke-miterlimit="2" stroke-width="2">
+  <rect x="237.22" y="16.108" width="40" height="40" fill="#deaa87" stroke="#deaa87"/>
+  <rect x="237.22" y="83.421" width="40" height="40" fill="#ffe8ce" stroke="#deaa87"/>
+  <rect x="237.22" y="150.73" width="40" height="40" fill="#e6e6e6" stroke="#b2b2b2"/>
  </g>
- <g fill="#4d4d4d" font-family="sans-serif" font-size="16.933px" stroke-miterlimit="2">
-  <text x="290.75784" y="42.16061" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.75784" y="42.16061" fill="#4d4d4d" font-family="sans-serif" font-size="16.933px" stroke-miterlimit="2" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Mature</tspan></text>
-  <text x="291.49857" y="108.09227" stroke-width="2.6458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="291.49857" y="108.09227">Growing</tspan></text>
-  <text x="290.75784" y="175.1443" stroke-width="2.6458" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.75784" y="175.1443">Empty</tspan></text>
+ <g fill="#333333" font-family="sans-serif" font-size="19.756px" stroke-width="2.646">
+  <text x="290.66898" y="43.169353" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.66898" y="43.169353" fill="#333333" font-family="sans-serif" font-size="19.756px" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Mature</tspan></text>
+  <text x="291.49857" y="108.87088" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="291.49857" y="108.87088">Growing</tspan></text>
+  <text x="290.66898" y="175.8795" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.66898" y="175.8795">Empty</tspan></text>
  </g>
 </svg>
