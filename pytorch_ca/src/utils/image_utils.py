@@ -71,8 +71,8 @@ def GrayscaletoCmap(image: torch.Tensor, cmap="viridis") -> torch.Tensor:
     image = torch.from_numpy(image)
     image = image.permute(2, 0, 1)
     return RGBAtoRGB(image)
-
-def two_channels(image: torch.Tensor, colors=torch.tensor([[1,0,0.1],[1,1,0.1]])) -> torch.Tensor:
+#                                                               orange                   blue
+def two_channels(image: torch.Tensor, colors=torch.tensor([[254/255,97/255,0.],[120/255,94/255,240/255]])) -> torch.Tensor:
     """Converts two-channel 2D tensor (2,W,H) representing an image into a colormap
         each of the two channels is a different color
 
