@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="2000mm"
-   height="700mm"
-   viewBox="0 0 2000 700"
+   width="1101.8755mm"
+   height="653.1839mm"
+   viewBox="0 0 1101.8755 653.1839"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
    sodipodi:docname="forward_pass.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,22 +24,44 @@
      inkscape:document-units="mm"
      showgrid="true"
      width="2000mm"
-     inkscape:zoom="0.22627417"
-     inkscape:cx="1893.7203"
-     inkscape:cy="775.60775"
-     inkscape:window-width="1848"
-     inkscape:window-height="1016"
-     inkscape:window-x="72"
-     inkscape:window-y="27"
+     inkscape:zoom="0.11313709"
+     inkscape:cx="3725.5689"
+     inkscape:cy="1555.6349"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4143"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4071"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
     <rect
-       x="1837.3078"
+       x="1837.3077"
        y="509.40286"
-       width="162.99865"
-       height="313.12883"
+       width="162.99866"
+       height="313.12885"
        id="rect162450" />
     <rect
        x="4160"
@@ -49,10 +71,10 @@
        id="rect78235" />
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 350 : 1"
+       inkscape:vp_x="0 : -40.441586 : 1"
        inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="2000 : 350 : 1"
-       inkscape:persp3d-origin="1000 : 233.33333 : 1"
+       inkscape:vp_z="2000.0001 : -40.441586 : 1"
+       inkscape:persp3d-origin="1000 : -157.10826 : 1"
        id="perspective59737" />
     <inkscape:path-effect
        effect="spiro"
@@ -150,239 +172,239 @@
     <marker
        style="overflow:visible"
        id="marker36732"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36730" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="marker36722"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Mend"
        inkscape:isstock="true">
       <path
-         transform="scale(0.6) rotate(180) translate(0,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path36720" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="marker36712"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Mend"
        inkscape:isstock="true">
       <path
-         transform="scale(0.6) rotate(180) translate(0,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path36710" />
     </marker>
     <marker
        style="overflow:visible"
        id="TriangleOutS"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutS"
        inkscape:isstock="true">
       <path
          transform="scale(0.2)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path33870" />
     </marker>
     <marker
        style="overflow:visible"
        id="marker36694"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36692" />
     </marker>
     <marker
        style="overflow:visible"
        id="marker36666"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36664" />
     </marker>
     <marker
        style="overflow:visible"
        id="marker36656"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36654" />
     </marker>
     <marker
        style="overflow:visible"
        id="TriangleOutM"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleOutM"
        inkscape:isstock="true">
       <path
          transform="scale(0.4)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path33867" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="marker36558"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Send"
        inkscape:isstock="true">
       <path
-         transform="scale(0.3) rotate(180) translate(-2.3,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path36556" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="Arrow2Mend"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Mend"
        inkscape:isstock="true">
       <path
-         transform="scale(0.6) rotate(180) translate(0,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path33749" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="Arrow2Send"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Send"
        inkscape:isstock="true">
       <path
-         transform="scale(0.3) rotate(180) translate(-2.3,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path33755" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="marker36532"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow1Send"
        inkscape:isstock="true">
       <path
-         transform="scale(0.2) rotate(180) translate(6,0)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path36530" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="Arrow1Send"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow1Send"
        inkscape:isstock="true">
       <path
-         transform="scale(0.2) rotate(180) translate(6,0)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path33737" />
     </marker>
     <marker
-       style="overflow:visible;"
+       style="overflow:visible"
        id="Arrow2Lend"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow2Lend"
        inkscape:isstock="true">
       <path
-         transform="scale(1.1) rotate(180) translate(1,0)"
-         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path33743" />
     </marker>
     <marker
        style="overflow:visible"
        id="TriangleInS"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="TriangleInS"
        inkscape:isstock="true">
       <path
          transform="scale(-0.2)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
          id="path33861" />
     </marker>
     <marker
        style="overflow:visible"
        id="DiamondL"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="DiamondL"
        inkscape:isstock="true">
       <path
          transform="scale(0.8)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
          id="path33801" />
     </marker>
     <marker
        style="overflow:visible"
        id="Arrow1Lstart"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="Arrow1Lstart"
        inkscape:isstock="true">
       <path
-         transform="scale(0.8) translate(12.5,0)"
-         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path33722" />
     </marker>
     <marker
@@ -861,78 +883,418 @@
          d="M 5.77,0 -2.88,5 V -5 Z"
          id="path36730-6-0-5-6-7-83" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-2-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-5-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-44" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-9-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-1-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-36"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-1-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-59-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-94" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-8-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-0-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-8-7-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-0-2-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1906"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1904" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-43"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-49-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-83-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-94"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-5-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-6-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-7-0-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-7-5-53" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker36732-3-3-2-0-4-9-4-2-9-93"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path36730-6-0-5-6-5-5-3-83-1-7" />
+    </marker>
   </defs>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Arrows"
-     style="display:inline">
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4)"
-       d="M 866.77479,363.80209 H 951.2473"
-       id="path33522-7-9-4-92-6-2-0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-2)"
-       d="m 1005.4167,363.80209 86.0273,-0.26457"
-       id="path33522-7-9-4-92-6-2-4"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4-2)"
-       d="m 714.38109,542.01174 56.06197,7e-5"
-       id="path33522-7-9-4-92-6-2-0-8"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4-9-4-2-9)"
-       d="m 714.38109,187.70902 56.03346,4e-5"
-       id="path33522-7-9-4-92-6-2-0-8-4"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:#808080;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-0)"
-       d="M 846.13744,522.49 V 396.83733"
-       id="path33522-7-9-4-92-9-0"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-0-1)"
-       d="M 846.13744,207.51335 V 332.40957"
-       id="path33522-7-9-4-92-9-0-8"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="display:inline;fill:none;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
-       d="M 141.55209,552.97918 V 674.68752 H 984.25002 V 395.51441"
-       id="path224545"
-       sodipodi:nodetypes="cccc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+     style="display:inline"
+     transform="translate(-98.177527,-27.478217)">
+    <g
+       id="path33522-7-9-4-92-6-2-0">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 870.60352,362.5957 v 4 h 79.93359 v -4 z"
+         id="path2222" />
+      <g
+         id="g1897">
+        <g
+           id="path1899">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 959.7687,364.59585 -13.84,8 v -16 z"
+             id="path2219" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 944.86133,354.74805 v 19.69726 l 17.03906,-9.84961 -1.59766,-0.92383 z m 2.13476,3.69726 10.64063,6.15039 -10.64063,6.15039 z"
+             id="path2216" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-6-2-0-8-4">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 719.58008,185.70898 v 4 h 50.05469 v -4 z"
+         id="path2261" />
+      <g
+         id="g1839">
+        <g
+           id="path1841">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 778.86704,187.70906 -13.84,8 v -16 z"
+             id="path2258" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 763.96094,177.86133 v 19.69726 l 17.03711,-9.84961 -1.59766,-0.92382 z m 2.13281,3.69531 10.64258,6.15234 -10.64258,6.15235 z"
+             id="path2255" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-6-2-0-8-4-87">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 718.88086,540.73437 v 4 h 50.05469 v -4 z"
+         id="path2252" />
+      <g
+         id="g1853">
+        <g
+           id="path1855">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 778.16818,542.73407 -13.84,8 v -16 z"
+             id="path2249" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 763.26172,532.88477 v 19.69726 l 17.03711,-9.84766 -1.59766,-0.92382 z m 2.13281,3.69726 10.64258,6.15234 -10.64258,6.15235 z"
+             id="path2246" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-9-0">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#808080;fill-rule:evenodd;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="M 846.13744,523.54834 V 397.89567"
+         id="path2243" />
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 844.13672,397.89648 v 125.65235 h 4 V 397.89648 Z"
+         id="path2240" />
+      <g
+         id="g1867">
+        <g
+           id="path1869">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 846.13744,388.66367 8,13.84 h -16 z"
+             id="path2237" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 846.13672,386.5332 -0.92188,1.59571 -8.92578,15.4414 h 19.69727 z m 0,4.25977 6.1543,10.64453 h -12.30665 z"
+             id="path2234" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-9-0-3">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#808080;fill-rule:evenodd;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 986.52941,404.07549 v -5.37728"
+         id="path2339" />
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 984.5293,398.69727 v 5.3789 h 4 v -5.3789 z"
+         id="path2341" />
+      <g
+         id="g2329">
+        <g
+           id="path2331">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 986.52941,389.46621 8,13.84 h -16 z"
+             id="path2335" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 986.5293,387.33398 -0.92383,1.59766 -8.92383,15.44141 h 19.69727 z m 0,4.26368 6.15234,10.64257 h -12.30469 z"
+             id="path2337" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-9-0-8">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 844.13672,205.39648 v 124.89649 h 4 V 205.39648 Z"
+         id="path2231" />
+      <g
+         id="g1883">
+        <g
+           id="path1885">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 846.13744,339.52489 -8,-13.84 h 16 z"
+             id="path2228" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 836.28906,324.61914 9.84766,17.03711 0.92383,-1.59766 8.92578,-15.43945 z m 3.69727,2.13281 h 12.30273 l -6.15234,10.64258 z"
+             id="path2225" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-6-2-0-7">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 1009.6191,362.5957 v 4 h 79.9336 v -4 z"
+         id="path2213" />
+      <g
+         id="g1911">
+        <g
+           id="path1913">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 1098.7849,364.59585 -13.84,8 v -16 z"
+             id="path2210" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 1083.8789,354.74805 v 19.69726 l 17.0371,-9.84961 -1.5976,-0.92383 z m 2.1328,3.69726 10.6426,6.15039 -10.6426,6.15039 z"
+             id="path2207" />
+        </g>
+      </g>
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Layer 2" />
+     inkscape:label="Layer 2"
+     transform="translate(-98.177527,-27.478217)" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-98.177527,-27.478217)">
     <g
        id="g122275">
       <rect
@@ -1051,9 +1413,9 @@
        id="path142" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
        x="220.51311"
-       y="513.11639"
+       y="513.64557"
        id="text38357"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
@@ -1061,8 +1423,8 @@
          sodipodi:role="line"
          id="tspan38355"
          x="220.51311"
-         y="513.11639"
-         style="fill:#333333;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
+         y="513.64557"
+         style="fill:#000000;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
@@ -1079,232 +1441,46 @@
        id="text95979"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981);clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
        transform="matrix(0.26458333,0,0,0.26458333,-83.934004,137.71241)" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="285.32227"
-       y="134.60973"
+    <g
+       aria-label="Perception"
        id="text103754-0"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan103752-2"
-         x="285.32227"
-         y="134.60973"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">Perception</tspan></text>
+       style="font-size:28.2222px;line-height:1.25;-inkscape-font-specification:'sans-serif, Normal';clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+      <path
+         d="m 283.39648,104.01612 v 7.73079 h 3.50021 q 1.94303,0 3.00412,-1.00597 1.06109,-1.00597 1.06109,-2.86632 0,-1.84657 -1.06109,-2.85253 -1.06109,-1.00597 -3.00412,-1.00597 z m -2.78364,-2.28754 h 6.28385 q 3.45887,0 5.22276,1.57096 1.77767,1.55718 1.77767,4.57508 0,3.04547 -1.77767,4.60265 -1.76389,1.55718 -5.22276,1.55718 h -3.50021 v 8.26822 h -2.78364 z"
+         id="path4664" />
+      <path
+         d="m 309.71699,113.95177 v 1.24023 h -11.6582 q 0.16537,2.61827 1.57096,3.99631 1.41938,1.36426 3.94119,1.36426 1.46072,0 2.82498,-0.35829 1.37803,-0.35829 2.72851,-1.07487 v 2.39778 q -1.36426,0.57878 -2.79742,0.88195 -1.43315,0.30316 -2.90765,0.30316 -3.69314,0 -5.85666,-2.14973 -2.14974,-2.14974 -2.14974,-5.81532 0,-3.7896 2.03949,-6.00824 2.05328,-2.23242 5.52593,-2.23242 3.11437,0 4.9196,2.01193 1.81901,1.99816 1.81901,5.44325 z m -2.53559,-0.74414 q -0.0276,-2.08084 -1.17133,-3.32107 -1.13,-1.24023 -3.00413,-1.24023 -2.12217,0 -3.40375,1.19889 -1.26779,1.19889 -1.46072,3.37619 z"
+         id="path4661" />
+      <path
+         d="m 322.82212,109.23888 q -0.42719,-0.24805 -0.93707,-0.35829 -0.49609,-0.12402 -1.10242,-0.12402 -2.14974,0 -3.30729,1.4056 -1.14377,1.39181 -1.14377,4.01008 v 8.13042 h -2.54937 v -15.43401 h 2.54937 v 2.39778 q 0.79926,-1.4056 2.08083,-2.08083 1.28158,-0.68902 3.11437,-0.68902 0.26182,0 0.57877,0.0413 0.31695,0.0276 0.7028,0.0965 z"
+         id="path4658" />
+      <path
+         d="m 335.96859,107.46121 v 2.37023 q -1.07486,-0.59256 -2.16351,-0.88195 -1.07487,-0.30316 -2.1773,-0.30316 -2.46669,0 -3.83095,1.57096 -1.36425,1.55718 -1.36425,4.38216 0,2.82497 1.36425,4.39593 1.36426,1.55719 3.83095,1.55719 1.10243,0 2.1773,-0.28939 1.08865,-0.30317 2.16351,-0.89573 v 2.34267 q -1.06108,0.49609 -2.20486,0.74414 -1.12999,0.24804 -2.41156,0.24804 -3.48643,0 -5.53971,-2.19107 -2.05327,-2.19108 -2.05327,-5.91178 0,-3.77583 2.06705,-5.93934 2.08084,-2.16352 5.69129,-2.16352 1.17134,0 2.28755,0.24804 1.11621,0.23427 2.16351,0.71658 z"
+         id="path4655" />
+      <path
+         d="m 353.57991,113.95177 v 1.24023 h -11.6582 q 0.16537,2.61827 1.57097,3.99631 1.41937,1.36426 3.94118,1.36426 1.46072,0 2.82498,-0.35829 1.37804,-0.35829 2.72851,-1.07487 v 2.39778 q -1.36425,0.57878 -2.79741,0.88195 -1.43316,0.30316 -2.90766,0.30316 -3.69314,0 -5.85666,-2.14973 -2.14974,-2.14974 -2.14974,-5.81532 0,-3.7896 2.0395,-6.00824 2.05327,-2.23242 5.52593,-2.23242 3.11436,0 4.91959,2.01193 1.81901,1.99816 1.81901,5.44325 z m -2.53559,-0.74414 q -0.0276,-2.08084 -1.17133,-3.32107 -1.12999,-1.24023 -3.00412,-1.24023 -2.12218,0 -3.40375,1.19889 -1.2678,1.19889 -1.46072,3.37619 z"
+         id="path4652" />
+      <path
+         d="m 360.19449,119.98757 v 8.18554 h -2.54937 v -21.30445 h 2.54937 v 2.34266 q 0.79926,-1.37804 2.01193,-2.03949 1.22646,-0.67524 2.92144,-0.67524 2.8112,0 4.5613,2.23242 1.76389,2.23242 1.76389,5.87044 0,3.63801 -1.76389,5.87043 -1.7501,2.23242 -4.5613,2.23242 -1.69498,0 -2.92144,-0.66145 -1.21267,-0.67524 -2.01193,-2.05328 z m 8.62651,-5.38812 q 0,-2.79742 -1.15755,-4.38216 -1.14377,-1.59853 -3.15571,-1.59853 -2.01193,0 -3.16948,1.59853 -1.14377,1.58474 -1.14377,4.38216 0,2.79741 1.14377,4.39593 1.15755,1.58475 3.16948,1.58475 2.01194,0 3.15571,-1.58475 1.15755,-1.59852 1.15755,-4.39593 z"
+         id="path4649" />
+      <path
+         d="m 378.16409,102.4865 v 4.38216 h 5.22276 v 1.97059 h -5.22276 v 8.37847 q 0,1.88791 0.50988,2.42534 0.52365,0.53744 2.10839,0.53744 h 2.60449 v 2.12217 h -2.60449 q -2.93522,0 -4.05143,-1.08865 -1.11621,-1.10243 -1.11621,-3.9963 v -8.37847 h -1.86035 v -1.97059 h 1.86035 v -4.38216 z"
+         id="path4646" />
+      <path
+         d="m 386.7217,106.86866 h 2.53559 v 15.43401 h -2.53559 z m 0,-6.00824 h 2.53559 v 3.21082 h -2.53559 z"
+         id="path4643" />
+      <path
+         d="m 400.54341,108.64633 q -2.03949,0 -3.2246,1.59852 -1.18511,1.58474 -1.18511,4.3546 0,2.76985 1.17133,4.36837 1.18511,1.58475 3.23838,1.58475 2.02572,0 3.21083,-1.59853 1.18511,-1.59852 1.18511,-4.35459 0,-2.7423 -1.18511,-4.34082 -1.18511,-1.6123 -3.21083,-1.6123 z m 0,-2.14974 q 3.30729,0 5.1952,2.14974 1.88792,2.14973 1.88792,5.95312 0,3.7896 -1.88792,5.95312 -1.88791,2.14973 -5.1952,2.14973 -3.32106,0 -5.20898,-2.14973 -1.87413,-2.16352 -1.87413,-5.95312 0,-3.80339 1.87413,-5.95312 1.88792,-2.14974 5.20898,-2.14974 z"
+         id="path4640" />
+      <path
+         d="m 424.65906,112.98714 v 9.31553 h -2.53559 v -9.23285 q 0,-2.19107 -0.85438,-3.27972 -0.85439,-1.08865 -2.56315,-1.08865 -2.05328,0 -3.23839,1.30913 -1.18511,1.30914 -1.18511,3.56912 v 8.72297 h -2.54937 v -15.43401 h 2.54937 v 2.39778 q 0.9095,-1.39182 2.13596,-2.08083 1.24023,-0.68902 2.85253,-0.68902 2.65962,0 4.02387,1.65364 1.36426,1.63987 1.36426,4.83691 z"
+         id="path4637" />
+    </g>
     <text
        x="766.74988"
        y="284.31052"
        style="font-size:6.66802px;font-family:ArialMT, Arial, sans-serif;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.294472;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
        id="text118-6" />
-    <text
-       x="691.51013"
-       y="646.78052"
-       fill="#ffffff"
-       font-family="ArialMT, Arial, sans-serif"
-       font-size="27.1468px"
-       id="text16892-0-6"
-       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.714388;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">α</text>
-    <g
-       id="g122411">
-      <text
-         x="602.20282"
-         y="522.31293"
-         fill="#ffffff"
-         font-family="ArialMT, Arial, sans-serif"
-         font-size="38.2197px"
-         id="text16892-6"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:1.00578;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">α</text>
-      <rect
-         x="604.30829"
-         y="422.33582"
-         width="20.247999"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect2-0-02" />
-      <rect
-         x="604.30829"
-         y="470.91873"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect10-2-4" />
-      <rect
-         x="604.30829"
-         y="446.62732"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect18-5-3" />
-      <rect
-         x="604.52277"
-         y="616.66772"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect28-3-1" />
-      <rect
-         x="604.3078"
-         y="495.21021"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect32-6-1"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <text
-         x="608.31732"
-         y="513.19366"
-         fill="#ffffff"
-         font-family="ArialMT, Arial, sans-serif"
-         font-size="21.9889px"
-         id="text16892-0"
-         style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
-      <rect
-         x="604.3078"
-         y="519.50171"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect40-2-9"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <rect
-         x="604.3078"
-         y="543.79333"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect44-3-8"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <circle
-         cx="614.77911"
-         cy="576.51965"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle48-8-6" />
-      <circle
-         cx="614.77911"
-         cy="590.35461"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle50-4-1" />
-      <circle
-         cx="614.77911"
-         cy="604.1897"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle54-2-4" />
-    </g>
-    <rect
-       x="690.56165"
-       y="67.543335"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect2-0-4"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="116.12629"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect10-2-7"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="91.834869"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect18-5-8"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="239.08316"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect32-6-6"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="262.60507"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect88-8"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="141.14763"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect92-7"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="690.56165"
-       y="214.02225"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect96-4"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <text
-       x="693.96881"
-       y="280.42184"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1328px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.556127;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="text114-9">0</text>
-    <circle
-       cx="700.68585"
-       cy="173.87405"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle126-6"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <circle
-       cx="700.6864"
-       cy="187.70901"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle128-9" />
-    <circle
-       cx="700.6864"
-       cy="201.54405"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle132-0" />
-    <path
-       style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8)"
-       d="m 630.97909,158.75 c 29.03839,7.78081 16.79726,80.05692 46.16823,87.92685"
-       id="path33522-7-9-4-9"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
@@ -1321,35 +1497,6 @@
        id="text95979-4"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect95981-2);clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
        transform="matrix(0.26458333,0,0,0.26458333,520.51446,40.848744)" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="594.27802"
-       y="57.702835"
-       id="text103754-0-0"><tspan
-         sodipodi:role="line"
-         id="tspan132726"
-         x="594.27802"
-         y="57.702835"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">δS<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan200970">1</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="594.0401"
-       y="410.21448"
-       id="text103754-0-0-8"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan132726-3"
-         x="594.0401"
-         y="410.21448"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">δS<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan203852">2</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.2;stroke-miterlimit:0;stroke-dasharray:none"
@@ -1387,46 +1534,6 @@
        y="458.93552"
        style="font-size:6.66802px;font-family:ArialMT, Arial, sans-serif;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.294472;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
        id="text118-6-3" />
-    <rect
-       x="688.97394"
-       y="421.84604"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect2-0-4-5"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="688.97394"
-       y="470.42899"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect10-2-7-9"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="688.97394"
-       y="446.13757"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect18-5-8-1"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="688.97394"
-       y="593.38593"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect32-6-6-4"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
     <text
        x="688.67682"
        y="461.85785"
@@ -1447,96 +1554,257 @@
          x="689.27185"
          y="485.86121"
          style="stroke-width:0.163041" /></text>
-    <rect
-       x="688.97394"
-       y="616.90784"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect88-8-6"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <text
-       x="692.98346"
-       y="634.8913"
-       fill="#ffffff"
-       font-family="ArialMT, Arial, sans-serif"
-       font-size="21.9889px"
-       id="text16892-0-4"
-       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
-    <rect
-       x="688.97394"
-       y="495.45035"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect92-7-6"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       x="688.97394"
-       y="568.32501"
-       width="20.248245"
-       height="20.248245"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="rect96-4-87"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <text
-       x="692.38055"
-       y="611.2027"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1328px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.556127;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="text114-9-6">0</text>
-    <circle
-       cx="699.09802"
-       cy="528.17682"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle126-6-5"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <circle
-       cx="699.09857"
-       cy="542.01178"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle128-9-7" />
-    <circle
-       cx="699.09857"
-       cy="555.8468"
-       r="4.5848131"
-       style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       id="circle132-0-9" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-8-7)"
-       d="m 631.82703,509.91867 c 33.55285,8.99046 9.14165,105.06522 43.33931,114.22846"
-       id="path33522-7-9-4-9-8"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="100.98872"
-       y="122.05463"
+    <g
+       id="g14106">
+      <g
+         id="g122411">
+        <text
+           x="602.20282"
+           y="522.31293"
+           fill="#ffffff"
+           font-family="ArialMT, Arial, sans-serif"
+           font-size="38.2197px"
+           id="text16892-6"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:1.00578;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">α</text>
+        <rect
+           x="604.30829"
+           y="422.33582"
+           width="20.247999"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect2-0-02" />
+        <rect
+           x="604.30829"
+           y="470.91873"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect10-2-4" />
+        <rect
+           x="604.30829"
+           y="446.62732"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect18-5-3" />
+        <rect
+           x="604.52277"
+           y="616.66772"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect28-3-1" />
+        <rect
+           x="604.3078"
+           y="495.21021"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect32-6-1"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <text
+           x="608.31732"
+           y="513.19366"
+           fill="#ffffff"
+           font-family="ArialMT, Arial, sans-serif"
+           font-size="21.9889px"
+           id="text16892-0"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
+        <rect
+           x="604.3078"
+           y="519.50171"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect40-2-9"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="604.3078"
+           y="543.79333"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect44-3-8"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           cx="614.77911"
+           cy="576.51965"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle48-8-6" />
+        <circle
+           cx="614.77911"
+           cy="590.35461"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle50-4-1" />
+        <circle
+           cx="614.77911"
+           cy="604.1897"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle54-2-4" />
+      </g>
+      <g
+         id="path33522-7-9-4-9-8">
+        <path
+           style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0;-inkscape-stroke:none"
+           d="m 632.21484,508.4707 -0.77539,2.89649 c 7.69915,2.06298 12.161,9.12012 15.0625,19.31445 2.90151,10.19433 4.07663,23.27646 5.25977,36.42188 1.18314,13.14541 2.37449,26.35439 5.48437,37.01367 3.10988,10.65927 8.30578,19.00655 17.53125,21.47851 l 0.77735,-2.89843 c -7.87334,-2.10966 -12.45006,-9.20709 -15.42969,-19.41993 -2.97963,-10.21283 -4.19408,-23.3009 -5.37695,-36.44336 -1.18288,-13.14246 -2.33452,-26.33807 -5.36133,-36.97265 -3.02681,-10.63458 -8.09461,-18.95838 -17.17188,-21.39063 z"
+           id="path2407" />
+        <g
+           id="g2397">
+          <g
+             id="path2399">
+            <path
+               style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.2pt;-inkscape-stroke:none"
+               d="m 681.85441,625.93919 -11.57922,3.10902 3.10583,-11.59111 z"
+               id="path2403" />
+            <path
+               style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+               d="m 672.9668,615.91016 -3.82227,14.26953 14.25391,-3.82617 -0.97852,-0.98047 z m 0.82812,3.09375 6.51563,6.52148 -8.90235,2.39063 z"
+               id="path2405" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="g8427"
+         transform="translate(2.8483073e-5)">
+        <rect
+           x="688.97394"
+           y="421.84604"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect2-0-4-5"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="688.97394"
+           y="470.42899"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect10-2-7-9"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="688.97394"
+           y="446.13757"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect18-5-8-1"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="688.97394"
+           y="593.38593"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect32-6-6-4"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="688.97394"
+           y="616.90784"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect88-8-6"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <text
+           x="692.98346"
+           y="634.8913"
+           fill="#ffffff"
+           font-family="ArialMT, Arial, sans-serif"
+           font-size="21.9889px"
+           id="text16892-0-4"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
+        <rect
+           x="688.97394"
+           y="495.45035"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect92-7-6"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="688.97394"
+           y="568.32501"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect96-4-87"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <text
+           x="692.38055"
+           y="611.2027"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1328px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.556127;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="text114-9-6">0</text>
+        <circle
+           cx="699.09802"
+           cy="528.17682"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle126-6-5"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           cx="699.09857"
+           cy="542.01178"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle128-9-7" />
+        <circle
+           cx="699.09857"
+           cy="555.8468"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle132-0-9" />
+      </g>
+    </g>
+    <g
+       aria-label="Step N"
        id="text103754"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan103752"
-         x="100.98872"
-         y="122.05463"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">Step N</tspan></text>
+       style="font-size:28.2222px;line-height:1.25;-inkscape-font-specification:'sans-serif, Normal';clip-rule:evenodd;fill-rule:evenodd;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">
+      <path
+         d="m 111.42046,102.15577 v 2.71473 q -1.58474,-0.75792 -2.99034,-1.12999 -1.40559,-0.37207 -2.71473,-0.37207 -2.27376,0 -3.51399,0.88195 -1.22646,0.88194 -1.22646,2.50802 0,1.36426 0.81304,2.06706 0.82683,0.68902 3.11437,1.11621 l 1.6812,0.34451 q 3.11437,0.59256 4.58887,2.09462 1.48828,1.48828 1.48828,3.9963 0,2.99034 -2.01194,4.53375 -1.99815,1.5434 -5.87044,1.5434 -1.46071,0 -3.11436,-0.33073 -1.63986,-0.33073 -3.403751,-0.97841 v -2.86632 q 1.694986,0.95085 3.321071,1.43316 1.62608,0.48232 3.19704,0.48232 2.38401,0 3.67936,-0.93707 1.29536,-0.93706 1.29536,-2.67339 0,-1.51584 -0.93707,-2.37022 -0.92328,-0.85439 -3.04546,-1.28158 l -1.69498,-0.33073 q -3.11437,-0.62011 -4.506186,-1.94303 -1.391817,-1.32292 -1.391817,-3.67936 0,-2.72851 1.915473,-4.29948 1.92925,-1.57096 5.30544,-1.57096 1.44694,0 2.949,0.26183 1.50206,0.26183 3.07302,0.78548 z"
+         id="path4574" />
+      <path
+         d="m 119.3993,102.23845 v 4.38216 h 5.22276 v 1.97059 h -5.22276 v 8.37847 q 0,1.88791 0.50987,2.42534 0.52366,0.53744 2.1084,0.53744 h 2.60449 v 2.12218 h -2.60449 q -2.93522,0 -4.05143,-1.08865 -1.11621,-1.10243 -1.11621,-3.99631 v -8.37847 h -1.86035 v -1.97059 h 1.86035 v -4.38216 z"
+         id="path4571" />
+      <path
+         d="m 141.15851,113.70372 v 1.24023 h -11.6582 q 0.16537,2.61828 1.57096,3.99631 1.41938,1.36426 3.94119,1.36426 1.46072,0 2.82498,-0.35829 1.37803,-0.35829 2.72851,-1.07487 v 2.39779 q -1.36426,0.57877 -2.79742,0.88194 -1.43315,0.30317 -2.90765,0.30317 -3.69314,0 -5.85666,-2.14974 -2.14974,-2.14974 -2.14974,-5.81532 0,-3.7896 2.0395,-6.00824 2.05327,-2.23242 5.52592,-2.23242 3.11437,0 4.9196,2.01193 1.81901,1.99816 1.81901,5.44325 z m -2.53559,-0.74414 q -0.0276,-2.08083 -1.17133,-3.32107 -1.12999,-1.24023 -3.00413,-1.24023 -2.12217,0 -3.40375,1.19889 -1.26779,1.19889 -1.46072,3.37619 z"
+         id="path4568" />
+      <path
+         d="m 147.77308,119.73952 v 8.18554 h -2.54937 v -21.30445 h 2.54937 v 2.34266 q 0.79926,-1.37803 2.01194,-2.03949 1.22645,-0.67524 2.92144,-0.67524 2.81119,0 4.5613,2.23242 1.76389,2.23242 1.76389,5.87044 0,3.63802 -1.76389,5.87044 -1.75011,2.23242 -4.5613,2.23242 -1.69499,0 -2.92144,-0.66146 -1.21268,-0.67524 -2.01194,-2.05328 z m 8.62651,-5.38812 q 0,-2.79742 -1.15755,-4.38216 -1.14377,-1.59852 -3.1557,-1.59852 -2.01194,0 -3.16949,1.59852 -1.14377,1.58474 -1.14377,4.38216 0,2.79741 1.14377,4.39594 1.15755,1.58474 3.16949,1.58474 2.01193,0 3.1557,-1.58474 1.15755,-1.59853 1.15755,-4.39594 z"
+         id="path4565" />
+      <path
+         d="m 172.31592,101.48053 h 3.74826 l 9.12261,17.21169 v -17.21169 h 2.70095 v 20.5741 h -3.74826 l -9.12261,-17.21169 v 17.21169 h -2.70095 z"
+         id="path4562" />
+    </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="1073.474"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="1066.7141"
        y="122.06028"
        id="text103754-9"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
@@ -1544,38 +1812,26 @@
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan103752-4"
-         x="1073.474"
+         x="1066.7141"
          y="122.06028"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">Step N+1</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.264583">Step N+1</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
-       x="964.74115"
-       y="378.13504"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.4925;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+       x="966.85779"
+       y="379.19339"
        id="text38357-3-3"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan38355-2-0"
-         x="964.74115"
-         y="378.13504"
-         style="fill:#333333;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
-    <rect
-       style="display:inline;fill:none;fill-opacity:1;stroke:#999999;stroke-width:4;stroke-linecap:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1"
-       id="rect212860-1-7"
-       width="42.333321"
-       height="42.33334"
-       x="824.9707"
-       y="343.42917"
-       rx="0"
-       ry="0.37499943"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+         x="966.85779"
+         y="379.19339"
+         style="fill:#000000;fill-opacity:1;stroke-width:3.4925">+</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#333333;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.5666px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0;stroke-dasharray:none;paint-order:stroke fill markers"
        x="826.62848"
        y="379.19339"
        id="text38357-3-3-6"
@@ -1586,19 +1842,7 @@
          id="tspan38355-2-0-0"
          x="826.62848"
          y="379.19339"
-         style="fill:#333333;fill-opacity:1;stroke-width:2.8;stroke-miterlimit:0;stroke-dasharray:none">+</tspan></text>
-    <rect
-       style="display:inline;fill:#0099aa;fill-opacity:0;stroke:#999999;stroke-width:4;stroke-linecap:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1"
-       id="rect212860-1-7-9"
-       width="42.333321"
-       height="42.33334"
-       x="963.08331"
-       y="342.37082"
-       rx="0"
-       ry="0.37499943"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+         style="fill:#000000;fill-opacity:1;stroke-width:2.8;stroke-miterlimit:0;stroke-dasharray:none">+</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"
@@ -1606,70 +1850,124 @@
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect78235);fill:#000000;fill-opacity:1;stroke:none" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.198437;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="789.87878"
-       y="193.88052"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.8207px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.217348;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="787.43024"
+       y="195.71687"
        id="text77792-2-2-0-6"
        transform="rotate(0.05502665)"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
-         x="789.87878"
-         y="193.88052"
-         id="tspan14936">masking</tspan></text>
-    <rect
-       style="display:inline;fill:none;fill-opacity:0;stroke:#999999;stroke-width:4;stroke-linecap:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1"
-       id="rect212860-0-9-2-5"
-       width="122.72882"
-       height="37.227428"
-       x="782.09882"
-       y="169.09535"
-       rx="0.39560151"
-       ry="0.39497402"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2)"
-       d="m 260.7738,497.41668 c 29.5454,-7.91667 27.48404,-49.88822 28.36125,-91.1146 0.87721,-41.22638 -1.15059,-93.59333 28.36125,-101.501"
-       id="path33522-7-9-4"
-       sodipodi:nodetypes="csc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7)"
-       d="m 382.09726,366.71247 c 34.10518,9.13845 41.48704,43.07862 41.48704,79.37499 0,35.10454 6.265,73.50466 41.48704,79.375"
-       id="path33522-7-9-4-92-9"
-       sodipodi:nodetypes="csc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-7-49)"
-       d="m 382.09726,327.99989 c 34.10518,-9.13845 41.48704,-43.07862 41.48704,-79.37499 0,-35.10454 6.265,-73.50466 41.48704,-79.375"
-       id="path33522-7-9-4-92-9-4"
-       sodipodi:nodetypes="csc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-4)"
-       d="m 527.64899,169.75134 h 56.62092"
-       id="path33522-7-9-4-92-6"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <path
-       style="clip-rule:evenodd;display:inline;fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker36732-3-3-2-0-5)"
-       d="m 527.64899,529.50107 h 56.62092"
-       id="path33522-7-9-4-92-8"
-       sodipodi:nodetypes="cc"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+         x="787.43024"
+         y="195.71687"
+         id="tspan14936"
+         style="stroke-width:0.217348">masking</tspan></text>
+    <g
+       id="path33522-7-9-4">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 316.97852,302.86914 c -7.91654,2.12123 -13.79095,7.31507 -17.95899,14.30664 -4.16804,6.99157 -6.74384,15.78377 -8.41406,25.54297 -3.34044,19.51841 -3.03318,42.97862 -3.4707,63.54102 -0.43962,20.66091 -0.17099,41.40081 -3.39258,57.70312 -1.6108,8.15116 -4.08985,15.1652 -7.83594,20.5293 -3.74609,5.36409 -8.69642,9.12887 -15.65039,10.99218 l 1.03516,3.86329 c 7.81871,-2.09502 13.69007,-6.54401 17.89453,-12.56446 4.20445,-6.02044 6.80573,-13.56032 8.48242,-22.04492 3.35337,-16.96919 3.02921,-37.8291 3.4668,-58.39453 0.43968,-20.66394 0.17114,-44.00068 3.41406,-62.94922 1.62145,-9.47427 4.12689,-17.8323 7.90625,-24.17187 3.77935,-6.33958 8.71922,-10.65764 15.55859,-12.49024 z"
+         id="path2306" />
+      <g
+         id="g1769">
+        <g
+           id="path1771">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 326.41373,302.41166 -11.29786,11.30946 -4.14111,-15.45481 z"
+             id="path2303" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 309.4668,296.75586 5.09765,19.02734 13.90821,-13.92383 -1.78321,-0.47851 z m 3.01757,3.02148 11.8711,3.18555 -8.6875,8.69531 z"
+             id="path2300" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-9">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 382.61523,364.78125 -1.03515,3.86328 c 16.48951,4.41835 26.2843,14.61631 32.21289,28.36328 5.92859,13.74698 7.79101,31.0675 7.79101,49.08008 0,17.67123 1.54067,36.25631 7.68164,51.40234 6.14098,15.14604 17.18698,26.89705 35.47657,29.94532 l 0.6582,-3.94532 c -16.93242,-2.82207 -26.63071,-13.20618 -32.42773,-27.5039 -5.79703,-14.29772 -7.38868,-32.46516 -7.38868,-49.89844 0,-18.28375 -1.82856,-36.08227 -8.11718,-50.66406 -6.28862,-14.58179 -17.23593,-25.92249 -34.85157,-30.64258 z"
+         id="path2288" />
+      <g
+         id="g1797">
+        <g
+           id="path1799">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 474.17773,526.98019 -14.96689,5.61587 2.63039,-15.7823 z"
+             id="path2285" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 461.09375,514.81445 -3.23828,19.42969 18.42383,-6.91406 -1.42383,-1.17383 z m 1.49414,3.99805 9.48828,7.81836 -11.50781,4.31641 z"
+             id="path2282" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-9-4">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 464.74219,167.27734 c -18.28959,3.04827 -29.33559,14.79928 -35.47657,29.94532 -6.14097,15.14603 -7.68164,33.73111 -7.68164,51.40234 0,18.01258 -1.86242,35.3331 -7.79101,49.08008 -5.92859,13.74697 -15.72338,23.94493 -32.21289,28.36328 l 1.03515,3.86328 c 17.61564,-4.72009 28.56295,-16.06079 34.85157,-30.64258 6.28862,-14.58179 8.11718,-32.38031 8.11718,-50.66406 0,-17.43327 1.59165,-35.60072 7.38868,-49.89844 5.79702,-14.29771 15.49531,-24.68183 32.42773,-27.5039 z"
+         id="path2297" />
+      <g
+         id="g1783">
+        <g
+           id="path1785">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 474.17773,167.73217 -12.3365,10.16643 -2.63039,-15.7823 z"
+             id="path2294" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 457.85547,160.46875 3.23828,19.42773 15.18555,-12.51562 -1.72657,-0.64649 z m 2.71289,3.29687 11.50781,4.31641 -9.48633,7.81836 z"
+             id="path2291" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-6">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 527.64844,167.75195 v 4 h 56.62109 v -4 z"
+         id="path2270" />
+      <g
+         id="g1825">
+        <g
+           id="path1827">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 593.50191,169.75134 -13.84,8 v -16 z"
+             id="path2267" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 578.5957,159.90234 v 19.69727 l 17.03711,-9.84766 -1.59765,-0.92383 z m 2.13282,3.69727 10.64257,6.15234 -10.64257,6.15235 z"
+             id="path2264" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="path33522-7-9-4-92-8">
+      <path
+         style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0.208333;-inkscape-stroke:none"
+         d="m 527.64844,527.50195 v 4 h 56.62109 v -4 z"
+         id="path2279" />
+      <g
+         id="g1811">
+        <g
+           id="path1813">
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.6pt;-inkscape-stroke:none"
+             d="m 593.50191,529.50107 -13.84,8 v -16 z"
+             id="path2276" />
+          <path
+             style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+             d="m 578.5957,519.65234 v 19.69727 l 17.03711,-9.84766 -1.59765,-0.92383 z m 2.13282,3.69532 10.64453,6.15234 -10.64453,6.1543 z"
+             id="path2273" />
+        </g>
+      </g>
+    </g>
     <g
        id="g122435">
       <rect
@@ -1679,8 +1977,8 @@
          height="412.75"
          x="1102.5637"
          y="138.52481"
-         rx="0"
-         ry="0.37499943"
+         rx="12.522358"
+         ry="12.522358"
          inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
@@ -1863,8 +2161,8 @@
          height="412.75"
          x="111.28267"
          y="138.5248"
-         rx="0"
-         ry="0.37499943"
+         rx="12.053575"
+         ry="12.053575"
          inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
@@ -2043,136 +2341,293 @@
        transform="scale(0.26458333)"
        id="text162448"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect162450);fill:#000000;fill-opacity:1;stroke:none" />
-    <text
-       x="694.57117"
-       y="257.06659"
-       fill="#ffffff"
-       font-family="ArialMT, Arial, sans-serif"
-       font-size="21.9889px"
-       id="text16892-0-2"
-       style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
     <g
-       id="g122289">
-      <rect
-         x="604.30829"
-         y="69.960892"
-         width="20.247999"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect2-0-02-9" />
-      <rect
-         x="604.30829"
-         y="118.54381"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect10-2-4-5" />
-      <rect
-         x="604.30829"
-         y="94.252396"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect18-5-3-7" />
-      <rect
-         x="604.52277"
-         y="264.29282"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect28-3-1-2" />
-      <rect
-         x="604.3078"
-         y="142.83528"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect32-6-1-4"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <rect
-         x="604.3078"
-         y="167.12679"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect40-2-9-6"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <rect
-         x="604.3078"
-         y="191.41841"
-         width="20.248245"
-         height="20.248245"
-         style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="rect44-3-8-8"
-         inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <circle
-         cx="614.77911"
-         cy="224.14471"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle48-8-6-2" />
-      <circle
-         cx="614.77911"
-         cy="237.97972"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle50-4-1-3" />
-      <circle
-         cx="614.77911"
-         cy="251.81474"
-         r="4.5848131"
-         style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-         id="circle54-2-4-8" />
-      <text
-         x="608.31732"
-         y="160.81871"
-         fill="#ffffff"
-         font-family="ArialMT, Arial, sans-serif"
-         font-size="27.1468px"
-         id="text16892-0-0"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.9889px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"><tspan
-           sodipodi:role="line"
-           id="tspan91369"
+       id="g13964">
+      <g
+         id="path33522-7-9-4-9">
+        <path
+           style="color:#000000;clip-rule:evenodd;fill:#999999;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:0;-inkscape-stroke:none"
+           d="m 631.36719,157.30078 -0.77539,2.89844 c 6.67336,1.78812 11.03373,7.26666 14.33984,15.05078 3.30611,7.78412 5.41843,17.72664 7.53906,27.74023 2.12064,10.0136 4.25067,20.10004 7.77735,28.31446 3.52667,8.21442 8.58939,14.69753 16.51172,16.82031 l 0.77539,-2.89648 c -6.76315,-1.81218 -11.18512,-7.31352 -14.53125,-15.10743 -3.34614,-7.7939 -5.47741,-17.74019 -7.59766,-27.75195 -2.12025,-10.01176 -4.22933,-20.08909 -7.71289,-28.29102 -3.48356,-8.20192 -8.48035,-14.67506 -16.32617,-16.77734 z"
+           id="path2374" />
+        <g
+           id="g2364">
+          <g
+             id="path2366">
+            <path
+               style="color:#000000;fill:#999999;fill-rule:evenodd;stroke-width:1.2pt;-inkscape-stroke:none"
+               d="m 683.83539,248.46891 -11.57922,3.10902 3.10583,-11.59111 z"
+               id="path2370" />
+            <path
+               style="color:#000000;fill:#999999;fill-rule:evenodd;-inkscape-stroke:none"
+               d="m 674.94727,238.44141 -3.82227,14.26953 14.25391,-3.82813 -0.97852,-0.97851 z m 0.82812,3.09179 6.51563,6.52149 -8.90235,2.39062 z"
+               id="path2372" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="g8441"
+         transform="translate(1.4750163e-5)">
+        <rect
+           x="690.56165"
+           y="67.543335"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect2-0-4"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="116.12629"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect10-2-7"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="91.834869"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect18-5-8"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="239.08316"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect32-6-6"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="262.60507"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect88-8"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="141.14763"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect92-7"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="690.56165"
+           y="214.02225"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect96-4"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <text
+           x="693.96881"
+           y="280.42184"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1328px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd;stroke-width:0.556127;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="text114-9">0</text>
+        <circle
+           cx="700.68585"
+           cy="173.87405"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle126-6"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forwad.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           cx="700.6864"
+           cy="187.70901"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle128-9" />
+        <circle
+           cx="700.6864"
+           cy="201.54405"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle132-0" />
+        <text
+           x="694.57117"
+           y="257.06659"
+           fill="#ffffff"
+           font-family="ArialMT, Arial, sans-serif"
+           font-size="21.9889px"
+           id="text16892-0-2"
+           style="clip-rule:evenodd;display:inline;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0">δ</text>
+      </g>
+      <g
+         id="g122289">
+        <rect
+           x="604.30829"
+           y="69.960892"
+           width="20.247999"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ff5757;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect2-0-02-9" />
+        <rect
+           x="604.30829"
+           y="118.54381"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#5757ff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect10-2-4-5" />
+        <rect
+           x="604.30829"
+           y="94.252396"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#55d400;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect18-5-3-7" />
+        <rect
+           x="604.52277"
+           y="264.29282"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect28-3-1-2" />
+        <rect
+           x="604.3078"
+           y="142.83528"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect32-6-1-4"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="604.3078"
+           y="167.12679"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect40-2-9-6"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <rect
+           x="604.3078"
+           y="191.41841"
+           width="20.248245"
+           height="20.248245"
+           style="clip-rule:evenodd;display:inline;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="rect44-3-8-8"
+           inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <circle
+           cx="614.77911"
+           cy="224.14471"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle48-8-6-2" />
+        <circle
+           cx="614.77911"
+           cy="237.97972"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle50-4-1-3" />
+        <circle
+           cx="614.77911"
+           cy="251.81474"
+           r="4.5848131"
+           style="clip-rule:evenodd;fill:#ebebeb;fill-rule:evenodd;stroke-width:0.175556;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+           id="circle54-2-4-8" />
+        <text
            x="608.31732"
            y="160.81871"
-           style="stroke-width:0.578654">δ</tspan></text>
+           fill="#ffffff"
+           font-family="ArialMT, Arial, sans-serif"
+           font-size="27.1468px"
+           id="text16892-0-0"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.9889px;font-family:ArialMT, Arial, sans-serif;-inkscape-font-specification:'ArialMT, Arial, sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#ffffff;fill-rule:evenodd;stroke-width:0.578654;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"><tspan
+             sodipodi:role="line"
+             id="tspan91369"
+             x="608.31732"
+             y="160.81871"
+             style="stroke-width:0.578654">δ</tspan></text>
+      </g>
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.198437;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
-       x="790.3205"
-       y="548.18304"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.8207px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.217348;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="787.77008"
+       y="549.56818"
        id="text77792-2-2-0-6-9"
        transform="rotate(0.05502665)"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
-         x="790.3205"
-         y="548.18304"
-         id="tspan14936-0">masking</tspan></text>
-    <rect
-       style="display:inline;fill:none;fill-opacity:0;stroke:#999999;stroke-width:4;stroke-linecap:round;stroke-miterlimit:0.208333;stroke-dasharray:none;stroke-opacity:1"
-       id="rect212860-0-9-2-5-9"
-       width="122.72882"
-       height="37.227428"
-       x="782.2002"
-       y="523.39807"
-       rx="0.39560151"
-       ry="0.39497402"
+         x="787.77008"
+         y="549.56818"
+         id="tspan14936-0"
+         style="stroke-width:0.217348">masking</tspan></text>
+    <g
+       id="rect9106">
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:0;stroke-width:4;-inkscape-stroke:none"
+         d="m 986.52195,397.49613 v 248.67086 c 0,18.00231 -14.4929,32.49516 -32.4952,32.49516 h -779.9795 c -18.00231,0 -32.49516,-14.49285 -32.49516,-32.49516 m 0,0 v -93.1878"
+         id="path2204" />
+      <path
+         style="color:#000000;fill:#999999;-inkscape-stroke:none"
+         d="m 984.52148,397.49609 v 248.66993 c 0,16.92888 -13.56526,30.49609 -30.49414,30.49609 H 174.04687 c -16.92888,0 -30.49414,-13.56721 -30.49414,-30.49609 v -93.1875 h -4 v 93.1875 c 0,19.07569 15.41845,34.49609 34.49414,34.49609 h 779.98047 c 19.07569,0 34.49414,-15.42039 34.49414,-34.49609 V 397.49609 Z"
+         id="path2201" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="output"
+     transform="translate(-98.177527,-27.478217)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="595.5885"
+       y="48.424381"
+       id="text103754-0-9"
        inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
        inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan14277"
+         x="595.5885"
+         y="48.424381">Output 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;clip-rule:evenodd;display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0"
+       x="594.65491"
+       y="398.08545"
+       id="text103754-0-9-3"
+       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/forward.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan13845-3"
+         x="594.65491"
+         y="398.08545">Output 2</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="text"
-     style="display:inline" />
+     style="display:inline"
+     transform="translate(-98.177527,-27.478217)" />
 </svg>

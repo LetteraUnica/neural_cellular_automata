@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="0.16"
-     inkscape:cx="1565.625"
-     inkscape:cy="290.625"
+     inkscape:cx="1034.375"
+     inkscape:cy="521.875"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
@@ -294,58 +294,55 @@
        id="path15995-9-0-3-0"
        sodipodi:nodetypes="ccccccccccc" />
   </g>
-  <g
-     id="g901">
-    <rect
-       style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
-       id="rect18063-93-5-4"
-       width="40"
-       height="40"
-       x="524.62085"
-       y="144.27116"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
-       id="rect18063-93-6"
-       width="40"
-       height="40"
-       x="524.62085"
-       y="211.58362"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <rect
-       style="fill:#e6e6e6;fill-opacity:1;stroke:#b2b2b2;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
-       id="rect18063-93-9-47"
-       width="40"
-       height="40"
-       x="524.62085"
-       y="278.89609"
-       inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-  </g>
+  <rect
+     style="fill:#deaa87;fill-opacity:1;stroke:#deaa87;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+     id="rect18063-93-5-4"
+     width="40"
+     height="40"
+     x="524.62085"
+     y="144.27116"
+     inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <rect
+     style="fill:#ffe8ce;fill-opacity:1;stroke:#deaa87;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+     id="rect18063-93-6"
+     width="40"
+     height="40"
+     x="524.62085"
+     y="211.58362"
+     inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <rect
+     style="fill:#e6e6e6;fill-opacity:1;stroke:#b2b2b2;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+     id="rect18063-93-9-47"
+     width="40"
+     height="40"
+     x="524.62085"
+     y="278.89609"
+     inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:2.646;stroke-miterlimit:2;stroke-dasharray:none"
-     x="578.16254"
-     y="170.3235"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke:none;stroke-width:2.646;stroke-miterlimit:4;stroke-dasharray:none"
+     x="578.07367"
+     y="171.33224"
      id="text32195"
      inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
      inkscape:export-xdpi="96"
      inkscape:export-ydpi="96"><tspan
        sodipodi:role="line"
        id="tspan32193"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4d4d4d;stroke-width:2.646;stroke-miterlimit:2;stroke-dasharray:none"
-       x="578.16254"
-       y="170.3235">Mature</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke-width:2.646;stroke-miterlimit:4;stroke-dasharray:none"
+       x="578.07367"
+       y="171.33224">Mature</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-miterlimit:2;stroke-dasharray:none"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke:none;stroke-width:2.646;stroke-miterlimit:4;stroke-dasharray:none"
      x="578.90326"
-     y="236.25516"
+     y="237.03377"
      id="text32195-7"
      inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
      inkscape:export-xdpi="96"
@@ -353,18 +350,18 @@
        sodipodi:role="line"
        id="tspan64583"
        x="578.90326"
-       y="236.25516">Growing</tspan></text>
+       y="237.03377">Growing</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-miterlimit:2;stroke-dasharray:none"
-     x="578.16254"
-     y="303.30719"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke:none;stroke-width:2.646;stroke-miterlimit:4;stroke-dasharray:none"
+     x="578.07367"
+     y="304.04239"
      id="text32195-3"
      inkscape:export-filename="/home/lettera/Desktop/neural_cellular_automata/pytorch_ca/cell_states.png"
      inkscape:export-xdpi="96"
      inkscape:export-ydpi="96"><tspan
        sodipodi:role="line"
        id="tspan67235"
-       x="578.16254"
-       y="303.30719">Empty</tspan></text>
+       x="578.07367"
+       y="304.04239">Empty</tspan></text>
 </svg>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg width="275mm" height="50mm" version="1.1" viewBox="0 0 275 50" xmlns="http://www.w3.org/2000/svg">
- <rect y="6.0159e-14" width="50" height="50" fill="#ff6200" stroke-opacity="0"/>
- <g fill="#785ef0" stroke-opacity="0">
-  <rect y="6.0159e-14" width="5" height="5"/>
+ <rect y="7.5199e-14" width="50" height="50" fill="#ffb000" stroke-opacity="0"/>
+ <g fill="#648fff" stroke-opacity="0">
+  <rect y="7.5199e-14" width="5" height="5"/>
   <rect x="10" y="30" width="5" height="5"/>
   <rect x="40" y="35" width="5" height="5"/>
   <rect x="35" y="15" width="5" height="5"/>
  </g>
- <rect x="75" y="6.0159e-14" width="50" height="50" fill="#ff6200" stroke-opacity="0"/>
- <g fill="#785ef0" stroke-opacity="0">
-  <rect x="75" y="6.0159e-14" width="10" height="10"/>
+ <rect x="75" y="7.5199e-14" width="50" height="50" fill="#ffb000" stroke-opacity="0"/>
+ <g fill="#648fff" stroke-opacity="0">
+  <rect x="75" y="7.5199e-14" width="10" height="10"/>
   <rect x="85" y="30" width="10" height="10"/>
   <rect x="115" y="30" width="5" height="10"/>
   <rect x="110" y="10" width="5" height="10"/>
@@ -24,8 +24,8 @@
   <rect x="90" y="35" width="5" height="10"/>
  </g>
  <g stroke-opacity="0">
-  <rect x="150" y="6.0159e-14" width="50" height="50" fill="#ff6200"/>
-  <g transform="translate(-200,-125)" fill="#785ef0">
+  <rect x="150" y="7.5199e-14" width="50" height="50" fill="#ffb000"/>
+  <g transform="translate(-200,-125)" fill="#648fff">
    <rect x="350" y="125" width="20" height="10"/>
    <rect x="360" y="150" width="15" height="15"/>
    <rect x="390" y="155" width="5" height="10"/>
@@ -43,14 +43,14 @@
    <rect x="385" y="160" width="10" height="10"/>
    <rect x="380" y="145" width="15" height="10"/>
   </g>
-  <rect x="195" y="6.0159e-14" width="5" height="10" fill="#ff6200"/>
+  <rect x="195" y="7.5199e-14" width="5" height="10" fill="#ffb000"/>
  </g>
- <g fill="#785ef0" stroke-opacity="0">
+ <g fill="#648fff" stroke-opacity="0">
   <rect x="180" y="25" width="10" height="20"/>
   <rect x="185" y="40" width="10" height="10"/>
   <rect x="180" y="10" width="10" height="10"/>
   <rect x="170" y="25" width="15" height="5"/>
-  <rect x="225" y="6.0159e-14" width="50" height="50"/>
+  <rect x="225" y="7.5199e-14" width="50" height="50"/>
  </g>
  <g fill="#666">
   <path d="m66.569 24.047-11.569 0.26268 0.01849 1.826 11.568-0.26013z" color="#000000" stroke-width="1.0601" style="-inkscape-stroke:none"/>
