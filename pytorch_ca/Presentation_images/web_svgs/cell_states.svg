@@ -60,8 +60,8 @@
   <rect x="237.22" y="83.421" width="40" height="40" fill="#ffe8ce" stroke="#deaa87"/>
   <rect x="237.22" y="150.73" width="40" height="40" fill="#e6e6e6" stroke="#b2b2b2"/>
  </g>
- <g fill="#333333" font-family="sans-serif" font-size="19.756px" stroke-width="2.646">
-  <text x="290.66898" y="43.169353" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.66898" y="43.169353" fill="#333333" font-family="sans-serif" font-size="19.756px" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Mature</tspan></text>
+ <g fill="#000000" font-family="sans-serif" font-size="19.756px" stroke-width="2.646">
+  <text x="290.66898" y="43.169353" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.66898" y="43.169353" fill="#000000" font-family="sans-serif" font-size="19.756px" stroke-width="2.646" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Mature</tspan></text>
   <text x="291.49857" y="108.87088" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="291.49857" y="108.87088">Growing</tspan></text>
   <text x="290.66898" y="175.8795" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="290.66898" y="175.8795">Empty</tspan></text>
  </g>
