@@ -132,23 +132,27 @@ def state_to_image(x, mask_channels):
     return torch.cat((x[:, :3], alpha), dim=1)
 
 
-def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
-    """Prints an image
+def make_collage(images: torch.Tensor):
+    return rearrange(images, 'b c h w -> c h (b w)')
+
+
+def imshow(image: torch.Tensor, fname: str = None):
+    """Shows an image
 
     Args:
         image (torch.Tensor): Image to print
         fname (str): Path where to save the image.
             Defaults to None i.e. the image is not saved.
     """
+    if len(image.size()) == 4:
+        image = make_collage(image[:, :4])
+    pl.imshow(image[:4].detach().cpu().permute(1,2,0))
+    pl.axis('off')
 
-    img = pl.imshow(np.asarray(image.cpu().permute(1, 2, 0)[:, :, :4]))
     if fname is not None:
-        pl.axis('off')
         pl.savefig(fname=fname, bbox_inches="tight")
 
     pl.show()
-
-    return img
 
 
 def make_collage(images: torch.Tensor, width: int, fname: str = None, rescaling: int = 8) -> torch.Tensor:
