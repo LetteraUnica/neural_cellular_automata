@@ -155,31 +155,6 @@ def imshow(image: torch.Tensor, fname: str = None):
     pl.show()
 
 
-def make_collage(images: torch.Tensor, width: int, fname: str = None, rescaling: int = 8) -> torch.Tensor:
-    """Makes a collage out of a batch of images
-
-    Args:
-        images (torch.Tensor): Batch of images with the torch standard
-        width (int): width of the collage, the batch size must be a multiple of it
-        fname (str, optional): Where to save the collage. Defaults to not saving it.
-        rescaling (int, optional): Rescaling factor. Defaults to 8.
-
-    Returns:
-        torch.Tensor: Collage of images
-    """
-    if images.size()[0] % width != 0:
-        Exception("The batch is not a multiple of width")
-
-    rescaler = T.Resize(images.size()[-1] * rescaling,
-                        T.InterpolationMode.NEAREST)
-    image = rearrange(rescaler(images),
-                      '(b1 b2) c h w -> 1 c (b1 h) (b2 w)', b2=width)
-    if fname is not None:
-        save_image(RGBAtoRGB(image[0][:4])/255., fname)
-
-    return image
-
-
 class tensor_to_RGB():
     """ Converts a tensor to RGB, it will be used as an argument for the function make_video() """
 
