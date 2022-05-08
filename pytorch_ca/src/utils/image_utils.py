@@ -132,48 +132,27 @@ def state_to_image(x, mask_channels):
     return torch.cat((x[:, :3], alpha), dim=1)
 
 
-def imshow(image: torch.Tensor, fname: str = None) -> torch.Tensor:
-    """Prints an image
+def make_collage(images: torch.Tensor):
+    return rearrange(images, 'b c h w -> c h (b w)')
+
+
+def imshow(image: torch.Tensor, fname: str = None):
+    """Shows an image
 
     Args:
         image (torch.Tensor): Image to print
         fname (str): Path where to save the image.
             Defaults to None i.e. the image is not saved.
     """
+    if len(image.size()) == 4:
+        image = make_collage(image[:, :4])
+    pl.imshow(image[:4].detach().cpu().permute(1,2,0))
+    pl.axis('off')
 
-    img = pl.imshow(np.asarray(image.cpu().permute(1, 2, 0)[:, :, :4]))
     if fname is not None:
-        pl.axis('off')
         pl.savefig(fname=fname, bbox_inches="tight")
 
     pl.show()
-
-    return img
-
-
-def make_collage(images: torch.Tensor, width: int, fname: str = None, rescaling: int = 8) -> torch.Tensor:
-    """Makes a collage out of a batch of images
-
-    Args:
-        images (torch.Tensor): Batch of images with the torch standard
-        width (int): width of the collage, the batch size must be a multiple of it
-        fname (str, optional): Where to save the collage. Defaults to not saving it.
-        rescaling (int, optional): Rescaling factor. Defaults to 8.
-
-    Returns:
-        torch.Tensor: Collage of images
-    """
-    if images.size()[0] % width != 0:
-        Exception("The batch is not a multiple of width")
-
-    rescaler = T.Resize(images.size()[-1] * rescaling,
-                        T.InterpolationMode.NEAREST)
-    image = rearrange(rescaler(images),
-                      '(b1 b2) c h w -> 1 c (b1 h) (b2 w)', b2=width)
-    if fname is not None:
-        save_image(RGBAtoRGB(image[0][:4])/255., fname)
-
-    return image
 
 
 class tensor_to_RGB():
