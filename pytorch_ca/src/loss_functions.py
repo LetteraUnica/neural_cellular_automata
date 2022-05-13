@@ -26,14 +26,13 @@ class NCALoss:
         self.criterion = criterion(reduction="none")
         self.alpha_channels = alpha_channels
 
-    def __call__(self, x: torch.Tensor, *args, **kwargs) -> Tuple[torch.Tensor]:
+    def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
         Args:
             x (torch.Tensor): Images to compute the loss
         Returns:
-            Tuple(torch.Tensor, torch.Tensor): 
+            torch.Tensor: 
                 Average loss of all images in the batch, 
-                index of the image with maximum loss
         """
 
         alpha = torch.sum(x[:, self.alpha_channels], dim=1, keepdim=True)
@@ -71,10 +70,8 @@ class NCADistance:
         self.model2 = model2
         self.penalization = penalization
 
-    def __call__(self, x: torch.Tensor, *args, **kwargs) -> torch.Tensor:
+    def __call__(self, *args, **kwargs) -> torch.Tensor:
         """Returns the loss and the index of the image with maximum loss
-        Args:
-            x (torch.Tensor): Images to compute the loss
         Returns:
             Tuple(torch.Tensor, torch.Tensor): 
                 Average loss of all images in the batch, 
