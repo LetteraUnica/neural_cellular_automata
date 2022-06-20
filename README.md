@@ -4,7 +4,9 @@
 ## Introduction
 We studied and implemented a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
-The paper can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata/extra)
+The paper has been accepted to the Alife 2022 conference, and it will be out in late june
+
+The extra material can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata/extra)
 
 ## Installation and Usage
 To use this package you just have to clone the repository: 
