@@ -1,13 +1,27 @@
+/*
 var colors=[["#fff","#fde411","#fd4949","#fef495","#fd9695","#fd8b1f"],   //base colors
-            ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"],   //dimmed colors colors
-            ["#fff","#fde411","#fd4949","#fde411","#fd4949","#fd8b1f"]];  //bright colors
+["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fec8b1"],   //dimmed colors colors
+["#fff","#fde411","#fd4949","#fde411","#fd4949","#fd8b1f"]];  //bright colors
 
 var explanation_colors=[["#fff","#fde411","#fd4949","#fff","#fff","#fff"],
-                        ["#fff","#fde411","#fff","#fef495","#fff","#fff"],
-                        ["#fff","#fde411","#fd4949","#fef495","#fff","#fef495"],
-                        colors[0],
-                        ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fd8b1f"]];
+            ["#fff","#fde411","#fff","#fef495","#fff","#fff"],
+            ["#fff","#fde411","#fd4949","#fef495","#fff","#fef495"],
+            colors[0],
+            ["#fff","#fef0b0","#feb6b6","#fef9cc","#fecccc","#fd8b1f"]];
 
+
+
+*/
+
+var colors=[["#fff","#785EF0","#FE6100","#648FFF","#FFB000","#DC267F"],   //base colors
+            ["#fff","#d0caf0","#fecfb1","#ccdaff","#ffe7b2","#eebeda"],   //dimmed colors colors
+            ["#fff","#785EF0","#FE6100","#785EF0","#FE6100","#DC267F"]];  //bright colors
+
+var explanation_colors=[["#fff","#785EF0","#FE6100","#fff","#fff","#fff"],
+                        ["#fff","#785EF0","#fff","#648FFF","#fff","#fff"],
+                        ["#fff","#785EF0","#FE6100","#648FFF","#fff","#648FFF"],
+                        colors[0],
+                        ["#fff","#d0caf0","#fecfb1","#ccdaff","#ffe7b2","#DC267F"]];
 
 var text_ids=["white","yellow","red","light_yellow","light_red","orange"];
 
