@@ -1,12 +1,13 @@
-# Expanding lifespan of Cellular Automatae
+# Adversarial Takeover of Neural Cellular Automata
 
-###### Contributors: *Cavuoti Lorenzo*, *Sacco Francesco*
-## Introduction
-We studied and implemented a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
+###### Contributors: *Lorenzo Cavuoti*, *Francesco Sacco*, *Ettore Randazzo* and *Michael Levin*
+## What is this?
+This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata published in ALIFE 2022.  
+We studied and extended a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
-The paper has been accepted to the Alife 2022 conference, and it will be out in late june
-
-The extra material can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata/extra)
+## Getting Started  
+We created a [**Colab notebook**](https://colab.research.google.com/drive/1Jh7MZPxE_05-04neyX2XxYbvq1O457aG?usp=sharing) where you can run all the experiments present in the article in a more user-friendly way.  
+The notebook also acts as a tutorial, as everything is commented and explained in detail.
 
 ## Installation and Usage
 To use this package you just have to clone the repository: 
@@ -21,18 +22,13 @@ After cloning, execute
 python3 -m pip install -r requirements.txt
 ```
 
-which will install all the required packages to run the code. 
+which will install all the required packages to run the code.  
 
-## Folder structure
-- `Papers`: Contains the papers used for the project
-- `pytorch_ca`: Contains the implementation of the neural cellular automata in Pytorch
-- `website`: Contains the stuff useful for the website of the paper
-- `Introduction.pdf`: Is the abstract of the project
+## Extras
+Extra videos and resources can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata/extra)
 
 ## References
-This work was inspired and/or helped by the following works:
-
-
+This work was inspired and/or helped by the following works:  
 
 1. Alexander Mordvintsev et al. “Growing Neural Cellular Automata”. In: Distill (2020). https://distill.pub/2020/growing-ca.doi: 10.23915/distill.000232. 
 2. Ettore Randazzo et al. “Adversarial Reprogramming of Neural Cellular Automata”. In: Distill (2021). https://distill.pub/selforg/2021/adversarial.doi: 10.23915/distill.00027.0043. 
