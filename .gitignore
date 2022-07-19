@@ -149,7 +149,11 @@ __pycache__
 # IntelliJ
 .idea
 
-#vscode
+# vscode
 .vscode
-#orfeo scripts
+
+# orfeo scripts
 connect_orfeo.sh
+
+# Video
+/presentation_video
