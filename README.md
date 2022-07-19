@@ -25,7 +25,7 @@ python3 -m pip install -r requirements.txt
 which will install all the required packages to run the code.  
 
 ## Extras
-Extra videos and resources can be found [Here](https://LetteraUnica.github.io/neural_cellular_automata/extra)
+Extra videos and resources can be found [**here**](https://LetteraUnica.github.io/neural_cellular_automata/extra)
 
 ## References
 This work was inspired and/or helped by the following works:  
