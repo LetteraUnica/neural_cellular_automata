@@ -1,13 +1,13 @@
 # Adversarial Takeover of Neural Cellular Automata
 
-###### Contributors: *Lorenzo Cavuoti*, *Francesco Sacco*, *Ettore Randazzo* and *Michael Levin*
 ## What is this?
 This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata published in ALIFE 2022.  
 We studied and extended a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
 
 ## Getting Started  
-We created a [**Colab notebook**](https://colab.research.google.com/drive/1Jh7MZPxE_05-04neyX2XxYbvq1O457aG?usp=sharing) where you can run all the experiments present in the article in a more user-friendly way.  
-The notebook also acts as a tutorial, as everything is commented and explained in detail.
+We have created a [**page**](https://letteraunica.github.io/neural_cellular_automata) with the video explanation and all the resources to learn about the work and experiment
+
+
 
 ## Installation and Usage
 To use this package you just have to clone the repository: 
