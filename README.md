@@ -4,8 +4,6 @@
 This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata, published in ALIFE 2022.  
 We added **adversaries** to a **Neural Cellular Automaton** in order to change its color, shape or even both!
 
-![](pytorch_ca\Presentation_videos\GIFs\lizard_red.gif)
-
 ## Getting Started  
 We have created a [**page**](https://letteraunica.github.io/neural_cellular_automata) with the video explanation and all the resources to learn about the work and experiments.
 
