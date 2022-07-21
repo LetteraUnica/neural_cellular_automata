@@ -1,7 +1,7 @@
 # Adversarial Takeover of Neural Cellular Automata
 
 ## What is this?
-This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata published in ALIFE 2022.  
+This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata, published in ALIFE 2022.  
 We added **adversaries** to a **Neural Cellular Automaton** in order to change its color, shape or even both!
 
 ![](pytorch_ca\Presentation_videos\GIFs\lizard_red.gif)
