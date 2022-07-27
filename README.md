@@ -1,13 +1,11 @@
 # Adversarial Takeover of Neural Cellular Automata
 
 ## What is this?
-This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata published in ALIFE 2022.  
-We studied and extended a **Neural Cellular Automaton** aiming at the simulation of **self-organizing** structures' processes of growth, persistence in time and regeneration after a damage.
+This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata, published in ALIFE 2022.  
+We added **adversaries** to a **Neural Cellular Automaton** in order to change its color, shape or even both!
 
 ## Getting Started  
-We have created a [**page**](https://letteraunica.github.io/neural_cellular_automata) with the video explanation and all the resources to learn about the work and experiment
-
-
+We have created a [**page**](https://letteraunica.github.io/neural_cellular_automata) with the video explanation and all the resources to learn about the work and experiments.
 
 ## Installation and Usage
 To use this package you just have to clone the repository: 
