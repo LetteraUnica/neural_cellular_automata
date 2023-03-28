@@ -1,5 +1,5 @@
 # Adversarial Takeover of Neural Cellular Automata
-![](https://github.com/LetteraUnica/neural_cellular_automata/blob/main/video_files/vaccino_contro_danni.gif)
+[![](https://github.com/LetteraUnica/neural_cellular_automata/blob/main/video_files/vaccino_contro_danni.gif)](https://letteraunica.github.io/neural_cellular_automata/)
 A lizard who has been given regenerative powers form the new adversarial cells
 
 ## What is this?
