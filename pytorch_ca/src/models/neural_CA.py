@@ -7,6 +7,47 @@ from ..utils import *
 from ..sample_pool import *
 from .CAModel import *
 
+class Perciever(nn.Module): #forse non serve ereditare da nn.Module
+    def __init__(self, n_channels:int, device:torch.device, angle:float=0.):
+        super().__init__()
+        
+        self.device=device
+        self.n_channels=n_channels
+        self.angle=angle
+
+        # Filters
+        identity = torch.tensor([[0., 0., 0.],
+                                 [0., 1., 0.],
+                                 [0., 0., 0.]])
+        dx = torch.tensor([[-0.125, 0., 0.125],
+                           [-0.25, 0., 0.25],
+                           [-0.125, 0., 0.125]])
+        dy = dx.T
+
+        # Rotation
+        angle = torch.tensor(angle)
+        c, s = torch.cos(angle), torch.sin(angle)
+        dx, dy = c*dx - s*dy, s*dx + c*dy
+
+        # Create filters batch
+        all_filters = torch.stack((identity, dx, dy))
+        all_filters_batch = all_filters.repeat(self.n_channels, 1, 1).unsqueeze(1)
+        
+        self.all_filters_batch = all_filters_batch.to(self.device)
+
+    def forward(self, images: torch.Tensor) -> torch.Tensor:
+        """Returns the perception vector of each cell in an image, or perception matrix
+
+        Args:
+            images (torch.Tensor): Images to compute the perception matrix. images.shape=(batch_size, n_channels, image_size, image_size)
+
+        Returns:
+            torch.Tensor: Perception matrix
+        """
+
+       
+        # Depthwise convolution over input images
+        return F.conv2d(wrap_edges(images), self.all_filters_batch, groups=self.n_channels)
 
 
 class NeuralCA(CAModel):
@@ -36,46 +77,13 @@ class NeuralCA(CAModel):
             nn.ReLU(),
             nn.Conv2d(128, n_channels, 1))
 
+        self.perceive=Perciever(n_channels,device)
         # Set the parameters of the second layer to zero
         for name, param in self.named_parameters():
             if "2" in name:
                 param.data.zero_()
 
         self.to(device)
-
-    def perceive(self, images: torch.Tensor, angle: float = 0.) -> torch.Tensor:
-        """Returns the perception vector of each cell in an image, or perception matrix
-
-        Args:
-            images (torch.Tensor): Images to compute the perception matrix
-            angle (float, optional): Angle of the Sobel filters. Defaults to 0.
-
-        Returns:
-            torch.Tensor: Perception matrix
-        """
-
-        # Filters
-        identity = torch.tensor([[0., 0., 0.],
-                                 [0., 1., 0.],
-                                 [0., 0., 0.]])
-        dx = torch.tensor([[-0.125, 0., 0.125],
-                           [-0.25, 0., 0.25],
-                           [-0.125, 0., 0.125]])
-        dy = dx.T
-
-        # Rotation
-        angle = torch.tensor(angle)
-        c, s = torch.cos(angle), torch.sin(angle)
-        dx, dy = c*dx - s*dy, s*dx + c*dy
-
-        # Create filters batch
-        all_filters = torch.stack((identity, dx, dy))
-        all_filters_batch = all_filters.repeat(
-            self.n_channels, 1, 1).unsqueeze(1)
-        all_filters_batch = all_filters_batch.to(self.device)
-
-        # Depthwise convolution over input images
-        return F.conv2d(wrap_edges(images), all_filters_batch, groups=self.n_channels)
 
     def compute_dx(self, x: torch.Tensor, angle: float = 0.,
                    step_size: float = 1.) -> torch.Tensor:
@@ -90,7 +98,7 @@ class NeuralCA(CAModel):
             torch.Tensor: dx
         """
         # compute update increment
-        dx = self.layers(self.perceive(x, angle)) * step_size
+        dx = self.layers(self.perceive(x)) * step_size
 
         # get random-per-cell mask for stochastic update
         update_mask = torch.rand(
