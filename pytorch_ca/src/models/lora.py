@@ -3,6 +3,15 @@ from torch import nn
 
 from torch.nn import functional as F
 
+from pytorch_ca.src.models.neural_CA import NeuralCA
+
+"""
+TODO:
+
+Make make sure that the original weights remain unaltered during training
+"""
+
+
 class LoraConvLayer(nn.Module):
     def __init__(self, conv_layer:nn.Conv2d, rank:int=1):
         """
@@ -39,3 +48,18 @@ class LoraConvLayer(nn.Module):
 
 
         F.conv2d(images,weight,bias)
+
+
+
+class LoraNeuralCA(NeuralCA):
+
+    def __init__(self, NeuralCA:NeuralCA, rank:int):
+        super().__init__(NeuralCA.n_channels,NeuralCA.device,NeuralCA.fire_rate)
+
+        # Network layers needed for the update rule
+        self.layers=nn.Sequential(
+            LoraConvLayer(NeuralCA.layers[0]),
+            nn.ReLU(),
+            LoraConvLayer(NeuralCA.layers[2])
+        )
+
