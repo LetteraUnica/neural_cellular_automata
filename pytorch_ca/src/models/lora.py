@@ -2,8 +2,9 @@ import torch
 from torch import nn
 
 from torch.nn import functional as F
+from src.models.multiple_CA import CustomCA
 
-from pytorch_ca.src.models.neural_CA import NeuralCA
+from src.models.neural_CA import NeuralCA
 
 """
 TODO:
@@ -27,7 +28,6 @@ class LoraConvLayer(nn.Module):
         self.in_channels = conv_layer.in_channels
         self.out_channels = conv_layer.out_channels
         self.kernel_size = conv_layer.kernel_size
-        #self.device=conv_layer.device
 
         assert type(rank)==int, f"rank must be an integer, got {type(rank)} instead"
         assert rank>0, f"rank must be positive, got {rank} instead"
@@ -37,29 +37,28 @@ class LoraConvLayer(nn.Module):
         self.factor_matrix2=nn.Parameter(torch.zeros(rank, self.in_channels))
         self.factor_bias=nn.Parameter(torch.zeros(rank))
 
-        #self.to(conv_layer.device)
         conv_layer.weight.requires_grad=False
         conv_layer.bias.requires_grad=False
 
+        self.to(conv_layer.weight.device)
+
     def forward(self, images):
 
-        weight=self.conv_layer.weight + (self.factor_matrix1@self.factor_matrix2)[...,None,None]
-        bias=self.conv_layer.bias + (self.factor_matrix1@self.factor_bias)
+        self.lora_weight=(self.factor_matrix1@self.factor_matrix2)[...,None,None]
+        self.lora_bias= self.factor_matrix1@self.factor_bias        
+        
+        weight=self.conv_layer.weight + self.lora_weight
+        bias=self.conv_layer.bias + self.lora_bias
 
 
-        F.conv2d(images,weight,bias)
+        return F.conv2d(images,weight,bias)
 
 
 
-class LoraNeuralCA(NeuralCA):
-
-    def __init__(self, NeuralCA:NeuralCA, rank:int):
-        super().__init__(NeuralCA.n_channels,NeuralCA.device,NeuralCA.fire_rate)
-
-        # Network layers needed for the update rule
-        self.layers=nn.Sequential(
-            LoraConvLayer(NeuralCA.layers[0]),
+def MakeLora(NCA: NeuralCA|CustomCA, rank:int):
+    NCA.layers=nn.Sequential(
+            LoraConvLayer(NCA.layers[0]),
             nn.ReLU(),
-            LoraConvLayer(NeuralCA.layers[2])
+            LoraConvLayer(NCA.layers[2])
         )
-
+    return NCA

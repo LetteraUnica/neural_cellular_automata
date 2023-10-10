@@ -32,7 +32,7 @@ class Perciever(nn.Module): #forse non serve ereditare da nn.Module
         # Create filters batch
         all_filters = torch.stack((identity, dx, dy))
         all_filters_batch = all_filters.repeat(self.n_channels, 1, 1).unsqueeze(1)
-        
+
         self.all_filters_batch = all_filters_batch.to(self.device)
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
@@ -48,7 +48,6 @@ class Perciever(nn.Module): #forse non serve ereditare da nn.Module
        
         # Depthwise convolution over input images
         return F.conv2d(wrap_edges(images), self.all_filters_batch, groups=self.n_channels)
-
 
 class NeuralCA(CAModel):
     """Implements a neural cellular automata model like described here
@@ -91,8 +90,8 @@ class NeuralCA(CAModel):
 
         Args:
             x (torch.Tensor): Previous CA state
-            angle (float, optional): Angle of the update. Defaults to 0..
-            step_size (float, optional): Step size of the update. Defaults to 1..
+            angle (float, optional): Angle of the update. Defaults to 0.
+            step_size (float, optional): Step size of the update. Defaults to 1.
 
         Returns:
             torch.Tensor: dx
@@ -154,7 +153,7 @@ class NeuralCA(CAModel):
                 the overwrite argument is set to False
         """
         if os.path.exists(fname) and not overwrite:
-            message = "The file name already exists, to overwrite it set the "
+            message = "The file name already exists, to overwrite it set the"
             message += "overwrite argument to True to confirm the overwrite"
             raise Exception(message)
         torch.save(self.state_dict(), fname)
