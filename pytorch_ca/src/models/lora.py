@@ -1,7 +1,9 @@
+from typing import Iterator
 import torch
 from torch import nn
 
 from torch.nn import functional as F
+from torch.nn.parameter import Parameter
 from src.models.multiple_CA import CustomCA
 
 from src.models.neural_CA import NeuralCA
@@ -53,12 +55,3 @@ class LoraConvLayer(nn.Module):
 
         return F.conv2d(images,weight,bias)
 
-
-
-def MakeLora(NCA: NeuralCA|CustomCA, rank:int):
-    NCA.layers=nn.Sequential(
-            LoraConvLayer(NCA.layers[0]),
-            nn.ReLU(),
-            LoraConvLayer(NCA.layers[2])
-        )
-    return NCA

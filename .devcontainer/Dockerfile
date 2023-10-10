@@ -28,4 +28,4 @@ RUN pip install ipykernel langchain chromadb
 
 RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6
 
-RUN pip install numpy scipy matplotlib av einops wandb
+RUN pip install numpy scipy matplotlib av einops wandb moviepy

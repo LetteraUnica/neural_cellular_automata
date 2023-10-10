@@ -6,7 +6,7 @@ import os.path
 from ..utils import *
 from ..sample_pool import *
 from .CAModel import *
-
+from src import LoraConvLayer
 class Perciever(nn.Module): #forse non serve ereditare da nn.Module
     def __init__(self, n_channels:int, device:torch.device, angle:float=0.):
         super().__init__()
@@ -81,6 +81,8 @@ class NeuralCA(CAModel):
         for name, param in self.named_parameters():
             if "2" in name:
                 param.data.zero_()
+
+        self.is_lora=False
 
         self.to(device)
 
@@ -158,3 +160,13 @@ class NeuralCA(CAModel):
             raise Exception(message)
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
+
+    def to_LoRa(self, rank:int):
+        
+        assert self.is_lora==False, "this model is already a LoRa"
+        self.is_lora=True
+        self.layers=nn.Sequential(
+            LoraConvLayer(self.layers[0], rank),
+            nn.ReLU(),
+            LoraConvLayer(self.layers[2], rank)
+        )
