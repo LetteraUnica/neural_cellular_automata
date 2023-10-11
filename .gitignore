@@ -157,3 +157,6 @@ connect_orfeo.sh
 
 # Video
 /presentation_video
+
+# Random tests
+*test.py
