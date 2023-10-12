@@ -44,7 +44,7 @@ class VirusGenerator:
                  n_CAs: int,
                  CA: "CAModel",
                  iter_func=ExponentialSampler(),
-                 virus_func=RandomVirus()):
+                 virus_func: RandomVirus|SquareVirus = RandomVirus()):
         self.n_channels = n_channels
         self.original_channel = original_channel
         self.virus_channel = virus_channel
@@ -64,6 +64,6 @@ class VirusGenerator:
             starting_state[i:i+batch_size] = self.CA.evolve(
                 starting_state[i:i+batch_size], n_steps)
 
-        starting_state = self.virus_func.add_virus(
-            starting_state, self.original_channel, self.virus_channel)
+        starting_state = self.virus_func.add_virus(starting_state, self.original_channel, self.virus_channel)
+        
         return starting_state.to(device)

@@ -161,7 +161,7 @@ class NeuralCA(CAModel):
         torch.save(self.state_dict(), fname)
         print("Successfully saved model!")
 
-    def to_LoRa(self, rank:int):
+    def toLoRa(self, rank:int):
         
         assert self.is_lora==False, "this model is already a LoRa"
         self.is_lora=True

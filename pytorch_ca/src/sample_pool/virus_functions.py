@@ -59,10 +59,13 @@ class SquareVirus():
         original_cells = (images[:, original_channel].unsqueeze(1) > 0.1).float()
         virus_center_masks = erode(original_cells, erosion_depth=self.square_side // 2 + self.edge_distance)
 
+        #assert (virus_center_masks==0).all==False, f"can't place a virus cell on an empty canvas"
+
         virus_masks = torch.zeros_like(images[:, 0], dtype=int)
         for i in range(images.size()[0]):
             virus_centers = torch.nonzero(virus_center_masks[i, 0])
             center = virus_centers[torch.randint(0, virus_centers.size()[0], (1,))]
             virus_masks[i] = square_mask(images.size()[-1], center.squeeze(), self.square_side)
+
 
         return apply_mask(images, virus_masks, original_channel, virus_channel)

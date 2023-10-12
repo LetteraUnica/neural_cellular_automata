@@ -36,9 +36,9 @@ class LoraConvLayer(nn.Module):
         assert rank<min(self.in_channels,self.out_channels), f"why do you even use a rank that gives you more parameters than you started with lol"
 
         #TODO: Improve initialization 
-        self.factor_matrix1=nn.Parameter(torch.randn(self.out_channels,rank))
-        self.factor_matrix2=nn.Parameter(torch.randn(rank, self.in_channels))
-        self.factor_bias=nn.Parameter(torch.randn(rank))
+        self.factor_matrix1=nn.Parameter(torch.randn(self.out_channels,rank)/100)
+        self.factor_matrix2=nn.Parameter(torch.randn(rank, self.in_channels)/100)
+        self.factor_bias=nn.Parameter(torch.randn(rank)/100)
 
         conv_layer.weight.requires_grad=False
         conv_layer.bias.requires_grad=False
