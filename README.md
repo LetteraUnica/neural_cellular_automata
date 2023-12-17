@@ -1,6 +1,6 @@
 # Adversarial Takeover of Neural Cellular Automata
 [![](https://github.com/LetteraUnica/neural_cellular_automata/blob/main/video_files/vaccino_contro_danni.gif)](https://letteraunica.github.io/neural_cellular_automata/)
-A lizard who has been given regenerative powers form the new adversarial cells
+A lizard who has been given regenerative powers from the new adversarial cells
 
 ## What is this?
 This is the code and experiments of the paper Adversarial Takeover of Neural Cellular Automata, published in ALIFE 2022.  
